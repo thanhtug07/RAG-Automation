@@ -74,9 +74,10 @@
 .Hero h1 { font-size: clamp(2.75rem, 5.2vw + 1rem, 4.5rem); line-height: 1.06; letter-spacing: -0.025em; font-weight: 800; max-width: 880px; margin: 0 auto 20px; }
 .Hero-lead { color: var(--home-text-2); font-size: 1.125rem; line-height: 1.65; max-width: 680px; margin: 0 auto 32px; }
 .Hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; align-items: center; }
-/* 1 · quiet secondary path: link-style, Start building stays solid/large dominant */
-.Hero-quiet { display: inline-flex; align-items: center; gap: 6px; color: var(--home-text-2); font-weight: 600; font-size: 1rem; line-height: 1.5; text-decoration: none; padding: 13px 8px; border-radius: 8px; }
+/* 1 · quiet secondary path: link-style button (full UA-chrome reset), Start building stays solid/large dominant */
+.Hero-quiet { appearance: none; background: transparent; border: none; cursor: pointer; font: inherit; display: inline-flex; align-items: center; gap: 6px; color: var(--home-text-2); font-weight: 600; font-size: 1rem; line-height: 1.5; text-decoration: none; padding: 13px 8px; border-radius: 8px; }
 .Hero-quiet:hover { color: var(--home-primary); text-decoration: underline; }
+.Hero-quiet:focus-visible { outline: 2px solid var(--home-primary); outline-offset: 2px; }
 /* Background switcher (compact pill + dropdown, language-switcher style) */
 .HeroBgWrap { position: relative; display: inline-block; margin: 12px 0 0; z-index: 3; }
 .HeroBgBtn { appearance: none; display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--home-border); border-radius: 999px; padding: 4px 14px; font-size: 0.75rem; font-weight: 600; color: var(--home-text-2); cursor: pointer; }
