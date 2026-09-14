@@ -1,0 +1,4 @@
+/* Agents page rules only. */
+@media (max-width: 480px) {
+  .content { padding: var(--space-4); }
+}

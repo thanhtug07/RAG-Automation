@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Center — AgentOS</title>
+  <link rel="stylesheet" href="../../styles/reset.css" />
+  <link rel="stylesheet" href="../../styles/tokens.css" />
+  <link rel="stylesheet" href="../../styles/shell.css" />
+  <link rel="stylesheet" href="command-center.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="../home/index.html"><span class="brand-mark" aria-hidden="true">A</span><span>AgentOS</span></a>
+      <nav aria-label="App">
+        <a class="side-link" href="../dashboard/index.html">Dashboard</a>
+        <a class="side-link active" href="index.html">Command Center</a>
+        <a class="side-link" href="../agents/index.html">Agents</a>
+        <a class="side-link" href="../workflows/index.html">Workflows</a>
+        <a class="side-link" href="../knowledge/index.html">Knowledge</a>
+        <a class="side-link" href="../tools/index.html">Tools</a>
+        <a class="side-link" href="../runs/index.html">Runs</a>
+        <a class="side-link" href="../settings/index.html">Settings</a>
+      </nav>
+      <div class="side-foot"><span id="sideUser"></span><br /><a href="#" id="signOut">Sign out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="menu-btn btn btn-secondary" id="menuBtn">Menu</button>
+        <h1>Command Center</h1>
+        <span class="spacer"></span>
+        <span class="workspace">Acme Corp</span>
+      </header>
+      <main class="content">
+        <div class="split">
+          <section class="panel">
+            <div class="panel-head"><span>Chat</span></div>
+            <div class="panel-body">
+              <div class="chat" id="chat"></div>
+              <form class="composer" id="composer">
+                <input id="chatInput" placeholder="Ask about orders, revenue, policies…" aria-label="Message" />
+                <button class="btn btn-primary" type="submit">Send</button>
+              </form>
+            </div>
+          </section>
+          <aside class="panel">
+            <div class="panel-head"><span>New task</span></div>
+            <div class="panel-body">
+              <form class="form-grid" id="taskForm">
+                <label>Title<input class="input" id="taskTitle" required /></label>
+                <button class="btn btn-primary" type="submit">Create task</button>
+              </form>
+              <div id="taskList"></div>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="toast-wrap" id="toasts" aria-live="polite"></div>
+  <script src="command-center.js"></script>
+</body>
+</html>
