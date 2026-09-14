@@ -37,3 +37,16 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Node / Frontend
+node_modules/
+.next/
+out/
+coverage/
+
+# Secrets - NEVER commit
+*.pem
+*.key
+secrets/
+.env.*
+!.env.example
