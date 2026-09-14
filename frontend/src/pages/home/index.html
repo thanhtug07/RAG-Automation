@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentOS — Turn business intent into autonomous execution</title>
+  <meta name="description" content="AgentOS plans business requests, orchestrates specialized AI agents over enterprise knowledge and tools, and delivers traceable results." />
+  <link rel="stylesheet" href="../../styles/reset.css" />
+  <link rel="stylesheet" href="../../styles/tokens.css" />
+  <link rel="stylesheet" href="home.css" />
+  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;}catch(__e){document.documentElement.lang="en";}</script>
+</head>
+<body class="HomePage">
+  <a class="HomeSkip" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- 1 · Navigation (fixed; links drive the section controller) -->
+  <header class="HomeNav">
+    <div class="HomeNav-inner">
+      <a class="HomeNav-brand" href="index.html" aria-label="AgentOS home" data-i18n-aria-label="nav.brand_aria" data-goto="0">
+        <svg class="HomeNav-mark" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="28" height="28" rx="7" fill="#0284C7"/>
+          <circle cx="15" cy="15" r="4.2" fill="#fff"/>
+          <circle cx="15" cy="6.6" r="2.1" fill="#fff" opacity="0.85"/>
+          <circle cx="22.4" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+          <circle cx="7.6" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+          <path d="M15 10.8v.4M18.6 17.4l-.4-.3M11.4 17.4l.4-.3" stroke="#0284C7" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span>AgentOS</span>
+      </a>
+      <nav class="HomeNav-nav" aria-label="Primary" data-i18n-aria-label="nav.aria">
+        <div class="HomeNav-links" id="homeNavLinks">
+          <a href="#orchestration" data-goto="2" data-i18n="nav.platform">Platform</a>
+          <a href="#how" data-goto="3" data-i18n="nav.how">How it works</a>
+          <a href="#capabilities" data-goto="4" data-i18n="nav.capabilities">Capabilities</a>
+          <a href="#control" data-goto="5" data-i18n="nav.trust">Trust</a>
+        </div>
+        <div class="HomeNav-actions" id="homeNavActions">
+          <div class="LangSwitch" role="group" aria-label="Language / Ngôn ngữ">
+            <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+            <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
+          </div>
+          <a class="HomeBtn HomeBtn--ghost" href="../auth/login/index.html" data-i18n="nav.signin">Sign in</a>
+          <a class="HomeBtn HomeBtn--primary" href="../auth/register/index.html" data-i18n="nav.getstarted">Get started</a>
+        </div>
+        <button class="HomeNav-toggle" id="homeNavToggle" aria-expanded="false" aria-controls="homeNavLinks homeNavActions" aria-label="Open menu">Menu</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="FsStage" aria-label="AgentOS home sections">
+    <!-- SECTION 01 · HERO / BUSINESS INTENT -->
+    <section class="Hero FsSection is-active" data-section="0" id="intent" aria-labelledby="hero-title" aria-roledescription="slide" aria-label="1 of 6: Intent">
+      <div class="Hero-bg" aria-hidden="true"><canvas id="heroBg"></canvas></div>
+      <div class="HomeContainer FsFit">
+        <p class="Hero-eyebrow" data-i18n="hero.eyebrow">Enterprise AI Automation</p>
+        <h1 id="hero-title" data-i18n-html="hero.title"><span class="Hero-line" style="display:block"><span style="display:block">Turn business intent</span></span><span class="Hero-line" style="display:block"><span style="display:block">into autonomous execution.</span></span></h1>
+        <p class="Hero-lead" data-i18n="hero.lead">Finance and ops teams turn one request into a traced, board-ready report. Enterprise automation with plans, specialist agents, and approvals — every step traceable.</p>
+        <div class="Hero-ctas">
+          <a class="HomeBtn HomeBtn--primary HomeBtn--lg" href="../auth/register/index.html" data-i18n="hero.cta_primary">Start building</a>
+          <button type="button" class="Hero-quiet" data-goto="3" data-i18n-html="hero.cta_secondary">Explore AgentOS <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="Hero-note" data-i18n="hero.note">Sample run · 12 agents · every step traceable · no credit card</p>
+        <ol class="IntentStrip" aria-label="AgentOS flow: intent, plan, agents, result">
+          <li><strong>Intent</strong><span>Business goal</span></li>
+          <li aria-hidden="true" class="IntentStrip-arrow">→</li>
+          <li><strong>Plan</strong><span>6 steps</span></li>
+          <li aria-hidden="true" class="IntentStrip-arrow">→</li>
+          <li><strong>Agents</strong><span>12 specialists</span></li>
+          <li aria-hidden="true" class="IntentStrip-arrow">→</li>
+          <li><strong>Result</strong><span>Verified report</span></li>
+        </ol>
+        <div class="HeroBgWrap">
+          <button type="button" class="HeroBgBtn" id="heroBgBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="heroBgList">
+            <span class="HeroBgDot" id="heroBgDot" aria-hidden="true"></span><span id="heroBgName">Node field</span><span class="HeroBgCaret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="HeroBgList" id="heroBgList" role="listbox" aria-label="Hero background" data-i18n-aria-label="hero.bg_aria" hidden></ul>
+        </div>
+        <button type="button" class="ScrollCue" data-goto="1" aria-label="Go to live execution">
+          <span class="ScrollCue-text">Scroll to explore</span>
+          <span class="ScrollCue-arrow" aria-hidden="true">↓</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 02 · LIVE EXECUTION -->
+    <section class="PreviewSection FsSection" data-section="1" id="execution" aria-labelledby="preview-title" aria-roledescription="slide" aria-label="2 of 6: Live execution">
+      <div class="HomeContainer FsFit">
+        <p class="SectionEyebrow" data-i18n="preview.eyebrow">01 · Live execution</p>
+        <h2 id="preview-title" class="SectionTitle" data-i18n="preview.title">Watch a request become a result</h2>
+        <article class="ExecutionPreview" aria-label="AgentOS workspace preview, sample run" data-i18n-aria-label="preview.aria">
+          <div class="ExecutionPreview-bar">
+            <span class="ExecutionPreview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ExecutionPreview-title" data-i18n="preview.window">AgentOS Workspace</span>
+            <span class="ExecutionPreview-status" id="previewStatus"><span class="StatusDot StatusDot--running" aria-hidden="true"></span>● Running</span>
+          </div>
+          <p class="PreviewGate" data-i18n="preview.gate">Pause anytime · approval required to publish</p>
+
+          <div class="ExecutionPreview-body">
+            <div class="ExecutionPreview-side">
+              <p class="ExecutionPreview-request"><span data-i18n="preview.request_label">Request</span><strong data-i18n="preview.request_text">Analyze Q2 market performance and prepare an executive report</strong><span class="ExecutionPreview-requestMeta" data-i18n="preview.request_meta">Owner: Finance · 6 steps · approvals on</span></p>
+              <div class="ExecutionPreview-feed">
+                <h3 data-i18n="preview.activity">Activity</h3>
+                <ul id="activityFeed">
+                  <li><time datetime="2026-09-15T09:41:02">09:41:02</time><span data-i18n-html="feed.1">Planner approved 6-step plan <em>✓ Completed</em></span></li>
+                  <li><time datetime="2026-09-15T09:41:47">09:41:47</time><span data-i18n-html="feed.2">Research Agent scanned 74 sources <em>✓ Completed</em></span></li>
+                  <li><time datetime="2026-09-15T09:42:15">09:42:15</time><span data-i18n-html="feed.3">Knowledge Agent cited 52 policy docs <em>✓ Completed</em></span></li>
+                  <li><time datetime="2026-09-15T09:42:31">09:42:31</time><span data-i18n-html="feed.4">Data Agent querying revenue tables <em>● Running</em></span></li>
+                  <li><time datetime="2026-09-15T09:42:38">09:42:38</time><span data-i18n-html="feed.5">Data Agent revenue query failed (stale filter) → retried with corrected filter <em>↻ Retried</em></span></li>
+                  <li><time datetime="2026-09-15T09:42:52">09:42:52</time><span data-i18n-html="feed.6">Synthesis merging verified findings <em>● Running</em></span></li>
+                </ul>
+                <p class="FeedToggleWrap"><button type="button" class="FeedToggle" id="feedToggle" aria-expanded="false">Show all</button></p>
+              </div>
+            </div>
+
+            <div class="ExecutionPreview-main">
+              <h3 class="ExecutionPreview-graphTitle" id="graphTitle" data-i18n="preview.graph_title">Execution graph · 3 featured agents of 12 in workspace</h3>
+              <div class="RunSummary" aria-label="Run summary: status, owner, next action" data-i18n-aria-label="preview.run_aria">
+                <span><strong data-i18n="run.status_label">Status</strong> <span data-i18n="run.status_val">● Running · 72% complete</span></span>
+                <span><strong data-i18n="run.owner_label">Owner</strong> <span data-i18n="run.owner_val">Finance</span></span>
+                <span><strong data-i18n="run.next_label">Next action</strong> <span data-i18n="run.next_val">Data Agent finishes query → Synthesis approval</span></span>
+              </div>
+              <button type="button" class="GraphToggle" id="graphToggle" aria-expanded="true" aria-controls="agentGraph">Hide full execution graph</button>
+              <div class="ExecutionPreview-scroll" id="previewScroll" role="region" aria-label="Execution graph diagram, scroll horizontally on small screens" data-i18n-aria-label="preview.scroll_aria" tabindex="0" data-scroll-isolate="true">
+                <ol class="AgentGraph AgentGraph--vertical" id="agentGraph" aria-label="Agent execution graph: Planner, then Research, Data and Knowledge agents in parallel, then Synthesis, then Result" data-i18n-aria-label="preview.graph_aria">
+                  <li class="AgentNode is-done" data-state="done">
+                    <span class="AgentNode-name">Planner</span>
+                    <span class="AgentNode-detail" data-i18n="node.planner_detail">6 steps · plan approved</span>
+                    <span class="AgentNode-state" data-i18n="state.completed">✓ Completed</span>
+                  </li>
+                  <li class="AgentNode AgentNode--fan" aria-label="Parallel agents: Research, Data, Knowledge" data-i18n-aria-label="preview.fan_aria">
+                    <ul>
+                      <li class="AgentNode is-done" data-state="done">
+                        <span class="AgentNode-name">Research Agent</span>
+                        <span class="AgentNode-detail" data-i18n="node.research_detail">Web Search · 74 sources</span>
+                        <span class="AgentNode-state" data-i18n="state.completed">✓ Completed</span>
+                      </li>
+                      <li class="AgentNode is-active" data-state="running">
+                        <span class="AgentNode-name">Data Agent</span>
+                        <span class="AgentNode-detail" data-i18n="node.data_detail">SQL warehouse · revenue</span>
+                        <span class="AgentNode-state" data-i18n="state.running">● Running</span>
+                      </li>
+                      <li class="AgentNode is-done" data-state="done">
+                        <span class="AgentNode-name">Knowledge Agent</span>
+                        <span class="AgentNode-detail" data-i18n="node.knowledge_detail">Policy base · 52 docs</span>
+                        <span class="AgentNode-state" data-i18n="state.completed">✓ Completed</span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="AgentNode is-active" data-state="running">
+                    <span class="AgentNode-name">Synthesis</span>
+                    <span class="AgentNode-detail" data-i18n="node.synthesis_detail">Merging verified findings</span>
+                    <span class="AgentNode-state" data-i18n="state.running">● Running</span>
+                  </li>
+                  <li class="AgentNode AgentNode--validate is-pending" data-state="pending">
+                    <span class="AgentNode-name" data-i18n="node.validation">Validation</span>
+                    <span class="AgentNode-detail" data-i18n="node.validation_detail">Cross-check figures · queued</span>
+                    <span class="AgentNode-state" data-i18n="state.pending">○ Pending</span>
+                  </li>
+                  <li class="AgentNode AgentNode--result" data-state="pending">
+                    <span class="AgentNode-name" data-i18n="node.result">Result</span>
+                    <span class="AgentNode-detail" data-i18n="node.result_detail">Executive report · draft</span>
+                    <span class="AgentNode-state" data-i18n="state.pending">○ Pending</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <dl class="ExecutionPreview-metrics" aria-label="Sample run totals" data-i18n-aria-label="preview.metrics_aria">
+            <div><dt data-i18n="metrics.agents">Agents in workspace</dt><dd id="metricAgents">12</dd></div>
+            <div><dt data-i18n="metrics.tools">Tool calls</dt><dd id="metricTools">48</dd></div>
+            <div><dt data-i18n="metrics.sources">Sources</dt><dd id="metricSources">126</dd></div>
+            <div><dt data-i18n="metrics.complete">Complete</dt><dd id="metricProgress">72%</dd></div>
+          </dl>
+          <div class="ExecutionPreview-progress">
+            <div class="ProgressTrack" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Workspace progress" data-i18n-aria-label="preview.progress_aria" id="previewProgressWrap">
+              <span id="previewProgress" data-progress="72" style="width:72%"></span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 03 · MULTI-AGENT ORCHESTRATION -->
+    <section class="Orchestration FsSection" data-section="2" id="orchestration" aria-labelledby="orch-title" aria-roledescription="slide" aria-label="3 of 6: Orchestration">
+      <div class="HomeContainer FsFit">
+        <p class="SectionEyebrow" data-i18n="orch.eyebrow">02 · Orchestration</p>
+        <h2 id="orch-title" class="SectionTitle" data-i18n="orch.title">One goal, many agents, a single verified result</h2>
+        <p class="SectionLead" data-i18n="orch.lead">The orchestrator decomposes the goal, runs specialists in parallel, then synthesizes only validated findings.</p>
+        <p class="OrchScrollHint" id="orchHint" data-i18n-html="orch.hint">Scrollable diagram — swipe or Tab to the flow, then use arrow keys to explore &rarr;</p>
+        <div class="Orchestration-scroll" role="region" aria-label="Orchestration flow diagram, scroll horizontally" data-i18n-aria-label="orch.scroll_aria" tabindex="0" aria-describedby="orchHint" data-scroll-isolate="true">
+          <ol class="OrchFlow" aria-label="Orchestration flow for Q2 Revenue Analysis: goal, plan, parallel specialists, validated merge, result" data-i18n-aria-label="orch.flow_aria">
+            <li class="OrchNode OrchNode--goal" tabindex="0">
+              <span class="OrchNode-kicker" data-i18n="orch.goal_kicker">Business objective</span>
+              <strong data-i18n="orch.goal_title">Q2 Revenue Analysis</strong>
+              <span class="OrchNode-sub" data-i18n="orch.goal_sub">Owner: Finance · due Friday</span>
+            </li>
+            <li class="OrchNode OrchNode--orch" tabindex="0">
+              <span class="OrchNode-kicker" data-i18n="orch.plan_kicker">Orchestrator</span>
+              <strong data-i18n="orch.plan_title">Plan: 6 steps</strong>
+              <span class="OrchNode-sub" data-i18n="orch.plan_sub">Routes · retries · approvals</span>
+            </li>
+            <li class="OrchNode OrchNode--agents" tabindex="0" aria-label="Three specialist agents in parallel" data-i18n-aria-label="orch.agents_aria">
+              <span class="OrchNode-kicker" data-i18n="orch.agents_kicker">Specialists · parallel</span>
+              <ul>
+                <li title="Research agent — Web Search over 74 sources, completed" data-i18n-title="orch.tip_research" tabindex="0">
+                  <strong>Research</strong>
+                  <span class="OrchTool" data-i18n="orch.tool_research">Web Search · 74 sources</span>
+                  <span class="OrchState OrchState--done" data-i18n="state.completed">✓ Completed</span>
+                </li>
+                <li title="Data agent — SQL warehouse revenue tables, running" data-i18n-title="orch.tip_data" tabindex="0">
+                  <strong>Data</strong>
+                  <span class="OrchTool" data-i18n="orch.tool_data">SQL warehouse · revenue tables</span>
+                  <span class="OrchState OrchState--running" data-i18n="state.running">● Running</span>
+                </li>
+                <li title="Knowledge agent — policy base over 52 docs, completed" data-i18n-title="orch.tip_knowledge" tabindex="0">
+                  <strong>Knowledge</strong>
+                  <span class="OrchTool" data-i18n="orch.tool_knowledge">Policy base · 52 docs</span>
+                  <span class="OrchState OrchState--done" data-i18n="state.completed">✓ Completed</span>
+                </li>
+              </ul>
+            </li>
+            <li class="OrchNode OrchNode--synth" tabindex="0">
+              <span class="OrchNode-kicker" data-i18n="orch.synth_kicker">Synthesis + validation</span>
+              <strong data-i18n="orch.synth_title">Validated merge</strong>
+              <span class="OrchNode-sub" data-i18n="orch.synth_sub">Figures cross-checked · conflicts flagged, not hidden</span>
+            </li>
+            <li class="OrchNode OrchNode--result" tabindex="0">
+              <span class="OrchNode-kicker" data-i18n="orch.result_kicker">Final result</span>
+              <strong data-i18n="orch.result_title">Board-ready report</strong>
+              <span class="OrchNode-sub" data-i18n="orch.result_sub">Every claim cites its source</span>
+            </li>
+          </ol>
+        </div>
+        <p class="OrchLegend" aria-label="Border color legend: Goal black, Plan blue, Parallel light blue, Validated merge purple, Result green" data-i18n-aria-label="orch.legend_aria">
+          <span><i class="OrchSwatch OrchSwatch--goal" aria-hidden="true"></i><span data-i18n="legend.goal">Goal</span></span>
+          <span><i class="OrchSwatch OrchSwatch--orch" aria-hidden="true"></i><span data-i18n="legend.plan">Plan</span></span>
+          <span><i class="OrchSwatch OrchSwatch--agents" aria-hidden="true"></i><span data-i18n="legend.parallel">Parallel</span></span>
+          <span><i class="OrchSwatch OrchSwatch--synth" aria-hidden="true"></i><span data-i18n="legend.merge">Validated merge</span></span>
+          <span><i class="OrchSwatch OrchSwatch--result" aria-hidden="true"></i><span data-i18n="legend.result">Result</span></span>
+        </p>
+        <div class="StackStrip StackStrip--compact">
+          <p class="StackStrip-title" data-i18n="stack.title">Works with your stack</p>
+          <p class="StackStrip-line" data-i18n="stack.line">PostgreSQL · Slack · Salesforce · GitHub · S3 — connects via standard connectors and APIs. Every call is logged.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04 · HOW AGENTOS WORKS -->
+    <section class="HowWorks FsSection" data-section="3" id="how" aria-labelledby="how-title" aria-roledescription="slide" aria-label="4 of 6: Process">
+      <div class="HomeContainer FsFit">
+        <p class="SectionEyebrow" data-i18n="how.eyebrow">03 · Process</p>
+        <h2 id="how-title" class="SectionTitle" data-i18n="how.title">How AgentOS works</h2>
+        <p class="SectionLead" data-i18n="how.lead">Five stages from request to delivered outcome — one connected flow.</p>
+        <ol class="FlowSteps FlowSteps--rail" aria-label="AgentOS process flow" data-i18n-aria-label="how.flow_aria">
+          <li class="FlowStep is-done" data-state="done">
+            <span class="FlowStep-dot" aria-hidden="true"></span>
+            <div class="FlowStep-card">
+              <span class="FlowStep-kicker" data-i18n="how.k1">01 · Understand ✓ Completed</span>
+              <h3 data-i18n="how.t1">Understand</h3>
+              <p data-i18n="how.p1">AgentOS clarifies the request, the success criteria, and what approval each step needs.</p>
+            </div>
+          </li>
+          <li class="FlowStep is-done" data-state="done">
+            <span class="FlowStep-dot" aria-hidden="true"></span>
+            <div class="FlowStep-card">
+              <span class="FlowStep-kicker" data-i18n="how.k2">02 · Plan ✓ Completed</span>
+              <h3 data-i18n="how.t2">Plan</h3>
+              <p data-i18n="how.p2">The planner breaks the goal into steps and assigns each to the right specialist agent.</p>
+            </div>
+          </li>
+          <li class="FlowStep FlowStep--branch is-active" data-state="running" aria-label="Execute branch: Research and Data agents working in parallel" data-i18n-aria-label="how.branch_aria">
+            <span class="FlowStep-dot" aria-hidden="true"></span>
+            <div class="FlowStep-card">
+              <span class="FlowStep-kicker" data-i18n="how.k3">03 · Execute ● Running</span>
+              <h3 data-i18n="how.t3">Execute — parallel agents</h3>
+              <p data-i18n="how.p3">Agents work over approved knowledge and business tools, with progress visible throughout.</p>
+              <ul class="FlowBranch">
+                <li title="Research branch — Web Search, completed" data-i18n-title="how.tip_research"><strong>Research</strong><span data-i18n="how.branch_research">Web Search · ✓ Completed</span></li>
+                <li title="Data branch — SQL warehouse, running" data-i18n-title="how.tip_data"><strong>Data</strong><span data-i18n="how.branch_data">SQL warehouse · ● Running</span></li>
+              </ul>
+            </div>
+          </li>
+          <li class="FlowStep" data-state="pending">
+            <span class="FlowStep-dot" aria-hidden="true"></span>
+            <div class="FlowStep-card">
+              <span class="FlowStep-kicker" data-i18n="how.k4">04 · Validate ○ Pending</span>
+              <h3 data-i18n="how.t4">Validate</h3>
+              <p data-i18n="how.p4">Figures are cross-checked against sources. Conflicts are flagged, not hidden.</p>
+            </div>
+          </li>
+          <li class="FlowStep" data-state="pending">
+            <span class="FlowStep-dot" aria-hidden="true"></span>
+            <div class="FlowStep-card">
+              <span class="FlowStep-kicker" data-i18n="how.k5">05 · Deliver ○ Pending</span>
+              <h3 data-i18n="how.t5">Deliver</h3>
+              <p data-i18n="how.p5">Validated findings merge into a finished result, traced back to every source and action.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="FlowRecap" data-i18n="how.recap">Request → verified result in 5 auditable stages.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 05 · CAPABILITIES -->
+    <section class="Capabilities FsSection" data-section="4" id="capabilities" aria-labelledby="cap-title" aria-roledescription="slide" aria-label="5 of 6: Capabilities">
+      <div class="HomeContainer FsFit">
+        <p class="SectionEyebrow" data-i18n="cap.eyebrow">04 · Capabilities</p>
+        <h2 id="cap-title" class="SectionTitle" data-i18n="cap.title">Built for work that has to hold up</h2>
+        <p class="SectionLead" data-i18n="cap.lead">Coordination, visibility, knowledge, and tools in one controlled workspace.</p>
+        <div class="Capabilities-grid Capabilities-grid--fs">
+          <article class="Capability Capability--lead">
+            <h3 data-i18n="cap.lead_h">Get verified results faster — multi-agent orchestration</h3>
+            <p data-i18n="cap.lead_p">Decompose a business goal into a supervised plan. Specialists run in parallel, the orchestrator handles ordering, retries, and handoffs — so twelve agents feel like one team.</p>
+            <ul>
+              <li data-i18n="cap.lead_li1">Parallel specialists with clear ownership</li>
+              <li data-i18n="cap.lead_li2">Ordered handoffs: plan → execute → validate → synthesize</li>
+              <li data-i18n="cap.lead_li3">Human approval gates where they matter</li>
+            </ul>
+          </article>
+          <article class="Capability">
+            <h3 data-i18n="cap.know_h">Answers with proof — enterprise knowledge</h3>
+            <p data-i18n="cap.know_p">Ground agents in approved documents and policies. Each answer carries the sources it used.</p>
+            <p class="CapStat"><strong>52</strong> docs cited</p>
+          </article>
+          <article class="Capability">
+            <h3 data-i18n="cap.tools_h">Work where work happens — business tools</h3>
+            <p data-i18n="cap.tools_p">Connect the warehouse, the CRM, and internal APIs. Every tool call is logged with its inputs and result.</p>
+            <p class="CapStat"><strong>SQL · CRM · APIs</strong></p>
+          </article>
+        </div>
+        <div class="CapTabs CapTabs--fs">
+          <div class="CapTabs-list" role="tablist" aria-label="Use cases" data-i18n-aria-label="tabs.aria">
+            <button type="button" role="tab" id="tab-market" aria-selected="true" aria-controls="panel-market" class="CapTab is-selected" data-i18n="tabs.market">Q2 Market Intel</button>
+            <button type="button" role="tab" id="tab-revenue" aria-selected="false" aria-controls="panel-revenue" tabindex="-1" class="CapTab" data-i18n="tabs.revenue">Revenue Review</button>
+            <button type="button" role="tab" id="tab-triage" aria-selected="false" aria-controls="panel-triage" tabindex="-1" class="CapTab" data-i18n="tabs.triage">Ticket Triage</button>
+            <button type="button" role="tab" id="tab-ops" aria-selected="false" aria-controls="panel-ops" tabindex="-1" class="CapTab" data-i18n="tabs.ops">Ops On-call</button>
+          </div>
+          <div class="CapPanel" role="tabpanel" id="panel-market" aria-labelledby="tab-market">
+            <p class="CapPanel-copy" data-i18n="panel.market_copy">Scan filings, cite policy docs, and draft the executive section with sources attached.</p>
+            <dl class="CapPanel-metrics">
+              <div><dt data-i18n-html="panel.m_market_sources">Sources scanned <span class="SampleTag">sample</span></dt><dd>74</dd></div>
+              <div><dt data-i18n-html="panel.m_market_docs">Docs cited <span class="SampleTag">sample</span></dt><dd>52</dd></div>
+              <div><dt data-i18n-html="panel.m_market_steps">Plan steps <span class="SampleTag">sample</span></dt><dd>6</dd></div>
+            </dl>
+          </div>
+          <div class="CapPanel" role="tabpanel" id="panel-revenue" aria-labelledby="tab-revenue" hidden>
+            <p class="CapPanel-copy" data-i18n="panel.revenue_copy">Query warehouse tables, verify figures, and flag variances for Finance approval.</p>
+            <dl class="CapPanel-metrics">
+              <div><dt data-i18n-html="panel.m_rev_tables">Tables queried <span class="SampleTag">sample</span></dt><dd>3</dd></div>
+              <div><dt data-i18n-html="panel.m_rev_figures">Figures verified <span class="SampleTag">sample</span></dt><dd>18</dd></div>
+              <div><dt data-i18n-html="panel.m_rev_var">Variances flagged <span class="SampleTag">sample</span></dt><dd>2</dd></div>
+            </dl>
+          </div>
+          <div class="CapPanel" role="tabpanel" id="panel-triage" aria-labelledby="tab-triage" hidden>
+            <p class="CapPanel-copy" data-i18n="panel.triage_copy">Classify incoming tickets, set priority, and route to the right owner with context.</p>
+            <dl class="CapPanel-metrics">
+              <div><dt data-i18n-html="panel.m_tri_tickets">Tickets classified <span class="SampleTag">sample</span></dt><dd>42</dd></div>
+              <div><dt data-i18n-html="panel.m_tri_queues">Queues routed <span class="SampleTag">sample</span></dt><dd>4</dd></div>
+              <div><dt data-i18n-html="panel.m_tri_owners">Owners assigned <span class="SampleTag">sample</span></dt><dd>9</dd></div>
+            </dl>
+          </div>
+          <div class="CapPanel" role="tabpanel" id="panel-ops" aria-labelledby="tab-ops" hidden>
+            <p class="CapPanel-copy" data-i18n="panel.ops_copy">Page the right responder, attach runbooks, and keep a timeline the whole team can follow.</p>
+            <dl class="CapPanel-metrics">
+              <div><dt data-i18n-html="panel.m_ops_inc">Incidents paged <span class="SampleTag">sample</span></dt><dd>17</dd></div>
+              <div><dt data-i18n-html="panel.m_ops_books">Runbooks attached <span class="SampleTag">sample</span></dt><dd>23</dd></div>
+              <div><dt data-i18n-html="panel.m_ops_ack">Median ack <span class="SampleTag">sample</span></dt><dd>4m</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06 · CONTROL + FINAL CTA (merged) -->
+    <section class="Trust FinalCta FsSection" data-section="5" id="control" aria-labelledby="trust-title" aria-roledescription="slide" aria-label="6 of 6: Control and result">
+      <div class="HomeContainer FsFit">
+        <p class="SectionEyebrow" data-i18n="trust.eyebrow">05 · Control</p>
+        <h2 id="trust-title" class="SectionTitle" data-i18n="trust.title">Control is part of the product</h2>
+        <div class="Trust-grid Trust-grid--compact">
+          <article>
+            <h3 data-i18n="trust.vis_h">Visibility</h3>
+            <p data-i18n="trust.vis_p">Watch plans, agent states, tool calls, and progress as they happen. Nothing executes off-screen.</p>
+            <ol class="TrustArtifact TrustTimeline" aria-label="Sample run timeline" data-i18n-aria-label="trust.timeline_aria">
+              <li><time>09:41:02</time><span data-i18n-html="trust.tl1">Plan approved <em>✓ Completed</em></span></li>
+              <li><time>09:42:31</time><span data-i18n-html="trust.tl2">Data Agent · SQL query <em>● Running</em></span></li>
+              <li><time>09:42:52</time><span data-i18n-html="trust.tl3">Synthesis queued <em>○ Pending</em></span></li>
+            </ol>
+          </article>
+          <article>
+            <h3 data-i18n="trust.ctl_h">Control</h3>
+            <p data-i18n="trust.ctl_p">Require approval before sensitive steps, pause or cancel a run at any point, and set which tools each agent may touch.</p>
+            <div class="TrustArtifact TrustGate" aria-label="Approval gate sample" data-i18n-aria-label="trust.gate_aria">
+              <p class="TrustGate-title" data-i18n="trust.gate_title">Approval gate · publish report</p>
+              <div class="TrustGate-actions">
+                <button type="button" class="HomeBtn HomeBtn--secondary TrustGate-btn" data-gate="pause">Pause</button>
+                <button type="button" class="HomeBtn HomeBtn--ghost TrustGate-btn" data-gate="cancel">Cancel</button>
+              </div>
+              <p class="TrustGate-note" id="gateNote" aria-live="polite">Waiting on Finance owner.</p>
+            </div>
+          </article>
+          <article>
+            <h3 data-i18n="trust.tr_h">Traceability</h3>
+            <p data-i18n="trust.tr_p">Every result links back to the sources, tool calls, and decisions that produced it — replayable in the activity log.</p>
+            <p class="TrustAudit"><span class="DeployAudit-label" data-i18n="deploy.audit_label">Audit log · </span><code id="auditCode">2026-09-15 09:42:31 · Data Agent · SELECT q2_revenue.sql · approved by Finance owner</code> <button type="button" class="AuditCopy" id="auditCopy" data-i18n="deploy.copy">Copy</button><span class="AuditConfirm" id="auditConfirm" aria-live="polite"></span></p>
+          </article>
+        </div>
+        <div class="ControlCta">
+          <h3 class="ControlCta-title" id="cta-title" data-i18n-html="cta.title">Bring your next business goal.<br />Leave with an executed result.</h3>
+          <div class="Hero-ctas CtaPaths">
+            <span class="CtaPath"><a class="HomeBtn HomeBtn--primary HomeBtn--lg" href="../auth/register/index.html" data-i18n="hero.cta_primary">Start building</a><span class="CtaPath-label" data-i18n="cta.path_free">free workspace</span></span>
+            <span class="CtaPath"><a class="HomeBtn HomeBtn--secondary HomeBtn--lg" href="../auth/login/index.html" data-i18n="nav.signin">Sign in</a><span class="CtaPath-label" data-i18n="cta.path_existing">existing workspace</span></span>
+            <span class="CtaPath CtaPath--replay"><button type="button" class="HomeBtn HomeBtn--ghost" id="ctaReplay" data-i18n="cta.replay">Replay run</button></span>
+          </div>
+          <p class="CtaMicro" data-i18n="cta.micro">No credit card · cancel run anytime</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fixed fullscreen navigation: dots + counter (not a scrollbar) -->
+  <nav class="FsNav" aria-label="Home sections">
+    <p class="FsCounter"><span id="fsCurrent">01</span> / 06</p>
+    <ol class="FsDots" id="fsDots">
+      <li><button type="button" data-goto="0" class="is-current" aria-label="Go to section 1: Intent"><i></i><span>Intent</span></button></li>
+      <li><button type="button" data-goto="1" aria-label="Go to section 2: Execution"><i></i><span>Execution</span></button></li>
+      <li><button type="button" data-goto="2" aria-label="Go to section 3: Orchestration"><i></i><span>Orchestration</span></button></li>
+      <li><button type="button" data-goto="3" aria-label="Go to section 4: Process"><i></i><span>Process</span></button></li>
+      <li><button type="button" data-goto="4" aria-label="Go to section 5: Capabilities"><i></i><span>Capabilities</span></button></li>
+      <li><button type="button" data-goto="5" aria-label="Go to section 6: Control"><i></i><span>Control</span></button></li>
+    </ol>
+  </nav>
+
+  <footer class="HomeFooter FsFooter">
+    <div class="HomeContainer HomeFooter-inner">
+      <span>© <span id="year">2026</span> <span data-i18n="footer.tag">AgentOS. Enterprise AI Automation.</span></span>
+      <nav aria-label="Footer" data-i18n-aria-label="footer.aria">
+        <a href="#execution" data-goto="1" data-i18n="footer.sample">Sample run</a>
+        <a href="#orchestration" data-goto="2" data-i18n="nav.platform">Platform</a>
+        <a href="#how" data-goto="3" data-i18n="nav.how">How it works</a>
+        <a href="#capabilities" data-goto="4" data-i18n="nav.capabilities">Capabilities</a>
+        <a href="#control" data-goto="5" data-i18n="nav.trust">Trust</a>
+        <a href="../dashboard/index.html" data-i18n="footer.openapp">Open app</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="home.js"></script>
+</body>
+</html>

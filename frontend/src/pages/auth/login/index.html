@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in — AgentOS</title>
+  <meta name="description" content="Sign in to your AgentOS workspace." />
+  <link rel="stylesheet" href="../../../styles/reset.css" />
+  <link rel="stylesheet" href="../../../styles/tokens.css" />
+  <link rel="stylesheet" href="login.css" />
+  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;}catch(__e){document.documentElement.lang="en";}</script>
+</head>
+<body>
+  <header class="auth-top">
+    <div class="auth-top-inner">
+      <div class="brand-group">
+        <a class="brand" href="../../home/index.html" aria-label="AgentOS home" data-i18n-aria-label="nav.brand_aria">
+          <svg class="brand-mark" width="32" height="32" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" width="28" height="28" rx="7" fill="#0284C7"/>
+            <circle cx="15" cy="15" r="4.2" fill="#fff"/>
+            <circle cx="15" cy="6.6" r="2.1" fill="#fff" opacity="0.85"/>
+            <circle cx="22.4" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+            <circle cx="7.6" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+            <path d="M15 10.8v.4M18.6 17.4l-.4-.3M11.4 17.4l.4-.3" stroke="#0284C7" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-word">AgentOS</span>
+        </a>
+        <p class="brand-context"><span class="status-dot" aria-hidden="true"></span><span data-i18n="brand.context">Intelligent execution system</span></p>
+      </div>
+      <nav class="auth-nav" aria-label="Account" data-i18n-aria-label="nav.aria">
+        <a class="auth-nav-link nav-home" href="../../home/index.html" data-i18n="nav.home">Home</a>
+        <div class="LangSwitch" role="group" aria-label="Language / Ngôn ngữ">
+          <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
+        </div>
+        <a class="auth-nav-link nav-sibling" href="../register/index.html" data-i18n="nav.sibling">Create your workspace</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-wrap">
+    <div class="auth-split">
+      <!-- Visual half: real-world photograph + fractured diagonal boundary.
+           Photo: Unsplash (team collaborating around laptops). -->
+      <aside class="auth-visual" aria-label="AgentOS in real workplaces" data-i18n-aria-label="visual.aria">
+        <div class="visual-fracture" aria-hidden="true"></div>
+        <img class="visual-photo" src="../assets/login.jpg" alt="A real team collaborating around laptops in a modern workspace" data-i18n-alt="visual.alt" fetchpriority="high" />
+        <div class="visual-tint" aria-hidden="true"></div>
+        <div class="visual-caption">
+          <p class="visual-eyebrow" data-i18n="visual.eyebrow">AgentOS in production</p>
+          <p class="visual-quote" data-i18n="visual.quote">One request in. A traced, board-ready result out.</p>
+          <p class="visual-credit" data-i18n="visual.credit">Photo: Unsplash</p>
+        </div>
+      </aside>
+      <section class="auth-card" aria-labelledby="loginTitle">
+      <p class="auth-eyebrow" data-i18n="form.eyebrow">AgentOS workspace</p>
+      <h1 id="loginTitle" data-i18n="form.title">Welcome back</h1>
+      <p class="auth-sub" data-i18n="form.sub">Sign in to your AgentOS workspace.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="field" id="emailField">
+          <label for="email" data-i18n="form.email_label">Work email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" data-i18n-ph="form.email_ph" required aria-describedby="emailError" />
+          <p class="error" id="emailError" data-i18n="form.email_error">Check your email format.</p>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="emailContinue" data-i18n="form.continue">Continue</button>
+
+        <div id="methodStep" hidden>
+          <p class="form-hint" id="routeHint" role="status"></p>
+          <p class="change-email-wrap"><button type="button" class="linklike" id="changeEmail" data-i18n="form.change_email">Use a different email</button></p>
+
+          <div class="field" id="passwordField">
+            <div class="field-row">
+              <label for="password" data-i18n="form.pw_label">Password</label>
+              <a href="index.html" id="forgotLink" data-i18n="form.forgot">Forgot password?</a>
+            </div>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required minlength="8" aria-describedby="passwordError capsWarning" />
+              <button type="button" class="toggle-password" data-target="password" aria-label="Show password" aria-pressed="false" data-i18n="form.show">Show</button>
+            </div>
+            <p class="caps-warning" id="capsWarning" hidden data-i18n="form.caps">Caps Lock is on.</p>
+            <p class="error" id="passwordError" data-i18n="form.pw_error">Password must be at least 8 characters.</p>
+          </div>
+
+          <label class="remember"><input type="checkbox" id="rememberDevice" /> <span data-i18n="form.remember">Keep me signed in for 30 days</span></label>
+
+          <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Sign in</button>
+          <p class="error" id="credentialError"></p>
+        </div>
+        <p class="form-note" id="loginNote" role="status" data-i18n="form.note">Prototype only — no backend connected.</p>
+      </form>
+
+      <div class="divider" data-i18n="form.divider">or continue with</div>
+
+      <button type="button" class="btn btn-secondary btn-block" id="passkeyButton" data-i18n="form.passkey">Sign in with a passkey</button>
+      <button type="button" class="btn btn-secondary btn-block" id="ssoButton" aria-describedby="loginNote" data-i18n="form.sso">Continue with SSO</button>
+
+      <p class="auth-switch"><span data-i18n="form.switch_prefix">New to AgentOS?</span> <a href="../register/index.html" data-i18n="form.switch_link">Create your workspace</a></p>
+    </section>
+    </div>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create your workspace — AgentOS</title>
+  <meta name="description" content="Create your AgentOS workspace." />
+  <link rel="stylesheet" href="../../../styles/reset.css" />
+  <link rel="stylesheet" href="../../../styles/tokens.css" />
+  <link rel="stylesheet" href="register.css" />
+  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;}catch(__e){document.documentElement.lang="en";}</script>
+</head>
+<body>
+  <header class="auth-top">
+    <div class="auth-top-inner">
+      <div class="brand-group">
+        <a class="brand" href="../../home/index.html" aria-label="AgentOS home" data-i18n-aria-label="nav.brand_aria">
+          <svg class="brand-mark" width="32" height="32" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" width="28" height="28" rx="7" fill="#0284C7"/>
+            <circle cx="15" cy="15" r="4.2" fill="#fff"/>
+            <circle cx="15" cy="6.6" r="2.1" fill="#fff" opacity="0.85"/>
+            <circle cx="22.4" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+            <circle cx="7.6" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+            <path d="M15 10.8v.4M18.6 17.4l-.4-.3M11.4 17.4l.4-.3" stroke="#0284C7" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-word">AgentOS</span>
+        </a>
+        <p class="brand-context"><span class="status-dot" aria-hidden="true"></span><span data-i18n="brand.context">Intelligent execution system</span></p>
+      </div>
+      <nav class="auth-nav" aria-label="Account" data-i18n-aria-label="nav.aria">
+        <a class="auth-nav-link nav-home" href="../../home/index.html" data-i18n="nav.home">Home</a>
+        <div class="LangSwitch" role="group" aria-label="Language / Ngôn ngữ">
+          <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
+        </div>
+        <a class="auth-nav-link nav-sibling" href="../login/index.html" data-i18n="nav.sibling">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-wrap">
+    <div class="auth-split">
+      <!-- Visual half: real-world photograph + fractured diagonal boundary.
+           Photo: Unsplash (team planning around a whiteboard). -->
+      <aside class="auth-visual" aria-label="Plan work in AgentOS" data-i18n-aria-label="visual.aria">
+        <div class="visual-fracture" aria-hidden="true"></div>
+        <img class="visual-photo" src="../assets/register.jpg" alt="A real team planning work around a whiteboard covered in notes" data-i18n-alt="visual.alt" fetchpriority="high" />
+        <div class="visual-tint" aria-hidden="true"></div>
+        <div class="visual-caption">
+          <p class="visual-eyebrow" data-i18n="visual.eyebrow">Set up in minutes</p>
+          <p class="visual-quote" data-i18n="visual.quote">Bring the goal. AgentOS plans, staffs, and traces the work.</p>
+          <p class="visual-credit" data-i18n="visual.credit">Photo: Unsplash</p>
+        </div>
+      </aside>
+      <section class="auth-card" aria-labelledby="registerTitle">
+      <p class="auth-eyebrow" data-i18n="form.eyebrow">AgentOS workspace</p>
+      <h1 id="registerTitle" data-i18n="form.title">Create your workspace</h1>
+      <p class="auth-sub" data-i18n="form.sub">Set up your AgentOS workspace.</p>
+
+      <form id="registerForm" novalidate>
+        <p class="group-label" data-i18n="form.group_identity">Your identity</p>
+        <div class="field" id="nameField">
+          <label for="fullName" data-i18n="form.name_label">Full name</label>
+          <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Ada Nguyen" required aria-describedby="nameError" />
+          <p class="error" id="nameError" data-i18n="form.name_error">Enter your full name.</p>
+        </div>
+
+        <div class="field" id="emailField">
+          <label for="email" data-i18n="form.email_label">Work email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" data-i18n-ph="form.email_ph" required aria-describedby="emailError" />
+          <p class="error" id="emailError" data-i18n="form.email_error">Enter a valid work email.</p>
+        </div>
+
+        <p class="group-label" data-i18n="form.group_security">Workspace security</p>
+        <div class="field" id="passwordField">
+          <div class="field-row">
+            <label for="password" data-i18n="form.pw_label">Password</label>
+            <span class="hint" data-i18n="form.pw_hint">8+ characters</span>
+          </div>
+          <div class="password-wrap">
+            <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Minimum 8 characters" data-i18n-ph="form.pw_ph" required minlength="8" aria-describedby="passwordHint passwordError" />
+            <button type="button" class="toggle-password" data-target="password" aria-label="Show password" aria-pressed="false" data-i18n="form.show">Show</button>
+          </div>
+          <p class="strength" id="passwordHint" aria-live="polite"></p>
+          <p class="error" id="passwordError" data-i18n="form.pw_error">Password must be at least 8 characters.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">Create workspace</button>
+        <div class="passkey-promo" id="passkeyPromo" hidden>
+          <p><strong data-i18n="promo.ready">Workspace ready.</strong> <span data-i18n="promo.lead">Skip passwords next time:</span></p>
+          <ul>
+            <li data-i18n="promo.li1">Sign in with your fingerprint or face</li>
+            <li data-i18n="promo.li2">Works on this device plus one more you add later</li>
+            <li data-i18n="promo.li3">Lose a device? Recover by email, then re-enroll</li>
+          </ul>
+          <div class="passkey-promo-actions">
+            <button type="button" class="btn btn-secondary" id="createPasskey" data-i18n="promo.create">Create a passkey</button>
+            <button type="button" class="btn btn-primary" id="skipPasskey" data-i18n="promo.skip">Continue to workspace</button>
+          </div>
+          <p class="form-note" id="passkeyNote" role="status"></p>
+        </div>
+        <p class="form-note" id="registerNote" role="status" data-i18n="form.note">Prototype only — no backend connected.</p>
+      </form>
+
+      <p class="auth-switch"><span data-i18n="form.switch_prefix">Already have an account?</span> <a href="../login/index.html" data-i18n="form.switch_link">Sign in</a></p>
+    </section>
+    </div>
+  </main>
+
+  <script src="register.js"></script>
+</body>
+</html>
