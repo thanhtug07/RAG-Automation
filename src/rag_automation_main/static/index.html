@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelia AI — Agent Mission Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- ========== LEFT SIDEBAR ========== -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <!-- Brand Logo -->
+        <div class="sidebar-brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <span class="brand-name">Aurelia AI</span>
+        </div>
+
+        <!-- New Task Button -->
+        <button class="btn-new-task" id="btnNewTask">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>New Task</span>
+        </button>
+
+        <!-- Navigation Items -->
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-view="chatView" title="Chat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Chat</span>
+          </button>
+          <button class="nav-item" data-view="agentsView" title="Agents">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>Agents</span>
+          </button>
+          <button class="nav-item" data-view="analyticsView" title="Analytics">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            <span>Analytics</span>
+          </button>
+          <button class="nav-item" data-view="modelsView" title="Models">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>Models</span>
+          </button>
+          <button class="nav-item" data-view="logsView" title="System & API Logs">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Logs</span>
+            <span class="nav-error-badge" id="navErrorBadge" style="display: none;">0</span>
+          </button>
+          <button class="nav-item" data-view="settingsView" title="Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>Settings</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="workspace-info">
+          <div class="workspace-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="workspace-text">
+            <span class="workspace-name">Enterprise Workspace</span>
+            <span class="workspace-plan">Company Plan</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search across tasks, agents, knowledge, and more..." class="search-input" id="globalSearch">
+        </div>
+        <div class="top-bar-actions">
+          <div class="status-pill" id="healthPill" title="System Health">
+            <span class="status-dot healthy" id="healthDot"></span>
+            <span class="status-label" id="healthText">Online</span>
+            <span class="latency-badge" id="healthLatency">14ms</span>
+          </div>
+          <button class="icon-btn-round" id="btnSyncYaml" title="Sync agents.yaml">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+          </button>
+          <div class="user-avatar" title="Mission Control">
+            <span>MC</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== VIEW: Chat (default) ===== -->
+      <div class="view-panel active" id="chatView">
+        <div class="chat-area">
+          <div class="chat-messages" id="terminalOutput">
+            <!-- Welcome message -->
+            <div class="chat-msg ai">
+              <div class="msg-avatar ai-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <div class="msg-content">
+                <div class="msg-header">
+                  <span class="msg-name">AI Assistant</span>
+                  <span class="msg-time" id="welcomeTime"></span>
+                </div>
+                <div class="msg-body">
+                  <p>Hello! I'm your AI Agent assistant. Select an agent and describe your task below, and I'll coordinate the agent team to execute it.</p>
+                  <p class="msg-hint">You can manage agents, view analytics, configure models, and more from the sidebar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="chat-input-bar">
+            <div class="chat-input-selectors">
+              <div class="input-selector">
+                <label>Agent</label>
+                <select id="testAgentSelect" class="mini-select"></select>
+              </div>
+              <div class="active-agent-model-pill" id="activeAgentModelPill" title="Assigned model configured for this agent">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span id="agentAssignedModelText">Model: Auto</span>
+              </div>
+            </div>
+            <div class="chat-input-row">
+              <textarea id="testPromptInput" class="chat-textarea" rows="1" placeholder="Ask anything...">Autonomous AI Multi-Agent Systems in 2026</textarea>
+              <button class="btn-send" id="btnRunTest" title="Execute Agent Task">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: Agents Management ===== -->
+      <div class="view-panel" id="agentsView">
+        <div class="view-header">
+          <div>
+            <h2>Configured Crew Agents</h2>
+            <p class="view-subtitle">Direct synchronization with <code>agents.yaml</code></p>
+          </div>
+          <button class="btn btn-primary" id="btnOpenCreateAgent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Agent</span>
+          </button>
+        </div>
+        <div class="agent-card-grid" id="agentCardGrid">
+          <div class="loading-placeholder">Loading agent definitions...</div>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: Analytics ===== -->
+      <div class="view-panel" id="analyticsView">
+        <div class="view-header">
+          <div>
+            <h2>Token Analytics & Telemetry</h2>
+            <p class="view-subtitle">Real-time token consumption and cost tracking</p>
+          </div>
+          <span class="badge badge-blue">Live Telemetry</span>
+        </div>
+
+        <!-- KPI Row -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Total Tokens</span>
+            <span class="kpi-value" id="kpiTotalTokens">21,070</span>
+            <span class="kpi-sub">Prompt: <strong id="kpiPromptTokens">14,250</strong> · Comp: <strong id="kpiCompTokens">6,820</strong></span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Est. Cost</span>
+            <span class="kpi-value" id="telemetryEstCost">$0.052</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Avg. Latency</span>
+            <span class="kpi-value" id="telemetryAvgLat">420ms</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Total Calls</span>
+            <span class="kpi-value" id="telemetryTotalCalls">3</span>
+          </div>
+        </div>
+
+        <!-- Token Meter -->
+        <div class="analytics-card">
+          <h4>Token Consumption Breakdown</h4>
+          <div class="meter-labels">
+            <span>Prompt (Input): <strong id="meterPromptVal">68%</strong></span>
+            <span>Completion (Output): <strong id="meterCompVal">32%</strong></span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill prompt-fill" id="meterPromptBar" style="width: 68%;"></div>
+            <div class="progress-fill comp-fill" id="meterCompBar" style="width: 32%;"></div>
+          </div>
+        </div>
+
+        <!-- Execution History -->
+        <div class="analytics-card">
+          <h4>Recent Execution History</h4>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Run ID</th>
+                  <th>Time</th>
+                  <th>Agent</th>
+                  <th>Model</th>
+                  <th>Prompt</th>
+                  <th>Comp</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="telemetryHistoryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: Models ===== -->
+      <div class="view-panel" id="modelsView">
+        <div class="view-header">
+          <div>
+            <h2>Available Inference Models</h2>
+            <p class="view-subtitle">Discover and select LLM models from your provider</p>
+          </div>
+          <span class="model-count-badge" id="modelCountBadge">11 Models</span>
+        </div>
+        <div class="model-search-bar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="modelSearchInput" class="search-input" placeholder="Search models (e.g. hermes, 4o, claude)...">
+        </div>
+        <div class="model-list" id="modelListContainer"></div>
+      </div>
+
+      <!-- ===== VIEW: Logs & Monitoring ===== -->
+      <div class="view-panel" id="logsView">
+        <div class="view-header">
+          <div>
+            <h2>System & API Logs Monitor</h2>
+            <p class="view-subtitle">Real-time tracking of API GET/POST requests, warnings, and error diagnostics</p>
+          </div>
+          <div class="log-header-actions">
+            <button class="btn btn-secondary btn-sm" id="btnToggleAutoRefresh" title="Toggle Auto-Refresh (3s)">
+              <span class="refresh-indicator active" id="refreshDot"></span>
+              <span id="refreshLabel">Auto-Refresh: ON</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnRefreshLogs" title="Refresh Now">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Refresh</span>
+            </button>
+            <button class="btn btn-secondary btn-sm btn-clear-logs" id="btnClearLogs" title="Clear In-Memory Logs">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Clear</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Row for Logs -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Total Logs</span>
+            <span class="kpi-value" id="kpiTotalLogs">0</span>
+            <span class="kpi-sub">All system & API events</span>
+          </div>
+          <div class="kpi-card card-border-green">
+            <span class="kpi-label">API Success (200 OK)</span>
+            <span class="kpi-value text-green" id="kpiApiSuccess">0</span>
+            <span class="kpi-sub">GET / POST Succeeded</span>
+          </div>
+          <div class="kpi-card card-border-amber">
+            <span class="kpi-label">Warnings</span>
+            <span class="kpi-value text-amber" id="kpiWarnings">0</span>
+            <span class="kpi-sub">Client 4xx / missing configs</span>
+          </div>
+          <div class="kpi-card card-border-rose">
+            <span class="kpi-label">Errors</span>
+            <span class="kpi-value text-rose" id="kpiErrors">0</span>
+            <span class="kpi-sub">5xx & LLM API failures</span>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="log-toolbar">
+          <div class="log-filter-tabs">
+            <button class="log-tab active" data-filter="all">All Logs <span class="tab-count" id="countAll">0</span></button>
+            <button class="log-tab tab-error" data-filter="error">Errors <span class="tab-count count-error" id="countErrors">0</span></button>
+            <button class="log-tab tab-warning" data-filter="warning">Warnings <span class="tab-count count-warning" id="countWarnings">0</span></button>
+            <button class="log-tab tab-api-get" data-filter="api_get">API GET <span class="tab-count count-api-get" id="countApiGet">0</span></button>
+            <button class="log-tab tab-api-post" data-filter="api_post">API POST <span class="tab-count count-api-post" id="countApiPost">0</span></button>
+            <button class="log-tab tab-success" data-filter="success">Success <span class="tab-count count-success" id="countSuccess">0</span></button>
+          </div>
+          <div class="log-search-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="logSearchInput" placeholder="Filter by endpoint, status, message..." class="log-search-input">
+          </div>
+        </div>
+
+        <!-- Logs Table Card -->
+        <div class="analytics-card log-table-card">
+          <div class="table-container log-table-scroll">
+            <table class="data-table log-data-table">
+              <thead>
+                <tr>
+                  <th style="width: 85px;">Time</th>
+                  <th style="width: 95px;">Level</th>
+                  <th style="width: 80px;">Method</th>
+                  <th style="width: 170px;">Endpoint</th>
+                  <th style="width: 105px;">Status</th>
+                  <th style="width: 80px;">Latency</th>
+                  <th>Message / Activity Details</th>
+                  <th style="width: 80px; text-align: center;">Details</th>
+                </tr>
+              </thead>
+              <tbody id="logTableBody">
+                <tr>
+                  <td colspan="8" class="loading-placeholder">Loading live operational logs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VIEW: Settings ===== -->
+      <div class="view-panel" id="settingsView">
+        <div class="view-header">
+          <div>
+            <h2>API Provider & Configuration</h2>
+            <p class="view-subtitle">Manage your LLM provider connections and API keys</p>
+          </div>
+          <span class="status-dot-live"></span>
+        </div>
+
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h4>LLM Provider</h4>
+            <div class="form-group">
+              <label for="providerSelect">Select Provider</label>
+              <select id="providerSelect" class="form-select">
+                <option value="openai" selected>OpenAI (gpt-4o, gpt-4o-mini, o1)</option>
+                <option value="openrouter">OpenRouter (Hermes 3 405B, Claude, Llama)</option>
+                <option value="groq">Groq High-Speed (Llama 3.3, Mixtral)</option>
+                <option value="ollama">Ollama (Local / Self-hosted)</option>
+                <option value="custom">Custom OpenAI-Compatible Base URL</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="customUrlGroup" style="display: none;">
+              <label for="customBaseUrl">Custom Endpoint Base URL</label>
+              <input type="text" id="customBaseUrl" class="form-input" placeholder="http://localhost:11434/v1">
+            </div>
+
+            <div class="form-group">
+              <label for="apiKeyInput">API Key</label>
+              <div class="input-with-action">
+                <input type="password" id="apiKeyInput" class="form-input" placeholder="sk-..." autocomplete="off">
+                <button class="icon-btn" id="btnToggleKey" title="Toggle visibility">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+              <span class="input-hint" id="keyConfiguredNotice">Stored in .env: <code>OPENAI_API_KEY</code></span>
+            </div>
+
+            <div class="checkbox-row">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="chkSaveEnv" checked>
+                <span class="checkmark"></span>
+                Auto-save key to <code>.env</code> file
+              </label>
+            </div>
+
+            <button class="btn btn-primary full-width" id="btnValidateAndFetch">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Validate & Fetch Models</span>
+            </button>
+
+            <!-- Ping Result -->
+            <div class="ping-result-box" id="pingResultBox" style="display: none;">
+              <div class="ping-status-row">
+                <span class="ping-status-badge" id="pingBadge">ONLINE 200 OK</span>
+                <span class="ping-latency" id="pingLatency">18.4ms</span>
+              </div>
+              <div class="ping-msg" id="pingMsg">Provider connection authenticated.</div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h4>Connection Status</h4>
+            <div class="status-info-grid">
+              <div class="status-info-item">
+                <span class="info-label">API Status</span>
+                <span class="info-value" id="kpiStatus">ACTIVE</span>
+              </div>
+              <div class="status-info-item">
+                <span class="info-label">Provider</span>
+                <span class="info-value" id="kpiProvider">OpenAI / OpenRouter</span>
+              </div>
+              <div class="status-info-item">
+                <span class="info-label">Latency</span>
+                <span class="info-value" id="kpiLatency">RTT: 18ms</span>
+              </div>
+              <div class="status-info-item">
+                <span class="info-label">Default Model</span>
+                <span class="info-value" id="kpiModel">Hermes 3 (405B)</span>
+              </div>
+              <div class="status-info-item">
+                <span class="info-label">Model Provider</span>
+                <span class="info-value" id="kpiModelProvider">Nous Research</span>
+              </div>
+              <div class="status-info-item">
+                <span class="info-label">Key</span>
+                <span class="info-value" id="headerKeyStatus">API Key: Configured</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== RIGHT PANEL ========== -->
+    <aside class="right-panel">
+      <!-- Current Task -->
+      <div class="rp-section" id="rpCurrentTaskSection" style="display:none;">
+        <div class="rp-section-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <h4>Current Task</h4>
+        </div>
+        <div class="rp-task-card">
+          <p class="rp-task-title" id="rpTaskTitle"></p>
+          <div class="rp-task-meta">
+            <span class="badge badge-blue" id="rpTaskStatus"></span>
+            <span class="rp-task-time" id="rpTaskTime"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plan -->
+      <div class="rp-section" id="rpPlanSection" style="display:none;">
+        <div class="rp-section-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <h4>Plan</h4>
+        </div>
+        <ul class="rp-plan-list" id="rpPlanList">
+          <!-- Populated dynamically when task is executed -->
+        </ul>
+      </div>
+
+      <!-- Agents -->
+      <div class="rp-section">
+        <div class="rp-section-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <h4>Agents</h4>
+          <span class="rp-count" id="kpiAgentCount">3</span>
+        </div>
+        <div class="rp-agents-list" id="rpAgentsList">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+      <!-- RAG Sources -->
+      <div class="rp-section">
+        <div class="rp-section-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+          <h4>RAG Sources</h4>
+          <span class="rp-count">3</span>
+        </div>
+        <ul class="rp-sources-list">
+          <li><span class="source-dot" style="background:#3B82F6"></span>Enterprise Data Warehouse</li>
+          <li><span class="source-dot" style="background:#8B5CF6"></span>Finance KnowledgeBase</li>
+          <li><span class="source-dot" style="background:#10B981"></span>Q3 Reports & Docs</li>
+        </ul>
+      </div>
+
+      <!-- Tools -->
+      <div class="rp-section">
+        <div class="rp-section-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+          </svg>
+          <h4>Tools</h4>
+          <span class="rp-count">5</span>
+        </div>
+        <div class="rp-tools-grid">
+          <div class="tool-item">
+            <div class="tool-icon tool-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <span>SQL Query</span>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon tool-green">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <span>Python</span>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon tool-purple">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <span>Charts</span>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon tool-amber">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <span>Web Search</span>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon tool-rose">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                <polyline points="13 2 13 9 20 9"></polyline>
+              </svg>
+            </div>
+            <span>Files</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- MODAL: CREATE / EDIT AGENT -->
+  <div class="modal-overlay" id="agentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 id="modalTitle">Deploy New Agent</h3>
+          <p id="modalSubtitle">Configure role, mission goal and backstory</p>
+        </div>
+        <button class="modal-close" id="btnCloseModal">&times;</button>
+      </div>
+
+      <form id="agentForm">
+        <input type="hidden" id="formIsEdit" value="0">
+
+        <div class="form-group">
+          <label for="agentIdInput">Agent Identifier (YAML Key)</label>
+          <input type="text" id="agentIdInput" class="form-input" placeholder="e.g. researcher, reviewer" required>
+          <span class="input-hint">Unique key used in Crew code & <code>agents.yaml</code></span>
+        </div>
+
+        <div class="form-group">
+          <label for="agentRoleInput">Role Specification</label>
+          <input type="text" id="agentRoleInput" class="form-input" placeholder="e.g. Senior RAG Automation Specialist" required>
+        </div>
+
+        <div class="form-group">
+          <label for="agentGoalInput">Primary Goal</label>
+          <textarea id="agentGoalInput" class="form-textarea" rows="3" placeholder="Define the agent's objective" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="agentBackstoryInput">Agent Backstory</label>
+          <textarea id="agentBackstoryInput" class="form-textarea" rows="3" placeholder="Context, personality, and expertise"></textarea>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="agentModelSelect" style="margin-bottom: 0;">Assigned Model</label>
+            <button type="button" id="btnToggleCustomModel" class="link-action-btn" title="Toggle custom model input">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px;">
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+              <span>Custom Model</span>
+            </button>
+          </div>
+          <select id="agentModelSelect" class="form-select">
+            <optgroup label="OpenAI Models">
+              <option value="openai/gpt-4o">GPT-4o (Flagship Multimodal)</option>
+              <option value="openai/gpt-4o-mini" selected>GPT-4o Mini (Fast &amp; Cost-Effective - Recommended)</option>
+              <option value="openai/o1">o1 (Advanced Reasoning)</option>
+              <option value="openai/o3-mini">o3-mini (High Speed Reasoning)</option>
+              <option value="openai/gpt-4-turbo">GPT-4 Turbo</option>
+            </optgroup>
+            <optgroup label="OpenRouter &amp; Open Weights">
+              <option value="nousresearch/hermes-3-llama-3.1-405b">Hermes 3 Llama 3.1 405B (Agent Flagship)</option>
+              <option value="meta-llama/llama-3.3-70b-instruct">Llama 3.3 70B Instruct</option>
+              <option value="anthropic/claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+              <option value="anthropic/claude-3.5-haiku">Claude 3.5 Haiku</option>
+              <option value="deepseek/deepseek-r1">DeepSeek R1 (Reasoning)</option>
+              <option value="deepseek/deepseek-chat">DeepSeek V3</option>
+              <option value="google/gemini-2.5-pro">Gemini 2.5 Pro</option>
+              <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
+              <option value="qwen/qwen-2.5-72b-instruct">Qwen 2.5 72B Instruct</option>
+            </optgroup>
+            <optgroup label="Groq High-Speed">
+              <option value="groq/llama-3.3-70b-versatile">Groq Llama 3.3 70B Versatile</option>
+              <option value="groq/llama-3.1-8b-instant">Groq Llama 3.1 8B Instant</option>
+              <option value="groq/mixtral-8x7b-32768">Groq Mixtral 8x7B (32k)</option>
+            </optgroup>
+            <optgroup label="Ollama (Local)">
+              <option value="ollama/llama3.2">Ollama Llama 3.2</option>
+              <option value="ollama/llama3.3">Ollama Llama 3.3</option>
+              <option value="ollama/qwen2.5-coder">Ollama Qwen 2.5 Coder</option>
+              <option value="ollama/deepseek-r1">Ollama DeepSeek R1 Local</option>
+              <option value="ollama/mistral">Ollama Mistral 7B</option>
+            </optgroup>
+            <optgroup label="Custom Specification">
+              <option value="__custom__">&#x270E; Enter Custom Model ID...</option>
+            </optgroup>
+          </select>
+          <div id="customModelGroup" style="display: none; margin-top: 8px;">
+            <input type="text" id="agentCustomModelInput" class="form-input" placeholder="e.g. openai/gpt-4o, ollama/llama3.2, claude-3-5-sonnet">
+            <span class="input-hint">Specify any model ID recognized by your provider or local runtime</span>
+          </div>
+          <span class="input-hint" id="agentModelHint" style="margin-top: 4px;">Choose from standard presets, live discovered models, or specify a custom model.</span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btnCancelModal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmitAgent">Deploy Agent</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: LOG DETAIL INSPECTOR -->
+  <div class="modal-overlay" id="logDetailModal">
+    <div class="modal-content log-detail-modal-content">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <h3 id="logModalTitle">Log Diagnostic Details</h3>
+            <span id="logModalBadge" class="log-badge log-badge-info">INFO</span>
+          </div>
+          <p id="logModalSubtitle" style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;"></p>
+        </div>
+        <button class="modal-close" id="btnCloseLogModal">&times;</button>
+      </div>
+
+      <div class="log-modal-body">
+        <!-- Diagnostic Metric Grid -->
+        <div class="log-info-grid">
+          <div class="log-info-item">
+            <span class="info-label">Request Method & Status</span>
+            <span class="info-value" id="logModalStatus">—</span>
+          </div>
+          <div class="log-info-item">
+            <span class="info-label">Latency / Response Time</span>
+            <span class="info-value" id="logModalLatency">—</span>
+          </div>
+          <div class="log-info-item">
+            <span class="info-label">Log Type / Category</span>
+            <span class="info-value" id="logModalType">—</span>
+          </div>
+          <div class="log-info-item">
+            <span class="info-label">Endpoint / Route</span>
+            <span class="info-value mono" id="logModalUrl">—</span>
+          </div>
+        </div>
+
+        <!-- Summary Message -->
+        <div class="log-detail-section">
+          <span class="log-section-label">Summary Message</span>
+          <div class="log-box-message" id="logModalMessage"></div>
+        </div>
+
+        <!-- Diagnostic Context / Payload / Raw Response -->
+        <div class="log-detail-section">
+          <div class="log-section-header-row">
+            <span class="log-section-label">Detailed Context & Response Data</span>
+            <button class="btn btn-secondary btn-xs" id="btnCopyLogJson" type="button">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy JSON</span>
+            </button>
+          </div>
+          <pre class="log-code-viewer" id="logModalJson"></pre>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btnCloseLogModalBtn">Close Inspector</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

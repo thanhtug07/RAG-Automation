@@ -1,0 +1,24 @@
+[project]
+name = "rag_automation_main"
+version = "0.1.0"
+description = "RAG-Automation-main using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=1.15.16,<2.0.0"
+]
+
+[project.scripts]
+kickoff = "rag_automation_main.main:kickoff"
+run_crew = "rag_automation_main.main:kickoff"
+plot = "rag_automation_main.main:plot"
+run_with_trigger = "rag_automation_main.main:run_with_trigger"
+dashboard = "rag_automation_main.server:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"
+project_id = "17185ebc-0fbe-4646-b8ac-ae2424e4842e"
