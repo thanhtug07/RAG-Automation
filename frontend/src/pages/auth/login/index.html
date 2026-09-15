@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../../styles/reset.css" />
   <link rel="stylesheet" href="../../../styles/tokens.css" />
   <link rel="stylesheet" href="login.css" />
-  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;}catch(__e){document.documentElement.lang="en";}</script>
+  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;var __t=localStorage.getItem("agentos.theme");if(__t==="dark"||(!__t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(__e){document.documentElement.lang="en";}</script>
 </head>
 <body>
   <header class="auth-top">
@@ -33,6 +33,15 @@
           <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
           <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
         </div>
+        <button type="button" class="ThemeToggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+          <svg class="ThemeToggle-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="ThemeToggle-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
         <a class="auth-nav-link nav-sibling" href="../register/index.html" data-i18n="nav.sibling">Create your workspace</a>
       </nav>
     </div>
@@ -40,16 +49,25 @@
 
   <main class="auth-wrap">
     <div class="auth-split">
-      <!-- Visual half: real-world photograph + fractured diagonal boundary.
-           Photo: Unsplash (team collaborating around laptops). -->
+        <!-- Short topic-relevant video visual. -->
       <aside class="auth-visual" aria-label="AgentOS in real workplaces" data-i18n-aria-label="visual.aria">
         <div class="visual-fracture" aria-hidden="true"></div>
-        <img class="visual-photo" src="../assets/login.jpg" alt="A real team collaborating around laptops in a modern workspace" data-i18n-alt="visual.alt" fetchpriority="high" />
+        <video class="visual-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="../assets/login.mp4" type="video/mp4" />
+        </video>
         <div class="visual-tint" aria-hidden="true"></div>
         <div class="visual-caption">
           <p class="visual-eyebrow" data-i18n="visual.eyebrow">AgentOS in production</p>
           <p class="visual-quote" data-i18n="visual.quote">One request in. A traced, board-ready result out.</p>
-          <p class="visual-credit" data-i18n="visual.credit">Photo: Unsplash</p>
+          <p class="visual-credit" data-i18n="visual.credit">Video: Pexels</p>
+        </div>
+        <div class="visual-status" aria-label="Live AgentOS status">
+          <div class="visual-status-head"><span class="status-pulse" aria-hidden="true"></span><span data-i18n="visual.status">Live orchestration</span><span class="visual-status-live" data-i18n="visual.live">LIVE</span></div>
+          <div class="visual-status-metrics">
+            <div><strong>12</strong><span data-i18n="visual.agents">active agents</span></div>
+            <div><strong>98.4%</strong><span data-i18n="visual.success">successful runs</span></div>
+            <div><strong>2.4s</strong><span data-i18n="visual.latency">median latency</span></div>
+          </div>
         </div>
       </aside>
       <section class="auth-card" aria-labelledby="loginTitle">
@@ -64,13 +82,7 @@
           <p class="error" id="emailError" data-i18n="form.email_error">Check your email format.</p>
         </div>
 
-        <button type="button" class="btn btn-primary btn-block" id="emailContinue" data-i18n="form.continue">Continue</button>
-
-        <div id="methodStep" hidden>
-          <p class="form-hint" id="routeHint" role="status"></p>
-          <p class="change-email-wrap"><button type="button" class="linklike" id="changeEmail" data-i18n="form.change_email">Use a different email</button></p>
-
-          <div class="field" id="passwordField">
+        <div class="field" id="passwordField">
             <div class="field-row">
               <label for="password" data-i18n="form.pw_label">Password</label>
               <a href="index.html" id="forgotLink" data-i18n="form.forgot">Forgot password?</a>
@@ -81,20 +93,33 @@
             </div>
             <p class="caps-warning" id="capsWarning" hidden data-i18n="form.caps">Caps Lock is on.</p>
             <p class="error" id="passwordError" data-i18n="form.pw_error">Password must be at least 8 characters.</p>
-          </div>
-
-          <label class="remember"><input type="checkbox" id="rememberDevice" /> <span data-i18n="form.remember">Keep me signed in for 30 days</span></label>
-
-          <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Sign in</button>
-          <p class="error" id="credentialError"></p>
         </div>
+
+        <label class="remember"><input type="checkbox" id="rememberDevice" /> <span data-i18n="form.remember">Keep me signed in for 30 days</span></label>
+
+        <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Sign in</button>
+        <p class="error" id="credentialError"></p>
         <p class="form-note" id="loginNote" role="status" data-i18n="form.note">Prototype only — no backend connected.</p>
       </form>
 
+      <section class="password-reset" id="passwordReset" hidden aria-labelledby="resetTitle">
+        <h2 id="resetTitle" data-i18n="form.reset_title">Reset your password</h2>
+        <p data-i18n="form.reset_sub">Enter your email and we will send recovery instructions.</p>
+        <label for="resetEmail" data-i18n="form.email_label">Work email</label>
+        <input type="email" id="resetEmail" autocomplete="email" data-i18n-ph="form.email_ph" placeholder="you@company.com" aria-describedby="resetStatus" />
+        <div class="password-reset-actions">
+          <button type="button" class="btn btn-primary" id="resetSubmit" data-i18n="form.reset_submit">Send reset link</button>
+          <button type="button" class="linklike" id="resetCancel" data-i18n="form.reset_cancel">Cancel</button>
+        </div>
+        <p class="form-note" id="resetStatus" role="status"></p>
+      </section>
+
       <div class="divider" data-i18n="form.divider">or continue with</div>
 
-      <button type="button" class="btn btn-secondary btn-block" id="passkeyButton" data-i18n="form.passkey">Sign in with a passkey</button>
-      <button type="button" class="btn btn-secondary btn-block" id="ssoButton" aria-describedby="loginNote" data-i18n="form.sso">Continue with SSO</button>
+      <div class="social-options">
+        <button type="button" class="btn btn-secondary social-btn" id="googleButton"><span class="social-mark google-mark" aria-hidden="true">G</span><span data-i18n="form.google">Continue with Google</span></button>
+        <button type="button" class="btn btn-secondary social-btn" id="facebookButton"><span class="social-mark facebook-mark" aria-hidden="true">f</span><span data-i18n="form.facebook">Continue with Facebook</span></button>
+      </div>
 
       <p class="auth-switch"><span data-i18n="form.switch_prefix">New to AgentOS?</span> <a href="../register/index.html" data-i18n="form.switch_link">Create your workspace</a></p>
     </section>

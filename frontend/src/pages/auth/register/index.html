@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../../styles/reset.css" />
   <link rel="stylesheet" href="../../../styles/tokens.css" />
   <link rel="stylesheet" href="register.css" />
-  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;}catch(__e){document.documentElement.lang="en";}</script>
+  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;var __t=localStorage.getItem("agentos.theme");if(__t==="dark"||(!__t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(__e){document.documentElement.lang="en";}</script>
 </head>
 <body>
   <header class="auth-top">
@@ -33,6 +33,15 @@
           <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
           <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
         </div>
+        <button type="button" class="ThemeToggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+          <svg class="ThemeToggle-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="ThemeToggle-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
         <a class="auth-nav-link nav-sibling" href="../login/index.html" data-i18n="nav.sibling">Sign in</a>
       </nav>
     </div>
@@ -40,16 +49,25 @@
 
   <main class="auth-wrap">
     <div class="auth-split">
-      <!-- Visual half: real-world photograph + fractured diagonal boundary.
-           Photo: Unsplash (team planning around a whiteboard). -->
+        <!-- Short topic-relevant video visual. -->
       <aside class="auth-visual" aria-label="Plan work in AgentOS" data-i18n-aria-label="visual.aria">
         <div class="visual-fracture" aria-hidden="true"></div>
-        <img class="visual-photo" src="../assets/register.jpg" alt="A real team planning work around a whiteboard covered in notes" data-i18n-alt="visual.alt" fetchpriority="high" />
+        <video class="visual-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="../assets/register.mp4" type="video/mp4" />
+        </video>
         <div class="visual-tint" aria-hidden="true"></div>
         <div class="visual-caption">
           <p class="visual-eyebrow" data-i18n="visual.eyebrow">Set up in minutes</p>
           <p class="visual-quote" data-i18n="visual.quote">Bring the goal. AgentOS plans, staffs, and traces the work.</p>
-          <p class="visual-credit" data-i18n="visual.credit">Photo: Unsplash</p>
+          <p class="visual-credit" data-i18n="visual.credit">Video: Mixkit</p>
+        </div>
+        <div class="visual-status" aria-label="Live AgentOS status">
+          <div class="visual-status-head"><span class="status-pulse" aria-hidden="true"></span><span data-i18n="visual.status">Live orchestration</span><span class="visual-status-live" data-i18n="visual.live">LIVE</span></div>
+          <div class="visual-status-metrics">
+            <div><strong>12</strong><span data-i18n="visual.agents">active agents</span></div>
+            <div><strong>98.4%</strong><span data-i18n="visual.success">successful runs</span></div>
+            <div><strong>2.4s</strong><span data-i18n="visual.latency">median latency</span></div>
+          </div>
         </div>
       </aside>
       <section class="auth-card" aria-labelledby="registerTitle">
@@ -58,7 +76,6 @@
       <p class="auth-sub" data-i18n="form.sub">Set up your AgentOS workspace.</p>
 
       <form id="registerForm" novalidate>
-        <p class="group-label" data-i18n="form.group_identity">Your identity</p>
         <div class="field" id="nameField">
           <label for="fullName" data-i18n="form.name_label">Full name</label>
           <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Ada Nguyen" required aria-describedby="nameError" />
@@ -71,7 +88,6 @@
           <p class="error" id="emailError" data-i18n="form.email_error">Enter a valid work email.</p>
         </div>
 
-        <p class="group-label" data-i18n="form.group_security">Workspace security</p>
         <div class="field" id="passwordField">
           <div class="field-row">
             <label for="password" data-i18n="form.pw_label">Password</label>
@@ -83,6 +99,15 @@
           </div>
           <p class="strength" id="passwordHint" aria-live="polite"></p>
           <p class="error" id="passwordError" data-i18n="form.pw_error">Password must be at least 8 characters.</p>
+        </div>
+
+        <div class="field" id="confirmPasswordField">
+          <label for="confirmPassword" data-i18n="form.confirm_pw_label">Confirm password</label>
+          <div class="password-wrap">
+            <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" placeholder="Repeat your password" data-i18n-ph="form.confirm_pw_ph" required aria-describedby="confirmPasswordError" />
+            <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Show password" aria-pressed="false" data-i18n="form.show">Show</button>
+          </div>
+          <p class="error" id="confirmPasswordError" data-i18n="form.confirm_pw_error">Passwords do not match.</p>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">Create workspace</button>
