@@ -1,8 +1,0 @@
-/* Tools page rules only. */
-.toolbar { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; padding: var(--space-2) 0; }
-.toolbar strong { font-size: 0.875rem; }
-.toolbar .spacer { flex: 1; }
-.log { font-family: var(--font-mono); font-size: 0.75rem; background: var(--color-text-primary); color: #e2e8f0; border-radius: var(--radius-md); padding: var(--space-4); max-height: 280px; overflow: auto; white-space: pre-wrap; }
-@media (max-width: 480px) {
-  .content { padding: var(--space-4); }
-}
