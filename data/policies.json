@@ -1,0 +1,121 @@
+{
+  "Shopee": {
+    "fees": {
+      "commission_rate": "4.0% đối với Người bán không thuộc Shopee Mall, từ 7.0% đến 10.0% đối với Shopee Mall tùy từng ngành hàng cụ thể",
+      "payment_fee": "4.0% tính trên tổng số tiền thanh toán của người mua cho mỗi đơn hàng thành công",
+      "service_fee": "Gói Freeship Xtra: 6.0% (tối đa 40.000 VNĐ/sản phẩm); Gói Hoàn Xu Xtra: 4.0% (tối đa 20.000 VNĐ/sản phẩm)",
+      "shipping_subsidy": "Shopee trợ giá vận chuyển từ 15.000 VNĐ đến 30.000 VNĐ khi người mua áp dụng mã miễn phí vận chuyển trên đơn đạt giá trị tối thiểu"
+    },
+    "return_policy": {
+      "window_days": 15,
+      "conditions": "Sản phẩm phải còn nguyên bao bì niêm phong, nguyên tem mác, đầy đủ phụ kiện và quà tặng kèm; cung cấp video quay toàn cảnh mở kiện hàng hiển thị rõ mã vận đơn; hỗ trợ chính sách trả hàng đổi ý cho sản phẩm hợp lệ",
+      "process": "Người mua bấm yêu cầu 'Trả hàng/Hoàn tiền' qua ứng dụng -> Người bán có 2 ngày làm việc để chấp thuận hoặc khiếu nại -> Đơn vị vận chuyển đến thu hồi hàng -> Shopee kiểm định và thực hiện hoàn tiền trong vòng 3 đến 5 ngày làm việc"
+    },
+    "shipping": {
+      "providers": [
+        "SPX Express",
+        "Giao Hàng Nhanh (GHN)",
+        "Giao Hàng Tiết Kiệm (GHTK)",
+        "Viettel Post",
+        "J&T Express",
+        "Ninja Van"
+      ],
+      "free_shipping_threshold": 150000,
+      "rules": "Thời hạn xác nhận và chuẩn bị đơn hàng tối đa 24 giờ kể từ thời điểm khách đặt hàng; tỷ lệ giao hàng trễ (LSR) không được vượt quá 5%; người bán không được tự ý đổi kênh vận chuyển đã chỉ định"
+    },
+    "violations": {
+      "prohibited_items": [
+        "Hàng giả, hàng nhái, vi phạm quyền sở hữu trí tuệ",
+        "Vũ khí, công cụ hỗ trợ, vật liệu cháy nổ",
+        "Thuốc kê đơn, thực phẩm chức năng không rõ nguồn gốc",
+        "Động vật sống và thực vật quý hiếm",
+        "Sản phẩm có nội dung kích động hoặc phản cảm"
+      ],
+      "penalties": "Hệ thống điểm phạt Sao Quả Tạ (từ 1 đến 15 điểm tùy mức độ vi phạm); hạ bậc hiển thị sản phẩm trong tìm kiếm; tạm dừng tham gia các chiến dịch khuyến mãi lớn",
+      "account_suspension_rules": "Tài khoản tích lũy từ 15 điểm phạt Sao Quả Tạ trong 1 quý sẽ bị đóng băng 28 ngày; trường hợp cố tình gian lận đơn ảo hoặc bán hàng cấm sẽ bị khóa tài khoản vĩnh viễn"
+    },
+    "promotions": {
+      "flash_sale_rules": "Sản phẩm đăng ký Flash Sale phải giảm tối thiểu 10% so với giá bán thấp nhất trong 30 ngày gần nhất; số lượng hàng dành cho Flash Sale tối thiểu 5 cái; điểm đánh giá cửa hàng từ 4.0 sao trở lên",
+      "voucher_rules": "Người bán chủ động thiết lập mã giảm giá toàn shop hoặc cho từng sản phẩm; ngân sách giảm giá trừ trực tiếp vào doanh thu sau khi hoàn thành đơn; mã ưu đãi Mega Sale do sàn đồng tài trợ",
+      "coin_rules": "Cho phép người mua sử dụng Shopee Xu để khấu trừ tối đa 50% giá trị đơn hàng; cửa hàng tham gia chương trình Hoàn Xu Xtra được gắn nhãn nổi bật và chịu phí dịch vụ bổ sung 4%"
+    }
+  },
+  "TikTok Shop": {
+    "fees": {
+      "commission_rate": "4.0% đến 5.0% phí hoa hồng sàn tính trên giá trị thực của sản phẩm sau giảm giá cho mỗi đơn hoàn tất",
+      "payment_fee": "1.5% phí xử lý giao dịch điện tử cho tất cả các đơn hàng",
+      "service_fee": "Phí dịch vụ vận hành Livestream và tính năng Tiếp thị liên kết (Affiliate Creator): 1.0% - 2.0%",
+      "shipping_subsidy": "TikTok Shop trợ giá vận chuyển thông qua voucher Xtra Shipping lên đến 70.000 VNĐ cho khách hàng mới và hỗ trợ vận chuyển trong các phiên Livestream Mega"
+    },
+    "return_policy": {
+      "window_days": 6,
+      "conditions": "Sản phẩm bị lỗi kỹ thuật do nhà sản xuất, bể vỡ trong quá trình vận chuyển, hoặc sai lệch so với mô tả/phiên live; bắt buộc có video quay quá trình bóc kiện hàng liền mạch không cắt ghép",
+      "process": "Khách hàng tạo yêu cầu hoàn trả trong vòng 6 ngày kể từ khi nhận hàng -> Nhà bán hàng có 48 giờ phản hồi giải pháp -> Shipper thu hồi sản phẩm -> Hệ thống hoàn tiền tự động qua ví hoặc thẻ thanh toán trong 24 đến 48 giờ"
+    },
+    "shipping": {
+      "providers": [
+        "J&T Express",
+        "Ninja Van",
+        "Giao Hàng Nhanh (GHN)",
+        "BEST Express"
+      ],
+      "free_shipping_threshold": 100000,
+      "rules": "Thời gian xử lý đóng gói và bàn giao cho đơn vị vận chuyển (SLA) không quá 48 giờ; tỷ lệ hủy đơn do lỗi người bán (Seller Fault Cancellation Rate) phải dưới 2.5%; quét mã vạch tích hợp tự động đồng bộ trạng thái đơn"
+    },
+    "violations": {
+      "prohibited_items": [
+        "Hàng xâm phạm nhãn hiệu và bản quyền hình ảnh",
+        "Mỹ phẩm gia công, không có số công bố mỹ phẩm",
+        "Hóa chất nguy hiểm, thuốc lá điện tử và phụ kiện",
+        "Sản phẩm quảng cáo công dụng phóng đại sai sự thật",
+        "Chuyển hướng khách hàng giao dịch ngoài nền tảng TikTok"
+      ],
+      "penalties": "Tính điểm vi phạm cửa hàng (Policy Violation Points từ 1 đến 48 điểm); tạm khóa quyền thêm liên kết sản phẩm vào video; cấm phát sóng trực tiếp (Livestream) từ 1 đến 14 ngày",
+      "account_suspension_rules": "Nếu tích lũy đạt ngưỡng 48 điểm vi phạm, cửa hàng sẽ bị đình chỉ hoạt động vĩnh viễn, tước quyền kinh doanh và đóng băng số dư thanh toán trong thời hạn 90 ngày để giải quyết công nợ"
+    },
+    "promotions": {
+      "flash_sale_rules": "Áp dụng cho các phiên Livestream độc quyền hoặc khung giờ Mega Flash Sale của sàn; sản phẩm phải cam kết mức giảm giá tối thiểu 15% và dành riêng kho số lượng cho phiên live",
+      "voucher_rules": "Voucher nhà sáng tạo (Creator Voucher), voucher độc quyền kênh live do shop tự tài trợ hoặc sàn trợ giá chung; tự động hiển thị trên luồng phát trực tiếp và video ngắn",
+      "coin_rules": "Quy đổi TikTok Coins cho các phần thưởng tặng quà trên Livestream; chưa áp dụng việc dùng TikTok Coins để cấn trừ trực tiếp tiền thanh toán đơn hàng sản phẩm vật lý"
+    }
+  },
+  "P2P": {
+    "fees": {
+      "commission_rate": "1.5% đến 2.0% phí niêm yết và dịch vụ bảo đảm giao dịch trên nền tảng trao đổi trực tiếp",
+      "payment_fee": "1.0% phí duy trì tài khoản ký quỹ trung gian (Escrow) đảm bảo an toàn giao dịch; miễn phí thanh toán nếu hai bên chọn hình thức giao dịch gặp mặt trực tiếp (Face-to-Face)",
+      "service_fee": "Phí đẩy tin lên đầu danh mục: 15.000 VNĐ/lần; gói ghim bài viết nổi bật VIP: 50.000 - 100.000 VNĐ/tuần",
+      "shipping_subsidy": "Nền tảng không trợ giá trực tiếp chi phí vận chuyển; hai bên mua bán tự thỏa thuận chi phí hoặc chọn dịch vụ giao hàng COD liên kết với mức giá ưu đãi đối tác"
+    },
+    "return_policy": {
+      "window_days": 3,
+      "conditions": "Áp dụng chính sách kiểm tra dùng thử (bao test) trong vòng 3 ngày kể từ lúc nhận bưu phẩm COD; chấp nhận hoàn trả nếu sản phẩm có lỗi ẩn phần cứng, không đúng serial/thông số như đã trao đổi hoặc nghi ngờ hàng nhái",
+      "process": "Người mua mở khiếu nại và tải lên bằng chứng hình ảnh/video lỗi -> Ban quản trị đóng băng khoản tiền ký quỹ -> Hai bên thương lượng trong 24 giờ -> Nếu không thống nhất, kiểm định viên P2P can thiệp thu hồi hàng và hoàn tiền ký quỹ"
+    },
+    "shipping": {
+      "providers": [
+        "Ahamove",
+        "GrabExpress",
+        "Viettel Post",
+        "Giao dịch trực tiếp (Gặp mặt nhận hàng tận tay)"
+      ],
+      "free_shipping_threshold": 0,
+      "rules": "Khuyến khích gặp mặt trực tiếp tại các địa điểm công cộng an toàn; đối với đơn hàng gửi tỉnh, người gửi bắt buộc quay video tình trạng máy, số IMEI/Serial và thao tác niêm phong kiện hàng trước sự chứng kiến của bưu tá"
+    },
+    "violations": {
+      "prohibited_items": [
+        "Hàng trộm cắp, thiết bị dính tài khoản ẩn (iCloud ẩn, Knox lock, MDM)",
+        "Vũ khí quân dụng, vật liệu cháy nổ, đồ chơi nguy hiểm",
+        "Thông tin định danh cá nhân, thẻ ngân hàng, tài khoản mạng xã hội",
+        "Tiền tệ giả mạo hoặc giấy tờ văn bằng giả",
+        "Hàng cấm lưu thông theo quy định pháp luật Việt Nam"
+      ],
+      "penalties": "Gỡ bỏ tin đăng ngay lập tức; hạ điểm tín nhiệm thành viên (Trust Score); gắn huy hiệu cảnh báo nguy cơ lừa đảo công khai trên hồ sơ cá nhân",
+      "account_suspension_rules": "Hành vi gian lận tiền cọc, gửi hàng giả tráo đổi, hoặc có phản ánh lừa đảo xác thực sẽ bị khóa tài khoản vĩnh viễn, đưa CCCD/Số điện thoại/Số tài khoản vào danh sách đen và chuyển hồ sơ sang cơ quan công an"
+    },
+    "promotions": {
+      "flash_sale_rules": "Chương trình 'Thanh lý giá sốc cuối tuần' dành cho các tài khoản đã được xác thực danh tính điện tử (eKYC); yêu cầu giảm giá ít nhất 10% so với giá thị trường trung bình",
+      "voucher_rules": "Mã khuyến mãi nạp ví hoặc giảm phí gói tin đăng VIP do ban quản trị phát hành định kỳ vào các dịp lễ hoặc tri ân thành viên tích cực",
+      "coin_rules": "Hệ thống điểm thưởng P2P-Points tích lũy từ các giao dịch thành công và đánh giá 5 sao; sử dụng điểm để đổi lấy lượt đẩy bài viết tự động hoặc huy hiệu thành viên uy tín"
+    }
+  }
+}

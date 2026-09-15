@@ -1,0 +1,5 @@
+npc1:
+  role: No role
+  goal: user feedback
+  backstory: lmao
+  llm: qwen/qwen3.8-max:free
