@@ -1,0 +1,12 @@
+crewai
+crewai[tools]
+python-dotenv
+
+fastapi
+uvicorn
+pydantic>=2
+celery[redis]
+psycopg[binary]
+pgvector
+python-jose
+pytest
