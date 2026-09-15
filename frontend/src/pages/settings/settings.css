@@ -1,6 +1,0 @@
-/* Settings page rules only. */
-.form-grid { display: grid; gap: var(--space-3); max-width: 480px; }
-.form-grid label { font-size: 0.875rem; font-weight: 600; display: grid; gap: var(--space-2); }
-@media (max-width: 480px) {
-  .content { padding: var(--space-4); }
-}
