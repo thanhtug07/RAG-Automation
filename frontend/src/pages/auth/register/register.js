@@ -37,6 +37,14 @@
   }
   tenantTheme();
 
+  function initVideoPlayback() {
+    var video = document.querySelector(".visual-video");
+    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    video.play().catch(function () { /* autoplay can be blocked by the browser */ });
+  }
+
+  initVideoPlayback();
+
   // i18n — EN/VI dictionary, same `agentos.lang` key as Home. Static markup
   // binds via data-i18n / data-i18n-ph / data-i18n-alt / data-i18n-aria-label.
   var I18N = {
@@ -52,17 +60,20 @@
       "visual.alt": "A real team planning work around a whiteboard covered in notes",
       "visual.eyebrow": "Set up in minutes",
       "visual.quote": "Bring the goal. AgentOS plans, staffs, and traces the work.",
-      "visual.credit": "Photo: Unsplash",
+      "visual.credit": "Video: Mixkit",
+      "visual.status": "Live orchestration",
+      "visual.live": "LIVE",
+      "visual.agents": "active agents",
+      "visual.success": "successful runs",
+      "visual.latency": "median latency",
       "form.eyebrow": "AgentOS workspace",
       "form.title": "Create your workspace",
       "form.sub": "Set up your AgentOS workspace.",
-      "form.group_identity": "Your identity",
       "form.name_label": "Full name",
       "form.name_error": "Enter your full name.",
       "form.email_label": "Work email",
       "form.email_ph": "you@company.com",
       "form.email_error": "Enter a valid work email.",
-      "form.group_security": "Workspace security",
       "form.pw_label": "Password",
       "form.pw_hint": "8+ characters",
       "form.pw_ph": "Minimum 8 characters",
@@ -71,6 +82,9 @@
       "form.show_aria": "Show password",
       "form.hide_aria": "Hide password",
       "form.pw_error": "Password must be at least 8 characters.",
+      "form.confirm_pw_label": "Confirm password",
+      "form.confirm_pw_ph": "Repeat your password",
+      "form.confirm_pw_error": "Passwords do not match.",
       "form.strength_short": "Keep going — 8+ characters needed.",
       "form.strength_basic": "Password strength: basic.",
       "form.strength_good": "Password strength: good.",
@@ -102,17 +116,20 @@
       "visual.alt": "Một đội ngũ thực đang lên kế hoạch quanh bảng trắng đầy ghi chú",
       "visual.eyebrow": "Thiết lập trong vài phút",
       "visual.quote": "Mang mục tiêu đến. AgentOS lập kế hoạch, phân công và truy vết công việc.",
-      "visual.credit": "Ảnh: Unsplash",
+      "visual.credit": "Video: Mixkit",
+      "visual.status": "Điều phối trực tiếp",
+      "visual.live": "ĐANG CHẠY",
+      "visual.agents": "agent đang hoạt động",
+      "visual.success": "lượt chạy thành công",
+      "visual.latency": "độ trễ trung vị",
       "form.eyebrow": "Workspace AgentOS",
       "form.title": "Tạo workspace",
       "form.sub": "Thiết lập workspace AgentOS của bạn.",
-      "form.group_identity": "Danh tính của bạn",
       "form.name_label": "Họ và tên",
       "form.name_error": "Nhập họ tên của bạn.",
-      "form.email_label": "Email công việc",
+      "form.email_label": "Email",
       "form.email_ph": "ban@congty.com",
-      "form.email_error": "Nhập email công việc hợp lệ.",
-      "form.group_security": "Bảo mật workspace",
+      "form.email_error": "Nhập email hợp lệ.",
       "form.pw_label": "Mật khẩu",
       "form.pw_hint": "8+ ký tự",
       "form.pw_ph": "Tối thiểu 8 ký tự",
@@ -121,6 +138,9 @@
       "form.show_aria": "Hiện mật khẩu",
       "form.hide_aria": "Ẩn mật khẩu",
       "form.pw_error": "Mật khẩu phải có ít nhất 8 ký tự.",
+      "form.confirm_pw_label": "Xác nhận mật khẩu",
+      "form.confirm_pw_ph": "Nhập lại mật khẩu",
+      "form.confirm_pw_error": "Mật khẩu không khớp.",
       "form.strength_short": "Cố lên — cần 8+ ký tự.",
       "form.strength_basic": "Độ mạnh mật khẩu: cơ bản.",
       "form.strength_good": "Độ mạnh mật khẩu: tốt.",
@@ -234,9 +254,9 @@
     var submit = document.getElementById("registerSubmit");
     var hint = document.getElementById("passwordHint");
     var pwInput = document.getElementById("password");
-    ["fullName", "email", "password"].forEach(function (id) {
-      var map = { fullName: "nameField", email: "emailField", password: "passwordField" };
-      var err = { fullName: "nameError", email: "emailError", password: "passwordError" };
+    ["fullName", "email", "password", "confirmPassword"].forEach(function (id) {
+      var map = { fullName: "nameField", email: "emailField", password: "passwordField", confirmPassword: "confirmPasswordField" };
+      var err = { fullName: "nameError", email: "emailError", password: "passwordError", confirmPassword: "confirmPasswordError" };
       document.getElementById(id).addEventListener("input", function () {
         document.getElementById(map[id]).classList.remove("invalid");
         document.getElementById(err[id]).classList.remove("visible");
@@ -250,10 +270,12 @@
       var name = document.getElementById("fullName").value.trim();
       var email = document.getElementById("email").value.trim();
       var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
       var okName = setInvalid("nameField", "nameError", name.length < 2);
       var okEmail = setInvalid("emailField", "emailError", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
       var okPass = setInvalid("passwordField", "passwordError", password.length < 8);
-      if (!okName || !okEmail || !okPass) return;
+      var okConfirm = setInvalid("confirmPasswordField", "confirmPasswordError", confirmPassword !== password || !confirmPassword);
+      if (!okName || !okEmail || !okPass || !okConfirm) return;
       track("submit");
       submit.disabled = true;
       submit.textContent = t("form.submitting");
@@ -291,8 +313,27 @@
       }, 900);
     });
     setupLang();
+    themeToggleSetup();
     applyLang();
   }
+
+  function themeToggleSetup() {
+    var themeToggle = document.getElementById("themeToggle");
+    var html = document.documentElement;
+    if (!themeToggle) return;
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var savedTheme = localStorage.getItem("agentos.theme");
+    var isDarkInit = savedTheme ? savedTheme === "dark" : prefersDark;
+    html.classList.toggle("dark", isDarkInit);
+    themeToggle.setAttribute("aria-pressed", String(isDarkInit));
+    themeToggle.addEventListener("click", function () {
+      html.classList.toggle("dark");
+      var isDark = html.classList.contains("dark");
+      themeToggle.setAttribute("aria-pressed", String(isDark));
+      try { localStorage.setItem("agentos.theme", isDark ? "dark" : "light"); } catch (e) { /* never break */ }
+    });
+  }
+
   document.readyState === "loading"
     ? document.addEventListener("DOMContentLoaded", init)
     : init();

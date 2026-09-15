@@ -27,6 +27,14 @@
   }
   tenantTheme();
 
+  function initVideoPlayback() {
+    var video = document.querySelector(".visual-video");
+    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    video.play().catch(function () { /* autoplay can be blocked by the browser */ });
+  }
+
+  initVideoPlayback();
+
   // i18n — EN/VI dictionary, same `agentos.lang` key as Home. Static markup
   // binds via data-i18n / data-i18n-ph / data-i18n-alt / data-i18n-aria-label.
   var I18N = {
@@ -42,17 +50,19 @@
       "visual.alt": "A real team collaborating around laptops in a modern workspace",
       "visual.eyebrow": "AgentOS in production",
       "visual.quote": "One request in. A traced, board-ready result out.",
-      "visual.credit": "Photo: Unsplash",
+      "visual.credit": "Video: Pexels",
+      "visual.status": "Live orchestration",
+      "visual.live": "LIVE",
+      "visual.agents": "active agents",
+      "visual.success": "successful runs",
+      "visual.latency": "median latency",
       "form.eyebrow": "AgentOS workspace",
       "form.title": "Welcome back",
       "form.sub": "Sign in to your AgentOS workspace.",
       "form.email_label": "Work email",
       "form.email_ph": "you@company.com",
       "form.email_error": "Check your email format.",
-      "form.continue": "Continue",
       "form.route_corp": "Work domain detected — Continue with SSO is usually fastest for your organization.",
-      "form.route_personal": "Personal email — continue with a password or a passkey.",
-      "form.change_email": "Use a different email",
       "form.pw_label": "Password",
       "form.forgot": "Forgot password?",
       "form.show": "Show",
@@ -67,13 +77,17 @@
       "form.cred_error": "Your email or password is incorrect. Try again or reset it.",
       "form.note": "Prototype only — no backend connected.",
       "form.divider": "or continue with",
-      "form.passkey": "Sign in with a passkey",
-      "form.sso": "Continue with SSO",
+      "form.google": "Continue with Google",
+      "form.facebook": "Continue with Facebook",
+      "form.reset_title": "Reset your password",
+      "form.reset_sub": "Enter your email and we will send recovery instructions.",
+      "form.reset_submit": "Send reset link",
+      "form.reset_cancel": "Cancel",
       "form.switch_prefix": "New to AgentOS?",
       "form.switch_link": "Create your workspace",
       "note.forgot": "Password reset is disabled in this prototype.",
-      "note.passkey_unsupported": "This device doesn't support passkeys. Use a password or SSO.",
-      "note.passkey_needs_cred": "Passkeys need a registered credential — prototype build, use a password or SSO for now.",
+      "note.social": "Google and Facebook sign-in will be connected when the OAuth backend is ready.",
+      "note.reset": "If the email exists, recovery instructions will be sent — email delivery is not connected in this prototype.",
       "note.sso": "SSO redirects to your identity provider in production — not connected in this prototype."
     },
     vi: {
@@ -88,17 +102,19 @@
       "visual.alt": "Một đội ngũ thực đang cộng tác quanh laptop trong văn phòng hiện đại",
       "visual.eyebrow": "AgentOS trong thực tế",
       "visual.quote": "Một yêu cầu vào. Một kết quả truy vết được, sẵn sàng trình bày.",
-      "visual.credit": "Ảnh: Unsplash",
+      "visual.credit": "Video: Pexels",
+      "visual.status": "Điều phối trực tiếp",
+      "visual.live": "ĐANG CHẠY",
+      "visual.agents": "agent đang hoạt động",
+      "visual.success": "lượt chạy thành công",
+      "visual.latency": "độ trễ trung vị",
       "form.eyebrow": "Workspace AgentOS",
       "form.title": "Chào mừng trở lại",
       "form.sub": "Đăng nhập vào workspace AgentOS của bạn.",
-      "form.email_label": "Email công việc",
+      "form.email_label": "Email",
       "form.email_ph": "ban@congty.com",
       "form.email_error": "Kiểm tra định dạng email.",
-      "form.continue": "Tiếp tục",
-      "form.route_corp": "Đã nhận diện tên miền công việc — SSO thường là cách nhanh nhất cho tổ chức của bạn.",
-      "form.route_personal": "Email cá nhân — tiếp tục bằng mật khẩu hoặc passkey.",
-      "form.change_email": "Dùng email khác",
+      "form.route_corp": "Đã nhận diện tên miền — SSO thường là cách nhanh nhất cho tổ chức của bạn.",
       "form.pw_label": "Mật khẩu",
       "form.forgot": "Quên mật khẩu?",
       "form.show": "Hiện",
@@ -113,14 +129,18 @@
       "form.cred_error": "Email hoặc mật khẩu chưa đúng. Thử lại hoặc đặt lại.",
       "form.note": "Chỉ là bản mẫu — chưa kết nối backend.",
       "form.divider": "hoặc tiếp tục với",
-      "form.passkey": "Đăng nhập bằng passkey",
-      "form.sso": "Tiếp tục với SSO",
+      "form.google": "Tiếp tục với Google",
+      "form.facebook": "Tiếp tục với Facebook",
+      "form.reset_title": "Đặt lại mật khẩu",
+      "form.reset_sub": "Nhập email để nhận hướng dẫn khôi phục.",
+      "form.reset_submit": "Gửi liên kết đặt lại",
+      "form.reset_cancel": "Hủy",
       "form.switch_prefix": "Mới dùng AgentOS?",
       "form.switch_link": "Tạo workspace",
       "note.forgot": "Đặt lại mật khẩu đang tắt trong bản mẫu này.",
-      "note.passkey_unsupported": "Thiết bị này không hỗ trợ passkey. Hãy dùng mật khẩu hoặc SSO.",
-      "note.passkey_needs_cred": "Passkey cần một credential đã đăng ký — bản mẫu này chưa có, hãy dùng mật khẩu hoặc SSO.",
-      "note.sso": "SSO sẽ chuyển tới nhà cung cấp danh tính khi vận hành — bản mẫu này chưa kết nối."
+      "note.sso": "SSO sẽ chuyển tới nhà cung cấp danh tính khi vận hành — bản mẫu này chưa kết nối.",
+      "note.social": "Đăng nhập Google và Facebook sẽ được kết nối khi backend OAuth sẵn sàng.",
+      "note.reset": "Nếu email tồn tại, hướng dẫn khôi phục sẽ được gửi — bản mẫu chưa kết nối email."
     }
   };
   var lang = "en";
@@ -145,15 +165,6 @@
     }
     var submit = document.getElementById("loginSubmit");
     if (submit && !submit.disabled) submit.textContent = t("form.submit");
-    var hint = document.getElementById("routeHint");
-    var methodStep = document.getElementById("methodStep");
-    if (hint && methodStep && !methodStep.hasAttribute("hidden") && hint.textContent) {
-      var email = document.getElementById("email").value.trim();
-      var at = email.lastIndexOf("@");
-      var corp = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com"]
-        .indexOf(at > 0 ? email.slice(at + 1).toLowerCase() : "") === -1;
-      hint.textContent = corp ? t("form.route_corp") : t("form.route_personal");
-    }
   }
   function applyLang(next) {
     if (next === "vi" || next === "en") lang = next;
@@ -202,43 +213,15 @@
     if (!form) return;
     var note = document.getElementById("loginNote");
     var submit = document.getElementById("loginSubmit");
-    var cont = document.getElementById("emailContinue");
-    var methodStep = document.getElementById("methodStep");
-    var routeHint = document.getElementById("routeHint");
     var credError = document.getElementById("credentialError");
-    var PERSONAL = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com"];
+    var resetPanel = document.getElementById("passwordReset");
+    var resetEmail = document.getElementById("resetEmail");
+    var resetStatus = document.getElementById("resetStatus");
     var DEMO_UNKNOWN = ["example.com", "test.com", "invalid.com"];
     function emailValue() { return document.getElementById("email").value.trim(); }
     function domainOf(email) {
       var at = email.lastIndexOf("@");
       return at > 0 ? email.slice(at + 1).toLowerCase() : "";
-    }
-    // Identifier-first: valid email reveals the method step and routes by domain.
-    function revealMethodStep() {
-      var email = emailValue();
-      var ok = setInvalid("emailField", "emailError", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-      if (!ok) {
-        document.getElementById("email").focus();
-        return false;
-      }
-      methodStep.removeAttribute("hidden");
-      cont.style.display = "none";
-      var corp = PERSONAL.indexOf(domainOf(email)) === -1;
-      routeHint.textContent = corp ? t("form.route_corp") : t("form.route_personal");
-      document.getElementById("password").focus();
-      return true;
-    }
-    cont.addEventListener("click", revealMethodStep);
-    var changeEmail = document.getElementById("changeEmail");
-    if (changeEmail) {
-      changeEmail.addEventListener("click", function () {
-        methodStep.setAttribute("hidden", "");
-        cont.style.display = "";
-        routeHint.textContent = "";
-        credError.classList.remove("visible");
-        var emailInput = document.getElementById("email");
-        emailInput.focus();
-      });
     }
     ["email", "password"].forEach(function (id) {
       document.getElementById(id).addEventListener("input", function () {
@@ -256,18 +239,28 @@
     if (forgot) {
       forgot.addEventListener("click", function (e) {
         e.preventDefault();
-        note.textContent = t("note.forgot");
-        note.classList.add("visible");
+        resetPanel.removeAttribute("hidden");
+        resetEmail.value = emailValue();
+        resetEmail.focus();
       });
     }
+    document.getElementById("resetCancel").addEventListener("click", function () {
+      resetPanel.setAttribute("hidden", "");
+      resetStatus.classList.remove("visible");
+    });
+    document.getElementById("resetSubmit").addEventListener("click", function () {
+      var value = resetEmail.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        resetEmail.focus();
+        resetStatus.textContent = t("form.email_error");
+      } else {
+        track("password-reset");
+        resetStatus.textContent = t("note.reset");
+      }
+      resetStatus.classList.add("visible");
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      // Enter pressed before Continue: reveal the method step instead of
-      // flagging the still-hidden password field.
-      if (methodStep.hasAttribute("hidden")) {
-        revealMethodStep();
-        return;
-      }
       var email = emailValue();
       var password = document.getElementById("password").value;
       var okEmail = setInvalid("emailField", "emailError", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
@@ -299,23 +292,35 @@
         }
       }, 900);
     });
-    document.getElementById("passkeyButton").addEventListener("click", function () {
-      track("passkey");
-      if (!window.PublicKeyCredential) {
-        note.textContent = t("note.passkey_unsupported");
-      } else {
-        note.textContent = t("note.passkey_needs_cred");
-      }
-      note.classList.add("visible");
-    });
-    document.getElementById("ssoButton").addEventListener("click", function () {
-      track("sso");
-      note.textContent = t("note.sso");
-      note.classList.add("visible");
+    ["googleButton", "facebookButton"].forEach(function (id) {
+      document.getElementById(id).addEventListener("click", function () {
+        track(id === "googleButton" ? "google" : "facebook");
+        note.textContent = t("note.social");
+        note.classList.add("visible");
+      });
     });
     setupLang();
+    themeToggleSetup();
     applyLang();
   }
+
+  function themeToggleSetup() {
+    var themeToggle = document.getElementById("themeToggle");
+    var html = document.documentElement;
+    if (!themeToggle) return;
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var savedTheme = localStorage.getItem("agentos.theme");
+    var isDarkInit = savedTheme ? savedTheme === "dark" : prefersDark;
+    html.classList.toggle("dark", isDarkInit);
+    themeToggle.setAttribute("aria-pressed", String(isDarkInit));
+    themeToggle.addEventListener("click", function () {
+      html.classList.toggle("dark");
+      var isDark = html.classList.contains("dark");
+      themeToggle.setAttribute("aria-pressed", String(isDark));
+      try { localStorage.setItem("agentos.theme", isDark ? "dark" : "light"); } catch (e) { /* never break */ }
+    });
+  }
+
   document.readyState === "loading"
     ? document.addEventListener("DOMContentLoaded", init)
     : init();
