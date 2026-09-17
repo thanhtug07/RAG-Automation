@@ -3,6 +3,196 @@
 (function () {
   "use strict";
 
+  /* ---------------- i18n (EN/VI, shared agentos.lang key) ---------------- */
+  var I18N = {
+    en: {
+      "meta.title": "Documents — AgentOS",
+      "nav.new": "New Task", "nav.chat": "Chat", "nav.agents": "Agents",
+      "nav.docs": "Documents", "nav.storage": "Data Storage",
+      "nav.analytics": "Analytics", "nav.models": "Models",
+      "nav.logs": "Logs", "nav.settings": "Settings",
+      "nav.plan": "Company Plan",
+      "page.title": "Documents",
+      "page.sub": "Manage workspace documents and knowledge sources.",
+      "page.add": "Add document", "page.add_short": "Add",
+      "page.search_label": "Search documents", "page.search_ph": "Search documents...",
+      "filter.type_label": "Filter by type", "filter.type_all": "Type: All",
+      "filter.status_label": "Filter by status", "filter.status_all": "Status: All",
+      "filter.kb_label": "Filter by knowledge base", "filter.kb_all": "Knowledge: All",
+      "filter.sort_label": "Sort", "filter.time_label": "Filter by updated time",
+      "filter.time_all": "Time: All", "filter.time_day": "Last 24 hours",
+      "filter.time_week": "Last 7 days", "filter.time_month": "Last 30 days",
+      "filter.clear": "Clear filters",
+      "sort.newest": "Newest", "sort.oldest": "Oldest", "sort.az": "Name A–Z",
+      "sort.za": "Name Z–A", "sort.size": "Size",
+      "status.indexed": "Indexed", "status.processing": "Processing", "status.failed": "Failed",
+      "stats.total": "Total documents", "stats.processing": "Processing",
+      "stats.indexed": "Indexed", "stats.storage": "Storage",
+      "bulk.selected": " selected", "bulk.reindex": "Re-index", "bulk.delete": "Delete",
+      "col.name": "Document", "col.type": "Type", "col.kb": "Knowledge Base",
+      "col.size": "Size", "col.updated": "Updated", "col.status": "Status",
+      "col.check_all": "Select all", "col.select": "Select ",
+      "col.actions": "Actions for ",
+      "empty.title": "No documents yet",
+      "empty.sub": "Upload your first document to build workspace knowledge.",
+      "empty.add": "Add document",
+      "empty.search_title": "No documents found",
+      "empty.search_sub": "Try another keyword or change your filters.",
+      "menu.detail": "Details", "menu.download": "Download", "menu.error": "View error",
+      "menu.edit": "Edit", "menu.reindex": "Re-index", "menu.delete": "Delete",
+      "detail.title": "Document details", "detail.error_title": "Processing error",
+      "detail.info": "Information", "detail.tags": "Tags", "detail.desc": "Description",
+      "detail.f_type": "Type", "detail.f_size": "Size", "detail.f_created": "Created",
+      "detail.f_updated": "Updated", "detail.f_kb": "Knowledge Base",
+      "detail.err_title": "Processing status", "detail.err_failed": "Processing failed",
+      "detail.err_reason": "Reason", "detail.err_unknown": "Unknown error.",
+      "act.retry": "Retry", "act.download": "Download", "act.edit": "Edit",
+      "act.reindex": "Re-index", "act.delete": "Delete",
+      "edit.title": "Edit document",
+      "edit.name": "Document name", "edit.kb": "Knowledge Base",
+      "edit.tags": "Tags (comma separated)", "edit.desc": "Description",
+      "edit.cancel": "Cancel", "edit.save": "Save changes",
+      "edit.need_name": "Document name cannot be empty.",
+      "upload.title": "Add document",
+      "upload.drop_title": "Upload file",
+      "upload.drop": "Drag & drop file here", "upload.or": "or", "upload.browse": "Browse files",
+      "upload.pick_aria": "Choose file to upload",
+      "upload.kb": "Knowledge Base", "upload.tags": "Tags (comma separated)",
+      "upload.tags_ph": "e.g.: financial, q3", "upload.desc": "Description",
+      "upload.desc_ph": "Short description of the document...",
+      "upload.cancel": "Cancel", "upload.submit": "Upload document",
+      "del.title": "Delete document?",
+      "del.one": "Are you sure you want to delete “{name}”? This cannot be undone.",
+      "del.bulk": "Are you sure you want to delete {n} selected documents? This cannot be undone.",
+      "del.confirm_one": "Delete document",
+      "del.confirm": "Delete",
+      "del.confirm_many": "Delete documents",
+      "form.cancel": "Cancel",
+      "misc.just_now": "Just now",
+      "toast.download_backend": "Download functionality will be connected to the backend later.",
+      "toast.updated": "Document updated.",
+      "toast.uploaded": "Document uploaded. Processing...",
+      "toast.indexed": "Document has been indexed.",
+      "toast.reindexed": "Document has been re-indexed.",
+      "toast.bulk_reindex": "Re-indexing documents...",
+      "toast.deleted_one": "Document deleted.",
+      "toast.deleted_many": " documents deleted.",
+      "drawer.close": "Close"
+    },
+    vi: {
+      "meta.title": "Tài liệu — AgentOS",
+      "nav.new": "Tác vụ mới", "nav.chat": "Đoạn chat", "nav.agents": "Agent",
+      "nav.docs": "Tài liệu", "nav.storage": "Lưu trữ dữ liệu",
+      "nav.analytics": "Phân tích", "nav.models": "Mô hình",
+      "nav.logs": "Nhật ký", "nav.settings": "Cài đặt",
+      "nav.plan": "Gói công ty",
+      "page.title": "Tài liệu",
+      "page.sub": "Quản lý tài liệu và nguồn kiến thức của workspace.",
+      "page.add": "Thêm tài liệu", "page.add_short": "Thêm",
+      "page.search_label": "Tìm kiếm tài liệu", "page.search_ph": "Tìm kiếm tài liệu...",
+      "filter.type_label": "Lọc theo loại", "filter.type_all": "Loại: Tất cả",
+      "filter.status_label": "Lọc theo trạng thái", "filter.status_all": "Trạng thái: Tất cả",
+      "filter.kb_label": "Lọc theo knowledge base", "filter.kb_all": "Knowledge: Tất cả",
+      "filter.sort_label": "Sắp xếp", "filter.time_label": "Lọc theo thời gian cập nhật",
+      "filter.time_all": "Thời gian: Tất cả", "filter.time_day": "24 giờ qua",
+      "filter.time_week": "7 ngày qua", "filter.time_month": "30 ngày qua",
+      "filter.clear": "Xóa lọc",
+      "sort.newest": "Mới nhất", "sort.oldest": "Cũ nhất", "sort.az": "Tên A–Z",
+      "sort.za": "Tên Z–A", "sort.size": "Dung lượng",
+      "status.indexed": "Đã lập chỉ mục", "status.processing": "Đang xử lý", "status.failed": "Lỗi",
+      "stats.total": "Tổng tài liệu", "stats.processing": "Đang xử lý",
+      "stats.indexed": "Đã lập chỉ mục", "stats.storage": "Dung lượng",
+      "bulk.selected": " đã chọn", "bulk.reindex": "Lập chỉ mục lại", "bulk.delete": "Xóa",
+      "col.name": "Tài liệu", "col.type": "Loại", "col.kb": "Knowledge Base",
+      "col.size": "Dung lượng", "col.updated": "Cập nhật", "col.status": "Trạng thái",
+      "col.check_all": "Chọn tất cả", "col.select": "Chọn ",
+      "col.actions": "Thao tác với ",
+      "empty.title": "Chưa có tài liệu",
+      "empty.sub": "Tải lên tài liệu đầu tiên để xây dựng knowledge cho workspace.",
+      "empty.add": "Thêm tài liệu",
+      "empty.search_title": "Không tìm thấy tài liệu",
+      "empty.search_sub": "Thử từ khóa khác hoặc thay đổi bộ lọc.",
+      "menu.detail": "Chi tiết", "menu.download": "Tải xuống", "menu.error": "Xem lỗi",
+      "menu.edit": "Chỉnh sửa", "menu.reindex": "Lập chỉ mục lại", "menu.delete": "Xóa",
+      "detail.title": "Chi tiết tài liệu", "detail.error_title": "Lỗi xử lý",
+      "detail.info": "Thông tin", "detail.tags": "Tags", "detail.desc": "Mô tả",
+      "detail.f_type": "Loại", "detail.f_size": "Dung lượng", "detail.f_created": "Ngày tạo",
+      "detail.f_updated": "Cập nhật", "detail.f_kb": "Knowledge Base",
+      "detail.err_title": "Trạng thái xử lý", "detail.err_failed": "Xử lý thất bại",
+      "detail.err_reason": "Lý do", "detail.err_unknown": "Lỗi không xác định.",
+      "act.retry": "Thử lại", "act.download": "Tải xuống", "act.edit": "Chỉnh sửa",
+      "act.reindex": "Lập chỉ mục lại", "act.delete": "Xóa",
+      "edit.title": "Chỉnh sửa tài liệu",
+      "edit.name": "Tên tài liệu", "edit.kb": "Knowledge Base",
+      "edit.tags": "Tags (cách nhau bằng dấu phẩy)", "edit.desc": "Mô tả",
+      "edit.cancel": "Hủy", "edit.save": "Lưu thay đổi",
+      "edit.need_name": "Tên tài liệu không được để trống.",
+      "upload.title": "Thêm tài liệu",
+      "upload.drop_title": "Tải lên file",
+      "upload.drop": "Kéo & thả file vào đây", "upload.or": "hoặc", "upload.browse": "Chọn file",
+      "upload.pick_aria": "Chọn file để tải lên",
+      "upload.kb": "Knowledge Base", "upload.tags": "Tags (cách nhau bằng dấu phẩy)",
+      "upload.tags_ph": "vd: financial, q3", "upload.desc": "Mô tả",
+      "upload.desc_ph": "Mô tả ngắn về tài liệu...",
+      "upload.cancel": "Hủy", "upload.submit": "Tải lên tài liệu",
+      "del.title": "Xóa tài liệu?",
+      "del.one": "Bạn có chắc muốn xóa “{name}”? Hành động này không thể hoàn tác.",
+      "del.bulk": "Bạn có chắc muốn xóa {n} tài liệu đã chọn? Hành động này không thể hoàn tác.",
+      "del.confirm_one": "Xóa tài liệu",
+      "del.confirm": "Xóa",
+      "del.confirm_many": "Xóa tài liệu",
+      "form.cancel": "Hủy",
+      "misc.just_now": "Vừa xong",
+      "toast.download_backend": "Chức năng tải xuống sẽ được kết nối backend sau.",
+      "toast.updated": "Đã cập nhật tài liệu.",
+      "toast.uploaded": "Đã tải lên tài liệu. Đang xử lý...",
+      "toast.indexed": "Tài liệu đã được lập chỉ mục.",
+      "toast.reindexed": "Tài liệu đã được lập chỉ mục lại.",
+      "toast.bulk_reindex": "Đang lập chỉ mục lại tài liệu...",
+      "toast.deleted_one": "Đã xóa tài liệu.",
+      "toast.deleted_many": " tài liệu đã xóa.",
+      "drawer.close": "Đóng"
+    }
+  };
+
+  var lang = "en";
+  try {
+    var savedLang = localStorage.getItem("agentos.lang");
+    if (savedLang === "vi" || savedLang === "en") lang = savedLang;
+  } catch (err) {}
+
+  function t(key) {
+    if (I18N[lang] && I18N[lang][key] != null) return I18N[lang][key];
+    if (I18N.en[key] != null) return I18N.en[key];
+    return key;
+  }
+
+  function applyLang(next) {
+    if (next === "vi" || next === "en") lang = next;
+    try { localStorage.setItem("agentos.lang", lang); } catch (err) {}
+    document.documentElement.lang = lang;
+    document.title = t("meta.title");
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      el.textContent = t(el.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
+      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-ph")));
+    });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
+      el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria-label")));
+    });
+    document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang-btn") === lang ? "true" : "false");
+    });
+    renderAll();
+  }
+
+  function setupLang() {
+    document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
+      b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang-btn")); });
+    });
+  }
+
   /* ---------------- Mock data (12 docs, mixed types/statuses) ---------------- */
   var seedDocs = [
     { id: "d01", name: "Financial_Report_Q3.pdf", type: "PDF", kb: "Finance", sizeMB: 12.4, created: "2026-09-15", updated: "2026-09-16T09:41", updatedLabel: "2 giờ trước", status: "indexed", tags: ["financial", "q3", "revenue"], desc: "Báo cáo tài chính quý 3 với đầy đủ số liệu doanh thu, chi phí và biên lợi nhuận theo từng kênh bán." },
@@ -130,7 +320,7 @@
 
   function statusPill(d) {
     var s = STATUS[d.status];
-    return '<span class="status-pill ' + s.cls + '">' + s.icon + "<span>" + s.label + "</span></span>";
+    return '<span class="status-pill ' + s.cls + '">' + s.icon + "<span>" + t("status." + d.status) + "</span></span>";
   }
 
   function renderTable() {
@@ -143,10 +333,8 @@
     if (list.length === 0) {
       empty.hidden = false;
       var searching = filtersActive();
-      $("emptyTitle").textContent = searching ? "Không tìm thấy tài liệu" : "Chưa có tài liệu";
-      $("emptySub").textContent = searching
-        ? "Thử từ khóa khác hoặc thay đổi bộ lọc."
-        : "Tải lên tài liệu đầu tiên để xây dựng knowledge cho workspace.";
+      $("emptyTitle").textContent = searching ? t("empty.search_title") : t("empty.title");
+      $("emptySub").textContent = searching ? t("empty.search_sub") : t("empty.sub");
       $("btnEmptyAdd").hidden = searching;
       $("btnEmptyClear").hidden = !searching;
     } else {
@@ -158,16 +346,16 @@
       tr.setAttribute("data-id", d.id);
       var checked = state.selected[d.id] ? " checked" : "";
       tr.innerHTML =
-        '<td class="col-check" data-label=""><input type="checkbox" data-check="' + d.id + '"' + checked + ' aria-label="Chọn ' + esc(d.name) + '" /></td>' +
-        '<td data-label="Tài liệu"><div class="doc-cell"><span class="file-icon file-' + d.type.toLowerCase() + '" aria-hidden="true">' + d.type + '</span>' +
+        '<td class="col-check" data-label=""><input type="checkbox" data-check="' + d.id + '"' + checked + ' aria-label="' + t("col.select") + esc(d.name) + '" /></td>' +
+        '<td data-label="' + esc(t("col.name")) + '"><div class="doc-cell"><span class="file-icon file-' + d.type.toLowerCase() + '" aria-hidden="true">' + d.type + '</span>' +
         '<div style="min-width:0"><div class="doc-name" title="' + esc(d.name) + '">' + esc(d.name) + '</div>' +
         '<div class="doc-meta">' + esc(d.tags.slice(0, 2).join(" · ")) + "</div></div></div></td>" +
-        '<td data-label="Loại">' + d.type + "</td>" +
-        '<td data-label="Knowledge Base"><span class="kb-tag">' + esc(d.kb) + "</span></td>" +
-        '<td class="num" data-label="Dung lượng">' + fmtSize(d.sizeMB) + "</td>" +
-        '<td data-label="Cập nhật">' + esc(d.updatedLabel) + "</td>" +
-        '<td data-label="Trạng thái">' + statusPill(d) + "</td>" +
-        '<td class="row-actions" data-label=""><button type="button" class="icon-btn" data-menu="' + d.id + '" aria-label="Thao tác với ' + esc(d.name) + '" aria-haspopup="menu">' +
+        '<td data-label="' + esc(t("col.type")) + '">' + d.type + "</td>" +
+        '<td data-label="' + esc(t("col.kb")) + '"><span class="kb-tag">' + esc(d.kb) + "</span></td>" +
+        '<td class="num" data-label="' + esc(t("col.size")) + '">' + fmtSize(d.sizeMB) + "</td>" +
+        '<td data-label="' + esc(t("col.updated")) + '">' + esc(d.updatedLabel) + "</td>" +
+        '<td data-label="' + esc(t("col.status")) + '">' + statusPill(d) + "</td>" +
+        '<td class="row-actions" data-label=""><button type="button" class="icon-btn" data-menu="' + d.id + '" aria-label="' + t("col.actions") + esc(d.name) + '" aria-haspopup="menu">' +
         '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button></td>';
       body.appendChild(tr);
     });
@@ -183,7 +371,7 @@
   function renderBulkBar(selCount) {
     var bar = $("bulkBar");
     bar.hidden = selCount === 0;
-    $("bulkCount").textContent = selCount + " đã chọn";
+    $("bulkCount").textContent = selCount + t("bulk.selected");
   }
 
   function renderAll() {
@@ -213,14 +401,14 @@
     menu.className = "action-menu";
     menu.setAttribute("role", "menu");
     menu.innerHTML =
-      '<button type="button" data-act="detail" role="menuitem">Chi tiết</button>' +
-      '<button type="button" data-act="download" role="menuitem">Tải xuống</button>' +
+      '<button type="button" data-act="detail" role="menuitem">' + esc(t("menu.detail")) + "</button>" +
+      '<button type="button" data-act="download" role="menuitem">' + esc(t("menu.download")) + "</button>" +
       (d.status === "failed"
-        ? '<button type="button" data-act="error" role="menuitem">Xem lỗi</button>'
+        ? '<button type="button" data-act="error" role="menuitem">' + esc(t("menu.error")) + "</button>"
         : "") +
-      '<button type="button" data-act="edit" role="menuitem">Chỉnh sửa</button>' +
-      '<button type="button" data-act="reindex" role="menuitem"' + (busy ? " disabled" : "") + ">Lập chỉ mục lại</button>" +
-      '<button type="button" data-act="delete" role="menuitem" class="danger">Xóa</button>';
+      '<button type="button" data-act="edit" role="menuitem">' + esc(t("menu.edit")) + "</button>" +
+      '<button type="button" data-act="reindex" role="menuitem"' + (busy ? " disabled" : "") + ">" + esc(t("menu.reindex")) + "</button>" +
+      '<button type="button" data-act="delete" role="menuitem" class="danger">' + esc(t("menu.delete")) + "</button>";
     // Fixed positioning from button rect: never clipped by table scroll.
     document.body.appendChild(menu);
     var r = btn.getBoundingClientRect();
@@ -242,7 +430,7 @@
       var act = b.getAttribute("data-act");
       closeMenu();
       if (act === "detail") openDetail(id);
-      else if (act === "download") showToast("Chức năng tải xuống sẽ được kết nối backend sau.");
+      else if (act === "download") showToast(t("toast.download_backend"));
       else if (act === "error") openDetail(id, true);
       else if (act === "edit") openEdit(id);
       else if (act === "reindex") reindexDoc(id);
@@ -283,41 +471,41 @@
     var errHtml = "";
     if (d.status === "failed") {
       errHtml =
-        '<span class="section-label">Trạng thái xử lý</span>' +
-        '<div class="error-box"><strong>Xử lý thất bại</strong><br />Lý do: ' + esc(d.error || "Lỗi không xác định.") + "</div>";
+        '<span class="section-label">' + esc(t("detail.err_title")) + "</span>" +
+        '<div class="error-box"><strong>' + esc(t("detail.err_failed")) + "</strong><br />" + esc(t("detail.err_reason")) + ": " + esc(d.error || t("detail.err_unknown")) + "</div>";
     }
     body.innerHTML =
       '<div class="detail-title-row"><span class="file-icon file-' + d.type.toLowerCase() + '" aria-hidden="true">' + d.type + "</span>" +
       "<h3>" + esc(d.name) + "</h3></div>" +
       '<div style="margin:6px 0 2px">' + statusPill(d) + "</div>" +
       errHtml +
-      '<span class="section-label">Thông tin</span>' +
+      '<span class="section-label">' + esc(t("detail.info")) + "</span>" +
       "<dl class=\"kv\">" +
-      kvRow("Loại", d.type) +
-      kvRow("Dung lượng", fmtSize(d.sizeMB)) +
-      kvRow("Ngày tạo", d.created) +
-      kvRow("Cập nhật", d.updatedLabel) +
-      kvRow("Knowledge Base", esc(d.kb)) +
+      kvRow(t("detail.f_type"), d.type) +
+      kvRow(t("detail.f_size"), fmtSize(d.sizeMB)) +
+      kvRow(t("detail.f_created"), d.created) +
+      kvRow(t("detail.f_updated"), d.updatedLabel) +
+      kvRow(t("detail.f_kb"), esc(d.kb)) +
       "</dl>" +
-      '<span class="section-label">Tags</span>' +
+      '<span class="section-label">' + esc(t("detail.tags")) + "</span>" +
       '<div class="tag-row">' + d.tags.map(function (tg) { return '<span class="tag-chip">' + esc(tg) + "</span>"; }).join("") + "</div>" +
-      '<span class="section-label">Mô tả</span>' +
+      '<span class="section-label">' + esc(t("detail.desc")) + "</span>" +
       '<p class="desc-text">' + esc(d.desc || "—") + "</p>";
     var busy = d.status === "processing";
     foot.innerHTML =
       (d.status === "failed"
-        ? '<button type="button" class="btn btn-primary btn-sm" data-foot="retry">Thử lại</button>'
+        ? '<button type="button" class="btn btn-primary btn-sm" data-foot="retry">' + esc(t("act.retry")) + "</button>"
         : "") +
-      '<button type="button" class="btn btn-secondary btn-sm" data-foot="download">Tải xuống</button>' +
-      '<button type="button" class="btn btn-secondary btn-sm" data-foot="edit">Chỉnh sửa</button>' +
-      '<button type="button" class="btn btn-secondary btn-sm" data-foot="reindex"' + (busy ? " disabled" : "") + ">Lập chỉ mục lại</button>" +
-      '<button type="button" class="btn btn-danger btn-sm" data-foot="delete">Xóa</button>';
-    openDrawer(showError ? "Lỗi xử lý" : "Chi tiết tài liệu");
+      '<button type="button" class="btn btn-secondary btn-sm" data-foot="download">' + esc(t("act.download")) + "</button>" +
+      '<button type="button" class="btn btn-secondary btn-sm" data-foot="edit">' + esc(t("act.edit")) + "</button>" +
+      '<button type="button" class="btn btn-secondary btn-sm" data-foot="reindex"' + (busy ? " disabled" : "") + ">" + esc(t("act.reindex")) + "</button>" +
+      '<button type="button" class="btn btn-danger btn-sm" data-foot="delete">' + esc(t("act.delete")) + "</button>";
+    openDrawer(showError ? t("detail.error_title") : t("detail.title"));
     foot.onclick = function (e) {
       var b = e.target.closest ? e.target.closest("[data-foot]") : null;
       if (!b || b.disabled) return;
       var act = b.getAttribute("data-foot");
-      if (act === "download") showToast("Chức năng tải xuống sẽ được kết nối backend sau.");
+      if (act === "download") showToast(t("toast.download_backend"));
       else if (act === "edit") openEdit(id);
       else if (act === "reindex" || act === "retry") { reindexDoc(id); closeDrawer(); }
       else if (act === "delete") { closeDrawer(); askDelete([id]); }
@@ -330,34 +518,34 @@
     var body = $("drawerBody");
     var foot = $("drawerFoot");
     body.innerHTML =
-      '<div class="form-group"><label for="fName">Tên tài liệu</label>' +
+      '<div class="form-group"><label for="fName">' + esc(t("edit.name")) + "</label>" +
       '<input class="text-input" id="fName" value="' + esc(d.name) + '" maxlength="120" /></div>' +
-      '<div class="form-group"><label for="fKb">Knowledge Base</label>' +
+      '<div class="form-group"><label for="fKb">' + esc(t("edit.kb")) + "</label>" +
       '<select class="select" id="fKb">' +
       ["Finance", "HR", "Sales", "Engineering"].map(function (k) {
         return '<option value="' + k + '"' + (d.kb === k ? " selected" : "") + ">" + k + "</option>";
       }).join("") + "</select></div>" +
-      '<div class="form-group"><label for="fTags">Tags (cách nhau bằng dấu phẩy)</label>' +
+      '<div class="form-group"><label for="fTags">' + esc(t("edit.tags")) + "</label>" +
       '<input class="text-input" id="fTags" value="' + esc(d.tags.join(", ")) + '" /></div>' +
-      '<div class="form-group"><label for="fDesc">Mô tả</label>' +
+      '<div class="form-group"><label for="fDesc">' + esc(t("edit.desc")) + "</label>" +
       '<textarea class="text-input" id="fDesc">' + esc(d.desc || "") + "</textarea></div>";
     foot.innerHTML =
-      '<button type="button" class="btn btn-secondary btn-sm" data-foot="cancel">Hủy</button>' +
-      '<button type="button" class="btn btn-primary btn-sm" data-foot="save">Lưu thay đổi</button>';
-    openDrawer("Chỉnh sửa tài liệu");
+      '<button type="button" class="btn btn-secondary btn-sm" data-foot="cancel">' + esc(t("edit.cancel")) + "</button>" +
+      '<button type="button" class="btn btn-primary btn-sm" data-foot="save">' + esc(t("edit.save")) + "</button>";
+    openDrawer(t("edit.title"));
     foot.onclick = function (e) {
       var b = e.target.closest ? e.target.closest("[data-foot]") : null;
       if (!b) return;
       if (b.getAttribute("data-foot") === "cancel") { openDetail(id); return; }
       var name = $("fName").value.trim();
-      if (!name) { $("fName").focus(); showToast("Tên tài liệu không được để trống.", "error"); return; }
+      if (!name) { $("fName").focus(); showToast(t("edit.need_name"), "error"); return; }
       d.name = name;
       d.kb = $("fKb").value;
       d.tags = $("fTags").value.split(",").map(function (x) { return x.trim(); }).filter(Boolean);
       d.desc = $("fDesc").value.trim();
-      d.updatedLabel = "Vừa xong";
+      d.updatedLabel = t("misc.just_now");
       renderAll();
-      showToast("Đã cập nhật tài liệu.");
+      showToast(t("toast.updated"));
       openDetail(id);
     };
   }
@@ -370,23 +558,23 @@
     var body = $("drawerBody");
     var foot = $("drawerFoot");
     body.innerHTML =
-      '<div class="form-group"><label>Tải lên file</label>' +
-      '<div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Chọn file để tải lên">' +
-      "<div><strong>Kéo &amp; thả file vào đây</strong></div><div>hoặc</div>" +
-      '<div><button type="button" class="btn btn-secondary btn-sm" id="btnBrowse">Chọn file</button></div></div>' +
-      '<input type="file" id="fileInput" hidden aria-label="Chọn file" /></div>' +
+      '<div class="form-group"><label>' + esc(t("upload.drop_title")) + "</label>" +
+      '<div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="' + esc(t("upload.pick_aria")) + '">' +
+      "<div><strong>" + esc(t("upload.drop")) + "</strong></div><div>" + esc(t("upload.or")) + "</div>" +
+      '<div><button type="button" class="btn btn-secondary btn-sm" id="btnBrowse">' + esc(t("upload.browse")) + "</button></div></div>" +
+      '<input type="file" id="fileInput" hidden aria-label="' + esc(t("upload.pick_aria")) + '" /></div>' +
       '<div id="filePicked"></div>' +
       '<div class="progress-track" id="uploadProgress" hidden><div class="progress-fill" id="uploadFill"></div></div>' +
-      '<div class="form-group" style="margin-top:14px"><label for="fUpKb">Knowledge Base</label>' +
+      '<div class="form-group" style="margin-top:14px"><label for="fUpKb">' + esc(t("upload.kb")) + "</label>" +
       '<select class="select" id="fUpKb"><option>Finance</option><option>HR</option><option>Sales</option><option>Engineering</option></select></div>' +
-      '<div class="form-group"><label for="fUpTags">Tags (cách nhau bằng dấu phẩy)</label>' +
-      '<input class="text-input" id="fUpTags" placeholder="vd: financial, q3" /></div>' +
-      '<div class="form-group"><label for="fUpDesc">Mô tả</label>' +
-      '<textarea class="text-input" id="fUpDesc" placeholder="Mô tả ngắn về tài liệu..."></textarea></div>';
+      '<div class="form-group"><label for="fUpTags">' + esc(t("upload.tags")) + "</label>" +
+      '<input class="text-input" id="fUpTags" placeholder="' + esc(t("upload.tags_ph")) + '" /></div>' +
+      '<div class="form-group"><label for="fUpDesc">' + esc(t("upload.desc")) + "</label>" +
+      '<textarea class="text-input" id="fUpDesc" placeholder="' + esc(t("upload.desc_ph")) + '"></textarea></div>';
     foot.innerHTML =
-      '<button type="button" class="btn btn-secondary btn-sm" data-foot="cancel">Hủy</button>' +
-      '<button type="button" class="btn btn-primary btn-sm" data-foot="upload" id="btnDoUpload" disabled>Tải lên tài liệu</button>';
-    openDrawer("Thêm tài liệu");
+      '<button type="button" class="btn btn-secondary btn-sm" data-foot="cancel">' + esc(t("upload.cancel")) + "</button>" +
+      '<button type="button" class="btn btn-primary btn-sm" data-foot="upload" id="btnDoUpload" disabled>' + esc(t("upload.submit")) + "</button>";
+    openDrawer(t("upload.title"));
 
     var dz = $("dropzone");
     var fi = $("fileInput");
@@ -452,7 +640,7 @@
           sizeMB: Math.max(0.01, f.size / 1048576),
           created: now.toISOString().slice(0, 10),
           updated: now.toISOString().slice(0, 16),
-          updatedLabel: "Vừa xong",
+          updatedLabel: t("misc.just_now"),
           status: "processing",
           tags: $("fUpTags").value.split(",").map(function (x) { return x.trim(); }).filter(Boolean),
           desc: $("fUpDesc").value.trim()
@@ -460,12 +648,12 @@
         docs.unshift(doc);
         renderAll();
         closeDrawer();
-        showToast("Đã tải lên tài liệu. Đang xử lý...");
+        showToast(t("toast.uploaded"));
         state.timers[doc.id] = setTimeout(function () {
           doc.status = "indexed";
-          doc.updatedLabel = "Vừa xong";
+          doc.updatedLabel = t("misc.just_now");
           renderAll();
-          showToast("Tài liệu đã được lập chỉ mục.");
+          showToast(t("toast.indexed"));
         }, 2600);
       }
     }, 160);
@@ -476,14 +664,14 @@
     var d = getDoc(id);
     if (!d || d.status === "processing") return;
     d.status = "processing";
-    d.updatedLabel = "Vừa xong";
+    d.updatedLabel = t("misc.just_now");
     renderAll();
     if (state.timers[id]) clearTimeout(state.timers[id]);
     state.timers[id] = setTimeout(function () {
       d.status = "indexed";
       delete d.error;
       renderAll();
-      showToast("Tài liệu đã được lập chỉ mục lại.");
+      showToast(t("toast.reindexed"));
     }, 2000);
   }
 
@@ -495,9 +683,9 @@
     var names = ids.map(function (id) { var d = getDoc(id); return d ? d.name : id; });
     $("modalDesc").textContent =
       ids.length === 1
-        ? "Bạn có chắc muốn xóa \"" + names[0] + "\"? Hành động này không thể hoàn tác."
-        : "Bạn có chắc muốn xóa " + ids.length + " tài liệu đã chọn? Hành động này không thể hoàn tác.";
-    $("modalConfirm").textContent = ids.length === 1 ? "Xóa tài liệu" : "Xóa " + ids.length + " tài liệu";
+        ? t("del.one").replace("{name}", names[0])
+        : t("del.bulk").replace("{n}", String(ids.length));
+    $("modalConfirm").textContent = ids.length === 1 ? t("del.confirm_one") : ids.length + " " + t("del.confirm_many");
     lastFocus = document.activeElement;
     $("confirmModal").hidden = false;
     $("modalOverlay").hidden = false;
@@ -520,7 +708,7 @@
     docs = docs.filter(function (d) { return pendingDelete.indexOf(d.id) === -1; });
     closeModal();
     renderAll();
-    showToast(n === 1 ? "Đã xóa tài liệu." : "Đã xóa " + n + " tài liệu.");
+    showToast(n === 1 ? t("toast.deleted_one") : n + t("toast.deleted_many"));
   }
 
   /* ---------------- Events ---------------- */
@@ -537,6 +725,7 @@
 
   function init() {
     initTheme();
+    setupLang();
 
     $("searchInput").addEventListener("input", function (e) {
       state.q = e.target.value.trim();
@@ -595,7 +784,7 @@
     $("btnBulkReindex").addEventListener("click", function () {
       var ids = Object.keys(state.selected);
       ids.forEach(reindexDoc);
-      showToast("Đang lập chỉ mục lại " + ids.length + " tài liệu...");
+      showToast(t("toast.bulk_reindex"));
     });
 
     $("drawerClose").addEventListener("click", closeDrawer);
@@ -612,7 +801,7 @@
       }
     });
 
-    renderAll();
+    applyLang();
   }
 
   if (document.readyState === "loading") {
