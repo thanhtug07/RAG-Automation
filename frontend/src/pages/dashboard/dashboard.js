@@ -2200,7 +2200,7 @@ const CHROME_I18N = {
   en: {
     "meta.title": "Dashboard — AgentOS",
     "nav.new": "New Task", "nav.chat": "Chat", "nav.agents": "Agents",
-    "nav.docs": "Documents", "nav.storage": "Data Storage",
+    "nav.docs": "Documents", "nav.storage": "Data Storage", "nav.policies": "Policies",
     "nav.analytics": "Analytics", "nav.models": "Models", "nav.logs": "Logs", "nav.settings": "Settings",
     "search.ph": "Search across tasks, agents, knowledge, and more...",
     "view.agents_t": "Agents", "view.agents_s": "Specialized agents working together on complex tasks.",
@@ -2303,7 +2303,7 @@ const CHROME_I18N = {
   vi: {
     "meta.title": "Bảng điều khiển — AgentOS",
     "nav.new": "Tác vụ mới", "nav.chat": "Đoạn chat", "nav.agents": "Agent",
-    "nav.docs": "Tài liệu", "nav.storage": "Lưu trữ dữ liệu",
+    "nav.docs": "Tài liệu", "nav.storage": "Lưu trữ dữ liệu", "nav.policies": "Policies",
     "nav.analytics": "Phân tích", "nav.models": "Mô hình", "nav.logs": "Nhật ký", "nav.settings": "Cài đặt",
     "search.ph": "Tìm kiếm tác vụ, agent, kiến thức và hơn nữa...",
     "view.agents_t": "Agent", "view.agents_s": "Đội ngũ agent chuyên biệt phối hợp để xử lý các tác vụ phức tạp.",
