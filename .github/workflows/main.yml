@@ -26,18 +26,25 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Setup Node (JS syntax check)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate JS syntax
+        run: |
+          node --check frontend/src/pages/dashboard/dashboard.js
+          node --check frontend/src/pages/home/home.js
+          node --check frontend/src/pages/documents/documents.js
+          node --check frontend/src/pages/auth/login/login.js
+          node --check frontend/src/pages/auth/register/register.js
+
       - name: Build Web Static Directory
         run: |
           mkdir -p public
-          if [ -d "frontend" ]; then
-            cp -r frontend/* public/
-          else
-            cp -r ./* public/ || true
-          fi
-          # Tạo file index.html mặc định nếu chưa có giao diện HTML
-          if [ ! -f "public/index.html" ]; then
-            echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RAG Automation</title></head><body><h1>RAG Automation Project</h1><p>Hệ thống đã deploy thành công trên GitHub Pages.</p></body></html>' > public/index.html
-          fi
+          cp -r frontend/src/. public/
+          cp CNAME public/ 2>/dev/null || true
+          test -f public/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
