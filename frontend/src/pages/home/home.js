@@ -33,6 +33,8 @@
       "nav.trust": "Trust",
       "nav.signin": "Sign in",
       "nav.getstarted": "Get started",
+      "nav.dashboard": "Dashboard",
+      "nav.signout": "Sign out",
       "nav.menu_open": "Open menu",
       "nav.menu_close": "Close menu",
       "hero.eyebrow": "Enterprise AI Automation",
@@ -256,6 +258,8 @@
       "nav.trust": "Kiểm soát",
       "nav.signin": "Đăng nhập",
       "nav.getstarted": "Bắt đầu ngay",
+      "nav.dashboard": "Bảng điều khiển",
+      "nav.signout": "Đăng xuất",
       "nav.menu_open": "Mở menu",
       "nav.menu_close": "Đóng menu",
       "hero.eyebrow": "Tự động hoá AI cho doanh nghiệp",
@@ -545,6 +549,70 @@
   function setupLang() {
     document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
       b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang-btn")); });
+    });
+  }
+  function setupTheme() {
+    var tt = document.getElementById("themeToggle");
+    if (!tt) return;
+    try { tt.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark"))); } catch (err) { /* never break page */ }
+    tt.addEventListener("click", function () {
+      var dark = document.documentElement.classList.toggle("dark");
+      tt.setAttribute("aria-pressed", String(dark));
+      try { localStorage.setItem("agentos.theme", dark ? "dark" : "light"); } catch (err) { /* never break page */ }
+    });
+  }
+  // Nav reflects login state: guests see Sign in / Get started (static
+  // markup); logged-in users get avatar + Dashboard button instead.
+  function renderAuthState() {
+    var actions = document.getElementById("homeNavActions");
+    if (!actions || actions.querySelector(".HomeAuth")) return;
+    var sess = null, email = null, photo = null;
+    try {
+      sess = sessionStorage.getItem("agentos.session") || localStorage.getItem("agentos.session");
+      email = sessionStorage.getItem("agentos.email") || localStorage.getItem("agentos.email");
+      photo = localStorage.getItem("agentos.avatar");
+    } catch (err) { /* guest mode */ }
+    if (!sess) return;
+    var signin = actions.querySelector('[data-i18n="nav.signin"]');
+    var started = actions.querySelector('[data-i18n="nav.getstarted"]');
+    if (signin) signin.style.display = "none";
+    if (started) started.style.display = "none";
+    var wrap = document.createElement("div");
+    wrap.className = "HomeAuth";
+    wrap.innerHTML =
+      '<a class="HomeBtn HomeBtn--primary" href="../dashboard/index.html" data-i18n="nav.dashboard">' + t("nav.dashboard") + "</a>" +
+      '<div class="HomeAuth-avaWrap">' +
+      '<button type="button" class="HomeAuth-ava" id="homeAvatarBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Account"></button>' +
+      '<div class="HomeAuth-menu" id="homeAvatarMenu" role="menu" hidden>' +
+      '<button type="button" id="homeSignOut" role="menuitem" data-i18n="nav.signout">' + t("nav.signout") + "</button>" +
+      "</div></div>";
+    actions.appendChild(wrap);
+    var ava = wrap.querySelector("#homeAvatarBtn");
+    var menu = wrap.querySelector("#homeAvatarMenu");
+    if (photo) {
+      ava.classList.add("has-photo");
+      ava.style.backgroundImage = 'url("' + photo + '")';
+    } else {
+      ava.textContent = ((email || "U").trim().charAt(0) || "U").toUpperCase();
+    }
+    ava.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = menu.hidden;
+      menu.hidden = !open;
+      ava.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("click", function (e) {
+      if (!menu.hidden && e.target.closest && !e.target.closest(".HomeAuth-avaWrap")) {
+        menu.hidden = true;
+        ava.setAttribute("aria-expanded", "false");
+      }
+    });
+    wrap.querySelector("#homeSignOut").addEventListener("click", function () {
+      try {
+        sessionStorage.removeItem("agentos.session"); sessionStorage.removeItem("agentos.email");
+        localStorage.removeItem("agentos.session"); localStorage.removeItem("agentos.email");
+      } catch (err) { /* never break page */ }
+      window.location.reload();
     });
   }
 
@@ -1497,8 +1565,14 @@
     function next() { return window.goToSection(FsState.index + 1); }
     function prev() { return window.goToSection(FsState.index - 1); }
 
-    // Always start at Section 01 (fresh, deterministic entry).
-    FsState.index = 0;
+    // Restore last section on reload (persisted by paint()); default Section 01.
+    var savedSection = 0;
+    try {
+      var rawSection = window.sessionStorage ? sessionStorage.getItem("agentos.home.section") : null;
+      var parsedSection = parseInt(rawSection, 10);
+      if (!isNaN(parsedSection)) savedSection = Math.max(0, Math.min(secs.length - 1, parsedSection));
+    } catch (err) { /* default 0 */ }
+    FsState.index = savedSection;
     paint();
 
     function isolateTarget(el) {
@@ -1705,4 +1779,6 @@
   // by the head init) and re-renders all keyed strings + dynamic labels.
   setupLang();
   applyLang();
+  setupTheme();
+  renderAuthState();
 })();

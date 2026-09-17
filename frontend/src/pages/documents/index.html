@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tài liệu — AgentOS</title>
+  <meta name="description" content="Quản lý tài liệu và nguồn kiến thức của workspace AgentOS." />
+  <link rel="stylesheet" href="documents.css" />
+  <script>try{var __t=localStorage.getItem("agentos.theme");if(__t==="dark"||(!__t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(__e){}</script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- ========== LEFT SIDEBAR (mirrors dashboard) ========== -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <a class="sidebar-brand" href="../home/index.html" aria-label="AgentOS home">
+          <div class="brand-logo">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+              <rect x="1" y="1" width="28" height="28" rx="7" fill="#0284C7"/>
+              <circle cx="15" cy="15" r="4.2" fill="#fff"/>
+              <circle cx="15" cy="6.6" r="2.1" fill="#fff" opacity="0.85"/>
+              <circle cx="22.4" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+              <circle cx="7.6" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
+              <path d="M15 10.8v.4M18.6 17.4l-.4-.3M11.4 17.4l.4-.3" stroke="#0284C7" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="brand-name">AgentOS</span>
+        </a>
+        <a class="btn-new-task" href="../dashboard/index.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Tác vụ mới</span>
+        </a>
+        <nav class="sidebar-nav" aria-label="Điều hướng chính">
+          <a class="nav-item" href="../dashboard/index.html?view=chatView" title="Đoạn chat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Đoạn chat</span>
+          </a>
+          <a class="nav-item" href="../dashboard/index.html?view=agentsView" title="Agent">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>Agent</span>
+          </a>
+          <a class="nav-item active" href="index.html" aria-current="page" title="Tài liệu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>Tài liệu</span>
+          </a>
+          <a class="nav-item" href="../dashboard/index.html?view=analyticsView" title="Phân tích">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            <span>Phân tích</span>
+          </a>
+          <a class="nav-item" href="../dashboard/index.html?view=modelsView" title="Mô hình">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>Mô hình</span>
+          </a>
+          <a class="nav-item" href="../dashboard/index.html?view=logsView" title="Nhật ký">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Nhật ký</span>
+          </a>
+          <a class="nav-item" href="../dashboard/index.html?view=settingsView" title="Cài đặt">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8"></path>
+            </svg>
+            <span>Cài đặt</span>
+          </a>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="workspace-info">
+          <div class="workspace-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="workspace-text">
+            <span class="workspace-name">Enterprise Workspace</span>
+            <span class="workspace-plan">Company Plan</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN ========== -->
+    <main class="main-content">
+      <header class="page-head">
+        <div>
+          <h1>Tài liệu</h1>
+          <p class="page-sub">Quản lý tài liệu và nguồn kiến thức của workspace.</p>
+        </div>
+        <div class="page-head-actions">
+          <button type="button" class="icon-btn" id="themeToggle" aria-label="Bật/tắt chế độ tối" aria-pressed="false" title="Chế độ tối">
+            <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button type="button" class="btn btn-primary" id="btnAdd">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Thêm tài liệu</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="Tìm kiếm và lọc">
+        <div class="search-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <label class="sr-only" for="searchInput">Tìm kiếm tài liệu</label>
+          <input type="search" id="searchInput" placeholder="Tìm kiếm tài liệu..." autocomplete="off" />
+        </div>
+        <label class="sr-only" for="filterType">Lọc theo loại</label>
+        <select id="filterType" class="select">
+          <option value="">Loại: Tất cả</option>
+          <option value="PDF">PDF</option>
+          <option value="DOCX">DOCX</option>
+          <option value="XLSX">XLSX</option>
+          <option value="CSV">CSV</option>
+          <option value="TXT">TXT</option>
+        </select>
+        <label class="sr-only" for="filterStatus">Lọc theo trạng thái</label>
+        <select id="filterStatus" class="select">
+          <option value="">Trạng thái: Tất cả</option>
+          <option value="indexed">Đã lập chỉ mục</option>
+          <option value="processing">Đang xử lý</option>
+          <option value="failed">Lỗi</option>
+        </select>
+        <label class="sr-only" for="filterKb">Lọc theo knowledge base</label>
+        <select id="filterKb" class="select">
+          <option value="">Knowledge: Tất cả</option>
+          <option value="Finance">Finance</option>
+          <option value="HR">HR</option>
+          <option value="Sales">Sales</option>
+          <option value="Engineering">Engineering</option>
+        </select>
+        <label class="sr-only" for="sortBy">Sắp xếp</label>
+        <select id="sortBy" class="select">
+          <option value="newest">Mới nhất</option>
+          <option value="oldest">Cũ nhất</option>
+          <option value="az">Tên A–Z</option>
+          <option value="za">Tên Z–A</option>
+          <option value="size">Dung lượng</option>
+        </select>
+        <label class="sr-only" for="filterTime">Lọc theo thời gian cập nhật</label>
+        <select id="filterTime" class="select">
+          <option value="">Thời gian: Tất cả</option>
+          <option value="day">24 giờ qua</option>
+          <option value="week">7 ngày qua</option>
+          <option value="month">30 ngày qua</option>
+        </select>
+        <button type="button" class="btn btn-primary btn-sm" id="btnAddInline">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Thêm</span>
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnClearFilters" hidden>Xóa lọc</button>
+      </section>
+
+      <section class="stats" aria-label="Thống kê">
+        <div class="stat-card">
+          <span class="stat-icon stat-blue" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </span>
+          <div><span class="stat-value" id="statTotal">0</span><span class="stat-label">Tổng tài liệu</span></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon stat-amber" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.5 15a9 9 0 1 1-1.4-4.6L23 10"></path>
+            </svg>
+          </span>
+          <div><span class="stat-value" id="statProcessing">0</span><span class="stat-label">Đang xử lý</span></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon stat-green" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <div><span class="stat-value" id="statIndexed">0</span><span class="stat-label">Đã lập chỉ mục</span></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon stat-slate" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </span>
+          <div><span class="stat-value" id="statStorage">0</span><span class="stat-label">Dung lượng</span></div>
+        </div>
+      </section>
+
+      <div class="bulk-bar" id="bulkBar" hidden>
+        <span id="bulkCount">0 đã chọn</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnBulkReindex">Lập chỉ mục lại</button>
+        <button type="button" class="btn btn-danger btn-sm" id="btnBulkDelete">Xóa</button>
+      </div>
+
+      <section class="table-card" aria-label="Danh sách tài liệu">
+        <div class="table-scroll">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th class="col-check"><input type="checkbox" id="checkAll" aria-label="Chọn tất cả" /></th>
+                <th>Tài liệu</th>
+                <th>Loại</th>
+                <th>Knowledge Base</th>
+                <th class="num">Dung lượng</th>
+                <th>Cập nhật</th>
+                <th>Trạng thái</th>
+                <th><span class="sr-only">Thao tác</span></th>
+              </tr>
+            </thead>
+            <tbody id="docBody"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" hidden>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <p class="empty-title" id="emptyTitle">Chưa có tài liệu</p>
+            <p class="empty-sub" id="emptySub">Tải lên tài liệu đầu tiên để xây dựng knowledge cho workspace.</p>
+            <button type="button" class="btn btn-primary btn-sm" id="btnEmptyAdd">Thêm tài liệu</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btnEmptyClear" hidden>Xóa lọc</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Drawer (detail / edit / upload) -->
+  <div class="overlay" id="drawerOverlay" hidden></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+    <div class="drawer-head">
+      <h2 id="drawerTitle">Chi tiết</h2>
+      <button type="button" class="icon-btn" id="drawerClose" aria-label="Đóng">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-foot" id="drawerFoot"></div>
+  </aside>
+
+  <!-- Delete confirm modal -->
+  <div class="overlay" id="modalOverlay" hidden></div>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" id="confirmModal" hidden>
+    <h2 id="modalTitle">Xóa tài liệu?</h2>
+    <p id="modalDesc"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" id="modalCancel">Hủy</button>
+      <button type="button" class="btn btn-danger" id="modalConfirm">Xóa tài liệu</button>
+    </div>
+  </div>
+
+  <div class="toast-wrap" id="toasts" aria-live="polite"></div>
+  <script src="documents.js"></script>
+</body>
+</html>

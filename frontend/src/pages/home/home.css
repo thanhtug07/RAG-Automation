@@ -886,3 +886,139 @@ main > section { scroll-margin-top: 0; scroll-snap-align: none !important; }
   .HomePage *, .HomePage *::before, .HomePage *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
+/* Logged-in nav: avatar + Dashboard button (injected by renderAuthState) */
+.HomeAuth {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.HomeAuth-avaWrap {
+  position: relative;
+}
+
+.HomeAuth-ava {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--home-border);
+  background: var(--home-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.HomeAuth-ava.has-photo {
+  background-size: cover;
+  background-position: center;
+  border-color: var(--home-primary);
+}
+
+.HomeAuth-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--home-bg);
+  border: 1px solid var(--home-border);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
+  min-width: 150px;
+  padding: 4px;
+  z-index: 50;
+}
+
+.HomeAuth-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 8px 10px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--home-text);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.HomeAuth-menu button:hover {
+  background: var(--home-bg-subtle);
+}
+
+/* ===== Dark mode: VS Code black, forced contrast ===== */
+.ThemeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--home-border);
+  background: var(--home-bg);
+  color: var(--home-text-2);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ThemeToggle:hover {
+  border-color: var(--home-primary);
+  color: var(--home-primary);
+}
+
+.ThemeToggle-moon {
+  display: none;
+}
+
+html.dark .ThemeToggle-sun {
+  display: none;
+}
+
+html.dark .ThemeToggle-moon {
+  display: block;
+}
+
+html.dark {
+  --home-bg: #1E1E1E;
+  --home-bg-subtle: #252526;
+  --home-text: #FFFFFF;
+  --home-text-2: #CCCCCC;
+  --home-text-3: #A6A6A6;
+  --home-primary-subtle: #123653;
+  --home-border: #3E3E3E;
+}
+
+html.dark body {
+  background: #1E1E1E;
+}
+
+html.dark .HomeNav,
+html.dark .HeroBgBtn,
+html.dark .HeroBgList,
+html.dark .ExecutionPreview,
+html.dark .AgentNode,
+html.dark .OrchNode,
+html.dark .FlowStep-card,
+html.dark .Capability,
+html.dark .Trust-grid article,
+html.dark .CtaDemo,
+html.dark .StackStrip,
+html.dark .CapTabs,
+html.dark .CapTab,
+html.dark .DeployStrip,
+html.dark .AuditCopy,
+html.dark .IntentStrip,
+html.dark .FsFooter,
+html.dark .HomeNav-nav.is-open {
+  background: #252526;
+}
+
+html.dark .LangSwitch-btn[aria-pressed="true"] {
+  background: #3E3E3E;
+  color: #fff;
+}
+
