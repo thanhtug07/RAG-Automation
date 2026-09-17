@@ -39,6 +39,15 @@
             <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
             <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
           </div>
+          <button type="button" class="ThemeToggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+            <svg class="ThemeToggle-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="ThemeToggle-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
           <a class="HomeBtn HomeBtn--ghost" href="../auth/login/index.html" data-i18n="nav.signin">Sign in</a>
           <a class="HomeBtn HomeBtn--primary" href="../auth/register/index.html" data-i18n="nav.getstarted">Get started</a>
         </div>

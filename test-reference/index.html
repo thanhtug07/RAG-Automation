@@ -3,32 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — AgentOS</title>
+  <title>Aurelia AI — Agent Mission Control</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.css">
-  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;var __t=localStorage.getItem("agentos.theme");if(__t==="dark"||(!__t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(__e){document.documentElement.lang="en";}</script>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <div class="app-layout">
     <!-- ========== LEFT SIDEBAR ========== -->
     <aside class="sidebar">
       <div class="sidebar-top">
-        <!-- Brand Logo (back to Home, session kept in storage) -->
-        <a class="sidebar-brand" href="../home/index.html" aria-label="AgentOS home">
+        <!-- Brand Logo -->
+        <div class="sidebar-brand">
           <div class="brand-logo">
-            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
-              <rect x="1" y="1" width="28" height="28" rx="7" fill="#0284C7"/>
-              <circle cx="15" cy="15" r="4.2" fill="#fff"/>
-              <circle cx="15" cy="6.6" r="2.1" fill="#fff" opacity="0.85"/>
-              <circle cx="22.4" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
-              <circle cx="7.6" cy="19.2" r="2.1" fill="#fff" opacity="0.85"/>
-              <path d="M15 10.8v.4M18.6 17.4l-.4-.3M11.4 17.4l.4-.3" stroke="#0284C7" stroke-width="1.2" stroke-linecap="round"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
           </div>
-          <span class="brand-name">AgentOS</span>
-        </a>
+          <span class="brand-name">Aurelia AI</span>
+        </div>
 
         <!-- New Task Button -->
         <button class="btn-new-task" id="btnNewTask">
@@ -36,7 +31,7 @@
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-           <span data-i18n="nav.new">New Task</span>
+          <span>New Task</span>
         </button>
 
         <!-- Navigation Items -->
@@ -45,7 +40,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
-            <span data-i18n="nav.chat">Chat</span>
+            <span>Chat</span>
           </button>
           <button class="nav-item" data-view="agentsView" title="Agents">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -54,28 +49,19 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <span data-i18n="nav.agents">Agents</span>
+            <span>Agents</span>
           </button>
-          <a class="nav-item" href="../documents/index.html" title="Tài liệu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-            </svg>
-            <span>Tài liệu</span>
-          </a>
           <button class="nav-item" data-view="analyticsView" title="Analytics">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
             </svg>
-            <span data-i18n="nav.analytics">Analytics</span>
+            <span>Analytics</span>
           </button>
           <button class="nav-item" data-view="modelsView" title="Models">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
-            <span data-i18n="nav.models">Models</span>
+            <span>Models</span>
           </button>
           <button class="nav-item" data-view="logsView" title="System & API Logs">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -85,7 +71,7 @@
               <line x1="16" y1="17" x2="8" y2="17"></line>
               <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
-            <span data-i18n="nav.logs">Logs</span>
+            <span>Logs</span>
             <span class="nav-error-badge" id="navErrorBadge" style="display: none;">0</span>
           </button>
           <button class="nav-item" data-view="settingsView" title="Settings">
@@ -93,7 +79,7 @@
               <circle cx="12" cy="12" r="3"></circle>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
-            <span data-i18n="nav.settings">Settings</span>
+            <span>Settings</span>
           </button>
         </nav>
       </div>
@@ -123,7 +109,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" placeholder="Search across tasks, agents, knowledge, and more..." class="search-input" id="globalSearch" data-i18n-ph="search.ph">
+          <input type="text" placeholder="Search across tasks, agents, knowledge, and more..." class="search-input" id="globalSearch">
         </div>
         <div class="top-bar-actions">
           <div class="status-pill" id="healthPill" title="System Health">
@@ -138,73 +124,15 @@
               <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
             </svg>
           </button>
-          <div class="LangSwitch" role="group" aria-label="Language / Ngôn ngữ">
-            <button type="button" class="LangSwitch-btn" data-lang-btn="en" aria-pressed="true">EN</button>
-            <button type="button" class="LangSwitch-btn" data-lang-btn="vi" aria-pressed="false">VI</button>
+          <div class="user-avatar" title="Mission Control">
+            <span>MC</span>
           </div>
-          <button type="button" class="ThemeToggle" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
-            <svg class="ThemeToggle-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
-              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M17.66 6.34l-1.41 1.41M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <svg class="ThemeToggle-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="avatar-wrap">
-            <button class="user-avatar" id="avatarBtn" title="Tài khoản / Đổi ảnh nền" aria-haspopup="menu" aria-expanded="false">
-              <span>MC</span>
-              <span class="avatar-cam" aria-hidden="true">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                  <circle cx="12" cy="13" r="4"></circle>
-                </svg>
-              </span>
-            </button>
-            <div class="avatar-menu" id="avatarMenu" role="menu" hidden>
-              <button type="button" id="btnChangeBg" role="menuitem">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                  <polyline points="21 15 16 10 5 21"></polyline>
-                </svg>
-                <span>Đổi ảnh đại diện</span>
-              </button>
-              <button type="button" id="btnRemoveBg" role="menuitem" class="danger">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"></polyline>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                </svg>
-                <span>Xóa ảnh đại diện</span>
-              </button>
-            </div>
-          </div>
-          <input type="file" id="bgFileInput" accept="image/*" hidden />
         </div>
       </header>
 
       <!-- ===== VIEW: Chat (default) ===== -->
       <div class="view-panel active" id="chatView">
-        <!-- Chat session tabs (browser-like, chat view only) -->
-        <div class="chat-tabs" id="chatTabs">
-          <div class="chat-tablist" id="chatTabList" role="tablist" aria-label="Chat sessions"></div>
-          <button type="button" class="chat-tab-add" id="btnAddChatTab" title="New chat" aria-label="New chat">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-        </div>
         <div class="chat-area">
-          <div class="chat-empty" id="chatEmpty">
-            <p class="chat-empty-title" data-i18n="chat.empty">What can I help with?</p>
-            <div class="chat-suggest chat-suggest-center" id="chatSuggest">
-              <button type="button" class="suggest-chip" data-i18n="chat.chip1" data-prompt="Analyze Q2 revenue performance and flag variances for Finance approval">Q2 revenue review</button>
-              <button type="button" class="suggest-chip" data-i18n="chat.chip2" data-prompt="Scan market filings and summarize competitor pricing with sources">Market intel scan</button>
-              <button type="button" class="suggest-chip" data-i18n="chat.chip3" data-prompt="Look up the returns policy and cite the source document">Policy lookup</button>
-              <button type="button" class="suggest-chip" data-i18n="chat.chip4" data-prompt="Triage incoming support tickets by priority and route to owners">Ticket triage</button>
-            </div>
-          </div>
           <div class="chat-messages" id="terminalOutput">
             <!-- Welcome message -->
             <div class="chat-msg ai">
@@ -219,7 +147,7 @@
                   <span class="msg-name">AI Assistant</span>
                   <span class="msg-time" id="welcomeTime"></span>
                 </div>
-                <div class="msg-body" id="welcomeBody" data-i18n-html="chat.welcome">
+                <div class="msg-body">
                   <p>Hello! I'm your AI Agent assistant. Select an agent and describe your task below, and I'll coordinate the agent team to execute it.</p>
                   <p class="msg-hint">You can manage agents, view analytics, configure models, and more from the sidebar.</p>
                 </div>
@@ -257,8 +185,8 @@
       <div class="view-panel" id="agentsView">
         <div class="view-header">
           <div>
-            <h2 data-i18n="view.agents_t">Configured Crew Agents</h2>
-            <p class="view-subtitle" data-i18n="view.agents_s">Direct synchronization with agents.yaml</p>
+            <h2>Configured Crew Agents</h2>
+            <p class="view-subtitle">Direct synchronization with <code>agents.yaml</code></p>
           </div>
           <button class="btn btn-primary" id="btnOpenCreateAgent">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -269,7 +197,7 @@
           </button>
         </div>
         <div class="agent-card-grid" id="agentCardGrid">
-          <div class="loading-placeholder" data-i18n="agents.loading">Loading agent definitions...</div>
+          <div class="loading-placeholder">Loading agent definitions...</div>
         </div>
       </div>
 
@@ -277,8 +205,8 @@
       <div class="view-panel" id="analyticsView">
         <div class="view-header">
           <div>
-            <h2 data-i18n="view.analytics_t">Token Analytics & Telemetry</h2>
-            <p class="view-subtitle" data-i18n="view.analytics_s">Real-time token consumption and cost tracking</p>
+            <h2>Token Analytics & Telemetry</h2>
+            <p class="view-subtitle">Real-time token consumption and cost tracking</p>
           </div>
           <span class="badge badge-blue">Live Telemetry</span>
         </div>
@@ -344,8 +272,8 @@
       <div class="view-panel" id="modelsView">
         <div class="view-header">
           <div>
-            <h2 data-i18n="view.models_t">Available Inference Models</h2>
-            <p class="view-subtitle" data-i18n="view.models_s">Discover and select LLM models from your provider</p>
+            <h2>Available Inference Models</h2>
+            <p class="view-subtitle">Discover and select LLM models from your provider</p>
           </div>
           <span class="model-count-badge" id="modelCountBadge">11 Models</span>
         </div>
@@ -363,13 +291,13 @@
       <div class="view-panel" id="logsView">
         <div class="view-header">
           <div>
-            <h2 data-i18n="view.logs_t">System & API Logs Monitor</h2>
-            <p class="view-subtitle" data-i18n="view.logs_s">Real-time tracking of API GET/POST requests, warnings, and error diagnostics</p>
+            <h2>System & API Logs Monitor</h2>
+            <p class="view-subtitle">Real-time tracking of API GET/POST requests, warnings, and error diagnostics</p>
           </div>
           <div class="log-header-actions">
             <button class="btn btn-secondary btn-sm" id="btnToggleAutoRefresh" title="Toggle Auto-Refresh (3s)">
               <span class="refresh-indicator active" id="refreshDot"></span>
-              <span id="refreshLabel" data-i18n="logs.auto_on">Auto-Refresh: ON</span>
+              <span id="refreshLabel">Auto-Refresh: ON</span>
             </button>
             <button class="btn btn-secondary btn-sm" id="btnRefreshLogs" title="Refresh Now">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -377,14 +305,14 @@
                 <polyline points="1 20 1 14 7 14"></polyline>
                 <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
               </svg>
-              <span data-i18n="logs.refresh">Refresh</span>
+              <span>Refresh</span>
             </button>
             <button class="btn btn-secondary btn-sm btn-clear-logs" id="btnClearLogs" title="Clear In-Memory Logs">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="3 6 5 6 21 6"></polyline>
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
               </svg>
-              <span data-i18n="logs.clear">Clear</span>
+              <span>Clear</span>
             </button>
           </div>
         </div>
@@ -392,43 +320,43 @@
         <!-- KPI Row for Logs -->
         <div class="kpi-grid">
           <div class="kpi-card">
-            <span class="kpi-label" data-i18n="logs.k_total">Total Logs</span>
+            <span class="kpi-label">Total Logs</span>
             <span class="kpi-value" id="kpiTotalLogs">0</span>
-            <span class="kpi-sub" data-i18n="logs.k_total_s">All system & API events</span>
+            <span class="kpi-sub">All system & API events</span>
           </div>
           <div class="kpi-card card-border-green">
-            <span class="kpi-label" data-i18n="logs.k_ok">API Success (200 OK)</span>
+            <span class="kpi-label">API Success (200 OK)</span>
             <span class="kpi-value text-green" id="kpiApiSuccess">0</span>
-            <span class="kpi-sub" data-i18n="logs.k_ok_s">GET / POST Succeeded</span>
+            <span class="kpi-sub">GET / POST Succeeded</span>
           </div>
           <div class="kpi-card card-border-amber">
-            <span class="kpi-label" data-i18n="logs.k_warn">Warnings</span>
+            <span class="kpi-label">Warnings</span>
             <span class="kpi-value text-amber" id="kpiWarnings">0</span>
-            <span class="kpi-sub" data-i18n="logs.k_warn_s">Client 4xx / missing configs</span>
+            <span class="kpi-sub">Client 4xx / missing configs</span>
           </div>
           <div class="kpi-card card-border-rose">
-            <span class="kpi-label" data-i18n="logs.k_err">Errors</span>
+            <span class="kpi-label">Errors</span>
             <span class="kpi-value text-rose" id="kpiErrors">0</span>
-            <span class="kpi-sub" data-i18n="logs.k_err_s">5xx & LLM API failures</span>
+            <span class="kpi-sub">5xx & LLM API failures</span>
           </div>
         </div>
 
         <!-- Filter & Search Toolbar -->
         <div class="log-toolbar">
           <div class="log-filter-tabs">
-            <button class="log-tab active" data-filter="all"><span data-i18n="logs.tab_all">All Logs</span> <span class="tab-count" id="countAll">0</span></button>
-            <button class="log-tab tab-error" data-filter="error"><span data-i18n="logs.tab_err">Errors</span> <span class="tab-count count-error" id="countErrors">0</span></button>
-            <button class="log-tab tab-warning" data-filter="warning"><span data-i18n="logs.tab_warn">Warnings</span> <span class="tab-count count-warning" id="countWarnings">0</span></button>
-            <button class="log-tab tab-api-get" data-filter="api_get"><span data-i18n="logs.tab_get">API GET</span> <span class="tab-count count-api-get" id="countApiGet">0</span></button>
-            <button class="log-tab tab-api-post" data-filter="api_post"><span data-i18n="logs.tab_post">API POST</span> <span class="tab-count count-api-post" id="countApiPost">0</span></button>
-            <button class="log-tab tab-success" data-filter="success"><span data-i18n="logs.tab_ok">Success</span> <span class="tab-count count-success" id="countSuccess">0</span></button>
+            <button class="log-tab active" data-filter="all">All Logs <span class="tab-count" id="countAll">0</span></button>
+            <button class="log-tab tab-error" data-filter="error">Errors <span class="tab-count count-error" id="countErrors">0</span></button>
+            <button class="log-tab tab-warning" data-filter="warning">Warnings <span class="tab-count count-warning" id="countWarnings">0</span></button>
+            <button class="log-tab tab-api-get" data-filter="api_get">API GET <span class="tab-count count-api-get" id="countApiGet">0</span></button>
+            <button class="log-tab tab-api-post" data-filter="api_post">API POST <span class="tab-count count-api-post" id="countApiPost">0</span></button>
+            <button class="log-tab tab-success" data-filter="success">Success <span class="tab-count count-success" id="countSuccess">0</span></button>
           </div>
           <div class="log-search-wrap">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="logSearchInput" placeholder="Filter by endpoint, status, message..." class="log-search-input" data-i18n-ph="logs.search_ph">
+            <input type="text" id="logSearchInput" placeholder="Filter by endpoint, status, message..." class="log-search-input">
           </div>
         </div>
 
@@ -438,19 +366,19 @@
             <table class="data-table log-data-table">
               <thead>
                 <tr>
-                  <th style="width: 85px;" data-i18n="logs.th_time">Time</th>
-                  <th style="width: 95px;" data-i18n="logs.th_level">Level</th>
-                  <th style="width: 80px;" data-i18n="logs.th_method">Method</th>
-                  <th style="width: 170px;" data-i18n="logs.th_endpoint">Endpoint</th>
-                  <th style="width: 105px;" data-i18n="logs.th_status">Status</th>
-                  <th style="width: 80px;" data-i18n="logs.th_latency">Latency</th>
-                  <th data-i18n="logs.th_message">Message / Activity Details</th>
-                  <th style="width: 80px; text-align: center;" data-i18n="logs.th_details">Details</th>
+                  <th style="width: 85px;">Time</th>
+                  <th style="width: 95px;">Level</th>
+                  <th style="width: 80px;">Method</th>
+                  <th style="width: 170px;">Endpoint</th>
+                  <th style="width: 105px;">Status</th>
+                  <th style="width: 80px;">Latency</th>
+                  <th>Message / Activity Details</th>
+                  <th style="width: 80px; text-align: center;">Details</th>
                 </tr>
               </thead>
               <tbody id="logTableBody">
                 <tr>
-                  <td colspan="8" class="loading-placeholder" data-i18n="logs.loading">Loading live operational logs...</td>
+                  <td colspan="8" class="loading-placeholder">Loading live operational logs...</td>
                 </tr>
               </tbody>
             </table>
@@ -462,17 +390,17 @@
       <div class="view-panel" id="settingsView">
         <div class="view-header">
           <div>
-            <h2 data-i18n="view.settings_t">API Provider & Configuration</h2>
-            <p class="view-subtitle" data-i18n="view.settings_s">Manage your LLM provider connections and API keys</p>
+            <h2>API Provider & Configuration</h2>
+            <p class="view-subtitle">Manage your LLM provider connections and API keys</p>
           </div>
           <span class="status-dot-live"></span>
         </div>
 
         <div class="settings-grid">
           <div class="settings-card">
-            <h4 data-i18n="set.llm">LLM Provider</h4>
+            <h4>LLM Provider</h4>
             <div class="form-group">
-              <label for="providerSelect" data-i18n="set.provider">Select Provider</label>
+              <label for="providerSelect">Select Provider</label>
               <select id="providerSelect" class="form-select">
                 <option value="openai" selected>OpenAI (gpt-4o, gpt-4o-mini, o1)</option>
                 <option value="openrouter">OpenRouter (Hermes 3 405B, Claude, Llama)</option>
@@ -483,12 +411,12 @@
             </div>
 
             <div class="form-group" id="customUrlGroup" style="display: none;">
-              <label for="customBaseUrl" data-i18n="set.custom_url">Custom Endpoint Base URL</label>
+              <label for="customBaseUrl">Custom Endpoint Base URL</label>
               <input type="text" id="customBaseUrl" class="form-input" placeholder="http://localhost:11434/v1">
             </div>
 
             <div class="form-group">
-              <label for="apiKeyInput" data-i18n="set.apikey">API Key</label>
+              <label for="apiKeyInput">API Key</label>
               <div class="input-with-action">
                 <input type="password" id="apiKeyInput" class="form-input" placeholder="sk-..." autocomplete="off">
                 <button class="icon-btn" id="btnToggleKey" title="Toggle visibility">
@@ -498,14 +426,14 @@
                   </svg>
                 </button>
               </div>
-              <span class="input-hint" id="keyConfiguredNotice" data-i18n-html="set.key_hint">Stored in .env: <code>OPENAI_API_KEY</code></span>
+              <span class="input-hint" id="keyConfiguredNotice">Stored in .env: <code>OPENAI_API_KEY</code></span>
             </div>
 
             <div class="checkbox-row">
               <label class="custom-checkbox">
                 <input type="checkbox" id="chkSaveEnv" checked>
                 <span class="checkmark"></span>
-                <span data-i18n-html="set.save_env">Auto-save key to <code>.env</code> file</span>
+                Auto-save key to <code>.env</code> file
               </label>
             </div>
 
@@ -513,7 +441,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-              <span data-i18n="set.validate">Validate & Fetch Models</span>
+              <span>Validate & Fetch Models</span>
             </button>
 
             <!-- Ping Result -->
@@ -527,30 +455,30 @@
           </div>
 
           <div class="settings-card">
-            <h4 data-i18n="set.conn">Connection Status</h4>
+            <h4>Connection Status</h4>
             <div class="status-info-grid">
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_status">API Status</span>
+                <span class="info-label">API Status</span>
                 <span class="info-value" id="kpiStatus">ACTIVE</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_provider">Provider</span>
+                <span class="info-label">Provider</span>
                 <span class="info-value" id="kpiProvider">OpenAI / OpenRouter</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_latency">Latency</span>
+                <span class="info-label">Latency</span>
                 <span class="info-value" id="kpiLatency">RTT: 18ms</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_model">Default Model</span>
+                <span class="info-label">Default Model</span>
                 <span class="info-value" id="kpiModel">Hermes 3 (405B)</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_model_provider">Model Provider</span>
+                <span class="info-label">Model Provider</span>
                 <span class="info-value" id="kpiModelProvider">Nous Research</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_key">Key</span>
+                <span class="info-label">Key</span>
                 <span class="info-value" id="headerKeyStatus">API Key: Configured</span>
               </div>
             </div>
@@ -568,7 +496,7 @@
             <circle cx="12" cy="12" r="10"/>
             <polyline points="12 6 12 12 16 14"/>
           </svg>
-          <h4 data-i18n="rp.task">Current Task</h4>
+          <h4>Current Task</h4>
         </div>
         <div class="rp-task-card">
           <p class="rp-task-title" id="rpTaskTitle"></p>
@@ -588,7 +516,7 @@
             <line x1="16" y1="13" x2="8" y2="13"></line>
             <line x1="16" y1="17" x2="8" y2="17"></line>
           </svg>
-          <h4 data-i18n="rp.plan">Plan</h4>
+          <h4>Plan</h4>
         </div>
         <ul class="rp-plan-list" id="rpPlanList">
           <!-- Populated dynamically when task is executed -->
@@ -604,7 +532,7 @@
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
           </svg>
-          <h4 data-i18n="rp.agents">Agents</h4>
+          <h4>Agents</h4>
           <span class="rp-count" id="kpiAgentCount">3</span>
         </div>
         <div class="rp-agents-list" id="rpAgentsList">
@@ -620,13 +548,13 @@
             <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
             <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
           </svg>
-          <h4 data-i18n="rp.sources">RAG Sources</h4>
+          <h4>RAG Sources</h4>
           <span class="rp-count">3</span>
         </div>
         <ul class="rp-sources-list">
-          <li><span class="source-dot" style="background:#3B82F6"></span><span data-i18n="rp.src_dw">Enterprise Data Warehouse</span></li>
-          <li><span class="source-dot" style="background:#8B5CF6"></span><span data-i18n="rp.src_kb">Finance KnowledgeBase</span></li>
-          <li><span class="source-dot" style="background:#10B981"></span><span data-i18n="rp.src_q3">Q3 Reports & Docs</span></li>
+          <li><span class="source-dot" style="background:#3B82F6"></span>Enterprise Data Warehouse</li>
+          <li><span class="source-dot" style="background:#8B5CF6"></span>Finance KnowledgeBase</li>
+          <li><span class="source-dot" style="background:#10B981"></span>Q3 Reports & Docs</li>
         </ul>
       </div>
 
@@ -636,7 +564,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
           </svg>
-          <h4 data-i18n="rp.tools">Tools</h4>
+          <h4>Tools</h4>
           <span class="rp-count">5</span>
         </div>
         <div class="rp-tools-grid">
@@ -648,7 +576,7 @@
                 <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
               </svg>
             </div>
-            <span data-i18n="rp.tool_sql">SQL Query</span>
+            <span>SQL Query</span>
           </div>
           <div class="tool-item">
             <div class="tool-icon tool-green">
@@ -657,7 +585,7 @@
                 <polyline points="8 6 2 12 8 18"></polyline>
               </svg>
             </div>
-            <span data-i18n="rp.tool_py">Python</span>
+            <span>Python</span>
           </div>
           <div class="tool-item">
             <div class="tool-icon tool-purple">
@@ -667,7 +595,7 @@
                 <line x1="6" y1="20" x2="6" y2="14"></line>
               </svg>
             </div>
-            <span data-i18n="rp.tool_charts">Charts</span>
+            <span>Charts</span>
           </div>
           <div class="tool-item">
             <div class="tool-icon tool-amber">
@@ -676,7 +604,7 @@
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
             </div>
-            <span data-i18n="rp.tool_web">Web Search</span>
+            <span>Web Search</span>
           </div>
           <div class="tool-item">
             <div class="tool-icon tool-rose">
@@ -685,7 +613,7 @@
                 <polyline points="13 2 13 9 20 9"></polyline>
               </svg>
             </div>
-            <span data-i18n="rp.tool_files">Files</span>
+            <span>Files</span>
           </div>
         </div>
       </div>
@@ -793,7 +721,7 @@
       <div class="modal-header">
         <div class="modal-title-wrap">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <h3 id="logModalTitle" data-i18n="logs.m_title">Log Diagnostic Details</h3>
+            <h3 id="logModalTitle">Log Diagnostic Details</h3>
             <span id="logModalBadge" class="log-badge log-badge-info">INFO</span>
           </div>
           <p id="logModalSubtitle" style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;"></p>
@@ -805,39 +733,39 @@
         <!-- Diagnostic Metric Grid -->
         <div class="log-info-grid">
           <div class="log-info-item">
-            <span class="info-label" data-i18n="logs.m_method">Request Method & Status</span>
+            <span class="info-label">Request Method & Status</span>
             <span class="info-value" id="logModalStatus">—</span>
           </div>
           <div class="log-info-item">
-            <span class="info-label" data-i18n="logs.m_latency">Latency / Response Time</span>
+            <span class="info-label">Latency / Response Time</span>
             <span class="info-value" id="logModalLatency">—</span>
           </div>
           <div class="log-info-item">
-            <span class="info-label" data-i18n="logs.m_type">Log Type / Category</span>
+            <span class="info-label">Log Type / Category</span>
             <span class="info-value" id="logModalType">—</span>
           </div>
           <div class="log-info-item">
-            <span class="info-label" data-i18n="logs.m_url">Endpoint / Route</span>
+            <span class="info-label">Endpoint / Route</span>
             <span class="info-value mono" id="logModalUrl">—</span>
           </div>
         </div>
 
         <!-- Summary Message -->
         <div class="log-detail-section">
-          <span class="log-section-label" data-i18n="logs.m_summary">Summary Message</span>
+          <span class="log-section-label">Summary Message</span>
           <div class="log-box-message" id="logModalMessage"></div>
         </div>
 
         <!-- Diagnostic Context / Payload / Raw Response -->
         <div class="log-detail-section">
           <div class="log-section-header-row">
-            <span class="log-section-label" data-i18n="logs.m_context">Detailed Context & Response Data</span>
+            <span class="log-section-label">Detailed Context & Response Data</span>
             <button class="btn btn-secondary btn-xs" id="btnCopyLogJson" type="button">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
-              <span data-i18n="logs.m_copy">Copy JSON</span>
+              <span>Copy JSON</span>
             </button>
           </div>
           <pre class="log-code-viewer" id="logModalJson"></pre>
@@ -845,7 +773,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btnCloseLogModalBtn" data-i18n="logs.m_close">Close Inspector</button>
+        <button type="button" class="btn btn-secondary" id="btnCloseLogModalBtn">Close Inspector</button>
       </div>
     </div>
   </div>
@@ -853,6 +781,6 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <script src="dashboard.js"></script>
+  <script src="/static/app.js"></script>
 </body>
 </html>

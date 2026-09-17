@@ -727,41 +727,41 @@ body {
 html.dark .ThemeToggle-sun { display: none; }
 html.dark .ThemeToggle-moon { display: block; }
 
-/* ===== Dark mode overrides for auth pages ===== */
+/* ===== Dark mode: VS Code black, forced contrast ===== */
 html.dark {
-  --color-surface: #0d1117;
-  --color-app-bg: #161b22;
-  --color-surface-subtle: #161b22;
-  --color-text-primary: #e6edf3;
-  --color-text-secondary: #8b949e;
-  --color-text-muted: #6e7681;
-  --color-border: #30363d;
-  --color-border-strong: #484f58;
+  --color-surface: #1E1E1E;
+  --color-app-bg: #252526;
+  --color-surface-subtle: #252526;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CCCCCC;
+  --color-text-muted: #A6A6A6;
+  --color-border: #3E3E3E;
+  --color-border-strong: #5A5A5A;
   --color-primary: #58a6ff;
   --color-primary-hover: #79c0ff;
   --color-primary-active: #388bfd;
   --color-primary-subtle: rgba(56, 139, 253, 0.1);
 }
 html.dark body {
-  background: #070b12;
+  background: #111111;
   color: var(--color-text-primary);
 }
-html.dark .auth-top { background: #0d1117; border-color: var(--color-border); }
-html.dark .auth-visual { background: #070b12; }
-html.dark .auth-wrap { background-color: #070b12; }
-html.dark .auth-card { background: rgba(13, 17, 23, 0.86); border-color: var(--color-border); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28); }
-html.dark .field input { background: #161b22; border-color: var(--color-border); color: var(--color-text-primary); }
+html.dark .auth-top { background: #1E1E1E; border-color: var(--color-border); }
+html.dark .auth-visual { background: #111111; }
+html.dark .auth-wrap { background-color: #111111; }
+html.dark .auth-card { background: rgba(30, 30, 30, 0.94); border-color: var(--color-border); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5); }
+html.dark .field input { background: #2D2D2D; border-color: var(--color-border); color: var(--color-text-primary); }
 html.dark .field input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15); }
 html.dark .field.invalid input { border-color: var(--color-error); }
 html.dark .btn-primary { background: var(--color-primary); color: #fff; }
-html.dark .btn-secondary { background: #161b22; color: var(--color-text-primary); border-color: var(--color-border); }
+html.dark .btn-secondary { background: #2D2D2D; color: var(--color-text-primary); border-color: var(--color-border); }
 html.dark .form-hint { background: rgba(56, 139, 253, 0.08); border-color: var(--color-border); }
 html.dark .form-note { background: rgba(56, 139, 253, 0.08); border-color: var(--color-border); }
 html.dark .password-reset { background: rgba(56, 139, 253, 0.08); }
-html.dark .password-reset input { background: #161b22; border-color: var(--color-border); color: var(--color-text-primary); }
-html.dark .social-btn { background: #161b22; border-color: var(--color-border); }
-html.dark .LangSwitch { background: #161b22; border-color: var(--color-border); }
-html.dark .LangSwitch-btn[aria-pressed="true"] { background: #30363d; color: var(--color-text-primary); outline-color: var(--color-border); }
+html.dark .password-reset input { background: #2D2D2D; border-color: var(--color-border); color: var(--color-text-primary); }
+html.dark .social-btn { background: #2D2D2D; border-color: var(--color-border); }
+html.dark .LangSwitch { background: #2D2D2D; border-color: var(--color-border); }
+html.dark .LangSwitch-btn[aria-pressed="true"] { background: #3E3E3E; color: var(--color-text-primary); outline-color: var(--color-border); }
 
 @media (prefers-reduced-motion: reduce) {
   .ThemeToggle { transition: none; }
