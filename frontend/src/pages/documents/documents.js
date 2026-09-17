@@ -8,7 +8,7 @@
     en: {
       "meta.title": "Documents — AgentOS",
       "nav.new": "New Task", "nav.chat": "Chat", "nav.agents": "Agents",
-      "nav.docs": "Documents", "nav.storage": "Data Storage",
+      "nav.docs": "Documents", "nav.storage": "Data Storage", "nav.policies": "Policies",
       "nav.analytics": "Analytics", "nav.models": "Models",
       "nav.logs": "Logs", "nav.settings": "Settings",
       "nav.plan": "Company Plan",
@@ -82,7 +82,7 @@
     vi: {
       "meta.title": "Tài liệu — AgentOS",
       "nav.new": "Tác vụ mới", "nav.chat": "Đoạn chat", "nav.agents": "Agent",
-      "nav.docs": "Tài liệu", "nav.storage": "Lưu trữ dữ liệu",
+      "nav.docs": "Tài liệu", "nav.storage": "Lưu trữ dữ liệu", "nav.policies": "Policies",
       "nav.analytics": "Phân tích", "nav.models": "Mô hình",
       "nav.logs": "Nhật ký", "nav.settings": "Cài đặt",
       "nav.plan": "Gói công ty",
