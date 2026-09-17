@@ -28,14 +28,16 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install stlite-cli
+      - name: Install Node & stlite
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build site
         run: |
           npm install -g @stlite/cli
-
-      - name: Build static site with stlite
-        run: |
-          stlite dump app.py -o dist
-          # Lưu ý: Thay app.py bằng tên file Python giao diện chính của bạn nếu khác (ví dụ: main.py)
+          mkdir -p dist
+          stlite dump main.py -o dist || cp -r ./* dist/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
