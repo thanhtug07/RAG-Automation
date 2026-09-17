@@ -106,7 +106,6 @@ POST `{ document_id }`; `removeDocumentFromKnowledge(kbId, docId)` DELETE;
 `getRun(id)` / `getRunEvents(id, params)` `{?page,page_size}`. Read-only by design.
 
 ## experiments — CONTRACT-READY (run detail/metrics UNKNOWN)
-
 `getExperiments(params)` / `getExperiment(id)` / `createExperiment(data)`
 `{ name, config? }` / `updateExperiment(id, data)` / `deleteExperiment(id)` /
 `getExperimentRuns(expId, params)` / `createExperimentRun(expId, data)` /
@@ -124,6 +123,22 @@ POST `{ document_id }`; `removeDocumentFromKnowledge(kbId, docId)` DELETE;
 `{ agent_id, model?, prompt, provider?, base_url?, api_key? }` (long timeout);
 `getLogs(params)` GET `/api/logs{?level,limit,search}`;
 `clearLogs()` POST `/api/logs/clear`.
+
+## policies — CONTRACT-READY
+
+`getPolicies(params)` GET `...{?page,page_size,search,category,status}` /
+`getPolicy(id)` GET / `createPolicy(data)` POST
+`{ name, category, description?, status?, priority?, scope?, rules?, resources? }` /
+`updatePolicy(id, data)` PATCH / `deletePolicy(id)` DELETE /
+`duplicatePolicy(id)`, `disablePolicy(id)`, `enablePolicy(id)` POST `.../{action}`.
+
+## storage — CONTRACT-READY
+
+`getFiles(params)` GET `...{?page,page_size,search,type,source,folder,sort,order}` /
+`getFile(id)` GET / `uploadFiles(fileList, folder?)` POST multipart (`files[]` + `folder?`) /
+`updateFile(id, data)` PATCH `{ name?, folder? }` / `deleteFile(id)` DELETE /
+`bulkDeleteFiles(ids)` POST `{ ids: [] }` /
+`getFolders()` / `createFolder(data)` / `renameFolder(id, data)` / `deleteFolder(id)`.
 
 ## Status codes (client mapping)
 

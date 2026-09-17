@@ -35,6 +35,28 @@ const pingBadge = document.getElementById("pingBadge");
 const pingLatency = document.getElementById("pingLatency");
 const pingMsg = document.getElementById("pingMsg");
 
+// Settings Provider (new UX) element refs.
+const modelSelect = document.getElementById("modelSelect");
+const providerHint = document.getElementById("providerHint");
+const modelHint = document.getElementById("modelHint");
+const keyEditRow = document.getElementById("keyEditRow");
+const keyMaskedRow = document.getElementById("keyMaskedRow");
+const keyMaskedText = document.getElementById("keyMaskedText");
+const btnReplaceKey = document.getElementById("btnReplaceKey");
+const btnClearKey = document.getElementById("btnClearKey");
+const keyStatusText = document.getElementById("keyStatusText");
+const leftHeadStatus = document.getElementById("leftHeadStatus");
+const leftHeadStatusText = document.getElementById("leftHeadStatusText");
+const formStatusMsg = document.getElementById("formStatusMsg");
+const btnValidateLabel = document.getElementById("btnValidateLabel");
+const btnClearConfig = document.getElementById("btnClearConfig");
+const btnTestKey = document.getElementById("btnTestKey");
+const connStatus = document.getElementById("connStatus");
+const connProvider = document.getElementById("connProvider");
+const connModel = document.getElementById("connModel");
+const connKey = document.getElementById("connKey");
+const connVerified = document.getElementById("connVerified");
+
 const modelListContainer = document.getElementById("modelListContainer");
 const modelSearchInput = document.getElementById("modelSearchInput");
 const modelCountBadge = document.getElementById("modelCountBadge");
@@ -102,13 +124,16 @@ document.addEventListener("DOMContentLoaded", () => {
   initSidebarNav();
   initKeyToggle();
   initProviderChange();
+  initTestKey();
   initModal();
   populateAgentModelSelect();
   initSearch();
+  initModelDetail();
   initAvatarPhoto();
   initGlobalSearch();
   initChromePrefs();
   initChatExtras();
+  initCatalog();
   // Deep-link (?view=analyticsView) wins; otherwise restore last view on reload.
   try {
     var deepView = new URLSearchParams(window.location.search).get("view");
@@ -211,52 +236,335 @@ function initSidebarNav() {
 // ----------------------------------------------------------------
 // Key Toggle & Provider
 // ----------------------------------------------------------------
+function setText(node, value) {
+  if (node) node.textContent = value;
+}
+
+// ----------------------------------------------------------------
+// Settings Provider state (same backend contract, upgraded UX)
+// ----------------------------------------------------------------
+const PROVIDER_MODELS = {
+  openai: [
+    { id: "openai/gpt-4o", name: "GPT-4o", desc: { en: "General-purpose model", vi: "Mô hình đa dụng" } },
+    { id: "openai/gpt-4o-mini", name: "GPT-4o mini", desc: { en: "Fast and affordable", vi: "Nhanh và tiết kiệm" } },
+    { id: "openai/o3", name: "o3", desc: { en: "Advanced reasoning", vi: "Suy luận nâng cao" } },
+    { id: "openai/o4-mini", name: "o4-mini", desc: { en: "Compact reasoning", vi: "Suy luận gọn nhẹ" } }
+  ],
+  anthropic: [
+    { id: "anthropic/claude-opus-4-6", name: "Claude Opus", desc: { en: "Most capable reasoning", vi: "Suy luận mạnh nhất" } },
+    { id: "anthropic/claude-sonnet-4-6", name: "Claude Sonnet", desc: { en: "Balanced performance", vi: "Cân bằng hiệu năng" } },
+    { id: "anthropic/claude-haiku-4-5", name: "Claude Haiku", desc: { en: "Fast and light", vi: "Nhanh và nhẹ" } }
+  ],
+  gemini: [
+    { id: "google/gemini-2.5-pro", name: "Gemini 2.5 Pro", desc: { en: "Flagship multimodal", vi: "Đa phương thức chủ lực" } },
+    { id: "google/gemini-2.5-flash", name: "Gemini 2.5 Flash", desc: { en: "Fast and efficient", vi: "Nhanh và hiệu quả" } },
+    { id: "google/gemini-2.0-flash", name: "Gemini 2.0 Flash", desc: { en: "Proven all-rounder", vi: "Toàn diện đã kiểm chứng" } }
+  ],
+  openrouter: [
+    { id: "auto", name: "Auto (router picks)", desc: { en: "Best model per request", vi: "Model tốt nhất mỗi request" } },
+    { id: "nousresearch/hermes-3-llama-3.1-405b", name: "Hermes 3 405B", desc: { en: "Agent flagship", vi: "Chủ lực cho agent" } },
+    { id: "meta-llama/llama-3.3-70b-instruct", name: "Llama 3.3 70B", desc: { en: "Open weights", vi: "Trọng số mở" } }
+  ],
+  custom: [
+    { id: "custom-model", name: "Custom model", desc: { en: "Resolved via base URL", vi: "Phân giải qua base URL" } }
+  ]
+};
+
+const PROVIDER_LABEL = {
+  openai: "OpenAI",
+  anthropic: "Anthropic",
+  gemini: "Google Gemini",
+  openrouter: "OpenRouter",
+  custom: "Custom"
+};
+
+const PROVIDER_BASE_URLS = {
+  openai: "https://api.openai.com/v1",
+  anthropic: "https://api.anthropic.com",
+  gemini: "https://generativelanguage.googleapis.com",
+  openrouter: "https://openrouter.ai/api/v1",
+  custom: "https://api.your-endpoint.com/v1"
+};
+
+function updateBaseUrlPh() {
+  if (!customBaseUrl) return;
+  customBaseUrl.placeholder = PROVIDER_BASE_URLS[providerSelect.value] || "";
+}
+
+const PROVIDER_HINTS = {
+  openai: { en: "General-purpose models with strong tool support.", vi: "Mô hình đa dụng, hỗ trợ công cụ tốt." },
+  anthropic: { en: "Strong reasoning and long context.", vi: "Suy luận mạnh, ngữ cảnh dài." },
+  gemini: { en: "Multimodal models with generous context.", vi: "Đa phương thức, ngữ cảnh lớn." },
+  openrouter: { en: "One key, many open and commercial models.", vi: "Một key, nhiều mô hình mở và thương mại." },
+  custom: { en: "Any OpenAI-compatible endpoint.", vi: "Mọi endpoint tương thích OpenAI." }
+};
+
+let connState = "none"; // none | saved | testing | ok | error
+let connMsgKey = "set.msg_no_key";
+let lastVerifiedAt = null;
+
+function storedKey() {
+  try {
+    return localStorage.getItem("aurelia_api_key") || "";
+  } catch (err) {
+    return "";
+  }
+}
+
+function modelListFor(provider) {
+  return PROVIDER_MODELS[provider] || PROVIDER_MODELS.openai;
+}
+
+function savedModelFor(provider) {
+  try {
+    return localStorage.getItem("aurelia_model_" + provider) || "";
+  } catch (err) {
+    return "";
+  }
+}
+
+function selectedModel() {
+  if (!modelSelect) return { id: "", name: "" };
+  const opt = modelSelect.selectedOptions ? modelSelect.selectedOptions[0] : null;
+  return { id: modelSelect.value || "", name: opt ? opt.textContent : modelSelect.value };
+}
+
+function populateModels(provider) {
+  if (!modelSelect) return;
+  const list = modelListFor(provider);
+  const keep = savedModelFor(provider);
+  modelSelect.innerHTML = "";
+  let chosen = list[0];
+  list.forEach(m => {
+    const o = document.createElement("option");
+    o.value = m.id;
+    o.textContent = m.name;
+    if (m.id === keep) chosen = m;
+    modelSelect.appendChild(o);
+  });
+  modelSelect.value = chosen.id;
+  updateModelHint();
+  refreshConnectionCard();
+}
+
+function updateModelHint() {
+  if (!modelHint || !modelSelect) return;
+  const found = modelListFor(providerSelect.value).find(m => m.id === modelSelect.value);
+  const lang = (typeof chromeLang !== "undefined" && chromeLang === "vi") ? "vi" : "en";
+  modelHint.textContent = found ? found.desc[lang] : "";
+}
+
+function updateProviderHint() {
+  if (!providerHint) return;
+  const lang = (typeof chromeLang !== "undefined" && chromeLang === "vi") ? "vi" : "en";
+  const h = PROVIDER_HINTS[providerSelect.value] || PROVIDER_HINTS.openai;
+  providerHint.textContent = h[lang];
+}
+
+function maskKey(key) {
+  if (!key) return "";
+  return key.slice(0, 3) === "sk-" ? "sk-" + "•".repeat(16) : "•".repeat(16);
+}
+
+function renderKeyState(editing) {
+  const has = !!storedKey();
+  if (keyEditRow) keyEditRow.hidden = has && !editing;
+  if (keyMaskedRow) keyMaskedRow.hidden = !(has && !editing);
+  if (has && !editing && keyMaskedText) keyMaskedText.textContent = maskKey(storedKey());
+  if (keyStatusText) {
+    keyStatusText.textContent = has ? chromeT("set.key_on") : chromeT("set.key_off");
+  }
+  const line = document.getElementById("keyStatusLine");
+  if (line) line.classList.toggle("is-ok", has);
+}
+
+function refreshConnectionCard() {
+  const lang = (typeof chromeLang !== "undefined" && chromeLang === "vi") ? "vi" : "en";
+  if (connProvider) connProvider.textContent = PROVIDER_LABEL[providerSelect.value] || providerSelect.value;
+  if (connModel) connModel.textContent = selectedModel().name || "—";
+  if (connKey) connKey.textContent = storedKey() ? chromeT("set.key_on") : chromeT("set.key_off");
+  if (connVerified) {
+    connVerified.textContent = lastVerifiedAt
+      ? lastVerifiedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      : "—";
+  }
+  void lang;
+}
+
+function setConnState(state, msgKey) {
+  connState = state;
+  if (msgKey) connMsgKey = msgKey;
+  const pillTexts = {
+    none: "set.st_notconnected",
+    saved: "set.st_saved",
+    testing: "set.st_testing",
+    ok: "set.st_connected",
+    error: "set.st_error"
+  };
+  if (leftHeadStatus) {
+    leftHeadStatus.classList.remove("is-ok", "is-bad", "is-busy");
+    if (state === "ok") leftHeadStatus.classList.add("is-ok");
+    else if (state === "error") leftHeadStatus.classList.add("is-bad");
+    else if (state === "testing") leftHeadStatus.classList.add("is-busy");
+  }
+  if (leftHeadStatusText) leftHeadStatusText.textContent = chromeT(pillTexts[state] || pillTexts.none);
+  if (connStatus) connStatus.textContent = chromeT(pillTexts[state] || pillTexts.none);
+  const cta = {
+    none: "set.cta_configure",
+    saved: "set.save_test",
+    testing: "set.st_testing",
+    ok: "set.cta_test_again",
+    error: "set.cta_retry"
+  };
+  if (btnValidateLabel) btnValidateLabel.textContent = chromeT(cta[state] || cta.none);
+  if (btnValidateAndFetch) btnValidateAndFetch.disabled = state === "testing";
+  if (formStatusMsg) {
+    formStatusMsg.textContent = chromeT(connMsgKey);
+    formStatusMsg.className = "form-status" +
+      (state === "ok" ? " is-ok" : state === "error" ? " is-bad" : state === "testing" ? " is-busy" : "");
+  }
+  refreshConnectionCard();
+}
+
+function refreshSettingsLang() {
+  updateProviderHint();
+  updateModelHint();
+  renderKeyState(keyEditRow ? !keyEditRow.hidden : true);
+  setConnState(connState);
+}
+
 function initKeyToggle() {
   btnToggleKey.addEventListener("click", () => {
-    apiKeyInput.type = apiKeyInput.type === "password" ? "text" : "password";
+    const show = apiKeyInput.type === "password";
+    apiKeyInput.type = show ? "text" : "password";
+    btnToggleKey.setAttribute("aria-pressed", String(show));
+    btnToggleKey.setAttribute("aria-label", show ? "Hide API key" : "Show API key");
   });
 }
 
 function initProviderChange() {
   providerSelect.addEventListener("change", () => {
     const val = providerSelect.value;
-    localStorage.setItem("aurelia_provider", val);
-    if (val === "custom" || val === "ollama") {
-      customUrlGroup.style.display = "block";
-      customBaseUrl.placeholder = val === "ollama" ? "http://localhost:11434" : "https://api.your-endpoint.com/v1";
-    } else {
-      customUrlGroup.style.display = "none";
-    }
+    try { localStorage.setItem("aurelia_provider", val); } catch (err) {}
+    updateBaseUrlPh();
+    populateModels(val);
+    // Switching provider invalidates the last verification.
+    setConnState(storedKey() ? "saved" : "none", storedKey() ? "set.msg_saved" : "set.msg_no_key");
     checkHealth();
+  });
+  if (modelSelect) {
+    modelSelect.addEventListener("change", () => {
+      try { localStorage.setItem("aurelia_model_" + providerSelect.value, modelSelect.value); } catch (err) {}
+      updateModelHint();
+      refreshConnectionCard();
+    });
+  }
+  if (btnReplaceKey) {
+    btnReplaceKey.addEventListener("click", () => {
+      apiKeyInput.value = "";
+      renderKeyState(true);
+      apiKeyInput.focus();
+    });
+  }
+  if (btnClearKey) {
+    btnClearKey.addEventListener("click", () => {
+      try { localStorage.removeItem("aurelia_api_key"); } catch (err) {}
+      renderKeyState(true);
+      apiKeyInput.value = "";
+      apiKeyInput.focus();
+      setConnState("none", "set.msg_no_key");
+    });
+  }
+  if (btnClearConfig) {
+    btnClearConfig.addEventListener("click", () => {
+      try {
+        localStorage.removeItem("aurelia_api_key");
+        localStorage.removeItem("aurelia_base_url");
+        localStorage.removeItem("aurelia_model_" + providerSelect.value);
+      } catch (err) {}
+      customBaseUrl.value = "";
+      apiKeyInput.value = "";
+      populateModels(providerSelect.value);
+      renderKeyState(true);
+      setConnState("none", "set.msg_no_key");
+    });
+  }
+}
+
+function initTestKey() {
+  if (!btnTestKey) return;
+  btnTestKey.addEventListener("click", async () => {
+    const key = apiKeyInput.value.trim() || storedKey();
+    if (!key) {
+      renderKeyState(true);
+      apiKeyInput.focus();
+      showToast(chromeT("set.msg_no_key"), "error");
+      return;
+    }
+    const provider = providerSelect.value;
+    const base_url = customBaseUrl.value.trim();
+    btnTestKey.disabled = true;
+    btnValidateAndFetch.disabled = true;
+    try {
+      const data = await window.AgentApi.system.validateKey({ api_key: key, provider, base_url, save_to_env: false });
+      pingResultBox.style.display = "block";
+      if (data.valid) {
+        pingResultBox.className = "ping-result-box";
+        pingBadge.textContent = "ONLINE 200 OK";
+        pingLatency.textContent = `${data.latency_ms}ms`;
+        pingMsg.textContent = data.message || "Provider connection active.";
+        showToast(chromeT("set.msg_ok"));
+      } else {
+        pingResultBox.className = "ping-result-box error";
+        pingBadge.textContent = `ERROR ${data.status_code || 400}`;
+        pingLatency.textContent = `${data.latency_ms || "--"}ms`;
+        pingMsg.textContent = data.error || "Authentication failed.";
+        showToast(data.error || chromeT("set.msg_error"), "error");
+      }
+    } catch (err) {
+      const offline = !err || err.status === 0 || err.code === "NETWORK_ERROR" || err.code === "TIMEOUT";
+      pingResultBox.style.display = "block";
+      pingResultBox.className = "ping-result-box error";
+      pingBadge.textContent = offline ? "CONN FAILED" : `ERROR ${(err && err.status) || 400}`;
+      pingMsg.textContent = offline ? "Cannot reach server." : ((err && err.message) || "Authentication failed.");
+      pingLatency.textContent = "--";
+      showToast(offline ? "Network error validating key" : ((err && err.message) || chromeT("set.msg_error")), "error");
+    } finally {
+      btnTestKey.disabled = false;
+      setConnState(connState);
+    }
   });
 }
 
 function loadSavedSettings() {
-  const savedKey = localStorage.getItem("aurelia_api_key");
-  const savedProvider = localStorage.getItem("aurelia_provider");
-  const savedBaseUrl = localStorage.getItem("aurelia_base_url");
+  const savedKey = storedKey();
+  let savedProvider = "openai";
+  try {
+    const p = localStorage.getItem("aurelia_provider");
+    if (p && PROVIDER_MODELS[p]) savedProvider = p;
+  } catch (err) {}
+  providerSelect.value = savedProvider;
+  updateBaseUrlPh();
+  const savedBaseUrl = (function () {
+    try { return localStorage.getItem("aurelia_base_url") || ""; } catch (err) { return ""; }
+  })();
+  if (savedBaseUrl) customBaseUrl.value = savedBaseUrl;
 
-  if (savedKey) {
-    apiKeyInput.value = savedKey;
-  }
-  if (savedProvider) {
-    providerSelect.value = savedProvider;
-    if (savedProvider === "custom" || savedProvider === "ollama") {
-      customUrlGroup.style.display = "block";
-      customBaseUrl.placeholder = savedProvider === "ollama" ? "http://localhost:11434" : "https://api.your-endpoint.com/v1";
-    }
-  }
-  if (savedBaseUrl) {
-    customBaseUrl.value = savedBaseUrl;
-  }
+  populateModels(savedProvider);
+  renderKeyState(false);
+  setConnState(savedKey ? "saved" : "none", savedKey ? "set.msg_saved" : "set.msg_no_key");
 
   apiKeyInput.addEventListener("input", () => {
     const val = apiKeyInput.value.trim();
-    if (val) localStorage.setItem("aurelia_api_key", val);
+    if (val) {
+      try { localStorage.setItem("aurelia_api_key", val); } catch (err) {}
+    }
   });
   customBaseUrl.addEventListener("input", () => {
     const val = customBaseUrl.value.trim();
-    if (val) localStorage.setItem("aurelia_base_url", val);
+    if (val) {
+      try { localStorage.setItem("aurelia_base_url", val); } catch (err) {}
+    }
   });
 }
 
@@ -275,21 +583,10 @@ async function checkHealth() {
       healthText.textContent = "Online";
       healthLatency.textContent = `${data.latency_ms}ms`;
       healthLatency.style.display = "";
-      kpiStatus.textContent = "ONLINE";
-      kpiProvider.textContent = provider.toUpperCase();
-      kpiLatency.textContent = `RTT: ${data.latency_ms}ms`;
-
-      if (data.api_key_configured) {
-        document.getElementById("headerKeyStatus").textContent = `Key: ${data.masked_key}`;
-        document.getElementById("keyConfiguredNotice").innerHTML = `Configured in .env: <code>${data.masked_key}</code>`;
-      }
 
       if (data.base_url && !customBaseUrl.value) {
         customBaseUrl.value = data.base_url;
-        localStorage.setItem("aurelia_base_url", data.base_url);
-        if (data.provider === "custom" || data.provider === "ollama") {
-          customUrlGroup.style.display = "block";
-        }
+        try { localStorage.setItem("aurelia_base_url", data.base_url); } catch (err) {}
       }
     } else if (data.status === "no_key") {
       healthDot.className = "status-dot";
@@ -297,10 +594,6 @@ async function checkHealth() {
       healthDot.style.boxShadow = "none";
       healthText.textContent = "No API Key";
       healthLatency.style.display = "none";
-      kpiStatus.textContent = "NO KEY";
-      kpiProvider.textContent = provider.toUpperCase();
-      kpiLatency.textContent = "—";
-      document.getElementById("headerKeyStatus").textContent = "Key: Not configured";
     } else {
       setHealthDegraded("Degraded");
     }
@@ -316,20 +609,29 @@ function setHealthDegraded(msg) {
   healthDot.style.background = "#EF4444";
   healthDot.style.boxShadow = "0 0 6px #EF4444";
   healthText.textContent = msg;
-  kpiStatus.textContent = msg.toUpperCase();
 }
 
 // ----------------------------------------------------------------
 // Validate Key
 // ----------------------------------------------------------------
 btnValidateAndFetch.addEventListener("click", async () => {
-  const key = apiKeyInput.value.trim();
+  const typedKey = apiKeyInput.value.trim();
+  const key = typedKey || storedKey();
   const provider = providerSelect.value;
+  const model = selectedModel();
   const base_url = customBaseUrl.value.trim();
   const save_to_env = chkSaveEnv.checked;
 
+  if (!key) {
+    setConnState(storedKey() ? "saved" : "none", "set.msg_no_key");
+    renderKeyState(true);
+    apiKeyInput.focus();
+    return;
+  }
+
+  setConnState("testing", "set.msg_testing");
   btnValidateAndFetch.disabled = true;
-  btnValidateAndFetch.innerHTML = `<span>Validating...</span>`;
+  btnValidateLabel.textContent = chromeT("set.st_testing");
 
   try {
     const valData = await window.AgentApi.system.validateKey({ api_key: key, provider, base_url, save_to_env });
@@ -340,9 +642,15 @@ btnValidateAndFetch.addEventListener("click", async () => {
       pingBadge.textContent = "ONLINE 200 OK";
       pingLatency.textContent = `${valData.latency_ms}ms`;
       pingMsg.textContent = valData.message || "Provider connection active.";
-      localStorage.setItem("aurelia_api_key", key);
-      localStorage.setItem("aurelia_provider", provider);
-      if (base_url) localStorage.setItem("aurelia_base_url", base_url);
+      try {
+        localStorage.setItem("aurelia_api_key", key);
+        localStorage.setItem("aurelia_provider", provider);
+        localStorage.setItem("aurelia_model_" + provider, model.id);
+        if (base_url) localStorage.setItem("aurelia_base_url", base_url);
+      } catch (err) {}
+      lastVerifiedAt = new Date();
+      renderKeyState(false);
+      setConnState("ok", "set.msg_ok");
       showToast("API Key validated and saved successfully!");
       checkHealth();
     } else {
@@ -350,6 +658,7 @@ btnValidateAndFetch.addEventListener("click", async () => {
       pingBadge.textContent = `ERROR ${valData.status_code || 400}`;
       pingLatency.textContent = `${valData.latency_ms || '--'}ms`;
       pingMsg.textContent = valData.error || "Authentication failed.";
+      setConnState("error", "set.msg_error");
       showToast(valData.error || "Validation failed.", "error");
     }
     await fetchModels(key, provider, base_url);
@@ -367,14 +676,9 @@ btnValidateAndFetch.addEventListener("click", async () => {
       showToast(err.message || "Validation failed.", "error");
     }
     pingLatency.textContent = "--";
+    setConnState("error", "set.msg_error");
   } finally {
-    btnValidateAndFetch.disabled = false;
-    btnValidateAndFetch.innerHTML = `
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-      <span>Validate & Fetch Models</span>
-    `;
+    setConnState(connState === "testing" ? (storedKey() ? "saved" : "none") : connState);
     fetchLogs();
   }
 });
@@ -386,7 +690,7 @@ async function fetchModels(key = "", provider = "", base_url = "") {
   try {
     const data = await window.AgentApi.system.getModels({ api_key: key, provider: provider || providerSelect.value, base_url });
     modelsCache = data.models || [];
-    renderModelList(modelsCache, data.message || "");
+    // Static catalog owns the models view; backend feeds the agent modal dropdown.
     updateModelDropdowns(modelsCache);
   } catch (err) {
     console.error("Error fetching models:", err);
@@ -432,10 +736,9 @@ function renderModelList(models, message) {
 
 function selectModel(m) {
   activeModel = m.id;
-  kpiModel.textContent = m.name;
-  kpiModelProvider.textContent = m.provider || "Nous Research";
+  setText(kpiModel, m.name);
+  setText(kpiModelProvider, m.provider || "Nous Research");
   showToast(`Switched model to: ${m.name}`);
-  renderModelList(modelsCache);
 }
 
 const CURATED_MODELS = [
@@ -574,15 +877,241 @@ function updateModelDropdowns(models) {
 }
 
 function initSearch() {
-  modelSearchInput.addEventListener("input", (e) => {
-    const q = e.target.value.toLowerCase().trim();
-    if (!q) { renderModelList(modelsCache); return; }
-    const filtered = modelsCache.filter(m =>
-      m.id.toLowerCase().includes(q) ||
-      m.name.toLowerCase().includes(q) ||
-      (m.provider && m.provider.toLowerCase().includes(q))
-    );
-    renderModelList(filtered);
+  const filter = document.getElementById("modelProviderFilter");
+  if (filter && !filter.dataset.ready) {
+    filter.dataset.ready = "1";
+    ["OpenAI", "Anthropic", "Google Gemini", "OpenCode", "DeepSeek"].forEach(p => {
+      const o = document.createElement("option");
+      o.value = p;
+      o.textContent = p;
+      filter.appendChild(o);
+    });
+    filter.addEventListener("change", renderCatalog);
+  }
+  modelSearchInput.addEventListener("input", renderCatalog);
+  renderCatalog();
+}
+
+// ----------------------------------------------------------------
+// Model catalog (static demo): provider sections + cards + detail
+// ----------------------------------------------------------------
+const MODEL_CATALOG = [
+  { provider: "OpenAI", models: [
+    { id: "openai/gpt-4o", name: "GPT-4o",
+      desc: { en: "Multimodal model for reasoning, text and vision.", vi: "Mô hình đa phương thức cho suy luận, văn bản và thị giác." },
+      context: "128K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"] },
+    { id: "openai/gpt-4o-mini", name: "GPT-4o mini",
+      desc: { en: "Fast, affordable everyday model.", vi: "Mô hình nhanh, tiết kiệm cho tác vụ hằng ngày." },
+      context: "128K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"] },
+    { id: "openai/o3", name: "o3",
+      desc: { en: "Deep reasoning for complex problems.", vi: "Suy luận sâu cho bài toán phức tạp." },
+      context: "200K", inputs: "Text · Image", caps: ["Text", "Reasoning", "Tools"] }
+  ] },
+  { provider: "Anthropic", models: [
+    { id: "anthropic/claude-3-5-sonnet", name: "Claude 3.5 Sonnet",
+      desc: { en: "Balanced intelligence for agents and analysis.", vi: "Cân bằng cho agent và phân tích." },
+      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"] },
+    { id: "anthropic/claude-3-5-haiku", name: "Claude 3.5 Haiku",
+      desc: { en: "Fast responses at low cost.", vi: "Phản hồi nhanh, chi phí thấp." },
+      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision"] },
+    { id: "anthropic/claude-3-opus", name: "Claude 3 Opus",
+      desc: { en: "Most capable Claude for hard tasks.", vi: "Claude mạnh nhất cho tác vụ khó." },
+      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"] }
+  ] },
+  { provider: "Google Gemini", models: [
+    { id: "google/gemini-2.5-pro", name: "Gemini 2.5 Pro",
+      desc: { en: "Flagship reasoning over huge context.", vi: "Chủ lực suy luận trên ngữ cảnh lớn." },
+      context: "1M", inputs: "Text · Image · Audio", caps: ["Text", "Vision", "Reasoning"] },
+    { id: "google/gemini-2.5-flash", name: "Gemini 2.5 Flash",
+      desc: { en: "Speed and efficiency by default.", vi: "Nhanh và hiệu quả mặc định." },
+      context: "1M", inputs: "Text · Image · Audio", caps: ["Text", "Vision", "Tools"] },
+    { id: "google/gemini-2.0-flash", name: "Gemini 2.0 Flash",
+      desc: { en: "Proven all-rounder release.", vi: "Bản toàn diện đã kiểm chứng." },
+      context: "1M", inputs: "Text · Image", caps: ["Text", "Vision", "JSON"] }
+  ] },
+  { provider: "OpenCode", models: [
+    { id: "opencode/reasoning", name: "OpenCode Reasoning",
+      desc: { en: "Step-by-step planning and code tasks.", vi: "Lập kế hoạch từng bước và tác vụ code." },
+      context: "128K", inputs: "Text · Code", caps: ["Text", "Reasoning", "Tools"] },
+    { id: "opencode/fast", name: "OpenCode Fast",
+      desc: { en: "Instant answers for simple prompts.", vi: "Trả lời tức thì cho prompt đơn giản." },
+      context: "64K", inputs: "Text · Code", caps: ["Text", "Tools"] }
+  ] },
+  { provider: "DeepSeek", models: [
+    { id: "deepseek/deepseek-v3", name: "DeepSeek V3",
+      desc: { en: "Strong open model for chat and code.", vi: "Mô hình mở mạnh cho chat và code." },
+      context: "128K", inputs: "Text · Code", caps: ["Text", "Reasoning", "JSON"] },
+    { id: "deepseek/deepseek-r1", name: "DeepSeek R1",
+      desc: { en: "Open reasoning specialist.", vi: "Chuyên gia suy luận mở." },
+      context: "128K", inputs: "Text", caps: ["Text", "Reasoning"] }
+  ] }
+];
+
+function catalogModelLang() {
+  try {
+    return (typeof chromeLang !== "undefined" && chromeLang === "vi") ? "vi" : "en";
+  } catch (err) {
+    return "en";
+  }
+}
+
+function catalogSelectedId() {
+  try {
+    return localStorage.getItem("agentos.catalog_model") || "openai/gpt-4o";
+  } catch (err) {
+    return "openai/gpt-4o";
+  }
+}
+
+function modelMatches(m, providerName, q) {
+  if (providerName && m._provider !== providerName) return false;
+  if (!q) return true;
+  const hay = (m.name + " " + m.id + " " + m._provider + " " + m.desc.en + " " + (m.caps || []).join(" ")).toLowerCase();
+  return hay.indexOf(q) !== -1;
+}
+
+function renderCatalog() {
+  const box = document.getElementById("modelListContainer");
+  const input = document.getElementById("modelSearchInput");
+  const filter = document.getElementById("modelProviderFilter");
+  if (!box || !input) return;
+  const q = input.value.toLowerCase().trim();
+  const provider = filter ? filter.value : "";
+  const lang = catalogModelLang();
+  const selected = catalogSelectedId();
+  let total = 0;
+  box.innerHTML = "";
+  MODEL_CATALOG.forEach(group => {
+    if (provider && group.provider !== provider) return;
+    const shown = group.models.filter(m => {
+      m._provider = group.provider;
+      return modelMatches(m, "", q);
+    });
+    if (!shown.length) return;
+    total += shown.length;
+    const sec = document.createElement("section");
+    sec.className = "model-provider";
+    sec.innerHTML = '<div class="model-provider-head"><h3>' + group.provider +
+      '</h3><span class="model-provider-count">' + shown.length + " " +
+      (shown.length === 1 ? chromeT("models.one_model") : chromeT("models.count")) + "</span></div>";
+    const grid = document.createElement("div");
+    grid.className = "model-grid";
+    shown.forEach(m => {
+      const isSel = m.id === selected;
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "model-card" + (isSel ? " selected" : "");
+      card.setAttribute("data-model", m.id);
+      card.setAttribute("aria-pressed", isSel ? "true" : "false");
+      card.innerHTML =
+        '<span class="model-card-top"><span class="model-card-provider">' + group.provider + "</span>" +
+        '<span class="status-dot ' + (isSel ? "healthy" : "") + '" aria-hidden="true"></span></span>' +
+        '<span class="model-card-name">' + m.name + "</span>" +
+        '<span class="model-card-desc">' + m.desc[lang] + "</span>" +
+        '<span class="model-card-meta"><span><strong>' + chromeT("models.f_context") +
+        "</strong><span>" + m.context + "</span></span>" +
+        '<span><strong>' + chromeT("models.f_inputs") + "</strong><span>" + m.inputs + "</span></span></span>" +
+        '<span class="model-card-foot"><span class="model-caps">' +
+        m.caps.map(c => '<span class="model-cap">' + c + "</span>").join("") + "</span>" +
+        '<span class="model-use">' + (isSel ? "✓ " + chromeT("models.selected") : chromeT("models.use")) + "</span></span>";
+      card.addEventListener("click", () => openModelDetail(m.id));
+      grid.appendChild(card);
+    });
+    sec.appendChild(grid);
+    box.appendChild(sec);
+  });
+  if (modelCountBadge) {
+    modelCountBadge.textContent = total + " " + chromeT("models.count");
+  }
+  if (!total) {
+    box.innerHTML = '<div class="model-empty"><p><strong>' + chromeT("models.empty_title") +
+      "</strong></p><p>" + chromeT("models.empty_sub") + "</p></div>";
+  }
+}
+
+function findCatalogModel(id) {
+  for (const group of MODEL_CATALOG) {
+    for (const m of group.models) {
+      if (m.id === id) return { group: group.provider, model: m };
+    }
+  }
+  return null;
+}
+
+let detailModelId = null;
+
+function openModelDetail(id) {
+  const found = findCatalogModel(id);
+  if (!found) return;
+  detailModelId = id;
+  const lang = catalogModelLang();
+  const m = found.model;
+  const selected = catalogSelectedId() === id;
+  document.getElementById("modelDetailProvider").textContent = found.group;
+  document.getElementById("modelDetailName").textContent = m.name;
+  document.getElementById("modelDetailDesc").textContent = m.desc[lang];
+  document.getElementById("modelDetailContext").textContent = m.context;
+  document.getElementById("modelDetailInputs").textContent = m.inputs;
+  const st = document.getElementById("modelDetailStatus");
+  st.innerHTML = "";
+  const dot = document.createElement("span");
+  dot.className = "status-dot" + (selected ? " healthy" : "");
+  dot.setAttribute("aria-hidden", "true");
+  const tx = document.createElement("span");
+  tx.textContent = selected ? chromeT("models.selected") : chromeT("models.available");
+  st.appendChild(dot);
+  st.appendChild(tx);
+  document.getElementById("modelDetailCaps").innerHTML =
+    m.caps.map(c => '<span class="model-cap">' + c + "</span>").join("");
+  const useBtn = document.getElementById("btnUseModelDetail");
+  useBtn.textContent = chromeT("models.use");
+  const overlay = document.getElementById("modelDetailModal");
+  overlay.hidden = false;
+  requestAnimationFrame(() => overlay.classList.add("active"));
+  document.getElementById("btnCloseModelDetail").focus();
+}
+
+function closeModelDetail(restoreFocus) {
+  const overlay = document.getElementById("modelDetailModal");
+  if (!overlay) return;
+  overlay.classList.remove("active");
+  overlay.hidden = true;
+  detailModelId = null;
+  if (restoreFocus !== false) {
+    const card = document.querySelector('.model-card[data-model="' + (window.__lastModelCard || "") + '"]');
+    if (card) card.focus();
+  }
+}
+
+function useCatalogModel(id) {
+  try {
+    localStorage.setItem("agentos.catalog_model", id);
+  } catch (err) { /* never break UI */ }
+  renderCatalog();
+  openModelDetailRefresh();
+}
+
+function openModelDetailRefresh() {
+  if (detailModelId) openModelDetail(detailModelId);
+}
+
+function initModelDetail() {
+  const overlay = document.getElementById("modelDetailModal");
+  if (!overlay) return;
+  const close = () => closeModelDetail();
+  document.getElementById("btnCloseModelDetail").addEventListener("click", close);
+  document.getElementById("btnCancelModelDetail").addEventListener("click", close);
+  overlay.addEventListener("click", e => { if (e.target === overlay) close(); });
+  document.getElementById("btnUseModelDetail").addEventListener("click", () => {
+    if (detailModelId) {
+      window.__lastModelCard = detailModelId;
+      useCatalogModel(detailModelId);
+      closeModelDetail(false);
+      showToast(chromeT("models.switched"));
+    }
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !overlay.hidden) close();
   });
 }
 
@@ -593,12 +1122,12 @@ async function fetchAgents() {
   try {
     const data = await window.AgentApi.agents.getAgents();
     agentsCache = data.agents || [];
-    renderAgentCards(agentsCache);
+    // Static catalog owns the grid now; backend feeds right panel + dropdown.
     renderRightPanelAgents(agentsCache);
     updateAgentSelectDropdown(agentsCache);
     kpiAgentCount.textContent = agentsCache.length;
   } catch (err) {
-    agentCardGrid.innerHTML = `<div class="loading-placeholder">${chromeT("agents.load_error")}</div>`;
+    renderRightPanelAgents([]);
   }
 }
 
@@ -738,6 +1267,7 @@ function initModal() {
     });
   }
 
+  if (btnOpenCreateAgent) {
   btnOpenCreateAgent.addEventListener("click", () => {
     formIsEdit.value = "0";
     modalTitle.textContent = "Deploy New Agent";
@@ -765,6 +1295,7 @@ function initModal() {
     document.getElementById("btnSubmitAgent").textContent = "Deploy Agent";
     agentModal.classList.add("active");
   });
+  }
 
   btnCloseModal.addEventListener("click", closeModal);
   btnCancelModal.addEventListener("click", closeModal);
@@ -1669,9 +2200,10 @@ const CHROME_I18N = {
   en: {
     "meta.title": "Dashboard — AgentOS",
     "nav.new": "New Task", "nav.chat": "Chat", "nav.agents": "Agents",
+    "nav.docs": "Documents", "nav.storage": "Data Storage",
     "nav.analytics": "Analytics", "nav.models": "Models", "nav.logs": "Logs", "nav.settings": "Settings",
     "search.ph": "Search across tasks, agents, knowledge, and more...",
-    "view.agents_t": "Configured Crew Agents", "view.agents_s": "Direct synchronization with agents.yaml",
+    "view.agents_t": "Agents", "view.agents_s": "Specialized agents working together on complex tasks.",
     "view.analytics_t": "Token Analytics & Telemetry", "view.analytics_s": "Real-time token consumption and cost tracking",
     "view.models_t": "Available Inference Models", "view.models_s": "Discover and select LLM models from your provider",
     "view.logs_t": "System & API Logs Monitor", "view.logs_s": "Real-time tracking of API GET/POST requests, warnings, and error diagnostics",
@@ -1683,8 +2215,45 @@ const CHROME_I18N = {
     "rp.task": "Current Task", "rp.plan": "Plan", "rp.agents": "Agents", "rp.sources": "RAG Sources", "rp.tools": "Tools",
     "rp.tool_sql": "SQL Query", "rp.tool_py": "Python", "rp.tool_charts": "Charts", "rp.tool_web": "Web Search", "rp.tool_files": "Files",
     "agents.load_error": "Error loading agents.yaml",
+    "an.live": "Live Telemetry",
+    "an.k_tokens": "Total Tokens", "an.k_tokens_s1": "Prompt:", "an.k_tokens_s2": "Comp:",
+    "an.k_cost": "Est. Cost", "an.k_latency": "Avg. Latency", "an.k_calls": "Total Calls",
+    "an.breakdown": "Token Consumption Breakdown",
+    "an.m_prompt": "Prompt (Input):", "an.m_comp": "Completion (Output):",
+    "an.history": "Recent Execution History",
+    "an.th_run": "Run ID", "an.th_time": "Time", "an.th_agent": "Agent", "an.th_model": "Model",
+    "an.th_prompt": "Prompt", "an.th_comp": "Comp", "an.th_total": "Total", "an.th_status": "Status",
+    "agents.back": "← Back to Agents",
+    "agents.f_role": "Role", "agents.f_desc": "Description", "agents.f_caps": "Capabilities",
+    "agents.f_know": "Knowledge", "agents.f_tools": "Tools", "agents.f_status": "Status",
+    "agents.n_research": "Research", "agents.r_research": "Research · RAG", "agents.d_research": "Search, collect and analyze information relevant to the request.",
+    "agents.n_planner": "Planner", "agents.r_planner": "Planning", "agents.d_planner": "Break complex requirements into executable steps.",
+    "agents.n_builder": "Builder", "agents.r_builder": "Execution", "agents.d_builder": "Execute plan steps and produce output.",
+    "agents.n_rag": "RAG", "agents.r_rag": "Knowledge", "agents.d_rag": "Retrieve relevant information from data sources and documents.",
+    "agents.n_analyst": "Analyst", "agents.r_analyst": "Analytics", "agents.d_analyst": "Turn collected data and results into structured insights.",
+    "agents.n_reviewer": "Reviewer", "agents.r_reviewer": "Validation", "agents.d_reviewer": "Check accuracy, completeness and quality of results.",
     "agents.loading": "Loading agent definitions...",
+    "agents.add": "Add Agent", "agents.view_details": "View details", "agents.flow": "Workflow",
+    "agents.objective": "Objective", "agents.capabilities": "Capabilities",
+    "agents.workflow": "Workflow", "agents.status": "Status",
+    "agents.edit": "Edit", "agents.edit_title": "Edit Agent",
+    "agents.cancel": "Cancel", "agents.save": "Save changes", "agents.saved": "Agent updated.",
+    "agents.st_active": "Active", "agents.st_paused": "Paused", "agents.st_disabled": "Disabled",
     "models.count": "Models",
+    "models.one_model": "Model",
+    "models.available": "Available",
+    "models.selected": "Selected",
+    "models.use": "Use model",
+    "models.close": "Close",
+    "models.switched": "Model selected.",
+    "models.search_ph": "Search models, providers, or capabilities...",
+    "models.all_providers": "All providers",
+    "models.empty_title": "No models found",
+    "models.empty_sub": "Try another search or provider.",
+    "models.f_context": "Context window",
+    "models.f_inputs": "Supported input",
+    "models.f_status": "Status",
+    "models.f_caps": "Capabilities",
     "rp.src_dw": "Enterprise Data Warehouse", "rp.src_kb": "Finance KnowledgeBase", "rp.src_q3": "Q3 Reports & Docs",
     "logs.auto_on": "Auto-Refresh: ON", "logs.auto_off": "Auto-Refresh: OFF",
     "logs.refresh": "Refresh", "logs.clear": "Clear",
@@ -1703,20 +2272,41 @@ const CHROME_I18N = {
     "logs.m_type": "Log Type / Category", "logs.m_url": "Endpoint / Route",
     "logs.m_summary": "Summary Message", "logs.m_context": "Detailed Context & Response Data",
     "logs.m_copy": "Copy JSON", "logs.m_close": "Close Inspector",
-    "set.llm": "LLM Provider", "set.provider": "Select Provider",
+    "set.llm": "LLM Provider", "set.provider": "Provider",
+    "set.llm_sub": "Choose the provider and model AgentOS will use.",
     "set.custom_url": "Custom Endpoint Base URL", "set.apikey": "API Key",
+    "set.base_url": "Base URL (optional)",
+    "set.base_url_hint": "Leave empty to use the provider default.",
     "set.key_hint": "Stored in .env: <code>OPENAI_API_KEY</code>",
-    "set.save_env": "Auto-save key to <code>.env</code> file",
-    "set.validate": "Validate & Fetch Models", "set.conn": "Connection Status",
+    "set.save_env": "Remember this key on this device",
+    "set.model": "Default model",
+    "set.replace": "Replace key", "set.clear_key": "Clear",
+    "set.key_on": "API key configured", "set.key_off": "No API key configured",
+    "set.save_test": "Save & test connection",
+    "set.test_key": "Test API key",
+    "set.clear_config": "Clear configuration",
+    "set.validate": "Validate & Fetch Models", "set.conn": "Connection",
+    "set.conn_sub": "Current provider connection status.",
+    "set.row_status": "Status", "set.row_model": "Model",
+    "set.row_key": "API Key", "set.row_verified": "Last verified",
+    "set.st_notconnected": "Not connected", "set.st_saved": "Saved — test to verify",
+    "set.st_testing": "Testing…", "set.st_connected": "Connected", "set.st_error": "Connection failed",
+    "set.cta_configure": "Configure provider", "set.cta_test_again": "Test again", "set.cta_retry": "Retry",
+    "set.msg_no_key": "Add an API key to connect a provider.",
+    "set.msg_saved": "Key saved. Press Save & test to verify.",
+    "set.msg_testing": "Testing connection…",
+    "set.msg_ok": "Provider is ready to use.",
+    "set.msg_error": "Unable to verify the provider configuration.",
     "set.st_status": "API Status", "set.st_provider": "Provider", "set.st_latency": "Latency",
     "set.st_model": "Default Model", "set.st_model_provider": "Model Provider", "set.st_key": "Key"
   },
   vi: {
     "meta.title": "Bảng điều khiển — AgentOS",
     "nav.new": "Tác vụ mới", "nav.chat": "Đoạn chat", "nav.agents": "Agent",
+    "nav.docs": "Tài liệu", "nav.storage": "Lưu trữ dữ liệu",
     "nav.analytics": "Phân tích", "nav.models": "Mô hình", "nav.logs": "Nhật ký", "nav.settings": "Cài đặt",
     "search.ph": "Tìm kiếm tác vụ, agent, kiến thức và hơn nữa...",
-    "view.agents_t": "Agent Crew đã cấu hình", "view.agents_s": "Đồng bộ trực tiếp với agents.yaml",
+    "view.agents_t": "Agent", "view.agents_s": "Đội ngũ agent chuyên biệt phối hợp để xử lý các tác vụ phức tạp.",
     "view.analytics_t": "Phân tích token & Telemetry", "view.analytics_s": "Tiêu thụ token và chi phí theo thời gian thực",
     "view.models_t": "Mô hình suy luận khả dụng", "view.models_s": "Khám phá và chọn mô hình LLM từ nhà cung cấp",
     "view.logs_t": "Giám sát log hệ thống & API", "view.logs_s": "Theo dõi trực tiếp request API GET/POST, cảnh báo và lỗi",
@@ -1728,8 +2318,45 @@ const CHROME_I18N = {
     "rp.task": "Tác vụ hiện tại", "rp.plan": "Kế hoạch", "rp.agents": "Agent", "rp.sources": "Nguồn RAG", "rp.tools": "Công cụ",
     "rp.tool_sql": "Truy vấn SQL", "rp.tool_py": "Python", "rp.tool_charts": "Biểu đồ", "rp.tool_web": "Tìm kiếm Web", "rp.tool_files": "Tệp",
     "agents.load_error": "Lỗi tải agents.yaml",
+    "an.live": "Telemet trực tiếp",
+    "an.k_tokens": "Tổng token", "an.k_tokens_s1": "Nhập:", "an.k_tokens_s2": "Xuất:",
+    "an.k_cost": "Chi phí ước tính", "an.k_latency": "Độ trễ TB", "an.k_calls": "Tổng lượt gọi",
+    "an.breakdown": "Phân bổ tiêu thụ token",
+    "an.m_prompt": "Nhập (Input):", "an.m_comp": "Xuất (Output):",
+    "an.history": "Lịch sử thực thi gần đây",
+    "an.th_run": "Mã chạy", "an.th_time": "Giờ", "an.th_agent": "Agent", "an.th_model": "Model",
+    "an.th_prompt": "Nhập", "an.th_comp": "Xuất", "an.th_total": "Tổng", "an.th_status": "Trạng thái",
+    "agents.back": "← Về danh sách Agent",
+    "agents.f_role": "Vai trò", "agents.f_desc": "Mô tả", "agents.f_caps": "Năng lực",
+    "agents.f_know": "Tri thức", "agents.f_tools": "Công cụ", "agents.f_status": "Trạng thái",
+    "agents.n_research": "Research", "agents.r_research": "Nghiên cứu · RAG", "agents.d_research": "Tìm kiếm, thu thập và phân tích thông tin liên quan đến yêu cầu.",
+    "agents.n_planner": "Planner", "agents.r_planner": "Lập kế hoạch", "agents.d_planner": "Chia yêu cầu phức tạp thành các bước có thể thực thi.",
+    "agents.n_builder": "Builder", "agents.r_builder": "Thực thi", "agents.d_builder": "Thực hiện các bước trong kế hoạch và tạo kết quả đầu ra.",
+    "agents.n_rag": "RAG", "agents.r_rag": "Tri thức", "agents.d_rag": "Truy xuất thông tin liên quan từ nguồn dữ liệu và tài liệu.",
+    "agents.n_analyst": "Analyst", "agents.r_analyst": "Phân tích", "agents.d_analyst": "Biến dữ liệu và kết quả thu thập được thành insight có cấu trúc.",
+    "agents.n_reviewer": "Reviewer", "agents.r_reviewer": "Kiểm định", "agents.d_reviewer": "Kiểm tra tính chính xác, tính đầy đủ và chất lượng của kết quả.",
     "agents.loading": "Đang tải định nghĩa agent...",
+    "agents.add": "Thêm Agent", "agents.view_details": "Xem chi tiết", "agents.flow": "Luồng việc",
+    "agents.objective": "Mục tiêu", "agents.capabilities": "Năng lực",
+    "agents.workflow": "Luồng việc", "agents.status": "Trạng thái",
+    "agents.edit": "Sửa", "agents.edit_title": "Sửa Agent",
+    "agents.cancel": "Hủy", "agents.save": "Lưu thay đổi", "agents.saved": "Đã cập nhật Agent.",
+    "agents.st_active": "Hoạt động", "agents.st_paused": "Tạm dừng", "agents.st_disabled": "Vô hiệu",
     "models.count": "Mô hình",
+    "models.one_model": "Mô hình",
+    "models.available": "Khả dụng",
+    "models.selected": "Đã chọn",
+    "models.use": "Dùng model",
+    "models.close": "Đóng",
+    "models.switched": "Đã chọn model.",
+    "models.search_ph": "Tìm model, provider hoặc khả năng...",
+    "models.all_providers": "Mọi provider",
+    "models.empty_title": "Không tìm thấy model",
+    "models.empty_sub": "Thử từ khóa hoặc provider khác.",
+    "models.f_context": "Ngữ cảnh",
+    "models.f_inputs": "Đầu vào hỗ trợ",
+    "models.f_status": "Trạng thái",
+    "models.f_caps": "Khả năng",
     "rp.src_dw": "Kho dữ liệu doanh nghiệp", "rp.src_kb": "Cơ sở tri thức Tài chính", "rp.src_q3": "Báo cáo & Tài liệu Q3",
     "logs.auto_on": "Tự động: BẬT", "logs.auto_off": "Tự động: TẮT",
     "logs.refresh": "Làm mới", "logs.clear": "Xóa",
@@ -1748,11 +2375,31 @@ const CHROME_I18N = {
     "logs.m_type": "Loại / Nhóm log", "logs.m_url": "Endpoint / Route",
     "logs.m_summary": "Thông điệp tóm tắt", "logs.m_context": "Ngữ cảnh & Dữ liệu phản hồi",
     "logs.m_copy": "Chép JSON", "logs.m_close": "Đóng xem chi tiết",
-    "set.llm": "Nhà cung cấp LLM", "set.provider": "Chọn nhà cung cấp",
+    "set.llm": "Nhà cung cấp LLM", "set.provider": "Nhà cung cấp",
+    "set.llm_sub": "Chọn provider và model AgentOS sẽ dùng.",
     "set.custom_url": "Base URL endpoint tùy chỉnh", "set.apikey": "API Key",
+    "set.base_url": "Base URL (tùy chọn)",
+    "set.base_url_hint": "Để trống để dùng mặc định của provider.",
     "set.key_hint": "Đã lưu trong .env: <code>OPENAI_API_KEY</code>",
-    "set.save_env": "Tự lưu key vào file <code>.env</code>",
-    "set.validate": "Xác thực & Tải mô hình", "set.conn": "Trạng thái kết nối",
+    "set.save_env": "Ghi nhớ key trên thiết bị này",
+    "set.model": "Model mặc định",
+    "set.replace": "Đổi key", "set.clear_key": "Xóa",
+    "set.key_on": "Đã cấu hình API key", "set.key_off": "Chưa cấu hình API key",
+    "set.save_test": "Lưu & kiểm tra kết nối",
+    "set.test_key": "Kiểm tra API key",
+    "set.clear_config": "Xóa cấu hình",
+    "set.validate": "Xác thực & Tải mô hình", "set.conn": "Kết nối",
+    "set.conn_sub": "Trạng thái kết nối provider hiện tại.",
+    "set.row_status": "Trạng thái", "set.row_model": "Model",
+    "set.row_key": "API Key", "set.row_verified": "Xác minh lúc",
+    "set.st_notconnected": "Chưa kết nối", "set.st_saved": "Đã lưu — bấm kiểm tra để xác nhận",
+    "set.st_testing": "Đang kiểm tra…", "set.st_connected": "Đã kết nối", "set.st_error": "Kết nối thất bại",
+    "set.cta_configure": "Cấu hình provider", "set.cta_test_again": "Kiểm tra lại", "set.cta_retry": "Thử lại",
+    "set.msg_no_key": "Thêm API key để kết nối provider.",
+    "set.msg_saved": "Đã lưu key. Bấm Lưu & kiểm tra để xác nhận.",
+    "set.msg_testing": "Đang kiểm tra kết nối…",
+    "set.msg_ok": "Provider sẵn sàng sử dụng.",
+    "set.msg_error": "Không thể xác minh cấu hình provider.",
     "set.st_status": "Trạng thái API", "set.st_provider": "Nhà cung cấp", "set.st_latency": "Độ trễ",
     "set.st_model": "Mô hình mặc định", "set.st_model_provider": "Nhà cung cấp mô hình", "set.st_key": "Key"
   }
@@ -1783,6 +2430,9 @@ function applyChromeLang(next) {
     b.setAttribute("aria-pressed", b.getAttribute("data-lang-btn") === chromeLang ? "true" : "false");
   });
   refreshWelcomeLang();
+  if (typeof refreshAgentDetailLang === "function") refreshAgentDetailLang();
+  if (typeof refreshSettingsLang === "function") refreshSettingsLang();
+  if (typeof renderCatalog === "function") renderCatalog();
 }
 
 function initChromePrefs() {
@@ -1803,5 +2453,284 @@ function initChromePrefs() {
     try { tt.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark"))); } catch (err) { /* never break UI */ }
   }
   applyChromeLang();
+}
+
+// ----------------------------------------------------------------
+// Agent catalog (static demo): cards + in-main detail. Shell untouched.
+// ----------------------------------------------------------------
+const AGENT_CATALOG = {
+  research: { color: "#3B82F6", state: "active",
+    name: { en: "Research", vi: "Research" },
+    role: { en: "Research · RAG", vi: "Nghiên cứu · RAG" },
+    desc: { en: "Search, collect and analyze information relevant to the request.", vi: "Tìm kiếm, thu thập và phân tích thông tin liên quan đến yêu cầu." },
+    objective: { en: "Search, collect and analyze information relevant to the request from approved knowledge and web sources.", vi: "Tìm kiếm, thu thập và phân tích thông tin liên quan đến yêu cầu từ tri thức được duyệt và nguồn web." },
+    caps: [
+      { t: { en: "Web search", vi: "Tìm kiếm web" }, d: { en: "Scan 74 sources", vi: "Quét 74 nguồn" } },
+      { t: { en: "Source citing", vi: "Trích dẫn nguồn" }, d: { en: "Cite policy docs", vi: "Trích dẫn tài liệu" } },
+      { t: { en: "Summaries", vi: "Tóm tắt" }, d: { en: "Condense findings", vi: "Cô đọng phát hiện" } }
+    ],
+    flow: { en: ["User Request", "Research", "Planner"], vi: ["Yêu cầu", "Research", "Planner"] },
+    flowAt: 1,
+    statusText: { en: "Active", vi: "Hoạt động" },
+    statusDesc: { en: "Agent is ready to receive and process tasks.", vi: "Agent sẵn sàng nhận và xử lý nhiệm vụ." } },
+  planner: { color: "#8B5CF6", state: "active",
+    name: { en: "Planner", vi: "Planner" },
+    role: { en: "Planning", vi: "Lập kế hoạch" },
+    desc: { en: "Break complex requirements into executable steps.", vi: "Chia yêu cầu phức tạp thành các bước có thể thực thi." },
+    objective: { en: "Analyze the input request, identify the tasks to perform, and create a structured plan for downstream agents to execute.", vi: "Phân tích yêu cầu đầu vào, xác định các nhiệm vụ cần thực hiện và tạo kế hoạch có cấu trúc để các agent tiếp theo thực thi." },
+    caps: [
+      { t: { en: "Task decomposition", vi: "Phân rã tác vụ" }, d: { en: "Split complex tasks", vi: "Chia task phức tạp" } },
+      { t: { en: "Sequencing", vi: "Sắp xếp bước" }, d: { en: "Define order", vi: "Xác định thứ tự" } },
+      { t: { en: "Plan approval", vi: "Phê duyệt kế hoạch" }, d: { en: "Review the plan", vi: "Kiểm tra plan" } }
+    ],
+    flow: { en: ["Research", "Planner", "Builder"], vi: ["Research", "Planner", "Builder"] },
+    flowAt: 1,
+    statusText: { en: "Active", vi: "Hoạt động" },
+    statusDesc: { en: "Agent is ready to receive and process tasks.", vi: "Agent sẵn sàng nhận và xử lý nhiệm vụ." } },
+  builder: { color: "#F59E0B", state: "active",
+    name: { en: "Builder", vi: "Builder" },
+    role: { en: "Execution", vi: "Thực thi" },
+    desc: { en: "Execute plan steps and produce output.", vi: "Thực hiện các bước trong kế hoạch và tạo kết quả đầu ra." },
+    objective: { en: "Execute each step of the approved plan through tools and handoffs, producing verifiable output.", vi: "Thực thi từng bước của kế hoạch đã duyệt qua công cụ và bàn giao, tạo đầu ra kiểm chứng được." },
+    caps: [
+      { t: { en: "Tool calls", vi: "Gọi công cụ" }, d: { en: "Run SQL, Python, files", vi: "Chạy SQL, Python, file" } },
+      { t: { en: "Retries", vi: "Thử lại" }, d: { en: "Recover failed steps", vi: "Khôi phục bước lỗi" } },
+      { t: { en: "Handoffs", vi: "Bàn giao" }, d: { en: "Pass results on", vi: "Chuyển kết quả tiếp" } }
+    ],
+    flow: { en: ["Planner", "Builder", "Result"], vi: ["Planner", "Builder", "Kết quả"] },
+    flowAt: 1,
+    statusText: { en: "Active", vi: "Hoạt động" },
+    statusDesc: { en: "Agent is ready to receive and process tasks.", vi: "Agent sẵn sàng nhận và xử lý nhiệm vụ." } },
+  rag: { color: "#10B981", state: "active",
+    name: { en: "RAG", vi: "RAG" },
+    role: { en: "Knowledge", vi: "Tri thức" },
+    desc: { en: "Retrieve relevant information from data sources and documents.", vi: "Truy xuất thông tin liên quan từ nguồn dữ liệu và tài liệu." },
+    objective: { en: "Ground agents in approved documents and policies so every answer carries its sources.", vi: "Gắn agent với tài liệu và chính sách được duyệt để mọi câu trả lời đều có nguồn." },
+    caps: [
+      { t: { en: "Vector search", vi: "Tìm kiếm vector" }, d: { en: "Semantic retrieval", vi: "Truy xuất ngữ nghĩa" } },
+      { t: { en: "Reranking", vi: "Xếp hạng lại" }, d: { en: "Best sources first", vi: "Nguồn tốt lên trước" } },
+      { t: { en: "Citations", vi: "Trích dẫn" }, d: { en: "Every claim cited", vi: "Mọi khẳng định có nguồn" } }
+    ],
+    flow: { en: ["Knowledge", "RAG", "Agent"], vi: ["Tri thức", "RAG", "Agent"] },
+    flowAt: 1,
+    statusText: { en: "Active", vi: "Hoạt động" },
+    statusDesc: { en: "Agent is ready to receive and process tasks.", vi: "Agent sẵn sàng nhận và xử lý nhiệm vụ." } },
+  analyst: { color: "#06B6D4", state: "active",
+    name: { en: "Analyst", vi: "Analyst" },
+    role: { en: "Analytics", vi: "Phân tích" },
+    desc: { en: "Turn collected data and results into structured insights.", vi: "Biến dữ liệu và kết quả thu thập được thành insight có cấu trúc." },
+    objective: { en: "Analyze warehouse data and collected findings, flag variances, and shape structured insights for decisions.", vi: "Phân tích dữ liệu kho và phát hiện đã thu thập, gắn cờ biến động và tạo insight có cấu trúc cho quyết định." },
+    caps: [
+      { t: { en: "SQL analysis", vi: "Phân tích SQL" }, d: { en: "Query warehouses", vi: "Truy vấn kho" } },
+      { t: { en: "Variance flags", vi: "Gắn cờ biến động" }, d: { en: "Spot anomalies", vi: "Phát hiện bất thường" } },
+      { t: { en: "Reports", vi: "Báo cáo" }, d: { en: "Structured outputs", vi: "Đầu ra có cấu trúc" } }
+    ],
+    flow: { en: ["Data", "Analyst", "Result"], vi: ["Dữ liệu", "Analyst", "Kết quả"] },
+    flowAt: 1,
+    statusText: { en: "Active", vi: "Hoạt động" },
+    statusDesc: { en: "Agent is ready to receive and process tasks.", vi: "Agent sẵn sàng nhận và xử lý nhiệm vụ." } },
+  reviewer: { color: "#F59E0B", state: "paused",
+    name: { en: "Reviewer", vi: "Reviewer" },
+    role: { en: "Validation", vi: "Kiểm định" },
+    desc: { en: "Check accuracy, completeness and quality of results.", vi: "Kiểm tra tính chính xác, tính đầy đủ và chất lượng của kết quả." },
+    objective: { en: "Validate every result against sources and quality gates before anything is delivered.", vi: "Kiểm định mọi kết quả với nguồn và cổng chất lượng trước khi giao." },
+    caps: [
+      { t: { en: "Cross-checks", vi: "Đối chiếu" }, d: { en: "Verify against sources", vi: "Xác minh với nguồn" } },
+      { t: { en: "Quality gates", vi: "Cổng chất lượng" }, d: { en: "Block bad outputs", vi: "Chặn đầu ra kém" } }
+    ],
+    flow: { en: ["Result", "Reviewer", "Final"], vi: ["Kết quả", "Reviewer", "Cuối cùng"] },
+    flowAt: 1,
+    statusText: { en: "Paused", vi: "Tạm dừng" },
+    statusDesc: { en: "Paused — not taking new tasks.", vi: "Tạm dừng — không nhận tác vụ mới." } }
+};
+
+function catalogLang() {
+  try {
+    return (typeof chromeLang !== "undefined" && chromeLang === "vi") ? "vi" : "en";
+  } catch (err) {
+    return "en";
+  }
+}
+
+let currentAgentKey = null;
+
+function agentStateCls(a) {
+  return a.state === "active" ? "st-active" : a.state === "paused" ? "st-paused" : "st-disabled";
+}
+
+function agentDotCls(a) {
+  return a.state === "active" ? "agent-dot-active" : a.state === "paused" ? "agent-dot-paused" : "agent-dot-disabled";
+}
+
+function agentStateName(a, lang) {
+  if (a.state === "active") return chromeT("agents.st_active");
+  if (a.state === "paused") return chromeT("agents.st_paused");
+  return chromeT("agents.st_disabled");
+}
+
+function openAgentDetail(key) {
+  const a = AGENT_CATALOG[key];
+  if (!a) return;
+  currentAgentKey = key;
+  const lang = catalogLang();
+  const grid = document.getElementById("agentCardGrid");
+  const detail = document.getElementById("agentDetail");
+  if (!grid || !detail) return;
+  document.getElementById("agentDetailName").textContent = a.name[lang] + " Agent";
+  document.getElementById("agentDetailRole").textContent = a.role[lang];
+  document.getElementById("agentDetailDesc").textContent = a.desc[lang];
+  document.getElementById("agentDetailObjective").textContent = a.objective[lang];
+  document.getElementById("agentDetailCaps").innerHTML = "";
+  a.caps.forEach(c => {
+    const el = document.createElement("div");
+    el.className = "agent-cap";
+    const t = document.createElement("strong");
+    t.textContent = c.t[lang];
+    const d = document.createElement("span");
+    d.textContent = c.d[lang];
+    el.appendChild(t);
+    el.appendChild(d);
+    document.getElementById("agentDetailCaps").appendChild(el);
+  });
+  document.getElementById("agentDetailFlow").innerHTML = "";
+  a.flow[lang].forEach((node, i) => {
+    const li = document.createElement("li");
+    if (i === a.flowAt) li.className = "is-current";
+    li.innerHTML = '<span class="agent-flow-rail" aria-hidden="true"><span class="agent-flow-dot"></span><span class="agent-flow-line"></span></span>';
+    const n = document.createElement("span");
+    n.className = "agent-flow-node";
+    n.textContent = node;
+    li.appendChild(n);
+    document.getElementById("agentDetailFlow").appendChild(li);
+  });
+  const pill = document.getElementById("agentDetailStatus");
+  pill.className = "agent-profile-status " + agentStateCls(a);
+  pill.innerHTML = "";
+  const dot = document.createElement("span");
+  dot.className = "agent-dot " + agentDotCls(a);
+  dot.setAttribute("aria-hidden", "true");
+  const st = document.createElement("span");
+  st.textContent = a.statusText[lang];
+  pill.appendChild(dot);
+  pill.appendChild(st);
+  document.getElementById("agentDetailStatusLine").innerHTML = "";
+  const dot2 = document.createElement("span");
+  dot2.className = "agent-dot " + agentDotCls(a);
+  dot2.setAttribute("aria-hidden", "true");
+  const st2 = document.createElement("span");
+  st2.textContent = a.statusDesc[lang];
+  document.getElementById("agentDetailStatusLine").appendChild(dot2);
+  document.getElementById("agentDetailStatusLine").appendChild(st2);
+  grid.hidden = true;
+  detail.hidden = false;
+}
+
+function refreshAgentDetailLang() {
+  const detail = document.getElementById("agentDetail");
+  if (detail && !detail.hidden && currentAgentKey) openAgentDetail(currentAgentKey);
+}
+
+function closeAgentDetail() {
+  const grid = document.getElementById("agentCardGrid");
+  const detail = document.getElementById("agentDetail");
+  if (!grid || !detail) return;
+  currentAgentKey = null;
+  detail.hidden = true;
+  grid.hidden = false;
+}
+
+function openAgentEdit() {
+  const a = currentAgentKey ? AGENT_CATALOG[currentAgentKey] : null;
+  if (!a) return;
+  const lang = catalogLang();
+  document.getElementById("agentEditRole").value = a.role[lang];
+  document.getElementById("agentEditDesc").value = a.desc[lang];
+  document.getElementById("agentEditStatus").value = a.state;
+  const overlay = document.getElementById("agentEditModal");
+  overlay.hidden = false;
+  requestAnimationFrame(() => overlay.classList.add("active"));
+  document.getElementById("agentEditRole").focus();
+}
+
+function closeAgentEdit() {
+  const overlay = document.getElementById("agentEditModal");
+  if (!overlay) return;
+  overlay.classList.remove("active");
+  overlay.hidden = true;
+  const grid = document.getElementById("agentCardGrid");
+  if (grid) {
+    const card = grid.querySelector('[data-agent="' + currentAgentKey + '"]');
+    if (card) card.focus();
+  }
+}
+
+function saveAgentEdit() {
+  const a = currentAgentKey ? AGENT_CATALOG[currentAgentKey] : null;
+  if (!a) { closeAgentEdit(); return; }
+  const lang = catalogLang();
+  const role = document.getElementById("agentEditRole").value.trim();
+  const desc = document.getElementById("agentEditDesc").value.trim();
+  const state = document.getElementById("agentEditStatus").value;
+  if (!role || !desc) return;
+  const btn = document.getElementById("btnSaveAgentEdit");
+  btn.disabled = true;
+  const original = btn.innerHTML;
+  btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>';
+  // Simulated system update delay (demo data, in-memory).
+  setTimeout(() => {
+    a.role[lang] = role;
+    a.desc[lang] = desc;
+    a.state = state === "paused" ? "paused" : state === "disabled" ? "disabled" : "active";
+    const states = { active: { en: "Active", vi: "Hoạt động" }, paused: { en: "Paused", vi: "Tạm dừng" }, disabled: { en: "Disabled", vi: "Vô hiệu" } };
+    a.statusText = states[a.state];
+    a.statusDesc = {
+      en: a.state === "active" ? "Agent is ready to receive and process tasks." : a.state === "paused" ? "Paused — not taking new tasks." : "Disabled — turned off by admin.",
+      vi: a.state === "active" ? "Agent sẵn sàng nhận và xử lý nhiệm vụ." : a.state === "paused" ? "Tạm dừng — không nhận tác vụ mới." : "Đã tắt — do admin vô hiệu."
+    };
+    // Sync the visible card (status dot/text, role, desc).
+    const grid = document.getElementById("agentCardGrid");
+    if (grid) {
+      const card = grid.querySelector('[data-agent="' + currentAgentKey + '"]');
+      if (card) {
+        const dot = card.querySelector(".agent-dot");
+        if (dot) dot.className = "agent-dot " + agentDotCls(a);
+        const statusSpans = card.querySelectorAll(".agent-card-status span:last-child");
+        if (statusSpans.length) statusSpans[statusSpans.length - 1].textContent = a.statusText[lang];
+        const roleEl = card.querySelector(".agent-card-role");
+        if (roleEl) roleEl.textContent = role;
+        const descEl = card.querySelector(".agent-card-desc");
+        if (descEl) descEl.textContent = desc;
+      }
+    }
+    btn.disabled = false;
+    btn.innerHTML = original;
+    closeAgentEdit();
+    openAgentDetail(currentAgentKey);
+    showToast(chromeT("agents.saved"));
+  }, 900);
+}
+
+function initCatalog() {
+  const grid = document.getElementById("agentCardGrid");
+  if (!grid) return;
+  grid.querySelectorAll("[data-agent]").forEach(card => {
+    card.addEventListener("click", () => openAgentDetail(card.getAttribute("data-agent")));
+  });
+  const back = document.getElementById("agentBack");
+  if (back) back.addEventListener("click", closeAgentDetail);
+  const edit = document.getElementById("agentEdit");
+  if (edit) edit.addEventListener("click", openAgentEdit);
+  const close = document.getElementById("btnCloseAgentEdit");
+  if (close) close.addEventListener("click", closeAgentEdit);
+  const cancel = document.getElementById("btnCancelAgentEdit");
+  if (cancel) cancel.addEventListener("click", closeAgentEdit);
+  const overlay = document.getElementById("agentEditModal");
+  if (overlay) overlay.addEventListener("click", e => { if (e.target === overlay) closeAgentEdit(); });
+  const save = document.getElementById("btnSaveAgentEdit");
+  if (save) save.addEventListener("click", saveAgentEdit);
+  document.addEventListener("keydown", e => {
+    const ov = document.getElementById("agentEditModal");
+    if (e.key === "Escape" && ov && !ov.hidden) closeAgentEdit();
+  });
 }
 

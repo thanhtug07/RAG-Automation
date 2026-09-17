@@ -41,7 +41,16 @@
 /* 1 · Navigation */
 .HomeNav { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid var(--home-border); }
 .HomeNav-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 68px; display: flex; align-items: center; justify-content: flex-start; gap: 28px; }
-.HomeNav-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 1.125rem; color: var(--home-text); flex: none; }
+.HomeNav-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; color: var(--home-text); flex: none; }
+
+/* Smooth page entry (matches app pages) */
+@keyframes page-in { from { opacity: 0; transform: translateY(6px); } }
+
+#main { animation: page-in 0.28s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  #main { animation: none; }
+}
 .HomeNav-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex: 1 1 auto; min-width: 0; }
 .HomeNav-links { display: flex; align-items: center; gap: 4px; margin-right: 0; }
 .HomeNav-links a { text-decoration: none; color: var(--home-text-2); font-size: 0.9375rem; font-weight: 500; padding: 8px 14px; border-radius: 6px; }

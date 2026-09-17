@@ -12,6 +12,8 @@
 | Register | `auth/register/index.html` | same | `register.js` | No (public) | — (mock; `auth.api` CONTRACT-READY) | OK, mock |
 | Dashboard | `dashboard/index.html` | same | `dashboard.js` | No (public, user decision) | `system`, `agents` (BACKEND-AVAILABLE) | Integrated phase 2 |
 | Documents | `documents/index.html` | same | `documents.js` | **Yes** → login | — (BACKEND-NOT-AVAILABLE, mock-local) | Guarded, mock |
+| Policies | `policies/index.html` | same | `policies.js` | No (public) | — (BACKEND-NOT-AVAILABLE, mock-local; `policies.api` CONTRACT-READY) | OK, mock |
+| Data Storage | `data-storage/index.html` | same | `data-storage.js` | No (public) | — (BACKEND-NOT-AVAILABLE, mock-local; `storage.api` CONTRACT-READY) | OK, mock |
 
 No pages exist for agents/workflows/knowledge/tools/runs/settings/conversations/
 experiments — no routes created for them (per scope).

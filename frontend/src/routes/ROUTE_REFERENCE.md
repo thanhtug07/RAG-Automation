@@ -10,6 +10,8 @@
 | Register | `pages/auth/register/index.html` | Public | — (mock; `auth.api` CONTRACT-READY) |
 | Dashboard | `pages/dashboard/index.html` | Public (user decision) | `system` (health, keys, models, telemetry, test-agent, logs), `agents` (CRUD) |
 | Documents | `pages/documents/index.html` | **Protected → login** | — (BACKEND-NOT-AVAILABLE, mock-local) |
+| Policies | `pages/policies/index.html` | Public | — (BACKEND-NOT-AVAILABLE, mock-local) |
+| Data Storage | `pages/data-storage/index.html` | Public | — (BACKEND-NOT-AVAILABLE, mock-local) |
 
 No routes for agents/workflows/knowledge/tools/runs/settings/conversations/
 experiments — those pages do not exist.

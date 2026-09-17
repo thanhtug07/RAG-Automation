@@ -10,7 +10,9 @@
     { id: "login", file: "auth/login/index.html", auth: false, apis: [] },
     { id: "register", file: "auth/register/index.html", auth: false, apis: [] },
     { id: "dashboard", file: "dashboard/index.html", auth: false, apis: ["system", "agents"] },
-    { id: "documents", file: "documents/index.html", auth: true, apis: [] }
+    { id: "documents", file: "documents/index.html", auth: true, apis: [] },
+    { id: "policies", file: "policies/index.html", auth: false, apis: [] },
+    { id: "data-storage", file: "data-storage/index.html", auth: false, apis: [] }
   ];
 
   function byId(id) {

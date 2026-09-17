@@ -63,7 +63,14 @@
               <line x1="16" y1="13" x2="8" y2="13"></line>
               <line x1="16" y1="17" x2="8" y2="17"></line>
             </svg>
-            <span>Tài liệu</span>
+            <span data-i18n="nav.docs">Tài liệu</span>
+          </a>
+          <a class="nav-item" href="../policies/index.html" title="Policies">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+            <span>Policies</span>
           </a>
           <button class="nav-item" data-view="analyticsView" title="Analytics">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -71,6 +78,14 @@
             </svg>
             <span data-i18n="nav.analytics">Analytics</span>
           </button>
+          <a class="nav-item" href="../data-storage/index.html" title="Data Storage">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            <span data-i18n="nav.storage">Data Storage</span>
+          </a>
           <button class="nav-item" data-view="modelsView" title="Models">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -257,19 +272,125 @@
       <div class="view-panel" id="agentsView">
         <div class="view-header">
           <div>
-            <h2 data-i18n="view.agents_t">Configured Crew Agents</h2>
-            <p class="view-subtitle" data-i18n="view.agents_s">Direct synchronization with agents.yaml</p>
+            <h2 data-i18n="view.agents_t">Agents</h2>
+            <p class="view-subtitle" data-i18n="view.agents_s">Specialized agents working together on complex tasks.</p>
           </div>
           <button class="btn btn-primary" id="btnOpenCreateAgent">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            <span>Add Agent</span>
+            <span data-i18n="agents.add">Add Agent</span>
           </button>
         </div>
         <div class="agent-card-grid" id="agentCardGrid">
-          <div class="loading-placeholder" data-i18n="agents.loading">Loading agent definitions...</div>
+          <button type="button" class="agent-mission-card agent-catalog-card" data-agent="research">
+            <span class="agent-card-status"><span class="agent-dot agent-dot-active" aria-hidden="true"></span><span data-i18n="agents.st_active">Active</span></span>
+            <span class="agent-card-name" data-i18n="agents.n_research">Research</span>
+            <span class="agent-card-role" data-i18n="agents.r_research">Nghiên cứu · RAG</span>
+            <span class="agent-card-desc" data-i18n="agents.d_research">Tìm kiếm, thu thập và phân tích thông tin liên quan đến yêu cầu.</span>
+            <span class="agent-card-flow"><span class="agent-flow-label" data-i18n="agents.flow">Workflow</span><span class="agent-flow-path">Input → Research → Planner</span></span>
+            <span class="agent-card-more"><span data-i18n="agents.view_details">View details</span><span aria-hidden="true"> →</span></span>
+          </button>
+          <button type="button" class="agent-mission-card agent-catalog-card" data-agent="planner">
+            <span class="agent-card-status"><span class="agent-dot agent-dot-active" aria-hidden="true"></span><span data-i18n="agents.st_active">Active</span></span>
+            <span class="agent-card-name" data-i18n="agents.n_planner">Planner</span>
+            <span class="agent-card-role" data-i18n="agents.r_planner">Lập kế hoạch</span>
+            <span class="agent-card-desc" data-i18n="agents.d_planner">Chia yêu cầu phức tạp thành các bước có thể thực thi.</span>
+            <span class="agent-card-flow"><span class="agent-flow-label" data-i18n="agents.flow">Workflow</span><span class="agent-flow-path">Research → Planner → Builder</span></span>
+            <span class="agent-card-more"><span data-i18n="agents.view_details">View details</span><span aria-hidden="true"> →</span></span>
+          </button>
+          <button type="button" class="agent-mission-card agent-catalog-card" data-agent="builder">
+            <span class="agent-card-status"><span class="agent-dot agent-dot-active" aria-hidden="true"></span><span data-i18n="agents.st_active">Active</span></span>
+            <span class="agent-card-name" data-i18n="agents.n_builder">Builder</span>
+            <span class="agent-card-role" data-i18n="agents.r_builder">Thực thi</span>
+            <span class="agent-card-desc" data-i18n="agents.d_builder">Thực hiện các bước trong kế hoạch và tạo kết quả đầu ra.</span>
+            <span class="agent-card-flow"><span class="agent-flow-label" data-i18n="agents.flow">Workflow</span><span class="agent-flow-path">Planner → Builder → Result</span></span>
+            <span class="agent-card-more"><span data-i18n="agents.view_details">View details</span><span aria-hidden="true"> →</span></span>
+          </button>
+          <button type="button" class="agent-mission-card agent-catalog-card" data-agent="rag">
+            <span class="agent-card-status"><span class="agent-dot agent-dot-active" aria-hidden="true"></span><span data-i18n="agents.st_active">Active</span></span>
+            <span class="agent-card-name" data-i18n="agents.n_rag">RAG</span>
+            <span class="agent-card-role" data-i18n="agents.r_rag">Tri thức</span>
+            <span class="agent-card-desc" data-i18n="agents.d_rag">Truy xuất thông tin liên quan từ nguồn dữ liệu và tài liệu.</span>
+            <span class="agent-card-flow"><span class="agent-flow-label" data-i18n="agents.flow">Workflow</span><span class="agent-flow-path">Knowledge → RAG → Agent</span></span>
+            <span class="agent-card-more"><span data-i18n="agents.view_details">View details</span><span aria-hidden="true"> →</span></span>
+          </button>
+          <button type="button" class="agent-mission-card agent-catalog-card" data-agent="analyst">
+            <span class="agent-card-status"><span class="agent-dot agent-dot-active" aria-hidden="true"></span><span data-i18n="agents.st_active">Active</span></span>
+            <span class="agent-card-name" data-i18n="agents.n_analyst">Analyst</span>
+            <span class="agent-card-role" data-i18n="agents.r_analyst">Phân tích</span>
+            <span class="agent-card-desc" data-i18n="agents.d_analyst">Biến dữ liệu và kết quả thu thập được thành insight có cấu trúc.</span>
+            <span class="agent-card-flow"><span class="agent-flow-label" data-i18n="agents.flow">Workflow</span><span class="agent-flow-path">Data → Analyst → Result</span></span>
+            <span class="agent-card-more"><span data-i18n="agents.view_details">View details</span><span aria-hidden="true"> →</span></span>
+          </button>
+          <button type="button" class="agent-mission-card agent-catalog-card" data-agent="reviewer">
+            <span class="agent-card-status"><span class="agent-dot agent-dot-paused" aria-hidden="true"></span><span data-i18n="agents.st_paused">Paused</span></span>
+            <span class="agent-card-name" data-i18n="agents.n_reviewer">Reviewer</span>
+            <span class="agent-card-role" data-i18n="agents.r_reviewer">Kiểm định</span>
+            <span class="agent-card-desc" data-i18n="agents.d_reviewer">Kiểm tra tính chính xác, tính đầy đủ và chất lượng của kết quả.</span>
+            <span class="agent-card-flow"><span class="agent-flow-label" data-i18n="agents.flow">Workflow</span><span class="agent-flow-path">Result → Reviewer → Final</span></span>
+            <span class="agent-card-more"><span data-i18n="agents.view_details">View details</span><span aria-hidden="true"> →</span></span>
+          </button>
+        </div>
+        <div class="agent-detail" id="agentDetail" hidden>
+          <div class="agent-detail-top">
+            <button type="button" class="btn btn-secondary btn-sm" id="agentBack" data-i18n="agents.back">← Back to Agents</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="agentEdit" data-i18n="agents.edit">Edit</button>
+          </div>
+          <div class="agent-profile-head">
+            <span class="agent-profile-status" id="agentDetailStatus"></span>
+            <h3 class="agent-detail-name" id="agentDetailName"></h3>
+            <p class="agent-profile-role" id="agentDetailRole"></p>
+            <p class="agent-profile-desc" id="agentDetailDesc"></p>
+          </div>
+          <section class="agent-profile-section" aria-labelledby="agentObjectiveTitle">
+            <h4 id="agentObjectiveTitle" data-i18n="agents.objective">Objective</h4>
+            <p class="agent-objective" id="agentDetailObjective"></p>
+          </section>
+          <section class="agent-profile-section" aria-labelledby="agentCapsTitle">
+            <h4 id="agentCapsTitle" data-i18n="agents.capabilities">Capabilities</h4>
+            <div class="agent-caps" id="agentDetailCaps"></div>
+          </section>
+          <section class="agent-profile-section" aria-labelledby="agentFlowTitle">
+            <h4 id="agentFlowTitle" data-i18n="agents.workflow">Workflow</h4>
+            <ol class="agent-flow" id="agentDetailFlow"></ol>
+          </section>
+          <section class="agent-profile-section" aria-labelledby="agentStatusTitle">
+            <h4 id="agentStatusTitle" data-i18n="agents.status">Status</h4>
+            <p class="agent-status-line" id="agentDetailStatusLine"></p>
+          </section>
+        </div>
+      </div>
+      <!-- Agent quick edit modal (demo, in-memory) -->
+      <div class="modal-overlay" id="agentEditModal" hidden>
+        <div class="modal-content modal-sm" role="dialog" aria-modal="true" aria-labelledby="agentEditTitle">
+          <div class="modal-header">
+            <h3 id="agentEditTitle" data-i18n="agents.edit_title">Edit Agent</h3>
+            <button type="button" class="modal-close" id="btnCloseAgentEdit" aria-label="Close">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="agentEditRole" data-i18n="agents.f_role">Role</label>
+              <input type="text" id="agentEditRole" class="form-input" maxlength="60" />
+            </div>
+            <div class="form-group">
+              <label for="agentEditDesc" data-i18n="agents.f_desc">Description</label>
+              <textarea id="agentEditDesc" class="form-textarea" rows="3" maxlength="240"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="agentEditStatus" data-i18n="agents.f_status">Status</label>
+              <select id="agentEditStatus" class="form-select">
+                <option value="active" data-i18n="agents.st_active">Active</option>
+                <option value="paused" data-i18n="agents.st_paused">Paused</option>
+                <option value="disabled" data-i18n="agents.st_disabled">Disabled</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCancelAgentEdit" data-i18n="agents.cancel">Cancel</button>
+            <button type="button" class="btn btn-primary" id="btnSaveAgentEdit" data-i18n="agents.save">Save changes</button>
+          </div>
         </div>
       </div>
 
@@ -280,36 +401,36 @@
             <h2 data-i18n="view.analytics_t">Token Analytics & Telemetry</h2>
             <p class="view-subtitle" data-i18n="view.analytics_s">Real-time token consumption and cost tracking</p>
           </div>
-          <span class="badge badge-blue">Live Telemetry</span>
+          <span class="badge badge-blue" data-i18n="an.live">Live Telemetry</span>
         </div>
 
         <!-- KPI Row -->
         <div class="kpi-grid">
           <div class="kpi-card">
-            <span class="kpi-label">Total Tokens</span>
+            <span class="kpi-label" data-i18n="an.k_tokens">Total Tokens</span>
             <span class="kpi-value" id="kpiTotalTokens">21,070</span>
-            <span class="kpi-sub">Prompt: <strong id="kpiPromptTokens">14,250</strong> · Comp: <strong id="kpiCompTokens">6,820</strong></span>
+            <span class="kpi-sub"><span data-i18n="an.k_tokens_s1">Prompt:</span> <strong id="kpiPromptTokens">14,250</strong> · <span data-i18n="an.k_tokens_s2">Comp:</span> <strong id="kpiCompTokens">6,820</strong></span>
           </div>
           <div class="kpi-card">
-            <span class="kpi-label">Est. Cost</span>
+            <span class="kpi-label" data-i18n="an.k_cost">Est. Cost</span>
             <span class="kpi-value" id="telemetryEstCost">$0.052</span>
           </div>
           <div class="kpi-card">
-            <span class="kpi-label">Avg. Latency</span>
+            <span class="kpi-label" data-i18n="an.k_latency">Avg. Latency</span>
             <span class="kpi-value" id="telemetryAvgLat">420ms</span>
           </div>
           <div class="kpi-card">
-            <span class="kpi-label">Total Calls</span>
+            <span class="kpi-label" data-i18n="an.k_calls">Total Calls</span>
             <span class="kpi-value" id="telemetryTotalCalls">3</span>
           </div>
         </div>
 
         <!-- Token Meter -->
         <div class="analytics-card">
-          <h4>Token Consumption Breakdown</h4>
+          <h4 data-i18n="an.breakdown">Token Consumption Breakdown</h4>
           <div class="meter-labels">
-            <span>Prompt (Input): <strong id="meterPromptVal">68%</strong></span>
-            <span>Completion (Output): <strong id="meterCompVal">32%</strong></span>
+            <span><span data-i18n="an.m_prompt">Prompt (Input):</span> <strong id="meterPromptVal">68%</strong></span>
+            <span><span data-i18n="an.m_comp">Completion (Output):</span> <strong id="meterCompVal">32%</strong></span>
           </div>
           <div class="progress-bar">
             <div class="progress-fill prompt-fill" id="meterPromptBar" style="width: 68%;"></div>
@@ -319,19 +440,19 @@
 
         <!-- Execution History -->
         <div class="analytics-card">
-          <h4>Recent Execution History</h4>
+          <h4 data-i18n="an.history">Recent Execution History</h4>
           <div class="table-container">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Run ID</th>
-                  <th>Time</th>
-                  <th>Agent</th>
-                  <th>Model</th>
-                  <th>Prompt</th>
-                  <th>Comp</th>
-                  <th>Total</th>
-                  <th>Status</th>
+                  <th data-i18n="an.th_run">Run ID</th>
+                  <th data-i18n="an.th_time">Time</th>
+                  <th data-i18n="an.th_agent">Agent</th>
+                  <th data-i18n="an.th_model">Model</th>
+                  <th data-i18n="an.th_prompt">Prompt</th>
+                  <th data-i18n="an.th_comp">Comp</th>
+                  <th data-i18n="an.th_total">Total</th>
+                  <th data-i18n="an.th_status">Status</th>
                 </tr>
               </thead>
               <tbody id="telemetryHistoryBody"></tbody>
@@ -345,18 +466,49 @@
         <div class="view-header">
           <div>
             <h2 data-i18n="view.models_t">Available Inference Models</h2>
-            <p class="view-subtitle" data-i18n="view.models_s">Discover and select LLM models from your provider</p>
+            <p class="view-subtitle" data-i18n="view.models_s">Discover and select LLM models from your providers</p>
           </div>
           <span class="model-count-badge" id="modelCountBadge">11 Models</span>
         </div>
         <div class="model-search-bar">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="modelSearchInput" class="search-input" placeholder="Search models (e.g. hermes, 4o, claude)...">
+          <input type="text" id="modelSearchInput" class="search-input" placeholder="Search models, providers, or capabilities..." data-i18n-ph="models.search_ph" aria-label="Search models">
+          <label class="sr-only" for="modelProviderFilter">Filter by provider</label>
+          <select id="modelProviderFilter" class="mini-select">
+            <option value="" data-i18n="models.all_providers">All providers</option>
+          </select>
         </div>
         <div class="model-list" id="modelListContainer"></div>
+      </div>
+
+      <!-- Model detail modal -->
+      <div class="modal-overlay" id="modelDetailModal" hidden>
+        <div class="modal-content modal-sm" role="dialog" aria-modal="true" aria-labelledby="modelDetailName">
+          <div class="modal-header">
+            <div>
+              <p class="model-detail-provider" id="modelDetailProvider"></p>
+              <h3 id="modelDetailName"></h3>
+            </div>
+            <button type="button" class="modal-close" id="btnCloseModelDetail" aria-label="Close">×</button>
+          </div>
+          <div class="modal-body">
+            <p class="model-detail-desc" id="modelDetailDesc"></p>
+            <dl class="model-detail-grid">
+              <div><dt data-i18n="models.f_context">Context window</dt><dd id="modelDetailContext"></dd></div>
+              <div><dt data-i18n="models.f_inputs">Supported input</dt><dd id="modelDetailInputs"></dd></div>
+              <div><dt data-i18n="models.f_status">Status</dt><dd id="modelDetailStatus"></dd></div>
+            </dl>
+            <p class="model-detail-caps-label" data-i18n="models.f_caps">Capabilities</p>
+            <div class="model-caps" id="modelDetailCaps"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCancelModelDetail" data-i18n="models.close">Close</button>
+            <button type="button" class="btn btn-primary" id="btnUseModelDetail" data-i18n="models.use">Use model</button>
+          </div>
+        </div>
       </div>
 
       <!-- ===== VIEW: Logs & Monitoring ===== -->
@@ -470,51 +622,80 @@
 
         <div class="settings-grid">
           <div class="settings-card">
-            <h4 data-i18n="set.llm">LLM Provider</h4>
+            <div class="settings-card-head">
+              <div>
+                <h4 data-i18n="set.llm">LLM Provider</h4>
+                <p class="settings-card-sub" data-i18n="set.llm_sub">Choose the provider and model AgentOS will use.</p>
+              </div>
+              <span class="status-pill-sm" id="leftHeadStatus"><span class="status-dot-sm" aria-hidden="true"></span><span id="leftHeadStatusText">Not connected</span></span>
+            </div>
             <div class="form-group">
-              <label for="providerSelect" data-i18n="set.provider">Select Provider</label>
+              <label for="providerSelect" data-i18n="set.provider">Provider</label>
               <select id="providerSelect" class="form-select">
-                <option value="openai" selected>OpenAI (gpt-4o, gpt-4o-mini, o1)</option>
-                <option value="openrouter">OpenRouter (Hermes 3 405B, Claude, Llama)</option>
-                <option value="groq">Groq High-Speed (Llama 3.3, Mixtral)</option>
-                <option value="ollama">Ollama (Local / Self-hosted)</option>
-                <option value="custom">Custom OpenAI-Compatible Base URL</option>
+                <option value="openai" selected>OpenAI</option>
+                <option value="anthropic">Anthropic</option>
+                <option value="gemini">Google Gemini</option>
+                <option value="openrouter">OpenRouter</option>
+                <option value="custom">Custom / OpenAI-compatible</option>
               </select>
+              <span class="input-hint" id="providerHint">General-purpose models with strong tool support.</span>
             </div>
 
-            <div class="form-group" id="customUrlGroup" style="display: none;">
-              <label for="customBaseUrl" data-i18n="set.custom_url">Custom Endpoint Base URL</label>
-              <input type="text" id="customBaseUrl" class="form-input" placeholder="http://localhost:11434/v1">
+            <div class="form-group" id="customUrlGroup">
+              <label for="customBaseUrl" data-i18n="set.base_url">Base URL (optional)</label>
+              <input type="text" id="customBaseUrl" class="form-input" placeholder="https://api.openai.com/v1">
+              <span class="input-hint" id="baseUrlHint" data-i18n="set.base_url_hint">Leave empty to use the provider default.</span>
             </div>
 
             <div class="form-group">
               <label for="apiKeyInput" data-i18n="set.apikey">API Key</label>
-              <div class="input-with-action">
-                <input type="password" id="apiKeyInput" class="form-input" placeholder="sk-..." autocomplete="off">
-                <button class="icon-btn" id="btnToggleKey" title="Toggle visibility">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                </button>
+              <div class="key-box" id="keyBox">
+                <div class="input-with-action" id="keyEditRow">
+                  <input type="password" id="apiKeyInput" class="form-input" placeholder="sk-..." autocomplete="off">
+                  <button class="icon-btn" id="btnToggleKey" title="Toggle visibility" aria-label="Show API key" aria-pressed="false">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </button>
+                </div>
+                <div class="key-masked" id="keyMaskedRow" hidden>
+                  <code id="keyMaskedText">sk-••••••••••••••••</code>
+                  <button type="button" class="linklike" id="btnReplaceKey" data-i18n="set.replace">Replace key</button>
+                  <button type="button" class="linklike linklike-danger" id="btnClearKey" data-i18n="set.clear_key">Clear</button>
+                </div>
               </div>
-              <span class="input-hint" id="keyConfiguredNotice" data-i18n-html="set.key_hint">Stored in .env: <code>OPENAI_API_KEY</code></span>
+              <span class="key-status" id="keyStatusLine"><span class="status-dot-sm" aria-hidden="true"></span><span id="keyStatusText">No API key configured</span></span>
+            </div>
+
+            <div class="form-group">
+              <label for="modelSelect" data-i18n="set.model">Default model</label>
+              <select id="modelSelect" class="form-select"></select>
+              <span class="input-hint" id="modelHint"></span>
             </div>
 
             <div class="checkbox-row">
               <label class="custom-checkbox">
                 <input type="checkbox" id="chkSaveEnv" checked>
                 <span class="checkmark"></span>
-                <span data-i18n-html="set.save_env">Auto-save key to <code>.env</code> file</span>
+                <span data-i18n="set.save_env">Remember this key on this device</span>
               </label>
             </div>
 
-            <button class="btn btn-primary full-width" id="btnValidateAndFetch">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span data-i18n="set.validate">Validate & Fetch Models</span>
-            </button>
+            <p class="form-status" id="formStatusMsg" role="status"></p>
+
+            <div class="settings-actions">
+              <button class="btn btn-primary" id="btnValidateAndFetch">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="btnValidateLabel" data-i18n="set.save_test">Save &amp; test connection</span>
+              </button>
+              <button type="button" class="btn btn-secondary" id="btnTestKey">
+                <span data-i18n="set.test_key">Test API key</span>
+              </button>
+              <button type="button" class="linklike" id="btnClearConfig" data-i18n="set.clear_config">Clear configuration</button>
+            </div>
 
             <!-- Ping Result -->
             <div class="ping-result-box" id="pingResultBox" style="display: none;">
@@ -527,31 +708,28 @@
           </div>
 
           <div class="settings-card">
-            <h4 data-i18n="set.conn">Connection Status</h4>
+            <h4 data-i18n="set.conn">Connection</h4>
+            <p class="settings-card-sub" data-i18n="set.conn_sub">Current provider connection status.</p>
             <div class="status-info-grid">
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_status">API Status</span>
-                <span class="info-value" id="kpiStatus">ACTIVE</span>
+                <span class="info-label" data-i18n="set.row_status">Status</span>
+                <span class="info-value" id="connStatus">Not configured</span>
               </div>
               <div class="status-info-item">
                 <span class="info-label" data-i18n="set.st_provider">Provider</span>
-                <span class="info-value" id="kpiProvider">OpenAI / OpenRouter</span>
+                <span class="info-value" id="connProvider">—</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_latency">Latency</span>
-                <span class="info-value" id="kpiLatency">RTT: 18ms</span>
+                <span class="info-label" data-i18n="set.row_model">Model</span>
+                <span class="info-value" id="connModel">—</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_model">Default Model</span>
-                <span class="info-value" id="kpiModel">Hermes 3 (405B)</span>
+                <span class="info-label" data-i18n="set.row_key">API Key</span>
+                <span class="info-value" id="connKey">Not configured</span>
               </div>
               <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_model_provider">Model Provider</span>
-                <span class="info-value" id="kpiModelProvider">Nous Research</span>
-              </div>
-              <div class="status-info-item">
-                <span class="info-label" data-i18n="set.st_key">Key</span>
-                <span class="info-value" id="headerKeyStatus">API Key: Configured</span>
+                <span class="info-label" data-i18n="set.row_verified">Last verified</span>
+                <span class="info-value" id="connVerified">—</span>
               </div>
             </div>
           </div>
