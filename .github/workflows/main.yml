@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main", "master"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Web Static Directory
+        run: |
+          mkdir -p public
+          if [ -d "frontend" ]; then
+            cp -r frontend/* public/
+          else
+            cp -r ./* public/ || true
+          fi
+          # Tạo file index.html mặc định nếu chưa có giao diện HTML
+          if [ ! -f "public/index.html" ]; then
+            echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RAG Automation</title></head><body><h1>RAG Automation Project</h1><p>Hệ thống đã deploy thành công trên GitHub Pages.</p></body></html>' > public/index.html
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
