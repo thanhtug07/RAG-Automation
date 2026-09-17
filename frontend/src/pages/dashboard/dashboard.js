@@ -266,8 +266,7 @@ function loadSavedSettings() {
 async function checkHealth() {
   const provider = providerSelect.value;
   try {
-    const res = await fetch(`/api/health?provider=${encodeURIComponent(provider)}`);
-    const data = await res.json();
+    const data = await window.AgentApi.system.health({ provider: provider });
 
     if (data.status === "healthy") {
       healthDot.className = "status-dot healthy";
@@ -333,15 +332,10 @@ btnValidateAndFetch.addEventListener("click", async () => {
   btnValidateAndFetch.innerHTML = `<span>Validating...</span>`;
 
   try {
-    const valRes = await fetch("/api/keys/validate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ api_key: key, provider, base_url, save_to_env })
-    });
-    const valData = await valRes.json();
+    const valData = await window.AgentApi.system.validateKey({ api_key: key, provider, base_url, save_to_env });
 
     pingResultBox.style.display = "block";
-    if (valRes.ok && valData.valid) {
+    if (valData.valid) {
       pingResultBox.className = "ping-result-box";
       pingBadge.textContent = "ONLINE 200 OK";
       pingLatency.textContent = `${valData.latency_ms}ms`;
@@ -360,11 +354,19 @@ btnValidateAndFetch.addEventListener("click", async () => {
     }
     await fetchModels(key, provider, base_url);
   } catch (err) {
+    const offline = !err || err.status === 0 || err.code === "NETWORK_ERROR" || err.code === "TIMEOUT";
     pingResultBox.style.display = "block";
     pingResultBox.className = "ping-result-box error";
-    pingBadge.textContent = "CONN FAILED";
-    pingMsg.textContent = "Cannot reach server.";
-    showToast("Network error validating key", "error");
+    if (offline) {
+      pingBadge.textContent = "CONN FAILED";
+      pingMsg.textContent = "Cannot reach server.";
+      showToast("Network error validating key", "error");
+    } else {
+      pingBadge.textContent = `ERROR ${err.status || 400}`;
+      pingMsg.textContent = err.message || "Authentication failed.";
+      showToast(err.message || "Validation failed.", "error");
+    }
+    pingLatency.textContent = "--";
   } finally {
     btnValidateAndFetch.disabled = false;
     btnValidateAndFetch.innerHTML = `
@@ -382,12 +384,7 @@ btnValidateAndFetch.addEventListener("click", async () => {
 // ----------------------------------------------------------------
 async function fetchModels(key = "", provider = "", base_url = "") {
   try {
-    const res = await fetch("/api/models", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ api_key: key, provider: provider || providerSelect.value, base_url })
-    });
-    const data = await res.json();
+    const data = await window.AgentApi.system.getModels({ api_key: key, provider: provider || providerSelect.value, base_url });
     modelsCache = data.models || [];
     renderModelList(modelsCache, data.message || "");
     updateModelDropdowns(modelsCache);
@@ -594,8 +591,7 @@ function initSearch() {
 // ----------------------------------------------------------------
 async function fetchAgents() {
   try {
-    const res = await fetch("/api/agents");
-    const data = await res.json();
+    const data = await window.AgentApi.agents.getAgents();
     agentsCache = data.agents || [];
     renderAgentCards(agentsCache);
     renderRightPanelAgents(agentsCache);
@@ -791,31 +787,18 @@ function initModal() {
     }
 
     try {
-      let res;
+      let resData;
       if (isEdit) {
-        res = await fetch(`/api/agents/${id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ role, goal, backstory, llm })
-        });
+        resData = await window.AgentApi.agents.updateAgent(id, { role, goal, backstory, llm });
       } else {
-        res = await fetch("/api/agents", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id, role, goal, backstory, llm })
-        });
+        resData = await window.AgentApi.agents.createAgent({ id, role, goal, backstory, llm });
       }
 
-      const resData = await res.json();
-      if (res.ok) {
-        showToast(resData.message || "Agent saved!");
-        closeModal();
-        await fetchAgents();
-      } else {
-        showToast(resData.error || "Failed to save agent", "error");
-      }
+      showToast(resData.message || "Agent saved!");
+      closeModal();
+      await fetchAgents();
     } catch (err) {
-      showToast("Server communication error", "error");
+      showToast((err && err.message) || "Server communication error", "error");
     }
   });
 
@@ -852,16 +835,11 @@ async function deleteAgent(id) {
   if (!confirm(`Delete agent '${id.toUpperCase()}' from agents.yaml?`)) return;
 
   try {
-    const res = await fetch(`/api/agents/${id}`, { method: "DELETE" });
-    const data = await res.json();
-    if (res.ok) {
-      showToast(`Agent '${id}' removed`);
-      await fetchAgents();
-    } else {
-      showToast(data.error || "Cannot delete agent", "error");
-    }
+    await window.AgentApi.agents.deleteAgent(id);
+    showToast(`Agent '${id}' removed`);
+    await fetchAgents();
   } catch (err) {
-    showToast("Server error during deletion", "error");
+    showToast((err && err.message) || "Server error during deletion", "error");
   }
 }
 
@@ -870,8 +848,7 @@ async function deleteAgent(id) {
 // ----------------------------------------------------------------
 async function fetchTelemetry() {
   try {
-    const res = await fetch("/api/telemetry");
-    const data = await res.json();
+    const data = await window.AgentApi.system.getTelemetry();
 
     const tot = data.total_tokens || 0;
     const pTot = data.total_prompt_tokens || 0;
@@ -996,25 +973,20 @@ btnRunTest.addEventListener("click", async () => {
   `;
 
   try {
-    const res = await fetch("/api/test-agent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        agent_id,
-        model,
-        prompt,
-        provider: providerSelect.value,
-        base_url: customBaseUrl.value.trim(),
-        api_key: apiKeyInput.value.trim() || localStorage.getItem("aurelia_api_key") || ""
-      })
+    const data = await window.AgentApi.system.testAgent({
+      agent_id,
+      model,
+      prompt,
+      provider: providerSelect.value,
+      base_url: customBaseUrl.value.trim(),
+      api_key: apiKeyInput.value.trim() || localStorage.getItem("aurelia_api_key") || ""
     });
-    const data = await res.json();
 
     // Remove thinking message
     const thinkingEl = document.getElementById(thinkingId);
     if (thinkingEl) thinkingEl.remove();
 
-    if (res.ok && data.success) {
+    if (data.success) {
       // Add result message
       const resultTime = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       appendChatMessage("ai", "AI Assistant", resultTime, `
@@ -1051,7 +1023,7 @@ btnRunTest.addEventListener("click", async () => {
     const thinkingEl = document.getElementById(thinkingId);
     if (thinkingEl) thinkingEl.remove();
     appendChatMessage("ai", "AI Assistant", now, `
-      <p style="color: var(--color-error);">⚠ Network communication failed.</p>
+      <p style="color: var(--color-error);">⚠ ${escapeHtml((err && err.message) || "Network communication failed.")}</p>
     `);
   } finally {
     btnRunTest.disabled = false;
@@ -1171,15 +1143,11 @@ function initLogsView() {
   btnClearLogs.addEventListener("click", async () => {
     if (!confirm("Clear in-memory operational logs?")) return;
     try {
-      const res = await fetch("/api/logs/clear", { method: "POST" });
-      if (res.ok) {
-        showToast("Logs cleared successfully");
-        await fetchLogs();
-      } else {
-        showToast("Failed to clear logs", "error");
-      }
+      await window.AgentApi.system.clearLogs();
+      showToast("Logs cleared successfully");
+      await fetchLogs();
     } catch (err) {
-      showToast("Server error clearing logs", "error");
+      showToast((err && err.message) || "Server error clearing logs", "error");
     }
   });
 }
@@ -1202,15 +1170,13 @@ function stopLogAutoRefresh() {
 
 async function fetchLogs(showLoading = false) {
   const query = logSearchInput.value.trim();
-  let url = `/api/logs?level=${encodeURIComponent(activeLogFilter)}&limit=100`;
-  if (query) {
-    url += `&search=${encodeURIComponent(query)}`;
-  }
 
   try {
-    const res = await fetch(url);
-    if (!res.ok) return;
-    const data = await res.json();
+    const data = await window.AgentApi.system.getLogs({
+      level: activeLogFilter,
+      limit: 100,
+      search: query || undefined
+    });
 
     logsCache = data.logs || [];
     const stats = data.stats || { total: 0, errors: 0, warnings: 0, api_success: 0, api_failed: 0 };
