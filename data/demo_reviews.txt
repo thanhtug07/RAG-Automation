@@ -1,0 +1,101 @@
+DANH GIA SAN PHAM (mau demo)
+Pham Thi Hung danh gia Mat na dat set 10 mieng: 5/5 sao.
+Ngo Thi Phuc danh gia Son li Ruby Woo: 5/5 sao.
+Dang Thi Yen danh gia Son li Ruby Woo: 3/5 sao.
+Ngo Thi Hung danh gia Nuoc tay trang 500ml: 5/5 sao.
+Nguyen Van Mai danh gia Son li Ruby Woo: 5/5 sao.
+Tran Thi Hoa danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Tran Thi Chi danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Dang Thi Nam danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Hoang Van Vy danh gia Mat na dat set 10 mieng: 3/5 sao.
+Pham Thi Dung danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Nguyen Van Phuc danh gia Mat na dat set 10 mieng: 5/5 sao.
+Tran Thi Hung danh gia Sua tam huong hoa 800ml: 4/5 sao.
+Tran Thi Ngoc danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Vu Thi Phuc danh gia Kem duong trang da Vitamin C: 5/5 sao.
+Ngo Thi Phuc danh gia Nuoc tay trang 500ml: 3/5 sao.
+Hoang Van Tuan danh gia Kem nen tu nhien shade 220: 5/5 sao.
+Nguyen Van Phuc danh gia Mat na dat set 10 mieng: 5/5 sao.
+Dang Thi Linh danh gia Serum duong am Hyaluronic Acid 50ml: 5/5 sao.
+Ngo Thi Thu danh gia Son li Ruby Woo: 5/5 sao.
+Le Van Hung danh gia Sua rua mat diu nhe 500ml: 4/5 sao.
+Nguyen Van Vy danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Tran Thi An danh gia Sua rua mat diu nhe 500ml: 4/5 sao.
+Dang Thi Mai danh gia Nuoc tay trang 500ml: 5/5 sao.
+Do Van Hung danh gia Sua tam huong hoa 800ml: 4/5 sao.
+Ngo Thi Chi danh gia Sua rua mat diu nhe 500ml: 4/5 sao.
+Nguyen Van Vy danh gia Son li Ruby Woo: 5/5 sao.
+Vu Thi Yen danh gia Dau goi thao duoc 650ml: 4/5 sao.
+Pham Thi Tuan danh gia Son li Ruby Woo: 5/5 sao.
+Hoang Van Linh danh gia Mat na dat set 10 mieng: 3/5 sao.
+Nguyen Van Nam danh gia Mat na dat set 10 mieng: 5/5 sao.
+Bui Van Trang danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Pham Thi Hung danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Ngo Thi Thu danh gia Son li Ruby Woo: 5/5 sao.
+Pham Thi Tuan danh gia Mat na dat set 10 mieng: 5/5 sao.
+Dang Thi Quan danh gia Nuoc tay trang 500ml: 5/5 sao.
+Bui Van Chi danh gia Son li Ruby Woo: 5/5 sao.
+Pham Thi Hai danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Ngo Thi Thu danh gia Kem nen tu nhien shade 220: 5/5 sao.
+Le Van Nam danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Ngo Thi Chi danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Vu Thi Hai danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Ngo Thi Binh danh gia Son li Ruby Woo: 5/5 sao.
+Dang Thi Binh danh gia Son li Ruby Woo: 5/5 sao.
+Tran Thi Hung danh gia Serum duong am Hyaluronic Acid 50ml: 5/5 sao.
+Vu Thi An danh gia Nuoc tay trang 500ml: 5/5 sao.
+Dang Thi Binh danh gia Nuoc tay trang 500ml: 5/5 sao.
+Dang Thi Mai danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Hoang Van Hai danh gia Kem duong trang da Vitamin C: 4/5 sao.
+Nguyen Van Linh danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Tran Thi Chi danh gia Dau goi thao duoc 650ml: 4/5 sao.
+Le Van Dung danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Nguyen Van Phuc danh gia Dau goi thao duoc 650ml: 4/5 sao.
+Bui Van Chi danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Le Van Trang danh gia Nuoc tay trang 500ml: 5/5 sao.
+Vu Thi Binh danh gia Kem duong trang da Vitamin C: 4/5 sao.
+Tran Thi Minh danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Do Van Trang danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Bui Van Binh danh gia Kem nen tu nhien shade 220: 3/5 sao.
+Tran Thi Phuc danh gia Sua rua mat diu nhe 500ml: 4/5 sao.
+Do Van Yen danh gia Serum duong am Hyaluronic Acid 50ml: 5/5 sao.
+Ngo Thi Tuan danh gia Kem nen tu nhien shade 220: 4/5 sao.
+Tran Thi Minh danh gia Kem chong nang SPF50+ kiem dau: 5/5 sao.
+Vu Thi Trang danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Vu Thi An danh gia Mat na dat set 10 mieng: 3/5 sao.
+Le Van Hung danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Dang Thi Hung danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Hoang Van Vy danh gia Sua rua mat diu nhe 500ml: 4/5 sao.
+Pham Thi Minh danh gia Kem nen tu nhien shade 220: 5/5 sao.
+Ngo Thi Binh danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Hoang Van Thu danh gia Nuoc tay trang 500ml: 5/5 sao.
+Dang Thi Mai danh gia Nuoc tay trang 500ml: 5/5 sao.
+Le Van An danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Pham Thi Binh danh gia Serum duong am Hyaluronic Acid 50ml: 5/5 sao.
+Pham Thi Trang danh gia Mat na dat set 10 mieng: 4/5 sao.
+Pham Thi Dung danh gia Kem nen tu nhien shade 220: 5/5 sao.
+Nguyen Van An danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Vu Thi Binh danh gia Son li Ruby Woo: 5/5 sao.
+Ngo Thi Tuan danh gia Sua rua mat diu nhe 500ml: 4/5 sao.
+Le Van Yen danh gia Serum duong am Hyaluronic Acid 50ml: 5/5 sao.
+Hoang Van Dung danh gia Mat na dat set 10 mieng: 4/5 sao.
+Hoang Van An danh gia Mat na dat set 10 mieng: 5/5 sao.
+Do Van Nam danh gia Sua tam huong hoa 800ml: 3/5 sao.
+Dang Thi Quan danh gia Nuoc tay trang 500ml: 5/5 sao.
+Le Van Thu danh gia Sua tam huong hoa 800ml: 5/5 sao.
+Le Van Binh danh gia Mat na dat set 10 mieng: 4/5 sao.
+Vu Thi Trang danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Ngo Thi Yen danh gia Mat na dat set 10 mieng: 3/5 sao.
+Pham Thi An danh gia Kem nen tu nhien shade 220: 4/5 sao.
+Dang Thi An danh gia Dau goi thao duoc 650ml: 4/5 sao.
+Pham Thi Trang danh gia Mat na dat set 10 mieng: 4/5 sao.
+Vu Thi Trang danh gia Nuoc tay trang 500ml: 5/5 sao.
+Tran Thi Hoa danh gia Dau goi thao duoc 650ml: 5/5 sao.
+Dang Thi Binh danh gia Kem nen tu nhien shade 220: 5/5 sao.
+Nguyen Van Hung danh gia Kem nen tu nhien shade 220: 4/5 sao.
+Le Van Vy danh gia Mat na dat set 10 mieng: 5/5 sao.
+Vu Thi Nam danh gia Sua rua mat diu nhe 500ml: 5/5 sao.
+Do Van Yen danh gia Kem chong nang SPF50+ kiem dau: 4/5 sao.
+Pham Thi Quan danh gia Kem chong nang SPF50+ kiem dau: 4/5 sao.
+Bui Van Hoa danh gia Serum duong am Hyaluronic Acid 50ml: 5/5 sao.
+Le Van Dung danh gia Sua tam huong hoa 800ml: 3/5 sao.

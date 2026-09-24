@@ -67,9 +67,6 @@ body {
 
 :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 
-/* hidden attr must win over component display rules (drawer, bulk bar, empty state) */
-[hidden] { display: none !important; }
-
 /* ---------- Layout: sidebar + main, internal scroll only ---------- */
 .app-layout {
   display: grid;
@@ -167,7 +164,7 @@ body {
 
 .page-head {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
-  padding: 20px 28px 12px; flex-shrink: 0;
+  padding: 16px 28px 12px; flex-shrink: 0;
 }
 
 .page-head h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.01em; }
@@ -212,15 +209,7 @@ body {
 
 .icon-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
 
-.LangSwitch { display: inline-flex; border: 1px solid var(--border-light); border-radius: var(--radius-full); overflow: hidden; background: var(--bg-card); flex-shrink: 0; }
-
-.LangSwitch-btn { border: 0; background: none; padding: 6px 10px; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
-
-.LangSwitch-btn[aria-pressed="true"] { background: var(--color-primary); color: #fff; }
-
-.icon-moon { display: none; }
-html.dark .icon-sun { display: none; }
-html.dark .icon-moon { display: block; }
+/* LangSwitch + theme icons (shared): see ../../styles/shared.css */
 
 .select, .text-input, textarea.text-input {
   font-family: var(--font-sans); font-size: 0.82rem;
@@ -567,32 +556,7 @@ textarea.text-input { min-height: 84px; resize: vertical; line-height: 1.5; }
 
 .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 
-/* ---------- Toasts ---------- */
-.toast-wrap {
-  position: fixed; right: 20px; bottom: 20px; z-index: 70;
-  display: flex; flex-direction: column; gap: 8px;
-}
-
-.toast {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-left: 3px solid var(--color-success);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-lg);
-  padding: 10px 14px; font-size: 0.83rem; font-weight: 500;
-  max-width: 340px;
-  animation: toast-in 0.2s var(--ease-out);
-}
-
-.toast.error { border-left-color: var(--color-error); }
-
-.toast svg { flex-shrink: 0; }
-
-.toast.success svg { color: var(--color-success); }
-.toast.error svg { color: var(--color-error); }
-
-@keyframes toast-in { from { transform: translateX(20px); opacity: 0; } }
+/* ---------- Toasts (shared): see ../../styles/shared.css ---------- */
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
@@ -642,3 +606,6 @@ textarea.text-input { min-height: 84px; resize: vertical; line-height: 1.5; }
 @keyframes page-in { from { opacity: 0; transform: translateY(6px); } }
 
 .main-content { animation: page-in 0.28s ease-out; }
+
+/* Dark-only fixes (light theme untouched) */
+html.dark .file-xlsx { color: #34D399; }

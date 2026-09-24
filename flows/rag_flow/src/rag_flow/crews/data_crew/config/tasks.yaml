@@ -1,0 +1,26 @@
+retrieve:
+  description: >
+    Retrieve data passages relevant to: {query}.
+    Search the local data files for rows and figures about the question.
+    Extra context: {context_text}
+  expected_output: Ranked passages with file:line references.
+  agent: rag_retriever
+
+tabulate:
+  description: >
+    Compute exact figures for: {query} using the csv_query tool
+    (sum/count/filter/group_sum over the right CSV file and columns).
+    Never do arithmetic by hand when the tool can compute it.
+  expected_output: Figures table with units, sources, and the exact tool outputs.
+  agent: data_analyst
+  context:
+    - retrieve
+
+answer:
+  description: >
+    Answer the question directly: {query}. Use the computed figures, cite them.
+    Reply in Vietnamese, one short paragraph plus the key numbers.
+  expected_output: Final answer with cited figures, in Vietnamese.
+  agent: analyst
+  context:
+    - tabulate

@@ -155,43 +155,11 @@
     }
   };
 
-  var lang = "en";
-  try {
-    var savedLang = localStorage.getItem("agentos.lang");
-    if (savedLang === "vi" || savedLang === "en") lang = savedLang;
-  } catch (err) {}
+  window.AgentShared.i18n.init(I18N, renderAll);
 
-  function t(key) {
-    if (I18N[lang] && I18N[lang][key] != null) return I18N[lang][key];
-    if (I18N.en[key] != null) return I18N.en[key];
-    return key;
-  }
-
-  function applyLang(next) {
-    if (next === "vi" || next === "en") lang = next;
-    try { localStorage.setItem("agentos.lang", lang); } catch (err) {}
-    document.documentElement.lang = lang;
-    document.title = t("meta.title");
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      el.textContent = t(el.getAttribute("data-i18n"));
-    });
-    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
-      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-ph")));
-    });
-    document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
-      el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria-label")));
-    });
-    document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-lang-btn") === lang ? "true" : "false");
-    });
-    renderAll();
-  }
-
-  function setupLang() {
-    document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
-      b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang-btn")); });
-    });
-  }
+  function t(key) { return window.AgentShared.i18n.t(key); }
+  function applyLang(next) { window.AgentShared.i18n.applyLang(next); }
+  function setupLang() { window.AgentShared.i18n.setupLang(); }
 
   /* ---------------- Mock data (12 docs, mixed types/statuses) ---------------- */
   var seedDocs = [
@@ -226,11 +194,7 @@
   /* ---------------- Helpers ---------------- */
   function $(id) { return document.getElementById(id); }
 
-  function esc(s) {
-    return String(s == null ? "" : s)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-  }
+  function esc(s) { return window.AgentShared.esc(s); }
 
   function fmtSize(mb) {
     if (mb >= 1024) return (mb / 1024).toFixed(1) + " GB";
@@ -244,22 +208,7 @@
     return Math.round(totalMB) + " MB";
   }
 
-  function showToast(msg, type) {
-    var wrap = $("toasts");
-    var el = document.createElement("div");
-    el.className = "toast " + (type === "error" ? "error" : "success");
-    el.innerHTML =
-      (type === "error"
-        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
-        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>') +
-      "<span>" + esc(msg) + "</span>";
-    wrap.appendChild(el);
-    setTimeout(function () {
-      el.style.opacity = "0";
-      el.style.transition = "opacity 0.25s";
-      setTimeout(function () { el.remove(); }, 260);
-    }, 3200);
-  }
+  function showToast(msg, type) { window.AgentShared.toast(msg, type); }
 
   function getDoc(id) {
     for (var i = 0; i < docs.length; i++) if (docs[i].id === id) return docs[i];
@@ -712,16 +661,7 @@
   }
 
   /* ---------------- Events ---------------- */
-  function initTheme() {
-    var tt = $("themeToggle");
-    if (!tt) return;
-    try { tt.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark"))); } catch (err) {}
-    tt.addEventListener("click", function () {
-      var dark = document.documentElement.classList.toggle("dark");
-      tt.setAttribute("aria-pressed", String(dark));
-      try { localStorage.setItem("agentos.theme", dark ? "dark" : "light"); } catch (err) {}
-    });
-  }
+  function initTheme() { window.AgentShared.initTheme("themeToggle"); }
 
   function init() {
     initTheme();

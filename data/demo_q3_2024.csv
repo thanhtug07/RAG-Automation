@@ -1,0 +1,47 @@
+order_id,platform,customer,product,quantity,price_vnd,total_vnd,status,date,shipping_fee_vnd
+SHP001,Shopee,Pham Thi Minh,Kem duong trang da Vitamin C,1,410000,410000,Dang van chuyen,2024-07-18,22000
+TIK002,TikTok Shop,Hoang Van Lan,Kem nen Fit Me shade 220,2,280000,560000,Da giao,2024-07-10,25000
+TIK003,TikTok Shop,Pham Thi Hung,Sua rua mat Cetaphil 500ml,3,320000,960000,Da giao,2024-07-18,22000
+P2P004,P2P,Pham Thi Mai,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-24,22000
+TIK005,TikTok Shop,Tran Thi Ngoc,Nuoc tay trang Bioderma 500ml,2,460000,920000,Da giao,2024-07-14,30000
+SHP006,Shopee,Nguyen Van Lan,Sua rua mat Cetaphil 500ml,2,320000,640000,Da giao,2024-07-25,15000
+P2P007,P2P,Hoang Van Tuan,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-07-20,15000
+SHP008,Shopee,Le Van Hung,Sua rua mat Cetaphil 500ml,1,320000,0,Da huy,2024-07-07,25000
+SHP009,Shopee,Le Van Ngoc,Son li MAC Ruby Woo,2,520000,1040000,Da giao,2024-07-23,30000
+P2P010,P2P,Hoang Van Mai,Son li MAC Ruby Woo,2,520000,0,Da huy,2024-07-04,22000
+SHP011,Shopee,Le Van Lan,Son li MAC Ruby Woo,2,520000,1040000,Da giao,2024-07-03,22000
+TIK012,TikTok Shop,Le Van Hoa,Sua rua mat Cetaphil 500ml,3,320000,960000,Da giao,2024-07-17,30000
+TIK013,TikTok Shop,Le Van Minh,Nuoc tay trang Bioderma 500ml,1,460000,460000,Dang van chuyen,2024-07-09,22000
+TIK014,TikTok Shop,Tran Thi Lan,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-07-26,30000
+SHP015,Shopee,Nguyen Van Linh,Sua rua mat Cetaphil 500ml,2,320000,640000,Da giao,2024-07-22,30000
+P2P016,P2P,Hoang Van Hung,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-27,22000
+P2P017,P2P,Pham Thi Linh,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-26,22000
+SHP018,Shopee,Hoang Van Duc,Son li MAC Ruby Woo,3,520000,1560000,Da giao,2024-08-26,15000
+TIK019,TikTok Shop,Nguyen Van Mai,Son li MAC Ruby Woo,3,520000,1560000,Da giao,2024-08-09,15000
+SHP020,Shopee,Hoang Van Lan,Kem chong nang SPF50+ kiem dau,3,185000,555000,Dang van chuyen,2024-08-19,22000
+TIK021,TikTok Shop,Le Van Hoa,Kem nen Fit Me shade 220,1,280000,280000,Da giao,2024-08-21,30000
+P2P022,P2P,Pham Thi Tuan,Sua rua mat Cetaphil 500ml,2,320000,640000,Da giao,2024-08-20,22000
+P2P023,P2P,Tran Thi Ngoc,Son li MAC Ruby Woo,2,520000,1040000,Da giao,2024-08-15,15000
+SHP024,Shopee,Pham Thi An,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-07,30000
+TIK025,TikTok Shop,Hoang Van Ngoc,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-18,25000
+TIK026,TikTok Shop,Nguyen Van Tuan,Son li MAC Ruby Woo,1,520000,520000,Da giao,2024-08-03,22000
+SHP027,Shopee,Le Van Hoa,Mat na dat set bestselling 10 mieng,2,150000,0,Da huy,2024-08-06,25000
+P2P028,P2P,Tran Thi An,Nuoc tay trang Bioderma 500ml,2,460000,920000,Da giao,2024-08-25,15000
+SHP029,Shopee,Hoang Van Mai,Nuoc tay trang Bioderma 500ml,3,460000,0,Da huy,2024-08-02,30000
+P2P030,P2P,Hoang Van Linh,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-05,22000
+TIK031,TikTok Shop,Hoang Van Minh,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-14,22000
+TIK032,TikTok Shop,Pham Thi Duc,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-19,30000
+SHP033,Shopee,Hoang Van Minh,Son li MAC Ruby Woo,3,520000,0,Da huy,2024-09-27,25000
+TIK034,TikTok Shop,Pham Thi Minh,Kem nen Fit Me shade 220,3,280000,840000,Da giao,2024-09-11,22000
+SHP035,Shopee,Pham Thi Linh,Mat na dat set bestselling 10 mieng,1,150000,150000,Da giao,2024-09-10,25000
+P2P036,P2P,Nguyen Van Minh,Sua rua mat Cetaphil 500ml,2,320000,640000,Da giao,2024-09-13,22000
+SHP037,Shopee,Hoang Van Hung,Son li MAC Ruby Woo,3,520000,1560000,Da giao,2024-09-25,15000
+TIK038,TikTok Shop,Tran Thi Duc,Kem nen Fit Me shade 220,3,280000,840000,Da giao,2024-09-13,25000
+P2P039,P2P,Hoang Van Tuan,Kem nen Fit Me shade 220,2,280000,0,Da huy,2024-09-23,15000
+TIK040,TikTok Shop,Le Van Lan,Son li MAC Ruby Woo,1,520000,520000,Da giao,2024-09-25,15000
+TIK041,TikTok Shop,Le Van Duc,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-07,30000
+SHP042,Shopee,Nguyen Van Mai,Kem nen Fit Me shade 220,2,280000,560000,Da giao,2024-09-19,25000
+SHP043,Shopee,Nguyen Van Lan,Nuoc tay trang Bioderma 500ml,3,460000,1380000,Dang van chuyen,2024-09-25,22000
+SHP044,Shopee,Pham Thi Mai,Son li MAC Ruby Woo,3,520000,0,Da huy,2024-09-05,25000
+SHP045,Shopee,Tran Thi An,Mat na dat set bestselling 10 mieng,3,150000,450000,Dang van chuyen,2024-09-20,25000
+a

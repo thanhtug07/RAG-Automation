@@ -670,6 +670,10 @@ body.HomePage { height: 100vh; height: 100svh; overflow: hidden !important; }
 }
 .FsSection.is-before { transform: translateY(-48px); }
 .FsSection.is-after { transform: translateY(48px); }
+/* Boot restore: land on the saved section instantly, no slide-through. */
+.FsStage.is-boot .FsSection,
+.FsStage.is-boot .FsSection.is-active { transition: none !important; }
+.FsStage.is-boot .FsFit { animation: none !important; }
 /* Incoming content rises slightly for a premium step feel */
 .FsSection.is-active .FsFit { animation: FsRise 680ms cubic-bezier(0.22, 0.9, 0.28, 1) both; }
 @keyframes FsRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -1030,4 +1034,18 @@ html.dark .LangSwitch-btn[aria-pressed="true"] {
   background: #3E3E3E;
   color: #fff;
 }
+
+/* Dark-only fixes (light theme untouched) */
+html.dark { color-scheme: dark; }
+html.dark .PreviewGate,
+html.dark .ExecutionPreview-feed ul,
+html.dark .GraphToggle { background: var(--home-bg-subtle); }
+html.dark .AgentGraph > li::after,
+html.dark .FlowStep-dot { background: var(--home-bg-subtle); }
+html.dark .FlowStep.is-done .FlowStep-dot { box-shadow: inset 0 0 0 3px var(--home-bg-subtle); }
+html.dark .CapStat,
+html.dark .FeedToggle,
+html.dark .GraphToggle,
+html.dark .AuditCopy,
+html.dark .CapPanel-next a { color: var(--home-primary-bright); }
 

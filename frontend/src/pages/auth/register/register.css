@@ -261,9 +261,9 @@ body {
   min-width: 0;
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(148, 163, 184, 0.34);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
-  padding: 40px;
+  padding: 32px;
   align-self: center;
   animation: form-in 320ms var(--ease-out) both;
 }
@@ -713,6 +713,7 @@ html.dark .ThemeToggle-moon { display: block; }
 
 /* ===== Dark mode: VS Code black, forced contrast ===== */
 html.dark {
+  color-scheme: dark;
   --color-surface: #1E1E1E;
   --color-app-bg: #252526;
   --color-surface-subtle: #252526;

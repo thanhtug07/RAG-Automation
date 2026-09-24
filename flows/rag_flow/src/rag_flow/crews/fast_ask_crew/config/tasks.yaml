@@ -1,0 +1,7 @@
+ask:
+  description: >
+    Answer: {query}
+    Data:
+    {context_text}
+  expected_output: Short answer in Vietnamese.
+  agent: analyst

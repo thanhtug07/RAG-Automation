@@ -148,17 +148,10 @@
     }
   };
 
-  var lang = "en";
-  try {
-    var savedLang = localStorage.getItem("agentos.lang");
-    if (savedLang === "vi" || savedLang === "en") lang = savedLang;
-  } catch (err) {}
+  window.AgentShared.i18n.init(I18N, renderAll);
 
-  function t(key) {
-    if (I18N[lang] && I18N[lang][key] != null) return I18N[lang][key];
-    if (I18N.en[key] != null) return I18N.en[key];
-    return key;
-  }
+  function t(key) { return window.AgentShared.i18n.t(key); }
+  function applyLang(next) { window.AgentShared.i18n.applyLang(next); }
 
   /* ---------------- Static demo data (12 records) ---------------- */
   var FOLDERS = ["Research", "Reports", "Chat exports", "Agent outputs"];
@@ -187,11 +180,7 @@
   /* ---------------- Helpers ---------------- */
   function $(id) { return document.getElementById(id); }
 
-  function esc(s) {
-    return String(s == null ? "" : s)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-  }
+  function esc(s) { return window.AgentShared.esc(s); }
 
   function fmtSize(mb) {
     if (mb >= 1024) return (mb / 1024).toFixed(1) + " GB";
@@ -199,22 +188,7 @@
     return Math.max(1, Math.round(mb * 1024)) + " KB";
   }
 
-  function showToast(msg, type) {
-    var wrap = $("toasts");
-    var el = document.createElement("div");
-    el.className = "toast " + (type === "error" ? "error" : "success");
-    el.innerHTML =
-      (type === "error"
-        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
-        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>') +
-      "<span>" + esc(msg) + "</span>";
-    wrap.appendChild(el);
-    setTimeout(function () {
-      el.style.opacity = "0";
-      el.style.transition = "opacity 0.25s";
-      setTimeout(function () { el.remove(); }, 260);
-    }, 3000);
-  }
+  function showToast(msg, type) { window.AgentShared.toast(msg, type); }
 
   function getFile(id) {
     for (var i = 0; i < files.length; i++) if (files[i].id === id) return files[i];
@@ -374,7 +348,7 @@
     $("checkAll").checked = all;
     var selCount = Object.keys(state.selected).length;
     $("bulkBar").hidden = selCount === 0;
-    $("bulkCount").textContent = selCount + (lang === "vi" ? " đã chọn" : " selected");
+    $("bulkCount").textContent = selCount + (window.AgentShared.i18n.getLang() === "vi" ? " đã chọn" : " selected");
     $("btnClearFilters").hidden = !searching;
     renderFolders();
     renderSummary();
@@ -545,7 +519,7 @@
     var p = 0;
     var now = new Date();
     var iso = now.toISOString().slice(0, 16);
-    var label = lang === "vi" ? "Vừa xong" : "Just now";
+    var label = window.AgentShared.i18n.getLang() === "vi" ? "Vừa xong" : "Just now";
     var tick = setInterval(function () {
       p = Math.min(100, p + 14 + Math.random() * 20);
       fill.style.width = p + "%";
@@ -690,33 +664,9 @@
   }
 
   /* ---------------- Theme + lang ---------------- */
-  function initTheme() {
-    var tt = $("themeToggle");
-    if (!tt) return;
-    try { tt.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark"))); } catch (err) {}
-    tt.addEventListener("click", function () {
-      var dark = document.documentElement.classList.toggle("dark");
-      tt.setAttribute("aria-pressed", String(dark));
-      try { localStorage.setItem("agentos.theme", dark ? "dark" : "light"); } catch (err) {}
-    });
-  }
+  function initTheme() { window.AgentShared.initTheme("themeToggle"); }
 
-  function applyLang(next) {
-    if (next === "vi" || next === "en") lang = next;
-    try { localStorage.setItem("agentos.lang", lang); } catch (err) {}
-    document.documentElement.lang = lang;
-    document.title = t("meta.title");
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      el.textContent = t(el.getAttribute("data-i18n"));
-    });
-    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
-      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-ph")));
-    });
-    document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-lang-btn") === lang ? "true" : "false");
-    });
-    renderAll();
-  }
+  function applyLang(next) { window.AgentShared.i18n.applyLang(next); }
 
   /* ---------------- Init ---------------- */
   function init() {
@@ -875,7 +825,7 @@
       var p = 0;
       var now = new Date();
       var iso = now.toISOString().slice(0, 16);
-      var label = lang === "vi" ? "Vừa xong" : "Just now";
+    var label = window.AgentShared.i18n.getLang() === "vi" ? "Vừa xong" : "Just now";
       var tick = setInterval(function () {
         p = Math.min(100, p + 14 + Math.random() * 20);
         fill.style.width = p + "%";

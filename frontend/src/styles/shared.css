@@ -1,0 +1,44 @@
+/* AgentOS shared styles — extracted byte-identical from
+   documents/policies/data-storage pages. Loaded BEFORE page CSS so page
+   rules win ties. Classic stylesheet, no dependencies. */
+
+[hidden] { display: none !important; }
+
+.LangSwitch { display: inline-flex; border: 1px solid var(--border-light); border-radius: var(--radius-full); overflow: hidden; background: var(--bg-card); flex-shrink: 0; }
+
+.LangSwitch-btn { border: 0; background: none; padding: 6px 10px; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+
+.LangSwitch-btn[aria-pressed="true"] { background: var(--color-primary); color: #fff; }
+
+.icon-moon { display: none; }
+html.dark .icon-sun { display: none; }
+html.dark .icon-moon { display: block; }
+
+.toast-wrap {
+  position: fixed; right: 20px; bottom: 20px; z-index: 70;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.toast {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--color-success);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 10px 14px; font-size: 0.83rem; font-weight: 500;
+  max-width: 340px;
+  animation: toast-in 0.2s var(--ease-out);
+}
+
+.toast.error { border-left-color: var(--color-error); }
+
+.toast svg { flex-shrink: 0; }
+
+.toast.success svg { color: var(--color-success); }
+.toast.error svg { color: var(--color-error); }
+
+/* Dark-only: native controls (checkbox/select/scrollbar) follow dark theme */
+html.dark { color-scheme: dark; }
+
+@keyframes toast-in { from { transform: translateX(20px); opacity: 0; } }

@@ -59,6 +59,12 @@
       "del.title": "Delete policy?",
       "del.msg": "This action cannot be undone.",
       "del.confirm": "Delete",
+      "del.bulk_msg": "policies will be deleted. This cannot be undone.",
+      "bulk.select": "Select", "bulk.selected": " selected",
+      "bulk.select_many": "Select multiple", "bulk.cancel": "Cancel", "bulk.nav_title": "Policies",
+      "bulk.delete_all": "Delete all",
+      "bulk.delete": "Delete",
+      "toast.bulk_deleted": "Policies deleted.",
       "unsaved.title": "Unsaved changes",
       "unsaved.msg": "You have unsaved changes.",
       "unsaved.discard": "Discard", "unsaved.keep": "Keep editing",
@@ -124,6 +130,12 @@
       "del.title": "Xóa policy?",
       "del.msg": "Hành động này không thể hoàn tác.",
       "del.confirm": "Xóa",
+      "del.bulk_msg": "policies sẽ bị xóa. Không thể hoàn tác.",
+      "bulk.select": "Chọn", "bulk.selected": " đã chọn",
+      "bulk.select_many": "Chọn nhiều", "bulk.cancel": "Hủy", "bulk.nav_title": "Policies",
+      "bulk.delete_all": "Xóa tất cả",
+      "bulk.delete": "Xóa",
+      "toast.bulk_deleted": "Đã xóa policies.",
       "unsaved.title": "Thay đổi chưa lưu",
       "unsaved.msg": "Bạn có thay đổi chưa lưu.",
       "unsaved.discard": "Bỏ qua", "unsaved.keep": "Tiếp tục sửa",
@@ -137,21 +149,15 @@
     }
   };
 
-  var lang = "en";
-  try {
-    var savedLang = localStorage.getItem("agentos.lang");
-    if (savedLang === "vi" || savedLang === "en") lang = savedLang;
-  } catch (err) {}
+  window.AgentShared.i18n.init(I18N, function () { renderGrid(); refreshDetail(); });
 
-  function t(key) {
-    if (I18N[lang] && I18N[lang][key] != null) return I18N[lang][key];
-    if (I18N.en[key] != null) return I18N.en[key];
-    return key;
-  }
+  function t(key) { return window.AgentShared.i18n.t(key); }
+  function applyLang(next) { window.AgentShared.i18n.applyLang(next); }
 
   function L(obj) {
     if (obj == null) return "";
     if (typeof obj === "string") return obj;
+    var lang = window.AgentShared.i18n.getLang();
     return obj[lang] != null ? obj[lang] : (obj.en || "");
   }
 
@@ -234,33 +240,14 @@
   }
 
   var policies = seed();
-  var state = { q: "", cat: "", status: "", detailId: null };
+  var state = { q: "", cat: "", status: "", detailId: null, selected: {}, selecting: false };
 
   /* ---------------- Helpers ---------------- */
   function $(id) { return document.getElementById(id); }
 
-  function esc(s) {
-    return String(s == null ? "" : s)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-  }
+  function esc(s) { return window.AgentShared.esc(s); }
 
-  function showToast(msg, type) {
-    var wrap = $("toasts");
-    var el = document.createElement("div");
-    el.className = "toast " + (type === "error" ? "error" : "success");
-    el.innerHTML =
-      (type === "error"
-        ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
-        : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>') +
-      "<span>" + esc(msg) + "</span>";
-    wrap.appendChild(el);
-    setTimeout(function () {
-      el.style.opacity = "0";
-      el.style.transition = "opacity 0.25s";
-      setTimeout(function () { el.remove(); }, 260);
-    }, 3000);
-  }
+  function showToast(msg, type) { window.AgentShared.toast(msg, type); }
 
   function getPolicy(id) {
     for (var i = 0; i < policies.length; i++) if (policies[i].id === id) return policies[i];
@@ -302,6 +289,19 @@
     grid.innerHTML = "";
     $("emptyState").hidden = list.length !== 0;
     list.forEach(function (p) {
+      var wrap = document.createElement("div");
+      wrap.className = "policy-card-wrap";
+      var check = document.createElement("input");
+      check.type = "checkbox";
+      check.className = "card-check";
+      check.checked = !!state.selected[p.id];
+      check.setAttribute("aria-label", t("bulk.select") + " " + L(p.name));
+      check.addEventListener("click", function (e) { e.stopPropagation(); });
+      check.addEventListener("change", function () {
+        if (check.checked) state.selected[p.id] = true;
+        else delete state.selected[p.id];
+        renderBulkBar();
+      });
       var card = document.createElement("button");
       card.type = "button";
       card.className = "policy-card";
@@ -316,10 +316,53 @@
         '<div class="policy-foot"><span class="status-dot ' + statusCls(p.status) + '">' + esc(statusName(p.status)) + "</span>" +
         '<span class="policy-ver">' + esc(p.version) + "</span></div>";
       card.addEventListener("click", function () { openDetail(p.id); });
-      grid.appendChild(card);
+      wrap.appendChild(check);
+      wrap.appendChild(card);
+      grid.appendChild(wrap);
     });
     $("btnClearFilters").hidden = !filtersActive();
+    var modeBtn = $("btnSelectMode");
+    if (modeBtn) modeBtn.textContent = state.selecting ? t("bulk.cancel") : t("bulk.select_many");
+    renderBulkBar();
     renderPanel();
+  }
+
+  function renderBulkBar() {
+    var ids = Object.keys(state.selected).filter(function (id) { return getPolicy(id); });
+    var bar = $("bulkBar");
+    if (!bar) return;
+    bar.hidden = !(state.selecting && ids.length > 0);
+    $("bulkCount").textContent = ids.length + t("bulk.selected");
+  }
+
+  function setSelecting(on) {
+    state.selecting = on;
+    if (!on) state.selected = {};
+    document.body.classList.toggle("selecting", on);
+    renderGrid();
+  }
+
+  function bulkDeleteAll() {
+    var ids = visiblePolicies().map(function (p) { return p.id; });
+    if (!ids.length) return;
+    openConfirm(t("del.title"), ids.length + " " + t("del.bulk_msg"), t("del.confirm"), true, function () {
+      policies = policies.filter(function (p) { return ids.indexOf(p.id) === -1; });
+      if (state.detailId && ids.indexOf(state.detailId) !== -1) closeDetail();
+      setSelecting(false);
+      showToast(t("toast.bulk_deleted"));
+    });
+  }
+
+  function bulkDelete() {
+    var ids = Object.keys(state.selected).filter(function (id) { return getPolicy(id); });
+    if (!ids.length) return;
+    openConfirm(t("del.title"), ids.length + " " + t("del.bulk_msg"), t("del.confirm"), true, function () {
+      policies = policies.filter(function (p) { return ids.indexOf(p.id) === -1; });
+      ids.forEach(function (id) { delete state.selected[id]; });
+      if (state.detailId && ids.indexOf(state.detailId) !== -1) closeDetail();
+      setSelecting(false);
+      showToast(t("toast.bulk_deleted"));
+    });
   }
 
   function renderPanel() {
@@ -637,14 +680,14 @@
       var p = getPolicy(drawerId);
       if (!p) return;
       Object.keys(data).forEach(function (k) { p[k] = data[k]; });
-      p.updated = lang === "vi" ? "Vừa xong" : "Just now";
+      p.updated = window.AgentShared.i18n.getLang() === "vi" ? "Vừa xong" : "Just now";
       showToast(t("toast.updated"));
     } else {
       policies.unshift(Object.assign({
         id: "p" + Date.now().toString(36),
         version: "v0.1",
         history: [{ v: "v0.1", st: "Draft" }],
-        updated: lang === "vi" ? "Vừa xong" : "Just now"
+        updated: window.AgentShared.i18n.getLang() === "vi" ? "Vừa xong" : "Just now"
       }, data));
       showToast(t("toast.created"));
     }
@@ -697,34 +740,9 @@
   }
 
   /* ---------------- Theme + lang ---------------- */
-  function initTheme() {
-    var tt = $("themeToggle");
-    if (!tt) return;
-    try { tt.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark"))); } catch (err) {}
-    tt.addEventListener("click", function () {
-      var dark = document.documentElement.classList.toggle("dark");
-      tt.setAttribute("aria-pressed", String(dark));
-      try { localStorage.setItem("agentos.theme", dark ? "dark" : "light"); } catch (err) {}
-    });
-  }
+  function initTheme() { window.AgentShared.initTheme("themeToggle"); }
 
-  function applyLang(next) {
-    if (next === "vi" || next === "en") lang = next;
-    try { localStorage.setItem("agentos.lang", lang); } catch (err) {}
-    document.documentElement.lang = lang;
-    document.title = t("meta.title");
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      el.textContent = t(el.getAttribute("data-i18n"));
-    });
-    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
-      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-ph")));
-    });
-    document.querySelectorAll("[data-lang-btn]").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-lang-btn") === lang ? "true" : "false");
-    });
-    renderGrid();
-    refreshDetail();
-  }
+  function applyLang(next) { window.AgentShared.i18n.applyLang(next); }
 
   /* ---------------- Init ---------------- */
   function init() {
@@ -752,6 +770,9 @@
 
     $("btnClearFilters").addEventListener("click", clearFilters);
     $("btnEmptyClear").addEventListener("click", clearFilters);
+    $("btnBulkDelete").addEventListener("click", bulkDelete);
+    $("btnBulkDeleteAll").addEventListener("click", bulkDeleteAll);
+    $("btnSelectMode").addEventListener("click", function () { setSelecting(!state.selecting); });
     function clearFilters() {
       state.q = ""; state.cat = ""; state.status = "";
       $("searchInput").value = "";

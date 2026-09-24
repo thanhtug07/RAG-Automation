@@ -1,0 +1,62 @@
+[
+  {
+    "product_id": "P01",
+    "name": "Serum duong am Hyaluronic Acid 50ml",
+    "price_vnd": 250000,
+    "category": "Cham soc da"
+  },
+  {
+    "product_id": "P02",
+    "name": "Kem chong nang SPF50+ kiem dau",
+    "price_vnd": 185000,
+    "category": "Cham soc da"
+  },
+  {
+    "product_id": "P03",
+    "name": "Son li Ruby Woo",
+    "price_vnd": 520000,
+    "category": "Trang diem"
+  },
+  {
+    "product_id": "P04",
+    "name": "Sua rua mat diu nhe 500ml",
+    "price_vnd": 320000,
+    "category": "Cham soc da"
+  },
+  {
+    "product_id": "P05",
+    "name": "Kem duong trang da Vitamin C",
+    "price_vnd": 410000,
+    "category": "Cham soc da"
+  },
+  {
+    "product_id": "P06",
+    "name": "Mat na dat set 10 mieng",
+    "price_vnd": 150000,
+    "category": "Cham soc da"
+  },
+  {
+    "product_id": "P07",
+    "name": "Nuoc tay trang 500ml",
+    "price_vnd": 460000,
+    "category": "Cham soc da"
+  },
+  {
+    "product_id": "P08",
+    "name": "Kem nen tu nhien shade 220",
+    "price_vnd": 280000,
+    "category": "Trang diem"
+  },
+  {
+    "product_id": "P09",
+    "name": "Dau goi thao duoc 650ml",
+    "price_vnd": 230000,
+    "category": "Cham soc toc"
+  },
+  {
+    "product_id": "P10",
+    "name": "Sua tam huong hoa 800ml",
+    "price_vnd": 195000,
+    "category": "Cham soc co the"
+  }
+]

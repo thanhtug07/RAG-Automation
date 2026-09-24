@@ -1566,6 +1566,8 @@
     function prev() { return window.goToSection(FsState.index - 1); }
 
     // Restore last section on reload (persisted by paint()); default Section 01.
+    // Land instantly: suppress the slide transition on this first paint so
+    // reload never visibly slides through other sections.
     var savedSection = 0;
     try {
       var rawSection = window.sessionStorage ? sessionStorage.getItem("agentos.home.section") : null;
@@ -1573,7 +1575,11 @@
       if (!isNaN(parsedSection)) savedSection = Math.max(0, Math.min(secs.length - 1, parsedSection));
     } catch (err) { /* default 0 */ }
     FsState.index = savedSection;
+    stage.classList.add("is-boot");
     paint();
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () { stage.classList.remove("is-boot"); });
+    });
 
     function isolateTarget(el) {
       if (!el || !el.closest) return null;

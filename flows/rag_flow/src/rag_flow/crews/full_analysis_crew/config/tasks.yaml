@@ -1,0 +1,38 @@
+collect_facts:
+  description: >
+    Collect the facts needed for: {query}. Ground everything in the data files.
+    Extra context: {context_text}
+  expected_output: Figures and facts table with sources.
+  agent: researcher
+
+retrieve_context:
+  description: >
+    Retrieve supporting passages and definitions for: {query}.
+  expected_output: Ranked passages with references.
+  agent: rag_retriever
+  context:
+    - collect_facts
+
+tabulate:
+  description: >
+    Compute exact figures with the csv_query tool.
+  expected_output: Figures table with units and sources.
+  agent: data_analyst
+  context:
+    - retrieve_context
+
+synthesize:
+  description: >
+    Synthesize drivers and insights from the figures.
+  expected_output: Insight narrative with sourced figures.
+  agent: analyst
+  context:
+    - tabulate
+
+act:
+  description: >
+    List concrete follow-up actions from the insights, with owners.
+  expected_output: Action list with owners.
+  agent: executor
+  context:
+    - synthesize

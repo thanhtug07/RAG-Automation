@@ -1,0 +1,16 @@
+collect_policy:
+  description: >
+    Collect the store policies relevant to: {query}.
+    Search policy documents and data files. Extra context: {context_text}
+  expected_output: Policy excerpts with file:line references.
+  agent: researcher
+
+explain:
+  description: >
+    Explain the applicable policy for: {query} in plain Vietnamese,
+    grounded strictly in the collected excerpts. State what applies,
+    what does not, and any conditions.
+  expected_output: Plain-Vietnamese policy explanation with citations.
+  agent: rag_retriever
+  context:
+    - collect_policy

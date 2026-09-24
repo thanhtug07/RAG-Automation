@@ -1,0 +1,801 @@
+order_id,platform,customer_id,customer,product_id,product,quantity,price_vnd,total_vnd,status,date,shipping_fee_vnd
+TIK0001,TikTok Shop,C0425,Do Van Trang,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-07-27,22000
+SHP0002,Shopee,C0494,Dang Thi Quan,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-01,22000
+TIK0003,TikTok Shop,C0226,Bui Van Binh,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-09-12,30000
+TIK0004,TikTok Shop,C0247,Hoang Van An,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-08-16,30000
+TIK0005,TikTok Shop,C0097,Le Van Dung,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-08,22000
+SHP0006,Shopee,C0499,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-09-22,25000
+TIK0007,TikTok Shop,C0161,Ngo Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-17,15000
+TIK0008,TikTok Shop,C0041,Vu Thi Hung,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-15,25000
+SHP0009,Shopee,C0473,Dang Thi Lan,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-13,30000
+SHP0010,Shopee,C0273,Vu Thi Trang,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-09-13,25000
+SHP0011,Shopee,C0244,Pham Thi Phuc,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-08-16,22000
+TIK0012,TikTok Shop,C0162,Pham Thi Mai,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-25,22000
+SHP0013,Shopee,C0238,Pham Thi Dung,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-26,15000
+SHP0014,Shopee,C0352,Do Van Yen,P07,Nuoc tay trang 500ml,3,460000,1380000,Dang van chuyen,2024-09-17,25000
+SHP0015,Shopee,C0121,Nguyen Van Trang,P03,Son li Ruby Woo,3,520000,1560000,Dang van chuyen,2024-07-11,25000
+P2P0016,P2P,C0261,Nguyen Van An,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-07-02,15000
+SHP0017,Shopee,C0163,Dang Thi Lan,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-20,25000
+TIK0018,TikTok Shop,C0415,Vu Thi Dung,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-27,25000
+SHP0019,Shopee,C0428,Le Van Yen,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-22,25000
+TIK0020,TikTok Shop,C0272,Le Van Minh,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-17,30000
+SHP0021,Shopee,C0498,Do Van Minh,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-16,15000
+TIK0022,TikTok Shop,C0007,Vu Thi Linh,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-09,22000
+TIK0023,TikTok Shop,C0172,Vu Thi Thu,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-07,22000
+SHP0024,Shopee,C0137,Vu Thi Yen,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-10,22000
+P2P0025,P2P,C0397,Tran Thi Hung,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-05,25000
+P2P0026,P2P,C0235,Dang Thi Hoa,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-08-23,15000
+TIK0027,TikTok Shop,C0446,Hoang Van Dung,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-17,25000
+SHP0028,Shopee,C0292,Tran Thi Nam,P07,Nuoc tay trang 500ml,3,460000,1380000,Dang van chuyen,2024-08-01,15000
+TIK0029,TikTok Shop,C0110,Ngo Thi Nam,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-26,25000
+TIK0030,TikTok Shop,C0335,Ngo Thi Hung,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-02,25000
+SHP0031,Shopee,C0234,Nguyen Van Lan,P04,Sua rua mat diu nhe 500ml,2,320000,0,Da huy,2024-08-09,30000
+SHP0032,Shopee,C0460,Do Van Yen,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-28,25000
+P2P0033,P2P,C0175,Hoang Van Linh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-28,22000
+SHP0034,Shopee,C0219,Vu Thi Trang,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-02,25000
+P2P0035,P2P,C0443,Hoang Van Vy,P05,Kem duong trang da Vitamin C,2,410000,0,Da huy,2024-07-23,25000
+P2P0036,P2P,C0272,Le Van Minh,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-28,30000
+TIK0037,TikTok Shop,C0110,Ngo Thi Nam,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-04,25000
+SHP0038,Shopee,C0031,Bui Van Vy,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-09,30000
+SHP0039,Shopee,C0365,Le Van Hung,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-09-17,15000
+TIK0040,TikTok Shop,C0422,Pham Thi Vy,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-09-24,30000
+P2P0041,P2P,C0491,Nguyen Van Trang,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-20,22000
+TIK0042,TikTok Shop,C0393,Ngo Thi Chi,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-01,22000
+P2P0043,P2P,C0083,Bui Van Mai,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-28,25000
+SHP0044,Shopee,C0194,Pham Thi Trang,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-10,15000
+TIK0045,TikTok Shop,C0258,Do Van Nam,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-25,22000
+TIK0046,TikTok Shop,C0375,Bui Van Chi,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-28,22000
+P2P0047,P2P,C0013,Dang Thi Binh,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-22,15000
+SHP0048,Shopee,C0190,Tran Thi Hai,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-09-15,30000
+P2P0049,P2P,C0253,Bui Van Lan,P05,Kem duong trang da Vitamin C,3,410000,0,Da huy,2024-08-20,30000
+TIK0050,TikTok Shop,C0188,Tran Thi Chi,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-22,25000
+TIK0051,TikTok Shop,C0008,Bui Van Nam,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-09-06,30000
+TIK0052,TikTok Shop,C0479,Dang Thi Linh,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-08,30000
+TIK0053,TikTok Shop,C0482,Vu Thi Vy,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-25,25000
+SHP0054,Shopee,C0383,Dang Thi Hung,P08,Kem nen tu nhien shade 220,3,280000,840000,Dang van chuyen,2024-07-02,25000
+SHP0055,Shopee,C0235,Dang Thi Hoa,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-07,25000
+SHP0056,Shopee,C0274,Pham Thi Quan,P08,Kem nen tu nhien shade 220,3,280000,0,Da huy,2024-09-10,15000
+SHP0057,Shopee,C0054,Bui Van Binh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-24,15000
+TIK0058,TikTok Shop,C0041,Vu Thi Hung,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-07-13,15000
+TIK0059,TikTok Shop,C0422,Pham Thi Vy,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-09,25000
+SHP0060,Shopee,C0183,Do Van Nam,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Dang van chuyen,2024-09-07,15000
+SHP0061,Shopee,C0118,Vu Thi Binh,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-03,25000
+SHP0062,Shopee,C0006,Vu Thi Quan,P05,Kem duong trang da Vitamin C,3,410000,0,Da huy,2024-09-05,15000
+SHP0063,Shopee,C0414,Le Van Linh,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-06,25000
+TIK0064,TikTok Shop,C0476,Ngo Thi Ngoc,P09,Dau goi thao duoc 650ml,2,230000,460000,Dang van chuyen,2024-09-05,30000
+TIK0065,TikTok Shop,C0209,Ngo Thi Hoa,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-06,22000
+TIK0066,TikTok Shop,C0435,Vu Thi Minh,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-09-05,30000
+SHP0067,Shopee,C0236,Le Van Ngoc,P06,Mat na dat set 10 mieng,3,150000,450000,Dang van chuyen,2024-07-21,15000
+P2P0068,P2P,C0266,Vu Thi Yen,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-12,30000
+SHP0069,Shopee,C0064,Bui Van Chi,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-22,22000
+P2P0070,P2P,C0404,Tran Thi Dung,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Dang van chuyen,2024-09-16,30000
+SHP0071,Shopee,C0200,Nguyen Van Thu,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-13,22000
+P2P0072,P2P,C0217,Vu Thi An,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-14,30000
+SHP0073,Shopee,C0496,Tran Thi Ngoc,P05,Kem duong trang da Vitamin C,2,410000,0,Da huy,2024-07-23,25000
+TIK0074,TikTok Shop,C0138,Le Van Hung,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-15,25000
+P2P0075,P2P,C0248,Nguyen Van Linh,P05,Kem duong trang da Vitamin C,3,410000,1230000,Dang van chuyen,2024-07-19,22000
+SHP0076,Shopee,C0325,Tran Thi Hung,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-14,22000
+SHP0077,Shopee,C0069,Dang Thi Mai,P03,Son li Ruby Woo,2,520000,0,Da huy,2024-07-11,25000
+TIK0078,TikTok Shop,C0142,Ngo Thi Ngoc,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-22,25000
+SHP0079,Shopee,C0411,Le Van Chi,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-25,15000
+SHP0080,Shopee,C0027,Bui Van Tuan,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-07,30000
+SHP0081,Shopee,C0254,Bui Van Minh,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-01,15000
+TIK0082,TikTok Shop,C0057,Bui Van Hai,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-06,22000
+P2P0083,P2P,C0175,Hoang Van Linh,P06,Mat na dat set 10 mieng,3,150000,0,Da huy,2024-07-04,30000
+P2P0084,P2P,C0413,Vu Thi Lan,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Dang van chuyen,2024-07-21,30000
+SHP0085,Shopee,C0169,Hoang Van Hung,P06,Mat na dat set 10 mieng,2,150000,0,Da huy,2024-07-25,15000
+P2P0086,P2P,C0145,Dang Thi Hung,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-07-18,22000
+TIK0087,TikTok Shop,C0438,Vu Thi Vy,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-01,15000
+P2P0088,P2P,C0309,Dang Thi Mai,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-09-20,22000
+SHP0089,Shopee,C0242,Pham Thi Minh,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-16,15000
+TIK0090,TikTok Shop,C0170,Hoang Van Hai,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-23,25000
+TIK0091,TikTok Shop,C0395,Tran Thi Yen,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-08-02,30000
+TIK0092,TikTok Shop,C0015,Hoang Van Quan,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-07-04,22000
+SHP0093,Shopee,C0280,Dang Thi Quan,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Dang van chuyen,2024-08-24,30000
+SHP0094,Shopee,C0302,Pham Thi Trang,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-23,15000
+SHP0095,Shopee,C0068,Ngo Thi Dung,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-13,25000
+SHP0096,Shopee,C0140,Vu Thi An,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-04,25000
+SHP0097,Shopee,C0398,Pham Thi Minh,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-14,25000
+TIK0098,TikTok Shop,C0290,Le Van Hai,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-09-08,25000
+P2P0099,P2P,C0242,Pham Thi Minh,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-14,15000
+SHP0100,Shopee,C0271,Dang Thi Trang,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-08-13,15000
+SHP0101,Shopee,C0304,Nguyen Van Minh,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-25,15000
+TIK0102,TikTok Shop,C0195,Pham Thi Linh,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-08-17,30000
+SHP0103,Shopee,C0048,Vu Thi Minh,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-26,25000
+SHP0104,Shopee,C0448,Do Van Hai,P08,Kem nen tu nhien shade 220,1,280000,280000,Dang van chuyen,2024-09-07,30000
+TIK0105,TikTok Shop,C0338,Tran Thi Thu,P06,Mat na dat set 10 mieng,2,150000,0,Da huy,2024-07-06,25000
+SHP0106,Shopee,C0267,Bui Van Phuc,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-07,22000
+TIK0107,TikTok Shop,C0409,Ngo Thi Minh,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Dang van chuyen,2024-09-06,30000
+SHP0108,Shopee,C0196,Nguyen Van Nam,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-21,22000
+P2P0109,P2P,C0132,Tran Thi Quan,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-09-19,30000
+TIK0110,TikTok Shop,C0078,Dang Thi Minh,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-08-16,30000
+TIK0111,TikTok Shop,C0103,Bui Van Binh,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-07-08,30000
+SHP0112,Shopee,C0257,Hoang Van Mai,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-04,15000
+P2P0113,P2P,C0033,Vu Thi Linh,P08,Kem nen tu nhien shade 220,1,280000,0,Da huy,2024-08-23,22000
+SHP0114,Shopee,C0127,Nguyen Van Linh,P10,Sua tam huong hoa 800ml,2,195000,390000,Dang van chuyen,2024-07-18,30000
+P2P0115,P2P,C0016,Ngo Thi Hoa,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-07-10,30000
+SHP0116,Shopee,C0314,Ngo Thi Lan,P03,Son li Ruby Woo,3,520000,1560000,Dang van chuyen,2024-09-03,15000
+SHP0117,Shopee,C0349,Vu Thi Binh,P10,Sua tam huong hoa 800ml,1,195000,195000,Dang van chuyen,2024-08-04,15000
+SHP0118,Shopee,C0441,Tran Thi Hoa,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-04,15000
+SHP0119,Shopee,C0166,Do Van Lan,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-07-26,15000
+SHP0120,Shopee,C0124,Pham Thi Binh,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-03,25000
+TIK0121,TikTok Shop,C0432,Vu Thi Quan,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-07-13,30000
+SHP0122,Shopee,C0095,Bui Van Chi,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-21,22000
+P2P0123,P2P,C0003,Vu Thi Ngoc,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-09-15,22000
+P2P0124,P2P,C0212,Pham Thi Dung,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-28,22000
+P2P0125,P2P,C0405,Pham Thi Hoa,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-17,30000
+TIK0126,TikTok Shop,C0362,Vu Thi Trang,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-18,25000
+TIK0127,TikTok Shop,C0326,Do Van Trang,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Dang van chuyen,2024-07-13,22000
+SHP0128,Shopee,C0082,Dang Thi Nam,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-13,25000
+P2P0129,P2P,C0272,Le Van Minh,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-10,30000
+TIK0130,TikTok Shop,C0394,Pham Thi Binh,P07,Nuoc tay trang 500ml,1,460000,460000,Dang van chuyen,2024-07-27,25000
+SHP0131,Shopee,C0144,Ngo Thi Tuan,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-08-27,30000
+SHP0132,Shopee,C0204,Dang Thi Trang,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-08-01,25000
+TIK0133,TikTok Shop,C0158,Do Van Nam,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-07-24,22000
+P2P0134,P2P,C0115,Nguyen Van Trang,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-07-19,30000
+TIK0135,TikTok Shop,C0377,Vu Thi An,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-20,25000
+TIK0136,TikTok Shop,C0171,Tran Thi Hoa,P08,Kem nen tu nhien shade 220,2,280000,560000,Dang van chuyen,2024-07-06,22000
+P2P0137,P2P,C0174,Le Van An,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-18,30000
+P2P0138,P2P,C0233,Tran Thi Linh,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-09-18,22000
+SHP0139,Shopee,C0338,Tran Thi Thu,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-28,30000
+TIK0140,TikTok Shop,C0307,Dang Thi Dung,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-10,30000
+P2P0141,P2P,C0348,Dang Thi Phuc,P06,Mat na dat set 10 mieng,3,150000,450000,Dang van chuyen,2024-07-09,22000
+P2P0142,P2P,C0184,Pham Thi Quan,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-05,25000
+TIK0143,TikTok Shop,C0101,Le Van Vy,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-09-03,15000
+SHP0144,Shopee,C0270,Nguyen Van Hung,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-15,30000
+P2P0145,P2P,C0458,Le Van Hai,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-07-25,30000
+TIK0146,TikTok Shop,C0368,Tran Thi An,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-07-16,15000
+TIK0147,TikTok Shop,C0351,Bui Van Dung,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-08,15000
+SHP0148,Shopee,C0131,Do Van Hoa,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-20,22000
+SHP0149,Shopee,C0062,Pham Thi Mai,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-21,15000
+P2P0150,P2P,C0279,Dang Thi Dung,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-09-13,25000
+SHP0151,Shopee,C0069,Dang Thi Mai,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-13,22000
+SHP0152,Shopee,C0025,Pham Thi Binh,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-11,30000
+P2P0153,P2P,C0352,Do Van Yen,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-09,15000
+SHP0154,Shopee,C0163,Dang Thi Lan,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-15,25000
+SHP0155,Shopee,C0165,Hoang Van Thu,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-01,15000
+P2P0156,P2P,C0121,Nguyen Van Trang,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-23,30000
+SHP0157,Shopee,C0031,Bui Van Vy,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-26,22000
+TIK0158,TikTok Shop,C0284,Tran Thi Binh,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-03,30000
+SHP0159,Shopee,C0213,Le Van Tuan,P05,Kem duong trang da Vitamin C,3,410000,1230000,Dang van chuyen,2024-09-06,15000
+TIK0160,TikTok Shop,C0427,Tran Thi Tuan,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-22,15000
+SHP0161,Shopee,C0140,Vu Thi An,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-05,25000
+SHP0162,Shopee,C0146,Do Van Linh,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-07-19,25000
+P2P0163,P2P,C0276,Do Van Nam,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-08-03,25000
+SHP0164,Shopee,C0454,Le Van Lan,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-09-02,30000
+SHP0165,Shopee,C0235,Dang Thi Hoa,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,0,Da huy,2024-09-26,30000
+TIK0166,TikTok Shop,C0290,Le Van Hai,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-05,30000
+P2P0167,P2P,C0353,Ngo Thi Tuan,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-11,25000
+SHP0168,Shopee,C0325,Tran Thi Hung,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-09-23,25000
+TIK0169,TikTok Shop,C0377,Vu Thi An,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-07-03,22000
+SHP0170,Shopee,C0402,Ngo Thi Chi,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-25,22000
+TIK0171,TikTok Shop,C0187,Ngo Thi Chi,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-08,22000
+SHP0172,Shopee,C0284,Tran Thi Binh,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-21,30000
+P2P0173,P2P,C0451,Bui Van Yen,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Dang van chuyen,2024-09-18,15000
+TIK0174,TikTok Shop,C0458,Le Van Hai,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-25,25000
+TIK0175,TikTok Shop,C0206,Hoang Van Chi,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-26,30000
+TIK0176,TikTok Shop,C0082,Dang Thi Nam,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-09-07,15000
+SHP0177,Shopee,C0494,Dang Thi Quan,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-25,30000
+SHP0178,Shopee,C0179,Vu Thi Vy,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-06,25000
+TIK0179,TikTok Shop,C0361,Do Van Hai,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-27,30000
+TIK0180,TikTok Shop,C0208,Bui Van Hoa,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-07-11,15000
+TIK0181,TikTok Shop,C0445,Le Van Mai,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-06,22000
+TIK0182,TikTok Shop,C0170,Hoang Van Hai,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Dang van chuyen,2024-08-13,30000
+TIK0183,TikTok Shop,C0457,Tran Thi Hung,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-13,15000
+SHP0184,Shopee,C0196,Nguyen Van Nam,P03,Son li Ruby Woo,3,520000,0,Da huy,2024-07-19,22000
+SHP0185,Shopee,C0003,Vu Thi Ngoc,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-07-14,22000
+TIK0186,TikTok Shop,C0396,Tran Thi Dung,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-03,22000
+SHP0187,Shopee,C0270,Nguyen Van Hung,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-28,22000
+TIK0188,TikTok Shop,C0466,Pham Thi Hung,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-11,25000
+TIK0189,TikTok Shop,C0374,Vu Thi Minh,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-10,30000
+TIK0190,TikTok Shop,C0476,Ngo Thi Ngoc,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-17,25000
+SHP0191,Shopee,C0170,Hoang Van Hai,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-19,30000
+TIK0192,TikTok Shop,C0236,Le Van Ngoc,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-01,30000
+TIK0193,TikTok Shop,C0457,Tran Thi Hung,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-28,22000
+SHP0194,Shopee,C0416,Bui Van Nam,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-16,30000
+TIK0195,TikTok Shop,C0173,Le Van Yen,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-11,25000
+SHP0196,Shopee,C0373,Ngo Thi Tuan,P08,Kem nen tu nhien shade 220,2,280000,560000,Dang van chuyen,2024-08-26,25000
+P2P0197,P2P,C0016,Ngo Thi Hoa,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-07-16,15000
+TIK0198,TikTok Shop,C0290,Le Van Hai,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-03,30000
+SHP0199,Shopee,C0198,Bui Van Nam,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-11,15000
+TIK0200,TikTok Shop,C0464,Ngo Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-12,15000
+SHP0201,Shopee,C0364,Ngo Thi An,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-12,30000
+SHP0202,Shopee,C0038,Hoang Van Tuan,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-21,25000
+P2P0203,P2P,C0073,Ngo Thi Trang,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-20,25000
+P2P0204,P2P,C0383,Dang Thi Hung,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-14,22000
+SHP0205,Shopee,C0220,Hoang Van Yen,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-16,30000
+TIK0206,TikTok Shop,C0263,Tran Thi Hoa,P05,Kem duong trang da Vitamin C,1,410000,410000,Dang van chuyen,2024-07-17,22000
+SHP0207,Shopee,C0404,Tran Thi Dung,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-07-15,30000
+SHP0208,Shopee,C0461,Le Van Thu,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,0,Da huy,2024-07-21,22000
+SHP0209,Shopee,C0041,Vu Thi Hung,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-07-17,25000
+SHP0210,Shopee,C0279,Dang Thi Dung,P08,Kem nen tu nhien shade 220,2,280000,560000,Dang van chuyen,2024-08-28,15000
+TIK0211,TikTok Shop,C0055,Le Van Thu,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-27,30000
+SHP0212,Shopee,C0058,Pham Thi Linh,P03,Son li Ruby Woo,2,520000,1040000,Dang van chuyen,2024-07-25,15000
+P2P0213,P2P,C0007,Vu Thi Linh,P07,Nuoc tay trang 500ml,1,460000,0,Da huy,2024-08-17,15000
+P2P0214,P2P,C0500,Nguyen Van Tuan,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-18,22000
+TIK0215,TikTok Shop,C0118,Vu Thi Binh,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-26,15000
+SHP0216,Shopee,C0479,Dang Thi Linh,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-27,22000
+SHP0217,Shopee,C0126,Dang Thi Quan,P07,Nuoc tay trang 500ml,2,460000,0,Da huy,2024-09-04,15000
+SHP0218,Shopee,C0125,Tran Thi Ngoc,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-07-03,30000
+SHP0219,Shopee,C0273,Vu Thi Trang,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-17,25000
+TIK0220,TikTok Shop,C0326,Do Van Trang,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-04,22000
+P2P0221,P2P,C0307,Dang Thi Dung,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-16,22000
+TIK0222,TikTok Shop,C0372,Tran Thi Nam,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-21,22000
+SHP0223,Shopee,C0159,Dang Thi Chi,P08,Kem nen tu nhien shade 220,2,280000,560000,Dang van chuyen,2024-08-08,22000
+SHP0224,Shopee,C0134,Bui Van Chi,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-11,30000
+TIK0225,TikTok Shop,C0116,Vu Thi Yen,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-08-12,30000
+SHP0226,Shopee,C0078,Dang Thi Minh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-27,30000
+P2P0227,P2P,C0002,Dang Thi An,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-07-02,25000
+TIK0228,TikTok Shop,C0318,Tran Thi Trang,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-01,30000
+P2P0229,P2P,C0295,Do Van Chi,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-27,15000
+TIK0230,TikTok Shop,C0241,Tran Thi An,P10,Sua tam huong hoa 800ml,3,195000,585000,Dang van chuyen,2024-08-26,15000
+SHP0231,Shopee,C0141,Bui Van Hoa,P05,Kem duong trang da Vitamin C,2,410000,820000,Dang van chuyen,2024-09-22,25000
+P2P0232,P2P,C0119,Hoang Van Vy,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-14,15000
+SHP0233,Shopee,C0468,Le Van Tuan,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-07-02,22000
+TIK0234,TikTok Shop,C0422,Pham Thi Vy,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,0,Da huy,2024-09-03,15000
+P2P0235,P2P,C0039,Le Van Hung,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-16,15000
+SHP0236,Shopee,C0038,Hoang Van Tuan,P02,Kem chong nang SPF50+ kiem dau,3,185000,0,Da huy,2024-08-27,15000
+P2P0237,P2P,C0183,Do Van Nam,P09,Dau goi thao duoc 650ml,3,230000,690000,Dang van chuyen,2024-09-17,22000
+SHP0238,Shopee,C0160,Hoang Van Lan,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-10,15000
+SHP0239,Shopee,C0497,Le Van Vy,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-09,30000
+TIK0240,TikTok Shop,C0318,Tran Thi Trang,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-08,15000
+P2P0241,P2P,C0320,Dang Thi Phuc,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-24,25000
+SHP0242,Shopee,C0485,Nguyen Van Trang,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-13,25000
+SHP0243,Shopee,C0138,Le Van Hung,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-28,22000
+TIK0244,TikTok Shop,C0476,Ngo Thi Ngoc,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-28,15000
+P2P0245,P2P,C0369,Nguyen Van Nam,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-21,15000
+SHP0246,Shopee,C0219,Vu Thi Trang,P03,Son li Ruby Woo,1,520000,0,Da huy,2024-08-28,22000
+SHP0247,Shopee,C0140,Vu Thi An,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Dang van chuyen,2024-09-11,22000
+SHP0248,Shopee,C0247,Hoang Van An,P03,Son li Ruby Woo,3,520000,1560000,Dang van chuyen,2024-08-22,30000
+SHP0249,Shopee,C0008,Bui Van Nam,P08,Kem nen tu nhien shade 220,3,280000,840000,Dang van chuyen,2024-07-04,30000
+TIK0250,TikTok Shop,C0139,Pham Thi An,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Dang van chuyen,2024-07-17,15000
+TIK0251,TikTok Shop,C0077,Hoang Van An,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-18,25000
+P2P0252,P2P,C0227,Nguyen Van An,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-07-21,22000
+P2P0253,P2P,C0048,Vu Thi Minh,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-24,15000
+SHP0254,Shopee,C0150,Le Van Phuc,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-19,30000
+SHP0255,Shopee,C0391,Do Van An,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-25,15000
+SHP0256,Shopee,C0438,Vu Thi Vy,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-18,30000
+SHP0257,Shopee,C0111,Nguyen Van Phuc,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-25,25000
+SHP0258,Shopee,C0229,Hoang Van Phuc,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-27,30000
+SHP0259,Shopee,C0459,Hoang Van Chi,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-07-06,22000
+SHP0260,Shopee,C0080,Pham Thi Hai,P02,Kem chong nang SPF50+ kiem dau,3,185000,0,Da huy,2024-09-19,30000
+SHP0261,Shopee,C0426,Ngo Thi Tuan,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-04,30000
+TIK0262,TikTok Shop,C0261,Nguyen Van An,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-21,15000
+SHP0263,Shopee,C0085,Bui Van Nam,P10,Sua tam huong hoa 800ml,1,195000,195000,Dang van chuyen,2024-08-19,25000
+SHP0264,Shopee,C0218,Tran Thi Nam,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-02,25000
+P2P0265,P2P,C0500,Nguyen Van Tuan,P08,Kem nen tu nhien shade 220,1,280000,280000,Dang van chuyen,2024-09-23,15000
+TIK0266,TikTok Shop,C0137,Vu Thi Yen,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-07-02,30000
+SHP0267,Shopee,C0231,Bui Van Hung,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-07,30000
+SHP0268,Shopee,C0160,Hoang Van Lan,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-07-02,15000
+SHP0269,Shopee,C0327,Pham Thi Ngoc,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-21,15000
+SHP0270,Shopee,C0385,Le Van Ngoc,P10,Sua tam huong hoa 800ml,1,195000,195000,Dang van chuyen,2024-09-05,25000
+TIK0271,TikTok Shop,C0490,Do Van Binh,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-09-08,30000
+SHP0272,Shopee,C0333,Ngo Thi Hai,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-26,22000
+SHP0273,Shopee,C0260,Tran Thi Dung,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-22,25000
+P2P0274,P2P,C0441,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-23,22000
+TIK0275,TikTok Shop,C0133,Bui Van Hoa,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-15,22000
+SHP0276,Shopee,C0028,Pham Thi Tuan,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-04,22000
+SHP0277,Shopee,C0173,Le Van Yen,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-09-05,30000
+TIK0278,TikTok Shop,C0182,Dang Thi Nam,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-26,22000
+SHP0279,Shopee,C0447,Do Van Vy,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-13,22000
+TIK0280,TikTok Shop,C0236,Le Van Ngoc,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-23,15000
+TIK0281,TikTok Shop,C0032,Tran Thi Phuc,P03,Son li Ruby Woo,3,520000,0,Da huy,2024-07-24,15000
+TIK0282,TikTok Shop,C0376,Tran Thi Vy,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-14,25000
+SHP0283,Shopee,C0137,Vu Thi Yen,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-10,15000
+SHP0284,Shopee,C0093,Pham Thi Phuc,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-21,22000
+SHP0285,Shopee,C0034,Hoang Van Trang,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-17,25000
+SHP0286,Shopee,C0006,Vu Thi Quan,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-11,30000
+SHP0287,Shopee,C0275,Ngo Thi Thu,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-09,30000
+TIK0288,TikTok Shop,C0257,Hoang Van Mai,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-12,22000
+TIK0289,TikTok Shop,C0369,Nguyen Van Nam,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-13,25000
+SHP0290,Shopee,C0191,Vu Thi Chi,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-04,22000
+TIK0291,TikTok Shop,C0215,Tran Thi Quan,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-18,30000
+TIK0292,TikTok Shop,C0146,Do Van Linh,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-07,30000
+SHP0293,Shopee,C0462,Tran Thi Lan,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-09-14,30000
+SHP0294,Shopee,C0184,Pham Thi Quan,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Dang van chuyen,2024-07-15,22000
+SHP0295,Shopee,C0379,Hoang Van Quan,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-25,30000
+TIK0296,TikTok Shop,C0150,Le Van Phuc,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-25,15000
+P2P0297,P2P,C0101,Le Van Vy,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-07-10,22000
+SHP0298,Shopee,C0051,Tran Thi Chi,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-13,15000
+SHP0299,Shopee,C0045,Tran Thi Minh,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-03,22000
+P2P0300,P2P,C0464,Ngo Thi Phuc,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-22,22000
+TIK0301,TikTok Shop,C0241,Tran Thi An,P07,Nuoc tay trang 500ml,1,460000,460000,Dang van chuyen,2024-07-20,22000
+SHP0302,Shopee,C0410,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-23,25000
+SHP0303,Shopee,C0456,Bui Van Hung,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Dang van chuyen,2024-07-05,30000
+TIK0304,TikTok Shop,C0147,Bui Van Hung,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-19,15000
+TIK0305,TikTok Shop,C0160,Hoang Van Lan,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-11,30000
+SHP0306,Shopee,C0215,Tran Thi Quan,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-05,15000
+TIK0307,TikTok Shop,C0128,Hoang Van Vy,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-09-20,25000
+SHP0308,Shopee,C0407,Tran Thi Chi,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-25,22000
+TIK0309,TikTok Shop,C0296,Bui Van Ngoc,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-07-24,15000
+SHP0310,Shopee,C0258,Do Van Nam,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-10,22000
+TIK0311,TikTok Shop,C0063,Ngo Thi Thu,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-20,22000
+SHP0312,Shopee,C0403,Hoang Van Quan,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-04,30000
+SHP0313,Shopee,C0072,Pham Thi Vy,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-01,22000
+SHP0314,Shopee,C0024,Le Van Hung,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-28,22000
+SHP0315,Shopee,C0031,Bui Van Vy,P07,Nuoc tay trang 500ml,1,460000,460000,Dang van chuyen,2024-07-02,30000
+SHP0316,Shopee,C0300,Ngo Thi An,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-18,30000
+TIK0317,TikTok Shop,C0251,Bui Van Thu,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-07-11,30000
+SHP0318,Shopee,C0105,Ngo Thi An,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-07-23,30000
+SHP0319,Shopee,C0062,Pham Thi Mai,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-01,22000
+P2P0320,P2P,C0004,Vu Thi Yen,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-15,30000
+SHP0321,Shopee,C0335,Ngo Thi Hung,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-13,25000
+P2P0322,P2P,C0420,Le Van Vy,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-20,22000
+TIK0323,TikTok Shop,C0414,Le Van Linh,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-25,25000
+SHP0324,Shopee,C0496,Tran Thi Ngoc,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-14,25000
+P2P0325,P2P,C0460,Do Van Yen,P03,Son li Ruby Woo,2,520000,0,Da huy,2024-07-14,30000
+SHP0326,Shopee,C0454,Le Van Lan,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-09-16,25000
+SHP0327,Shopee,C0227,Nguyen Van An,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-13,25000
+SHP0328,Shopee,C0058,Pham Thi Linh,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Dang van chuyen,2024-08-13,25000
+SHP0329,Shopee,C0423,Dang Thi Lan,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-15,25000
+TIK0330,TikTok Shop,C0049,Le Van Chi,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-13,22000
+TIK0331,TikTok Shop,C0102,Do Van Lan,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-24,25000
+TIK0332,TikTok Shop,C0132,Tran Thi Quan,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-19,30000
+TIK0333,TikTok Shop,C0050,Vu Thi Lan,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-08,25000
+P2P0334,P2P,C0376,Tran Thi Vy,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-23,22000
+TIK0335,TikTok Shop,C0433,Le Van Phuc,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-07,15000
+SHP0336,Shopee,C0494,Dang Thi Quan,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Dang van chuyen,2024-08-25,22000
+P2P0337,P2P,C0486,Tran Thi Chi,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-12,15000
+SHP0338,Shopee,C0258,Do Van Nam,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-09,22000
+SHP0339,Shopee,C0013,Dang Thi Binh,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-28,30000
+SHP0340,Shopee,C0100,Nguyen Van Hoa,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-21,25000
+TIK0341,TikTok Shop,C0322,Dang Thi Mai,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-25,25000
+P2P0342,P2P,C0099,Pham Thi Binh,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-05,30000
+SHP0343,Shopee,C0465,Dang Thi Quan,P08,Kem nen tu nhien shade 220,1,280000,0,Da huy,2024-07-18,15000
+P2P0344,P2P,C0475,Vu Thi Lan,P07,Nuoc tay trang 500ml,1,460000,0,Da huy,2024-07-25,15000
+TIK0345,TikTok Shop,C0449,Dang Thi Minh,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-19,22000
+P2P0346,P2P,C0123,Bui Van Ngoc,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-10,15000
+TIK0347,TikTok Shop,C0095,Bui Van Chi,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-20,15000
+SHP0348,Shopee,C0430,Do Van Ngoc,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-16,30000
+SHP0349,Shopee,C0482,Vu Thi Vy,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-16,15000
+TIK0350,TikTok Shop,C0311,Le Van Minh,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-07,22000
+SHP0351,Shopee,C0017,Dang Thi Dung,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-18,15000
+TIK0352,TikTok Shop,C0340,Hoang Van Trang,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-17,30000
+TIK0353,TikTok Shop,C0351,Bui Van Dung,P03,Son li Ruby Woo,3,520000,1560000,Dang van chuyen,2024-08-10,25000
+TIK0354,TikTok Shop,C0171,Tran Thi Hoa,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-06,22000
+P2P0355,P2P,C0144,Ngo Thi Tuan,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-07,30000
+SHP0356,Shopee,C0289,Nguyen Van Mai,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-07-04,22000
+SHP0357,Shopee,C0495,Dang Thi Binh,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-04,30000
+P2P0358,P2P,C0199,Vu Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-10,15000
+SHP0359,Shopee,C0496,Tran Thi Ngoc,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-09,15000
+SHP0360,Shopee,C0268,Do Van Nam,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-22,25000
+TIK0361,TikTok Shop,C0329,Ngo Thi Yen,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-24,30000
+SHP0362,Shopee,C0053,Vu Thi Hoa,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-11,30000
+SHP0363,Shopee,C0108,Pham Thi Lan,P05,Kem duong trang da Vitamin C,1,410000,410000,Dang van chuyen,2024-07-18,25000
+SHP0364,Shopee,C0400,Dang Thi Nam,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-19,30000
+TIK0365,TikTok Shop,C0154,Nguyen Van Trang,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-06,15000
+P2P0366,P2P,C0452,Dang Thi Mai,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-15,22000
+SHP0367,Shopee,C0055,Le Van Thu,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-07-19,15000
+TIK0368,TikTok Shop,C0331,Pham Thi Lan,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-08,15000
+SHP0369,Shopee,C0214,Bui Van Nam,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-27,22000
+SHP0370,Shopee,C0383,Dang Thi Hung,P07,Nuoc tay trang 500ml,1,460000,0,Da huy,2024-07-09,30000
+SHP0371,Shopee,C0001,Bui Van Hai,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-28,22000
+TIK0372,TikTok Shop,C0436,Bui Van Trang,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-02,30000
+TIK0373,TikTok Shop,C0354,Hoang Van Ngoc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,0,Da huy,2024-08-23,22000
+SHP0374,Shopee,C0030,Pham Thi Hai,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-16,22000
+TIK0375,TikTok Shop,C0279,Dang Thi Dung,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Dang van chuyen,2024-07-14,22000
+TIK0376,TikTok Shop,C0427,Tran Thi Tuan,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-04,15000
+SHP0377,Shopee,C0467,Pham Thi Tuan,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-24,25000
+SHP0378,Shopee,C0395,Tran Thi Yen,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-06,25000
+SHP0379,Shopee,C0278,Do Van Thu,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-12,15000
+P2P0380,P2P,C0186,Le Van Minh,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-07-07,30000
+P2P0381,P2P,C0205,Vu Thi Hai,P09,Dau goi thao duoc 650ml,3,230000,0,Da huy,2024-09-12,25000
+SHP0382,Shopee,C0105,Ngo Thi An,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-08-05,25000
+TIK0383,TikTok Shop,C0424,Bui Van Hai,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-18,15000
+SHP0384,Shopee,C0484,Bui Van Hung,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-28,22000
+SHP0385,Shopee,C0283,Vu Thi Chi,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-09-08,15000
+P2P0386,P2P,C0102,Do Van Lan,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-07-07,25000
+SHP0387,Shopee,C0199,Vu Thi Phuc,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-14,30000
+P2P0388,P2P,C0155,Do Van Trang,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-05,15000
+SHP0389,Shopee,C0184,Pham Thi Quan,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-11,15000
+SHP0390,Shopee,C0396,Tran Thi Dung,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-07-17,22000
+SHP0391,Shopee,C0356,Dang Thi Chi,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-03,30000
+TIK0392,TikTok Shop,C0418,Do Van Hoa,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-15,22000
+TIK0393,TikTok Shop,C0463,Dang Thi Phuc,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-09-03,15000
+TIK0394,TikTok Shop,C0245,Bui Van An,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-27,22000
+TIK0395,TikTok Shop,C0159,Dang Thi Chi,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-19,22000
+SHP0396,Shopee,C0419,Ngo Thi Tuan,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-08-01,30000
+P2P0397,P2P,C0436,Bui Van Trang,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-04,22000
+SHP0398,Shopee,C0308,Ngo Thi Thu,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-11,22000
+TIK0399,TikTok Shop,C0404,Tran Thi Dung,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-19,22000
+TIK0400,TikTok Shop,C0136,Hoang Van Nam,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-27,30000
+TIK0401,TikTok Shop,C0416,Bui Van Nam,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-15,22000
+P2P0402,P2P,C0182,Dang Thi Nam,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-22,15000
+SHP0403,Shopee,C0455,Nguyen Van Vy,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-22,15000
+TIK0404,TikTok Shop,C0307,Dang Thi Dung,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-18,30000
+TIK0405,TikTok Shop,C0307,Dang Thi Dung,P06,Mat na dat set 10 mieng,2,150000,0,Da huy,2024-07-28,15000
+SHP0406,Shopee,C0030,Pham Thi Hai,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-11,30000
+SHP0407,Shopee,C0407,Tran Thi Chi,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-09-06,25000
+TIK0408,TikTok Shop,C0088,Bui Van Hai,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-07-22,22000
+SHP0409,Shopee,C0061,Tran Thi Hung,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-09-21,15000
+SHP0410,Shopee,C0278,Do Van Thu,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-14,30000
+P2P0411,P2P,C0175,Hoang Van Linh,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-07-03,30000
+TIK0412,TikTok Shop,C0415,Vu Thi Dung,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-18,30000
+SHP0413,Shopee,C0316,Do Van Ngoc,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-13,25000
+TIK0414,TikTok Shop,C0372,Tran Thi Nam,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-27,25000
+SHP0415,Shopee,C0227,Nguyen Van An,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-09,22000
+P2P0416,P2P,C0432,Vu Thi Quan,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-14,25000
+SHP0417,Shopee,C0270,Nguyen Van Hung,P09,Dau goi thao duoc 650ml,2,230000,460000,Dang van chuyen,2024-08-07,25000
+SHP0418,Shopee,C0341,Bui Van Trang,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-17,22000
+TIK0419,TikTok Shop,C0347,Dang Thi Nam,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-27,15000
+SHP0420,Shopee,C0114,Tran Thi Chi,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-08,15000
+P2P0421,P2P,C0342,Nguyen Van Hung,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-08-15,22000
+TIK0422,TikTok Shop,C0471,Pham Thi An,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-08-07,30000
+SHP0423,Shopee,C0024,Le Van Hung,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-07-16,15000
+P2P0424,P2P,C0383,Dang Thi Hung,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-02,15000
+TIK0425,TikTok Shop,C0166,Do Van Lan,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-19,25000
+TIK0426,TikTok Shop,C0361,Do Van Hai,P09,Dau goi thao duoc 650ml,3,230000,690000,Dang van chuyen,2024-09-11,22000
+SHP0427,Shopee,C0090,Bui Van Thu,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-09-26,25000
+P2P0428,P2P,C0325,Tran Thi Hung,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-17,25000
+TIK0429,TikTok Shop,C0156,Tran Thi Quan,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-08-07,22000
+SHP0430,Shopee,C0348,Dang Thi Phuc,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-17,30000
+P2P0431,P2P,C0020,Le Van Binh,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-14,25000
+SHP0432,Shopee,C0440,Pham Thi Mai,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-09-10,15000
+P2P0433,P2P,C0048,Vu Thi Minh,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-02,22000
+TIK0434,TikTok Shop,C0397,Tran Thi Hung,P06,Mat na dat set 10 mieng,3,150000,0,Da huy,2024-07-22,22000
+P2P0435,P2P,C0470,Do Van Hung,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-07-18,15000
+SHP0436,Shopee,C0332,Dang Thi Nam,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-24,30000
+SHP0437,Shopee,C0430,Do Van Ngoc,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-22,22000
+SHP0438,Shopee,C0120,Do Van Mai,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-14,25000
+TIK0439,TikTok Shop,C0049,Le Van Chi,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-14,25000
+SHP0440,Shopee,C0423,Dang Thi Lan,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-01,25000
+TIK0441,TikTok Shop,C0295,Do Van Chi,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-09-04,22000
+TIK0442,TikTok Shop,C0126,Dang Thi Quan,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-07-18,25000
+SHP0443,Shopee,C0338,Tran Thi Thu,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-15,15000
+SHP0444,Shopee,C0282,Tran Thi Hoa,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-12,22000
+P2P0445,P2P,C0258,Do Van Nam,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-03,30000
+SHP0446,Shopee,C0475,Vu Thi Lan,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-07-25,15000
+P2P0447,P2P,C0220,Hoang Van Yen,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-08,15000
+TIK0448,TikTok Shop,C0117,Bui Van Nam,P06,Mat na dat set 10 mieng,1,150000,0,Da huy,2024-09-13,30000
+SHP0449,Shopee,C0153,Le Van Dung,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-08,15000
+SHP0450,Shopee,C0119,Hoang Van Vy,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-02,30000
+SHP0451,Shopee,C0212,Pham Thi Dung,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-09-06,15000
+TIK0452,TikTok Shop,C0054,Bui Van Binh,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-09,22000
+SHP0453,Shopee,C0307,Dang Thi Dung,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-12,25000
+SHP0454,Shopee,C0455,Nguyen Van Vy,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-01,30000
+TIK0455,TikTok Shop,C0346,Le Van Thu,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-03,22000
+TIK0456,TikTok Shop,C0273,Vu Thi Trang,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-09-18,22000
+TIK0457,TikTok Shop,C0006,Vu Thi Quan,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-25,22000
+TIK0458,TikTok Shop,C0006,Vu Thi Quan,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-07-15,25000
+P2P0459,P2P,C0024,Le Van Hung,P08,Kem nen tu nhien shade 220,3,280000,840000,Dang van chuyen,2024-07-20,25000
+SHP0460,Shopee,C0362,Vu Thi Trang,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-14,22000
+SHP0461,Shopee,C0199,Vu Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-25,22000
+P2P0462,P2P,C0094,Tran Thi Hung,P08,Kem nen tu nhien shade 220,3,280000,840000,Dang van chuyen,2024-08-23,25000
+TIK0463,TikTok Shop,C0051,Tran Thi Chi,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-08,22000
+SHP0464,Shopee,C0323,Nguyen Van Nam,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-08-06,25000
+SHP0465,Shopee,C0092,Tran Thi Trang,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-03,25000
+TIK0466,TikTok Shop,C0276,Do Van Nam,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-08-22,15000
+SHP0467,Shopee,C0483,Tran Thi Minh,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-07,22000
+TIK0468,TikTok Shop,C0368,Tran Thi An,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-13,30000
+SHP0469,Shopee,C0455,Nguyen Van Vy,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-05,22000
+TIK0470,TikTok Shop,C0327,Pham Thi Ngoc,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-09-02,22000
+SHP0471,Shopee,C0377,Vu Thi An,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-09-03,25000
+SHP0472,Shopee,C0263,Tran Thi Hoa,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-09,15000
+P2P0473,P2P,C0365,Le Van Hung,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-08-11,30000
+SHP0474,Shopee,C0312,Bui Van Hoa,P08,Kem nen tu nhien shade 220,1,280000,0,Da huy,2024-09-09,25000
+SHP0475,Shopee,C0267,Bui Van Phuc,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-25,22000
+P2P0476,P2P,C0254,Bui Van Minh,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-18,22000
+SHP0477,Shopee,C0061,Tran Thi Hung,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-19,30000
+TIK0478,TikTok Shop,C0328,Nguyen Van Binh,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-26,30000
+P2P0479,P2P,C0117,Bui Van Nam,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-17,15000
+SHP0480,Shopee,C0205,Vu Thi Hai,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-07-11,30000
+SHP0481,Shopee,C0411,Le Van Chi,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-01,30000
+SHP0482,Shopee,C0350,Pham Thi Binh,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-12,25000
+TIK0483,TikTok Shop,C0459,Hoang Van Chi,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-23,15000
+SHP0484,Shopee,C0114,Tran Thi Chi,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-09,25000
+TIK0485,TikTok Shop,C0193,Do Van Lan,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-01,30000
+SHP0486,Shopee,C0245,Bui Van An,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-15,15000
+SHP0487,Shopee,C0425,Do Van Trang,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-08-21,30000
+P2P0488,P2P,C0032,Tran Thi Phuc,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-07-21,25000
+SHP0489,Shopee,C0492,Le Van Ngoc,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-07-18,30000
+SHP0490,Shopee,C0272,Le Van Minh,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-08-28,22000
+SHP0491,Shopee,C0419,Ngo Thi Tuan,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-07-07,15000
+TIK0492,TikTok Shop,C0071,Tran Thi An,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-22,25000
+TIK0493,TikTok Shop,C0407,Tran Thi Chi,P09,Dau goi thao duoc 650ml,1,230000,0,Da huy,2024-09-17,22000
+TIK0494,TikTok Shop,C0331,Pham Thi Lan,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-09-18,25000
+P2P0495,P2P,C0376,Tran Thi Vy,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-09,30000
+TIK0496,TikTok Shop,C0170,Hoang Van Hai,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-18,25000
+SHP0497,Shopee,C0299,Ngo Thi Tuan,P06,Mat na dat set 10 mieng,1,150000,150000,Dang van chuyen,2024-08-05,22000
+SHP0498,Shopee,C0236,Le Van Ngoc,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-05,15000
+TIK0499,TikTok Shop,C0430,Do Van Ngoc,P05,Kem duong trang da Vitamin C,1,410000,0,Da huy,2024-09-09,22000
+SHP0500,Shopee,C0459,Hoang Van Chi,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-20,15000
+P2P0501,P2P,C0281,Ngo Thi Mai,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-22,22000
+TIK0502,TikTok Shop,C0082,Dang Thi Nam,P07,Nuoc tay trang 500ml,3,460000,1380000,Dang van chuyen,2024-07-07,22000
+P2P0503,P2P,C0182,Dang Thi Nam,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-03,22000
+SHP0504,Shopee,C0370,Bui Van Trang,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-07-26,22000
+TIK0505,TikTok Shop,C0083,Bui Van Mai,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-07-16,30000
+SHP0506,Shopee,C0359,Tran Thi Quan,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-18,15000
+SHP0507,Shopee,C0292,Tran Thi Nam,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-09-22,15000
+TIK0508,TikTok Shop,C0094,Tran Thi Hung,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-14,30000
+SHP0509,Shopee,C0099,Pham Thi Binh,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-21,22000
+SHP0510,Shopee,C0152,Tran Thi Ngoc,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-15,30000
+SHP0511,Shopee,C0176,Le Van Nam,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-07-05,25000
+SHP0512,Shopee,C0170,Hoang Van Hai,P09,Dau goi thao duoc 650ml,3,230000,0,Da huy,2024-08-18,25000
+SHP0513,Shopee,C0267,Bui Van Phuc,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-09-25,25000
+SHP0514,Shopee,C0319,Vu Thi Lan,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Dang van chuyen,2024-08-09,25000
+SHP0515,Shopee,C0441,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-03,22000
+SHP0516,Shopee,C0472,Do Van Minh,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-02,22000
+TIK0517,TikTok Shop,C0351,Bui Van Dung,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-07-09,30000
+TIK0518,TikTok Shop,C0139,Pham Thi An,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Dang van chuyen,2024-09-26,25000
+SHP0519,Shopee,C0234,Nguyen Van Lan,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-14,25000
+TIK0520,TikTok Shop,C0230,Pham Thi Quan,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-08-02,22000
+SHP0521,Shopee,C0327,Pham Thi Ngoc,P09,Dau goi thao duoc 650ml,2,230000,460000,Dang van chuyen,2024-09-24,22000
+TIK0522,TikTok Shop,C0054,Bui Van Binh,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-16,22000
+TIK0523,TikTok Shop,C0263,Tran Thi Hoa,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-07-12,25000
+SHP0524,Shopee,C0112,Tran Thi Tuan,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-02,22000
+SHP0525,Shopee,C0350,Pham Thi Binh,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-09-20,25000
+P2P0526,P2P,C0491,Nguyen Van Trang,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-21,25000
+SHP0527,Shopee,C0332,Dang Thi Nam,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-16,25000
+P2P0528,P2P,C0064,Bui Van Chi,P06,Mat na dat set 10 mieng,2,150000,300000,Dang van chuyen,2024-07-23,15000
+SHP0529,Shopee,C0266,Vu Thi Yen,P04,Sua rua mat diu nhe 500ml,3,320000,0,Da huy,2024-08-04,30000
+TIK0530,TikTok Shop,C0231,Bui Van Hung,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-15,22000
+SHP0531,Shopee,C0413,Vu Thi Lan,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-13,15000
+TIK0532,TikTok Shop,C0140,Vu Thi An,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-09-09,25000
+SHP0533,Shopee,C0017,Dang Thi Dung,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-10,30000
+P2P0534,P2P,C0257,Hoang Van Mai,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-04,30000
+SHP0535,Shopee,C0464,Ngo Thi Phuc,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-24,22000
+SHP0536,Shopee,C0284,Tran Thi Binh,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-25,25000
+TIK0537,TikTok Shop,C0263,Tran Thi Hoa,P05,Kem duong trang da Vitamin C,3,410000,1230000,Dang van chuyen,2024-07-22,15000
+TIK0538,TikTok Shop,C0464,Ngo Thi Phuc,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-11,15000
+SHP0539,Shopee,C0373,Ngo Thi Tuan,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-03,25000
+SHP0540,Shopee,C0130,Do Van Trang,P04,Sua rua mat diu nhe 500ml,3,320000,0,Da huy,2024-07-22,25000
+SHP0541,Shopee,C0046,Hoang Van Tuan,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-09-04,22000
+TIK0542,TikTok Shop,C0278,Do Van Thu,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-08,22000
+TIK0543,TikTok Shop,C0074,Tran Thi Phuc,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-27,15000
+SHP0544,Shopee,C0265,Vu Thi Hung,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Dang van chuyen,2024-07-11,30000
+SHP0545,Shopee,C0480,Nguyen Van Dung,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Dang van chuyen,2024-09-12,30000
+SHP0546,Shopee,C0329,Ngo Thi Yen,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-16,30000
+SHP0547,Shopee,C0127,Nguyen Van Linh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-02,22000
+SHP0548,Shopee,C0356,Dang Thi Chi,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-09-01,15000
+SHP0549,Shopee,C0151,Le Van Mai,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-07-23,15000
+TIK0550,TikTok Shop,C0339,Nguyen Van Chi,P08,Kem nen tu nhien shade 220,2,280000,560000,Dang van chuyen,2024-08-27,22000
+P2P0551,P2P,C0441,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-09-20,25000
+SHP0552,Shopee,C0360,Ngo Thi Quan,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-07-18,30000
+SHP0553,Shopee,C0102,Do Van Lan,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-28,15000
+TIK0554,TikTok Shop,C0093,Pham Thi Phuc,P10,Sua tam huong hoa 800ml,3,195000,0,Da huy,2024-08-20,22000
+P2P0555,P2P,C0153,Le Van Dung,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-11,30000
+P2P0556,P2P,C0135,Nguyen Van Vy,P06,Mat na dat set 10 mieng,3,150000,0,Da huy,2024-07-12,22000
+TIK0557,TikTok Shop,C0039,Le Van Hung,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-02,30000
+SHP0558,Shopee,C0340,Hoang Van Trang,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-07-24,25000
+TIK0559,TikTok Shop,C0028,Pham Thi Tuan,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-09-15,15000
+TIK0560,TikTok Shop,C0013,Dang Thi Binh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,0,Da huy,2024-08-12,30000
+SHP0561,Shopee,C0410,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-08-28,25000
+P2P0562,P2P,C0195,Pham Thi Linh,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-27,30000
+P2P0563,P2P,C0007,Vu Thi Linh,P09,Dau goi thao duoc 650ml,2,230000,0,Da huy,2024-09-14,30000
+SHP0564,Shopee,C0284,Tran Thi Binh,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Dang van chuyen,2024-07-25,30000
+TIK0565,TikTok Shop,C0187,Ngo Thi Chi,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-07-02,30000
+TIK0566,TikTok Shop,C0225,Dang Thi Phuc,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-19,25000
+SHP0567,Shopee,C0284,Tran Thi Binh,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-25,22000
+SHP0568,Shopee,C0385,Le Van Ngoc,P06,Mat na dat set 10 mieng,1,150000,0,Da huy,2024-08-16,22000
+SHP0569,Shopee,C0434,Hoang Van Linh,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Dang van chuyen,2024-09-25,15000
+SHP0570,Shopee,C0075,Bui Van Nam,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-07,15000
+P2P0571,P2P,C0270,Nguyen Van Hung,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-09-06,30000
+SHP0572,Shopee,C0478,Dang Thi Binh,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-20,25000
+SHP0573,Shopee,C0150,Le Van Phuc,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-19,15000
+SHP0574,Shopee,C0497,Le Van Vy,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-21,15000
+TIK0575,TikTok Shop,C0128,Hoang Van Vy,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-07,30000
+SHP0576,Shopee,C0381,Bui Van Linh,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-08,25000
+SHP0577,Shopee,C0010,Ngo Thi Yen,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-08-08,15000
+SHP0578,Shopee,C0001,Bui Van Hai,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-27,25000
+TIK0579,TikTok Shop,C0366,Vu Thi Mai,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-04,15000
+SHP0580,Shopee,C0432,Vu Thi Quan,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-02,30000
+TIK0581,TikTok Shop,C0207,Pham Thi Minh,P10,Sua tam huong hoa 800ml,3,195000,585000,Dang van chuyen,2024-09-26,30000
+SHP0582,Shopee,C0160,Hoang Van Lan,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-22,25000
+SHP0583,Shopee,C0169,Hoang Van Hung,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-07-21,22000
+SHP0584,Shopee,C0180,Ngo Thi Phuc,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-07-22,30000
+TIK0585,TikTok Shop,C0098,Dang Thi Binh,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-04,15000
+SHP0586,Shopee,C0172,Vu Thi Thu,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-26,30000
+TIK0587,TikTok Shop,C0476,Ngo Thi Ngoc,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-07,30000
+TIK0588,TikTok Shop,C0462,Tran Thi Lan,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-10,30000
+P2P0589,P2P,C0011,Ngo Thi Binh,P03,Son li Ruby Woo,3,520000,1560000,Dang van chuyen,2024-07-13,25000
+P2P0590,P2P,C0463,Dang Thi Phuc,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-19,25000
+SHP0591,Shopee,C0149,Pham Thi Dung,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-10,25000
+SHP0592,Shopee,C0178,Dang Thi Linh,P06,Mat na dat set 10 mieng,2,150000,300000,Dang van chuyen,2024-08-21,15000
+SHP0593,Shopee,C0160,Hoang Van Lan,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-27,30000
+TIK0594,TikTok Shop,C0498,Do Van Minh,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Dang van chuyen,2024-08-23,25000
+P2P0595,P2P,C0359,Tran Thi Quan,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-21,15000
+TIK0596,TikTok Shop,C0296,Bui Van Ngoc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-20,15000
+P2P0597,P2P,C0120,Do Van Mai,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-03,25000
+P2P0598,P2P,C0235,Dang Thi Hoa,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,0,Da huy,2024-07-05,30000
+SHP0599,Shopee,C0294,Do Van Thu,P07,Nuoc tay trang 500ml,1,460000,0,Da huy,2024-09-09,25000
+SHP0600,Shopee,C0008,Bui Van Nam,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-23,30000
+P2P0601,P2P,C0248,Nguyen Van Linh,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-12,15000
+SHP0602,Shopee,C0233,Tran Thi Linh,P06,Mat na dat set 10 mieng,1,150000,150000,Dang van chuyen,2024-08-15,25000
+SHP0603,Shopee,C0171,Tran Thi Hoa,P06,Mat na dat set 10 mieng,3,150000,0,Da huy,2024-08-02,25000
+SHP0604,Shopee,C0202,Bui Van Phuc,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-14,25000
+SHP0605,Shopee,C0217,Vu Thi An,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-09-10,30000
+SHP0606,Shopee,C0088,Bui Van Hai,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-08,22000
+SHP0607,Shopee,C0417,Bui Van Mai,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-26,22000
+SHP0608,Shopee,C0469,Ngo Thi Hoa,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-09-17,15000
+SHP0609,Shopee,C0202,Bui Van Phuc,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-03,25000
+SHP0610,Shopee,C0062,Pham Thi Mai,P05,Kem duong trang da Vitamin C,1,410000,0,Da huy,2024-09-16,25000
+SHP0611,Shopee,C0044,Tran Thi Minh,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Dang van chuyen,2024-07-01,25000
+TIK0612,TikTok Shop,C0369,Nguyen Van Nam,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-12,30000
+TIK0613,TikTok Shop,C0026,Pham Thi Nam,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-01,15000
+TIK0614,TikTok Shop,C0309,Dang Thi Mai,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-08,30000
+SHP0615,Shopee,C0134,Bui Van Chi,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Dang van chuyen,2024-08-06,15000
+TIK0616,TikTok Shop,C0429,Ngo Thi Phuc,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-21,25000
+P2P0617,P2P,C0401,Vu Thi Trang,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-07-08,15000
+SHP0618,Shopee,C0431,Nguyen Van Yen,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-07-26,22000
+P2P0619,P2P,C0002,Dang Thi An,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-17,15000
+SHP0620,Shopee,C0084,Vu Thi Mai,P05,Kem duong trang da Vitamin C,2,410000,0,Da huy,2024-09-23,15000
+TIK0621,TikTok Shop,C0315,Vu Thi Yen,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-09-24,22000
+TIK0622,TikTok Shop,C0312,Bui Van Hoa,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-13,22000
+TIK0623,TikTok Shop,C0022,Pham Thi Dung,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-19,30000
+SHP0624,Shopee,C0251,Bui Van Thu,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-03,25000
+TIK0625,TikTok Shop,C0291,Nguyen Van Ngoc,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-07-18,15000
+TIK0626,TikTok Shop,C0129,Ngo Thi Nam,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-07-14,22000
+P2P0627,P2P,C0044,Tran Thi Minh,P04,Sua rua mat diu nhe 500ml,3,320000,0,Da huy,2024-09-02,25000
+SHP0628,Shopee,C0159,Dang Thi Chi,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-23,15000
+P2P0629,P2P,C0319,Vu Thi Lan,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-09,30000
+SHP0630,Shopee,C0350,Pham Thi Binh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Dang van chuyen,2024-07-24,15000
+SHP0631,Shopee,C0187,Ngo Thi Chi,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-16,30000
+SHP0632,Shopee,C0058,Pham Thi Linh,P07,Nuoc tay trang 500ml,2,460000,920000,Dang van chuyen,2024-09-20,25000
+SHP0633,Shopee,C0221,Tran Thi Hoa,P04,Sua rua mat diu nhe 500ml,3,320000,0,Da huy,2024-09-16,30000
+SHP0634,Shopee,C0444,Dang Thi Minh,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-04,30000
+TIK0635,TikTok Shop,C0086,Nguyen Van Hung,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-23,15000
+SHP0636,Shopee,C0301,Nguyen Van Lan,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-07-08,25000
+TIK0637,TikTok Shop,C0221,Tran Thi Hoa,P07,Nuoc tay trang 500ml,2,460000,920000,Dang van chuyen,2024-07-01,30000
+TIK0638,TikTok Shop,C0311,Le Van Minh,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-16,15000
+P2P0639,P2P,C0345,Pham Thi An,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-19,22000
+TIK0640,TikTok Shop,C0211,Bui Van An,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-19,25000
+TIK0641,TikTok Shop,C0248,Nguyen Van Linh,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-04,25000
+P2P0642,P2P,C0077,Hoang Van An,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-15,30000
+SHP0643,Shopee,C0322,Dang Thi Mai,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-09-19,30000
+P2P0644,P2P,C0159,Dang Thi Chi,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-19,22000
+P2P0645,P2P,C0230,Pham Thi Quan,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-07-11,25000
+TIK0646,TikTok Shop,C0077,Hoang Van An,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-07-06,22000
+SHP0647,Shopee,C0255,Le Van Phuc,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-06,22000
+P2P0648,P2P,C0358,Hoang Van Tuan,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-27,22000
+P2P0649,P2P,C0265,Vu Thi Hung,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-17,15000
+SHP0650,Shopee,C0350,Pham Thi Binh,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-28,22000
+SHP0651,Shopee,C0336,Nguyen Van Hai,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-07-10,30000
+SHP0652,Shopee,C0333,Ngo Thi Hai,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-07-19,22000
+TIK0653,TikTok Shop,C0072,Pham Thi Vy,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-28,25000
+TIK0654,TikTok Shop,C0010,Ngo Thi Yen,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-08,30000
+TIK0655,TikTok Shop,C0449,Dang Thi Minh,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-09-08,22000
+SHP0656,Shopee,C0181,Le Van Hai,P10,Sua tam huong hoa 800ml,3,195000,0,Da huy,2024-08-16,25000
+TIK0657,TikTok Shop,C0086,Nguyen Van Hung,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-09-21,22000
+P2P0658,P2P,C0058,Pham Thi Linh,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-24,30000
+SHP0659,Shopee,C0094,Tran Thi Hung,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-05,15000
+TIK0660,TikTok Shop,C0388,Pham Thi Mai,P05,Kem duong trang da Vitamin C,2,410000,820000,Da giao,2024-08-19,22000
+SHP0661,Shopee,C0249,Le Van Hung,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-09,25000
+SHP0662,Shopee,C0160,Hoang Van Lan,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-14,25000
+TIK0663,TikTok Shop,C0187,Ngo Thi Chi,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-07,22000
+SHP0664,Shopee,C0193,Do Van Lan,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-17,22000
+SHP0665,Shopee,C0071,Tran Thi An,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-17,22000
+SHP0666,Shopee,C0233,Tran Thi Linh,P03,Son li Ruby Woo,2,520000,0,Da huy,2024-08-03,30000
+TIK0667,TikTok Shop,C0344,Le Van Dung,P04,Sua rua mat diu nhe 500ml,3,320000,0,Da huy,2024-07-27,22000
+SHP0668,Shopee,C0037,Vu Thi Nam,P08,Kem nen tu nhien shade 220,1,280000,0,Da huy,2024-09-03,30000
+P2P0669,P2P,C0188,Tran Thi Chi,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-07-17,22000
+P2P0670,P2P,C0026,Pham Thi Nam,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-11,30000
+SHP0671,Shopee,C0010,Ngo Thi Yen,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-14,22000
+SHP0672,Shopee,C0454,Le Van Lan,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-28,22000
+SHP0673,Shopee,C0326,Do Van Trang,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-09-19,25000
+TIK0674,TikTok Shop,C0188,Tran Thi Chi,P08,Kem nen tu nhien shade 220,1,280000,0,Da huy,2024-09-06,30000
+P2P0675,P2P,C0295,Do Van Chi,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-03,25000
+P2P0676,P2P,C0011,Ngo Thi Binh,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-07-03,15000
+TIK0677,TikTok Shop,C0477,Hoang Van Hung,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-20,22000
+SHP0678,Shopee,C0016,Ngo Thi Hoa,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-08-12,22000
+TIK0679,TikTok Shop,C0014,Do Van Minh,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-19,22000
+SHP0680,Shopee,C0229,Hoang Van Phuc,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-08-06,30000
+SHP0681,Shopee,C0077,Hoang Van An,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-07-11,25000
+SHP0682,Shopee,C0404,Tran Thi Dung,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-20,25000
+TIK0683,TikTok Shop,C0009,Bui Van Lan,P09,Dau goi thao duoc 650ml,3,230000,0,Da huy,2024-08-05,25000
+P2P0684,P2P,C0472,Do Van Minh,P06,Mat na dat set 10 mieng,2,150000,300000,Dang van chuyen,2024-08-24,15000
+TIK0685,TikTok Shop,C0307,Dang Thi Dung,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-17,30000
+SHP0686,Shopee,C0118,Vu Thi Binh,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-07-11,30000
+SHP0687,Shopee,C0471,Pham Thi An,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-08-27,15000
+TIK0688,TikTok Shop,C0409,Ngo Thi Minh,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-22,25000
+TIK0689,TikTok Shop,C0155,Do Van Trang,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-09,22000
+TIK0690,TikTok Shop,C0231,Bui Van Hung,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-17,15000
+TIK0691,TikTok Shop,C0429,Ngo Thi Phuc,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-02,22000
+SHP0692,Shopee,C0366,Vu Thi Mai,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-09-12,15000
+TIK0693,TikTok Shop,C0285,Hoang Van An,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-23,30000
+SHP0694,Shopee,C0214,Bui Van Nam,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-07-28,15000
+P2P0695,P2P,C0268,Do Van Nam,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-09-24,15000
+SHP0696,Shopee,C0229,Hoang Van Phuc,P10,Sua tam huong hoa 800ml,1,195000,195000,Dang van chuyen,2024-07-28,25000
+P2P0697,P2P,C0467,Pham Thi Tuan,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-08-03,25000
+P2P0698,P2P,C0094,Tran Thi Hung,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-07,25000
+TIK0699,TikTok Shop,C0211,Bui Van An,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-09-28,25000
+TIK0700,TikTok Shop,C0498,Do Van Minh,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-03,15000
+P2P0701,P2P,C0237,Nguyen Van Hung,P07,Nuoc tay trang 500ml,3,460000,1380000,Da giao,2024-07-03,22000
+SHP0702,Shopee,C0258,Do Van Nam,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-08-25,30000
+SHP0703,Shopee,C0065,Pham Thi Chi,P10,Sua tam huong hoa 800ml,3,195000,585000,Dang van chuyen,2024-07-25,30000
+TIK0704,TikTok Shop,C0204,Dang Thi Trang,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-22,15000
+TIK0705,TikTok Shop,C0191,Vu Thi Chi,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-27,22000
+SHP0706,Shopee,C0299,Ngo Thi Tuan,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-16,30000
+TIK0707,TikTok Shop,C0121,Nguyen Van Trang,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-28,30000
+SHP0708,Shopee,C0210,Dang Thi Nam,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-08-25,25000
+TIK0709,TikTok Shop,C0310,Hoang Van Tuan,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-20,25000
+P2P0710,P2P,C0232,Ngo Thi Yen,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-09-11,22000
+SHP0711,Shopee,C0201,Ngo Thi Dung,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-07-14,25000
+TIK0712,TikTok Shop,C0063,Ngo Thi Thu,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-19,15000
+SHP0713,Shopee,C0125,Tran Thi Ngoc,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-09-12,30000
+TIK0714,TikTok Shop,C0133,Bui Van Hoa,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-01,25000
+SHP0715,Shopee,C0175,Hoang Van Linh,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-26,25000
+TIK0716,TikTok Shop,C0232,Ngo Thi Yen,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-07-11,22000
+SHP0717,Shopee,C0264,Tran Thi Dung,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-06,30000
+SHP0718,Shopee,C0133,Bui Van Hoa,P05,Kem duong trang da Vitamin C,1,410000,410000,Da giao,2024-08-20,22000
+SHP0719,Shopee,C0070,Do Van An,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-07,30000
+TIK0720,TikTok Shop,C0500,Nguyen Van Tuan,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-07-07,15000
+SHP0721,Shopee,C0097,Le Van Dung,P06,Mat na dat set 10 mieng,1,150000,150000,Dang van chuyen,2024-09-11,22000
+TIK0722,TikTok Shop,C0165,Hoang Van Thu,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-19,25000
+TIK0723,TikTok Shop,C0409,Ngo Thi Minh,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-07-08,22000
+TIK0724,TikTok Shop,C0251,Bui Van Thu,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-09,25000
+SHP0725,Shopee,C0465,Dang Thi Quan,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-12,22000
+SHP0726,Shopee,C0049,Le Van Chi,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-09-11,25000
+SHP0727,Shopee,C0286,Pham Thi Vy,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-08-27,22000
+TIK0728,TikTok Shop,C0073,Ngo Thi Trang,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-08-19,22000
+TIK0729,TikTok Shop,C0312,Bui Van Hoa,P04,Sua rua mat diu nhe 500ml,1,320000,0,Da huy,2024-08-26,25000
+TIK0730,TikTok Shop,C0161,Ngo Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-09-26,22000
+TIK0731,TikTok Shop,C0496,Tran Thi Ngoc,P06,Mat na dat set 10 mieng,1,150000,150000,Da giao,2024-08-02,15000
+P2P0732,P2P,C0030,Pham Thi Hai,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-19,30000
+SHP0733,Shopee,C0141,Bui Van Hoa,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-23,25000
+TIK0734,TikTok Shop,C0178,Dang Thi Linh,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-06,25000
+TIK0735,TikTok Shop,C0476,Ngo Thi Ngoc,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-08-25,30000
+SHP0736,Shopee,C0085,Bui Van Nam,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-13,30000
+P2P0737,P2P,C0003,Vu Thi Ngoc,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-16,22000
+SHP0738,Shopee,C0336,Nguyen Van Hai,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-08,25000
+TIK0739,TikTok Shop,C0059,Ngo Thi Mai,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-28,22000
+TIK0740,TikTok Shop,C0373,Ngo Thi Tuan,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-07-15,30000
+P2P0741,P2P,C0118,Vu Thi Binh,P01,Serum duong am Hyaluronic Acid 50ml,3,250000,750000,Da giao,2024-09-03,25000
+TIK0742,TikTok Shop,C0159,Dang Thi Chi,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-10,30000
+TIK0743,TikTok Shop,C0293,Hoang Van Tuan,P02,Kem chong nang SPF50+ kiem dau,1,185000,185000,Da giao,2024-09-24,25000
+P2P0744,P2P,C0441,Tran Thi Hoa,P07,Nuoc tay trang 500ml,2,460000,920000,Da giao,2024-08-06,22000
+SHP0745,Shopee,C0031,Bui Van Vy,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-08-16,30000
+TIK0746,TikTok Shop,C0151,Le Van Mai,P03,Son li Ruby Woo,2,520000,0,Da huy,2024-07-17,15000
+SHP0747,Shopee,C0348,Dang Thi Phuc,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-20,25000
+SHP0748,Shopee,C0170,Hoang Van Hai,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-07-04,15000
+TIK0749,TikTok Shop,C0019,Bui Van Binh,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-24,30000
+SHP0750,Shopee,C0375,Bui Van Chi,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-07-26,22000
+SHP0751,Shopee,C0289,Nguyen Van Mai,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-08-13,15000
+SHP0752,Shopee,C0081,Ngo Thi Tuan,P10,Sua tam huong hoa 800ml,3,195000,585000,Da giao,2024-09-25,22000
+TIK0753,TikTok Shop,C0202,Bui Van Phuc,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Da giao,2024-07-13,25000
+TIK0754,TikTok Shop,C0013,Dang Thi Binh,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-08-25,25000
+SHP0755,Shopee,C0147,Bui Van Hung,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-09-15,22000
+TIK0756,TikTok Shop,C0233,Tran Thi Linh,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-08-10,22000
+P2P0757,P2P,C0398,Pham Thi Minh,P08,Kem nen tu nhien shade 220,3,280000,840000,Da giao,2024-09-19,22000
+SHP0758,Shopee,C0476,Ngo Thi Ngoc,P04,Sua rua mat diu nhe 500ml,2,320000,640000,Dang van chuyen,2024-08-11,22000
+P2P0759,P2P,C0457,Tran Thi Hung,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-15,22000
+SHP0760,Shopee,C0132,Tran Thi Quan,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-15,25000
+TIK0761,TikTok Shop,C0339,Nguyen Van Chi,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-08-19,22000
+TIK0762,TikTok Shop,C0273,Vu Thi Trang,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-09-17,25000
+P2P0763,P2P,C0246,Dang Thi Phuc,P06,Mat na dat set 10 mieng,3,150000,450000,Da giao,2024-08-20,30000
+SHP0764,Shopee,C0436,Bui Van Trang,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-09-06,25000
+SHP0765,Shopee,C0164,Pham Thi Lan,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-09-17,15000
+P2P0766,P2P,C0372,Tran Thi Nam,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-07-28,25000
+SHP0767,Shopee,C0457,Tran Thi Hung,P07,Nuoc tay trang 500ml,1,460000,460000,Da giao,2024-09-08,30000
+TIK0768,TikTok Shop,C0454,Le Van Lan,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-07,30000
+SHP0769,Shopee,C0326,Do Van Trang,P08,Kem nen tu nhien shade 220,1,280000,0,Da huy,2024-09-13,30000
+SHP0770,Shopee,C0088,Bui Van Hai,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Dang van chuyen,2024-07-26,15000
+SHP0771,Shopee,C0217,Vu Thi An,P10,Sua tam huong hoa 800ml,1,195000,195000,Da giao,2024-08-18,15000
+TIK0772,TikTok Shop,C0182,Dang Thi Nam,P02,Kem chong nang SPF50+ kiem dau,1,185000,0,Da huy,2024-09-25,15000
+TIK0773,TikTok Shop,C0202,Bui Van Phuc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-04,25000
+P2P0774,P2P,C0037,Vu Thi Nam,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-26,30000
+SHP0775,Shopee,C0348,Dang Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-06,15000
+SHP0776,Shopee,C0333,Ngo Thi Hai,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-09-06,22000
+TIK0777,TikTok Shop,C0182,Dang Thi Nam,P03,Son li Ruby Woo,3,520000,1560000,Da giao,2024-09-27,25000
+SHP0778,Shopee,C0429,Ngo Thi Phuc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-08-06,30000
+SHP0779,Shopee,C0401,Vu Thi Trang,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-07-10,30000
+SHP0780,Shopee,C0284,Tran Thi Binh,P08,Kem nen tu nhien shade 220,2,280000,560000,Da giao,2024-07-24,30000
+SHP0781,Shopee,C0080,Pham Thi Hai,P04,Sua rua mat diu nhe 500ml,1,320000,320000,Da giao,2024-08-23,25000
+SHP0782,Shopee,C0380,Le Van An,P01,Serum duong am Hyaluronic Acid 50ml,2,250000,500000,Da giao,2024-08-20,25000
+P2P0783,P2P,C0047,Ngo Thi Phuc,P06,Mat na dat set 10 mieng,1,150000,0,Da huy,2024-08-21,15000
+TIK0784,TikTok Shop,C0241,Tran Thi An,P06,Mat na dat set 10 mieng,2,150000,0,Da huy,2024-08-10,30000
+P2P0785,P2P,C0015,Hoang Van Quan,P03,Son li Ruby Woo,2,520000,1040000,Da giao,2024-09-11,15000
+SHP0786,Shopee,C0060,Ngo Thi Dung,P05,Kem duong trang da Vitamin C,3,410000,1230000,Da giao,2024-09-02,30000
+SHP0787,Shopee,C0430,Do Van Ngoc,P04,Sua rua mat diu nhe 500ml,3,320000,960000,Da giao,2024-08-17,22000
+TIK0788,TikTok Shop,C0003,Vu Thi Ngoc,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-07-06,22000
+SHP0789,Shopee,C0024,Le Van Hung,P08,Kem nen tu nhien shade 220,1,280000,280000,Da giao,2024-08-24,25000
+SHP0790,Shopee,C0334,Dang Thi Ngoc,P06,Mat na dat set 10 mieng,2,150000,300000,Da giao,2024-07-24,22000
+TIK0791,TikTok Shop,C0495,Dang Thi Binh,P02,Kem chong nang SPF50+ kiem dau,2,185000,370000,Da giao,2024-08-13,25000
+TIK0792,TikTok Shop,C0490,Do Van Binh,P09,Dau goi thao duoc 650ml,2,230000,460000,Da giao,2024-08-21,15000
+P2P0793,P2P,C0285,Hoang Van An,P03,Son li Ruby Woo,1,520000,520000,Da giao,2024-08-03,30000
+P2P0794,P2P,C0439,Bui Van Chi,P02,Kem chong nang SPF50+ kiem dau,3,185000,555000,Da giao,2024-08-03,15000
+SHP0795,Shopee,C0147,Bui Van Hung,P09,Dau goi thao duoc 650ml,3,230000,690000,Da giao,2024-09-24,22000
+P2P0796,P2P,C0436,Bui Van Trang,P07,Nuoc tay trang 500ml,2,460000,920000,Dang van chuyen,2024-09-09,15000
+TIK0797,TikTok Shop,C0116,Vu Thi Yen,P04,Sua rua mat diu nhe 500ml,1,320000,0,Da huy,2024-08-05,15000
+SHP0798,Shopee,C0157,Le Van Nam,P01,Serum duong am Hyaluronic Acid 50ml,1,250000,250000,Da giao,2024-09-15,25000
+SHP0799,Shopee,C0120,Do Van Mai,P10,Sua tam huong hoa 800ml,2,195000,390000,Da giao,2024-07-21,22000
+SHP0800,Shopee,C0003,Vu Thi Ngoc,P09,Dau goi thao duoc 650ml,1,230000,230000,Da giao,2024-07-16,22000

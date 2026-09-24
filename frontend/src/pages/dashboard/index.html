@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="dashboard.css">
-  <script>try{var __l=localStorage.getItem("agentos.lang");if(__l!=="vi")__l="en";document.documentElement.lang=__l;var __t=localStorage.getItem("agentos.theme");if(__t==="dark"||(!__t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(__e){document.documentElement.lang="en";}</script>
+  <script src="../../shared/bootstrap.js"></script>
 </head>
 <body>
   <div class="app-layout">
@@ -459,6 +459,61 @@
             </table>
           </div>
         </div>
+
+        <!-- Tokens by Agent -->
+        <div class="analytics-card">
+          <h4 data-i18n="an.by_agent_t">Tokens by Agent</h4>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="an.th_agent">Agent</th>
+                  <th data-i18n="an.th_calls">Calls</th>
+                  <th data-i18n="an.th_prompt">Prompt</th>
+                  <th data-i18n="an.th_comp">Comp</th>
+                  <th data-i18n="an.th_total">Total</th>
+                  <th data-i18n="an.th_cost">Est. Cost</th>
+                </tr>
+              </thead>
+              <tbody id="agentTokensBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tokens by Time -->
+        <div class="analytics-card">
+          <h4 data-i18n="an.by_time_t">Tokens by Day</h4>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="an.th_date">Date</th>
+                  <th data-i18n="an.th_calls">Calls</th>
+                  <th data-i18n="an.th_total">Total</th>
+                  <th data-i18n="an.th_cost">Est. Cost</th>
+                </tr>
+              </thead>
+              <tbody id="timeTokensBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Status breakdown -->
+        <div class="analytics-card">
+          <h4 data-i18n="an.by_status_t">Status Breakdown</h4>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="an.th_status">Status</th>
+                  <th data-i18n="an.th_calls">Calls</th>
+                  <th data-i18n="an.th_share">Share</th>
+                </tr>
+              </thead>
+              <tbody id="statusBreakdownBody"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- ===== VIEW: Models ===== -->
@@ -499,6 +554,8 @@
             <dl class="model-detail-grid">
               <div><dt data-i18n="models.f_context">Context window</dt><dd id="modelDetailContext"></dd></div>
               <div><dt data-i18n="models.f_inputs">Supported input</dt><dd id="modelDetailInputs"></dd></div>
+              <div><dt data-i18n="models.f_price">Price</dt><dd id="modelDetailPrice"></dd></div>
+              <div><dt data-i18n="models.f_speed">Speed</dt><dd id="modelDetailSpeed"></dd></div>
               <div><dt data-i18n="models.f_status">Status</dt><dd id="modelDetailStatus"></dd></div>
             </dl>
             <p class="model-detail-caps-label" data-i18n="models.f_caps">Capabilities</p>
@@ -636,6 +693,12 @@
                 <option value="anthropic">Anthropic</option>
                 <option value="gemini">Google Gemini</option>
                 <option value="openrouter">OpenRouter</option>
+                <option value="xai">xAI</option>
+                <option value="deepseek">DeepSeek</option>
+                <option value="mistral">Mistral AI</option>
+                <option value="meta">Meta</option>
+                <option value="qwen">Qwen</option>
+                <option value="cohere">Cohere</option>
                 <option value="custom">Custom / OpenAI-compatible</option>
               </select>
               <span class="input-hint" id="providerHint">General-purpose models with strong tool support.</span>

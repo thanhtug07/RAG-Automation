@@ -120,6 +120,18 @@ let logsCache = [];
 // ----------------------------------------------------------------
 // Initialization
 // ----------------------------------------------------------------
+// Restore view synchronously (before first paint): deep-link ?view= wins,
+// otherwise last view on reload. Runs at parse time (script is at end of
+// body) so the stored view is active immediately — no chat flash.
+try {
+  var deepView = new URLSearchParams(window.location.search).get("view");
+  var knownViews = ["chatView", "agentsView", "analyticsView", "modelsView", "logsView", "settingsView"];
+  var storedView = null;
+  try { storedView = sessionStorage.getItem("agentos.dash.view"); } catch (err2) { /* ignore */ }
+  var targetView = (deepView && knownViews.indexOf(deepView) !== -1) ? deepView
+    : (storedView && knownViews.indexOf(storedView) !== -1) ? storedView : "chatView";
+  if (targetView !== "chatView") switchView(targetView);
+} catch (err) { /* default chat view */ }
 document.addEventListener("DOMContentLoaded", () => {
   initSidebarNav();
   initKeyToggle();
@@ -134,16 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initChromePrefs();
   initChatExtras();
   initCatalog();
-  // Deep-link (?view=analyticsView) wins; otherwise restore last view on reload.
-  try {
-    var deepView = new URLSearchParams(window.location.search).get("view");
-    var knownViews = ["chatView", "agentsView", "analyticsView", "modelsView", "logsView", "settingsView"];
-    var storedView = null;
-    try { storedView = sessionStorage.getItem("agentos.dash.view"); } catch (err2) { /* ignore */ }
-    var targetView = (deepView && knownViews.indexOf(deepView) !== -1) ? deepView
-      : (storedView && knownViews.indexOf(storedView) !== -1) ? storedView : "chatView";
-    if (targetView !== "chatView") switchView(targetView);
-  } catch (err) { /* default chat view */ }
   initLogsView();
   initLogDetailModal();
   loadSavedSettings();
@@ -245,25 +247,51 @@ function setText(node, value) {
 // ----------------------------------------------------------------
 const PROVIDER_MODELS = {
   openai: [
-    { id: "openai/gpt-4o", name: "GPT-4o", desc: { en: "General-purpose model", vi: "Mô hình đa dụng" } },
-    { id: "openai/gpt-4o-mini", name: "GPT-4o mini", desc: { en: "Fast and affordable", vi: "Nhanh và tiết kiệm" } },
-    { id: "openai/o3", name: "o3", desc: { en: "Advanced reasoning", vi: "Suy luận nâng cao" } },
-    { id: "openai/o4-mini", name: "o4-mini", desc: { en: "Compact reasoning", vi: "Suy luận gọn nhẹ" } }
+    { id: "openai/gpt-5-5", name: "GPT-5.5", desc: { en: "Flagship for coding and research", vi: "Chủ lực cho code và nghiên cứu" } },
+    { id: "openai/gpt-5-mini", name: "GPT-5 mini", desc: { en: "Fast and affordable", vi: "Nhanh và tiết kiệm" } },
+    { id: "openai/gpt-4o", name: "GPT-4o", desc: { en: "Proven multimodal", vi: "Đa phương thức đã kiểm chứng" } },
+    { id: "openai/o3", name: "o3", desc: { en: "Advanced reasoning", vi: "Suy luận nâng cao" } }
   ],
   anthropic: [
-    { id: "anthropic/claude-opus-4-6", name: "Claude Opus", desc: { en: "Most capable reasoning", vi: "Suy luận mạnh nhất" } },
+    { id: "anthropic/claude-opus-5", name: "Claude Opus 5", desc: { en: "Most capable reasoning", vi: "Suy luận mạnh nhất" } },
     { id: "anthropic/claude-sonnet-4-6", name: "Claude Sonnet", desc: { en: "Balanced performance", vi: "Cân bằng hiệu năng" } },
     { id: "anthropic/claude-haiku-4-5", name: "Claude Haiku", desc: { en: "Fast and light", vi: "Nhanh và nhẹ" } }
   ],
   gemini: [
-    { id: "google/gemini-2.5-pro", name: "Gemini 2.5 Pro", desc: { en: "Flagship multimodal", vi: "Đa phương thức chủ lực" } },
-    { id: "google/gemini-2.5-flash", name: "Gemini 2.5 Flash", desc: { en: "Fast and efficient", vi: "Nhanh và hiệu quả" } },
-    { id: "google/gemini-2.0-flash", name: "Gemini 2.0 Flash", desc: { en: "Proven all-rounder", vi: "Toàn diện đã kiểm chứng" } }
+    { id: "google/gemini-3-pro", name: "Gemini 3 Pro", desc: { en: "Flagship multimodal, 1M context", vi: "Chủ lực đa phương thức, ngữ cảnh 1M" } },
+    { id: "google/gemini-3-flash", name: "Gemini 3 Flash", desc: { en: "Fast and efficient", vi: "Nhanh và hiệu quả" } },
+    { id: "google/gemini-2-5-flash", name: "Gemini 2.5 Flash", desc: { en: "Proven all-rounder", vi: "Toàn diện đã kiểm chứng" } }
   ],
   openrouter: [
     { id: "auto", name: "Auto (router picks)", desc: { en: "Best model per request", vi: "Model tốt nhất mỗi request" } },
     { id: "nousresearch/hermes-3-llama-3.1-405b", name: "Hermes 3 405B", desc: { en: "Agent flagship", vi: "Chủ lực cho agent" } },
     { id: "meta-llama/llama-3.3-70b-instruct", name: "Llama 3.3 70B", desc: { en: "Open weights", vi: "Trọng số mở" } }
+  ],
+  xai: [
+    { id: "xai/grok-4-6", name: "Grok 4.6", desc: { en: "Flagship with real-time X data", vi: "Chủ lực với dữ liệu X trực tiếp" } },
+    { id: "xai/grok-4-1-fast", name: "Grok 4.1 Fast", desc: { en: "Fast everyday tasks", vi: "Tác vụ hằng ngày nhanh" } }
+  ],
+  deepseek: [
+    { id: "deepseek/deepseek-v4", name: "DeepSeek V4", desc: { en: "Reasoning flagship, 1M context", vi: "Chủ lực suy luận, ngữ cảnh 1M" } },
+    { id: "deepseek/deepseek-v3-2", name: "DeepSeek V3.2", desc: { en: "Efficient open MoE", vi: "MoE mở hiệu quả" } },
+    { id: "deepseek/deepseek-r1", name: "DeepSeek R1", desc: { en: "Open reasoning specialist", vi: "Chuyên gia suy luận mở" } }
+  ],
+  mistral: [
+    { id: "mistral/mistral-large-3", name: "Mistral Large 3", desc: { en: "EU flagship MoE, 256K context", vi: "Chủ lực EU MoE, ngữ cảnh 256K" } },
+    { id: "mistral/mistral-medium-3-5", name: "Mistral Medium 3.5", desc: { en: "Balanced enterprise", vi: "Cân bằng cho doanh nghiệp" } },
+    { id: "mistral/mistral-small-4", name: "Mistral Small 4", desc: { en: "Compact multimodal", vi: "Đa phương thức gọn nhẹ" } }
+  ],
+  meta: [
+    { id: "meta/llama-4-maverick", name: "Llama 4 Maverick", desc: { en: "Open multimodal flagship", vi: "Chủ lực đa phương thức mở" } },
+    { id: "meta/llama-3-3-70b", name: "Llama 3.3 70B", desc: { en: "Proven open weights", vi: "Trọng số mở đã kiểm chứng" } }
+  ],
+  qwen: [
+    { id: "qwen/qwen3-max", name: "Qwen3 Max", desc: { en: "Alibaba flagship multilingual", vi: "Chủ lực đa ngôn ngữ Alibaba" } },
+    { id: "qwen/qwen3-30b", name: "Qwen3 30B", desc: { en: "Efficient open model", vi: "Mô hình mở hiệu quả" } }
+  ],
+  cohere: [
+    { id: "cohere/command-a", name: "Command A", desc: { en: "Enterprise RAG specialist", vi: "Chuyên gia RAG doanh nghiệp" } },
+    { id: "cohere/command-r-plus", name: "Command R+", desc: { en: "Retrieval-optimized chat", vi: "Chat tối ưu truy xuất" } }
   ],
   custom: [
     { id: "custom-model", name: "Custom model", desc: { en: "Resolved via base URL", vi: "Phân giải qua base URL" } }
@@ -275,6 +303,12 @@ const PROVIDER_LABEL = {
   anthropic: "Anthropic",
   gemini: "Google Gemini",
   openrouter: "OpenRouter",
+  xai: "xAI",
+  deepseek: "DeepSeek",
+  mistral: "Mistral AI",
+  meta: "Meta",
+  qwen: "Qwen",
+  cohere: "Cohere",
   custom: "Custom"
 };
 
@@ -283,6 +317,12 @@ const PROVIDER_BASE_URLS = {
   anthropic: "https://api.anthropic.com",
   gemini: "https://generativelanguage.googleapis.com",
   openrouter: "https://openrouter.ai/api/v1",
+  xai: "https://api.x.ai/v1",
+  deepseek: "https://api.deepseek.com/v1",
+  mistral: "https://api.mistral.ai/v1",
+  meta: "https://api.llama.com/v1",
+  qwen: "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  cohere: "https://api.cohere.com/v2",
   custom: "https://api.your-endpoint.com/v1"
 };
 
@@ -296,6 +336,12 @@ const PROVIDER_HINTS = {
   anthropic: { en: "Strong reasoning and long context.", vi: "Suy luận mạnh, ngữ cảnh dài." },
   gemini: { en: "Multimodal models with generous context.", vi: "Đa phương thức, ngữ cảnh lớn." },
   openrouter: { en: "One key, many open and commercial models.", vi: "Một key, nhiều mô hình mở và thương mại." },
+  xai: { en: "Real-time models with live X data.", vi: "Mô hình trực tiếp với dữ liệu X." },
+  deepseek: { en: "Open reasoning at low cost.", vi: "Suy luận mở, chi phí thấp." },
+  mistral: { en: "European open-weight models.", vi: "Mô hình trọng số mở châu Âu." },
+  meta: { en: "Open Llama models, self-hostable.", vi: "Mô hình Llama mở, tự host được." },
+  qwen: { en: "Strong multilingual open models.", vi: "Mô hình mở đa ngôn ngữ mạnh." },
+  cohere: { en: "Enterprise RAG and chat models.", vi: "Mô hình RAG và chat doanh nghiệp." },
   custom: { en: "Any OpenAI-compatible endpoint.", vi: "Mọi endpoint tương thích OpenAI." }
 };
 
@@ -697,43 +743,6 @@ async function fetchModels(key = "", provider = "", base_url = "") {
   }
 }
 
-function renderModelList(models, message) {
-  modelCountBadge.textContent = `${models.length} ${chromeT("models.count")}`;
-  modelListContainer.innerHTML = "";
-
-  if (models.length === 0) {
-    modelListContainer.innerHTML = `
-      <div style="padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin: 0 auto 12px; display: block; opacity: 0.4;">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-        <p>${message || "No models available."}</p>
-        <p style="margin-top:6px; font-size: 0.78rem;">Go to <strong>Settings</strong> → add your API key → click <strong>Validate & Fetch Models</strong></p>
-      </div>
-    `;
-    return;
-  }
-
-  models.forEach(m => {
-    const item = document.createElement("div");
-    item.className = `model-item ${m.id === activeModel ? "active" : ""}`;
-    const isHermes = m.id.toLowerCase().includes("hermes");
-
-    item.innerHTML = `
-      <div class="model-info-main">
-        <span class="model-title">${m.name}</span>
-        <span class="model-id-code">${m.id}</span>
-      </div>
-      <div class="model-badge-right ${isHermes ? "hermes" : ""}">
-        ${m.badge || (isHermes ? "HERMES" : m.provider)}
-      </div>
-    `;
-
-    item.addEventListener("click", () => selectModel(m));
-    modelListContainer.appendChild(item);
-  });
-}
-
 function selectModel(m) {
   activeModel = m.id;
   setText(kpiModel, m.name);
@@ -880,7 +889,7 @@ function initSearch() {
   const filter = document.getElementById("modelProviderFilter");
   if (filter && !filter.dataset.ready) {
     filter.dataset.ready = "1";
-    ["OpenAI", "Anthropic", "Google Gemini", "OpenCode", "DeepSeek"].forEach(p => {
+    MODEL_CATALOG.map(g => g.provider).forEach(p => {
       const o = document.createElement("option");
       o.value = p;
       o.textContent = p;
@@ -897,53 +906,99 @@ function initSearch() {
 // ----------------------------------------------------------------
 const MODEL_CATALOG = [
   { provider: "OpenAI", models: [
-    { id: "openai/gpt-4o", name: "GPT-4o",
-      desc: { en: "Multimodal model for reasoning, text and vision.", vi: "Mô hình đa phương thức cho suy luận, văn bản và thị giác." },
-      context: "128K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"] },
-    { id: "openai/gpt-4o-mini", name: "GPT-4o mini",
+    { id: "openai/gpt-5-5", name: "GPT-5.5",
+      desc: { en: "Flagship for coding, computer use and research.", vi: "Chủ lực cho code, computer use và nghiên cứu." },
+      context: "1.1M", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"], price: "$6.19/M", speed: "79 tok/s" },
+    { id: "openai/gpt-5-mini", name: "GPT-5 mini",
       desc: { en: "Fast, affordable everyday model.", vi: "Mô hình nhanh, tiết kiệm cho tác vụ hằng ngày." },
-      context: "128K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"] },
-    { id: "openai/o3", name: "o3",
-      desc: { en: "Deep reasoning for complex problems.", vi: "Suy luận sâu cho bài toán phức tạp." },
-      context: "200K", inputs: "Text · Image", caps: ["Text", "Reasoning", "Tools"] }
+      context: "400K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"], price: "$0.60/M", speed: "180 tok/s" },
+    { id: "openai/gpt-4o", name: "GPT-4o",
+      desc: { en: "Proven multimodal workhorse.", vi: "Đa phương thức đã kiểm chứng." },
+      context: "128K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"], price: "$2.50/M", speed: "150 tok/s" }
   ] },
   { provider: "Anthropic", models: [
-    { id: "anthropic/claude-3-5-sonnet", name: "Claude 3.5 Sonnet",
+    { id: "anthropic/claude-opus-5", name: "Claude Opus 5",
+      desc: { en: "Most capable reasoning and agents.", vi: "Suy luận và agent mạnh nhất." },
+      context: "1M", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"], price: "$5.95/M", speed: "135 tok/s" },
+    { id: "anthropic/claude-sonnet-4-6", name: "Claude Sonnet 4.6",
       desc: { en: "Balanced intelligence for agents and analysis.", vi: "Cân bằng cho agent và phân tích." },
-      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"] },
-    { id: "anthropic/claude-3-5-haiku", name: "Claude 3.5 Haiku",
+      context: "1M", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"], price: "$3.00/M", speed: "160 tok/s" },
+    { id: "anthropic/claude-haiku-4-5", name: "Claude Haiku 4.5",
       desc: { en: "Fast responses at low cost.", vi: "Phản hồi nhanh, chi phí thấp." },
-      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision"] },
-    { id: "anthropic/claude-3-opus", name: "Claude 3 Opus",
-      desc: { en: "Most capable Claude for hard tasks.", vi: "Claude mạnh nhất cho tác vụ khó." },
-      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"] }
+      context: "200K", inputs: "Text · Image", caps: ["Text", "Vision"], price: "$0.80/M", speed: "220 tok/s" }
   ] },
   { provider: "Google Gemini", models: [
-    { id: "google/gemini-2.5-pro", name: "Gemini 2.5 Pro",
+    { id: "google/gemini-3-pro", name: "Gemini 3 Pro",
       desc: { en: "Flagship reasoning over huge context.", vi: "Chủ lực suy luận trên ngữ cảnh lớn." },
-      context: "1M", inputs: "Text · Image · Audio", caps: ["Text", "Vision", "Reasoning"] },
-    { id: "google/gemini-2.5-flash", name: "Gemini 2.5 Flash",
+      context: "1M", inputs: "Text · Image · Audio", caps: ["Text", "Vision", "Reasoning"], price: "$2.00/M", speed: "170 tok/s" },
+    { id: "google/gemini-3-flash", name: "Gemini 3 Flash",
       desc: { en: "Speed and efficiency by default.", vi: "Nhanh và hiệu quả mặc định." },
-      context: "1M", inputs: "Text · Image · Audio", caps: ["Text", "Vision", "Tools"] },
-    { id: "google/gemini-2.0-flash", name: "Gemini 2.0 Flash",
+      context: "1M", inputs: "Text · Image · Audio", caps: ["Text", "Vision", "Tools"], price: "$0.89/M", speed: "239 tok/s" },
+    { id: "google/gemini-2-5-flash", name: "Gemini 2.5 Flash",
       desc: { en: "Proven all-rounder release.", vi: "Bản toàn diện đã kiểm chứng." },
-      context: "1M", inputs: "Text · Image", caps: ["Text", "Vision", "JSON"] }
+      context: "1M", inputs: "Text · Image", caps: ["Text", "Vision", "JSON"], price: "$0.30/M", speed: "250 tok/s" }
+  ] },
+  { provider: "xAI", models: [
+    { id: "xai/grok-4-6", name: "Grok 4.6",
+      desc: { en: "Flagship with real-time X data.", vi: "Chủ lực với dữ liệu X trực tiếp." },
+      context: "2M", inputs: "Text · Image", caps: ["Text", "Vision", "Reasoning"], price: "$2.00/M", speed: "120 tok/s" },
+    { id: "xai/grok-4-1-fast", name: "Grok 4.1 Fast",
+      desc: { en: "Fast everyday tasks.", vi: "Tác vụ hằng ngày nhanh." },
+      context: "2M", inputs: "Text", caps: ["Text", "Tools"], price: "$0.50/M", speed: "200 tok/s" }
+  ] },
+  { provider: "DeepSeek", models: [
+    { id: "deepseek/deepseek-v4", name: "DeepSeek V4",
+      desc: { en: "Reasoning flagship, 1M context.", vi: "Chủ lực suy luận, ngữ cảnh 1M." },
+      context: "1M", inputs: "Text · Code", caps: ["Text", "Reasoning", "JSON"], price: "$0.46/M", speed: "143 tok/s" },
+    { id: "deepseek/deepseek-v3-2", name: "DeepSeek V3.2",
+      desc: { en: "Efficient open MoE.", vi: "MoE mở hiệu quả." },
+      context: "128K", inputs: "Text · Code", caps: ["Text", "Reasoning"], price: "$0.28/M", speed: "180 tok/s" },
+    { id: "deepseek/deepseek-r1", name: "DeepSeek R1",
+      desc: { en: "Open reasoning specialist.", vi: "Chuyên gia suy luận mở." },
+      context: "128K", inputs: "Text", caps: ["Text", "Reasoning"], price: "$0.55/M", speed: "90 tok/s" }
+  ] },
+  { provider: "Mistral AI", models: [
+    { id: "mistral/mistral-large-3", name: "Mistral Large 3",
+      desc: { en: "EU flagship MoE, 256K context.", vi: "Chủ lực EU MoE, ngữ cảnh 256K." },
+      context: "256K", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"], price: "$2.00/M", speed: "110 tok/s" },
+    { id: "mistral/mistral-medium-3-5", name: "Mistral Medium 3.5",
+      desc: { en: "Balanced enterprise.", vi: "Cân bằng cho doanh nghiệp." },
+      context: "256K", inputs: "Text · Image", caps: ["Text", "Vision"], price: "$0.80/M", speed: "150 tok/s" },
+    { id: "mistral/mistral-small-4", name: "Mistral Small 4",
+      desc: { en: "Compact multimodal.", vi: "Đa phương thức gọn nhẹ." },
+      context: "262K", inputs: "Text · Image", caps: ["Text", "Vision"], price: "$0.30/M", speed: "210 tok/s" }
+  ] },
+  { provider: "Meta", models: [
+    { id: "meta/llama-4-maverick", name: "Llama 4 Maverick",
+      desc: { en: "Open multimodal flagship.", vi: "Chủ lực đa phương thức mở." },
+      context: "1M", inputs: "Text · Image", caps: ["Text", "Vision", "Tools"], price: "$0.35/M", speed: "130 tok/s" },
+    { id: "meta/llama-3-3-70b", name: "Llama 3.3 70B",
+      desc: { en: "Proven open weights.", vi: "Trọng số mở đã kiểm chứng." },
+      context: "128K", inputs: "Text", caps: ["Text", "Reasoning"], price: "$0.20/M", speed: "160 tok/s" }
+  ] },
+  { provider: "Qwen", models: [
+    { id: "qwen/qwen3-max", name: "Qwen3 Max",
+      desc: { en: "Alibaba flagship multilingual.", vi: "Chủ lực đa ngôn ngữ Alibaba." },
+      context: "1M", inputs: "Text · Code", caps: ["Text", "Reasoning", "Tools"], price: "$1.81/M", speed: "92 tok/s" },
+    { id: "qwen/qwen3-30b", name: "Qwen3 30B",
+      desc: { en: "Efficient open model.", vi: "Mô hình mở hiệu quả." },
+      context: "256K", inputs: "Text", caps: ["Text"], price: "$0.15/M", speed: "190 tok/s" }
+  ] },
+  { provider: "Cohere", models: [
+    { id: "cohere/command-a", name: "Command A",
+      desc: { en: "Enterprise RAG specialist.", vi: "Chuyên gia RAG doanh nghiệp." },
+      context: "256K", inputs: "Text", caps: ["Text", "Reasoning", "JSON"], price: "$2.50/M", speed: "100 tok/s" },
+    { id: "cohere/command-r-plus", name: "Command R+",
+      desc: { en: "Retrieval-optimized chat.", vi: "Chat tối ưu truy xuất." },
+      context: "128K", inputs: "Text", caps: ["Text", "Tools"], price: "$1.20/M", speed: "140 tok/s" }
   ] },
   { provider: "OpenCode", models: [
     { id: "opencode/reasoning", name: "OpenCode Reasoning",
       desc: { en: "Step-by-step planning and code tasks.", vi: "Lập kế hoạch từng bước và tác vụ code." },
-      context: "128K", inputs: "Text · Code", caps: ["Text", "Reasoning", "Tools"] },
+      context: "128K", inputs: "Text · Code", caps: ["Text", "Reasoning", "Tools"], price: "$1.00/M", speed: "70 tok/s" },
     { id: "opencode/fast", name: "OpenCode Fast",
       desc: { en: "Instant answers for simple prompts.", vi: "Trả lời tức thì cho prompt đơn giản." },
-      context: "64K", inputs: "Text · Code", caps: ["Text", "Tools"] }
-  ] },
-  { provider: "DeepSeek", models: [
-    { id: "deepseek/deepseek-v3", name: "DeepSeek V3",
-      desc: { en: "Strong open model for chat and code.", vi: "Mô hình mở mạnh cho chat và code." },
-      context: "128K", inputs: "Text · Code", caps: ["Text", "Reasoning", "JSON"] },
-    { id: "deepseek/deepseek-r1", name: "DeepSeek R1",
-      desc: { en: "Open reasoning specialist.", vi: "Chuyên gia suy luận mở." },
-      context: "128K", inputs: "Text", caps: ["Text", "Reasoning"] }
+      context: "64K", inputs: "Text · Code", caps: ["Text", "Tools"], price: "$0.20/M", speed: "230 tok/s" }
   ] }
 ];
 
@@ -1010,7 +1065,9 @@ function renderCatalog() {
         '<span class="model-card-desc">' + m.desc[lang] + "</span>" +
         '<span class="model-card-meta"><span><strong>' + chromeT("models.f_context") +
         "</strong><span>" + m.context + "</span></span>" +
-        '<span><strong>' + chromeT("models.f_inputs") + "</strong><span>" + m.inputs + "</span></span></span>" +
+        '<span><strong>' + chromeT("models.f_inputs") + "</strong><span>" + m.inputs + "</span></span>" +
+        '<span><strong>' + chromeT("models.f_price") + "</strong><span>" + (m.price || "—") + "</span></span>" +
+        '<span><strong>' + chromeT("models.f_speed") + "</strong><span>" + (m.speed || "—") + "</span></span></span>" +
         '<span class="model-card-foot"><span class="model-caps">' +
         m.caps.map(c => '<span class="model-cap">' + c + "</span>").join("") + "</span>" +
         '<span class="model-use">' + (isSel ? "✓ " + chromeT("models.selected") : chromeT("models.use")) + "</span></span>";
@@ -1052,6 +1109,8 @@ function openModelDetail(id) {
   document.getElementById("modelDetailDesc").textContent = m.desc[lang];
   document.getElementById("modelDetailContext").textContent = m.context;
   document.getElementById("modelDetailInputs").textContent = m.inputs;
+  document.getElementById("modelDetailPrice").textContent = m.price || "—";
+  document.getElementById("modelDetailSpeed").textContent = m.speed || "—";
   const st = document.getElementById("modelDetailStatus");
   st.innerHTML = "";
   const dot = document.createElement("span");
@@ -1405,7 +1464,8 @@ async function fetchTelemetry() {
     // History Table
     const tbody = document.getElementById("telemetryHistoryBody");
     tbody.innerHTML = "";
-    (data.history || []).forEach(row => {
+    const history = data.history || [];
+    history.forEach(row => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><code>${row.id}</code></td>
@@ -1419,9 +1479,109 @@ async function fetchTelemetry() {
       `;
       tbody.appendChild(tr);
     });
+
+    renderAgentTokens(history, data.estimated_cost_usd || 0);
+    renderTimeTokens(history, data.estimated_cost_usd || 0);
+    renderStatusBreakdown(history);
   } catch (err) {
     console.error("Telemetry error:", err);
   }
+}
+
+function emptyRow(tbody, cols) {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td colspan="${cols}" style="text-align:center;color:var(--text-muted);">${chromeT("an.empty_rows")}</td>`;
+  tbody.appendChild(tr);
+}
+
+function costShare(totalTokens, allTokens, estCost) {
+  if (!allTokens || !estCost) return 0;
+  return (totalTokens / allTokens) * estCost;
+}
+
+// Tokens by Agent (dominant model shown small beside the agent).
+function renderAgentTokens(history, estCost) {
+  const tbody = document.getElementById("agentTokensBody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  if (!history.length) { emptyRow(tbody, 6); return; }
+  const byAgent = {};
+  history.forEach(row => {
+    const key = (row.agent || "unknown").toUpperCase();
+    const g = byAgent[key] || (byAgent[key] = { calls: 0, prompt: 0, comp: 0, total: 0, models: {} });
+    g.calls++;
+    g.prompt += row.prompt_tokens || 0;
+    g.comp += row.completion_tokens || 0;
+    g.total += row.total_tokens || 0;
+    const m = row.model || "—";
+    g.models[m] = (g.models[m] || 0) + 1;
+  });
+  const allTokens = history.reduce((s, r) => s + (r.total_tokens || 0), 0);
+  Object.keys(byAgent).sort((a, b) => byAgent[b].total - byAgent[a].total).forEach(name => {
+    const g = byAgent[name];
+    const topModel = Object.keys(g.models).sort((x, y) => g.models[y] - g.models[x])[0];
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><strong>${name}</strong><br><span style="color:var(--text-muted);font-size:0.75rem;">${topModel}</span></td>
+      <td>${g.calls}</td>
+      <td>${g.prompt.toLocaleString()}</td>
+      <td>${g.comp.toLocaleString()}</td>
+      <td><strong style="color: #D97706;">${g.total.toLocaleString()}</strong></td>
+      <td>$${costShare(g.total, allTokens, estCost).toFixed(4)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Tokens by Day (grouped from row timestamps).
+function renderTimeTokens(history, estCost) {
+  const tbody = document.getElementById("timeTokensBody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  if (!history.length) { emptyRow(tbody, 4); return; }
+  const byDay = {};
+  history.forEach(row => {
+    const day = String(row.timestamp || "").slice(0, 10) || "—";
+    const g = byDay[day] || (byDay[day] = { calls: 0, total: 0 });
+    g.calls++;
+    g.total += row.total_tokens || 0;
+  });
+  const allTokens = history.reduce((s, r) => s + (r.total_tokens || 0), 0);
+  Object.keys(byDay).sort().reverse().forEach(day => {
+    const g = byDay[day];
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><strong>${day}</strong></td>
+      <td>${g.calls}</td>
+      <td><strong style="color: #D97706;">${g.total.toLocaleString()}</strong></td>
+      <td>$${costShare(g.total, allTokens, estCost).toFixed(4)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Status breakdown (row.status || SUCCESS, matching the history badge).
+function renderStatusBreakdown(history) {
+  const tbody = document.getElementById("statusBreakdownBody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  if (!history.length) { emptyRow(tbody, 3); return; }
+  const counts = {};
+  history.forEach(row => {
+    const s = (row.status || "SUCCESS").toUpperCase();
+    counts[s] = (counts[s] || 0) + 1;
+  });
+  Object.keys(counts).sort((a, b) => counts[b] - counts[a]).forEach(s => {
+    const pct = Math.round((counts[s] / history.length) * 100);
+    const cls = s === "SUCCESS" ? "badge-green" : "badge-amber";
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><span class="badge ${cls}">${s}</span></td>
+      <td>${counts[s]}</td>
+      <td>${pct}%</td>
+    `;
+    tbody.appendChild(tr);
+  });
 }
 
 // ----------------------------------------------------------------
@@ -1920,15 +2080,35 @@ function initGlobalSearch() {
   });
 }
 
+function agentCatalogMatches(key, q) {
+  const a = AGENT_CATALOG[key];
+  if (!a) return false;
+  const hay = [a.name.en, a.name.vi, a.role.en, a.role.vi, a.desc.en, a.desc.vi].join(" ").toLowerCase();
+  return hay.indexOf(q) !== -1;
+}
+
+// Filter the static demo grid in place (never re-render backend cards into it).
+function filterAgentCatalog(q) {
+  const grid = document.getElementById("agentCardGrid");
+  if (!grid) return 0;
+  let n = 0;
+  grid.querySelectorAll("[data-agent]").forEach(card => {
+    const hit = !q || agentCatalogMatches(card.getAttribute("data-agent"), q);
+    card.style.display = hit ? "" : "none";
+    if (hit) n++;
+  });
+  return n;
+}
+
 function runGlobalSearch(q) {
   // Models — reuse existing filter.
   modelSearchInput.value = q;
   modelSearchInput.dispatchEvent(new Event("input"));
-  // Agents — filter cache locally.
-  const aq = !q ? agentsCache : agentsCache.filter(ag =>
+  // Agents — filter static catalog in place; backend cache feeds right panel only.
+  const aqCount = filterAgentCatalog(q);
+  const aqBackend = !q ? agentsCache : agentsCache.filter(ag =>
     (ag.id + " " + ag.role + " " + (ag.goal || "") + " " + (ag.llm || "")).toLowerCase().includes(q));
-  renderAgentCards(aq);
-  renderRightPanelAgents(aq);
+  renderRightPanelAgents(aqBackend);
   // Logs — reuse server-side filter.
   if (logSearchInput.value !== q) {
     logSearchInput.value = q;
@@ -1939,9 +2119,12 @@ function runGlobalSearch(q) {
     m.id.toLowerCase().includes(q) || (m.name || "").toLowerCase().includes(q) ||
     ((m.provider || "").toLowerCase().includes(q)));
   const lq = logsCache.filter(l => JSON.stringify(l).toLowerCase().includes(q));
-  const total = aq.length + mq.length + lq.length;
-  const target = aq.length ? "agentsView" : mq.length ? "modelsView" : lq.length ? "logsView" : null;
-  if (target) switchView(target);
+  const total = aqCount + mq.length + lq.length;
+  const target = aqCount ? "agentsView" : mq.length ? "modelsView" : lq.length ? "logsView" : null;
+  if (target) {
+    if (target === "agentsView") closeAgentDetail();
+    switchView(target);
+  }
   showToast(total ? `Tìm thấy ${total} kết quả cho "${escapeHtml(q)}"` : `Không có kết quả cho "${escapeHtml(q)}"`, total ? "success" : "error");
 }
 
@@ -2221,6 +2404,11 @@ const CHROME_I18N = {
     "an.breakdown": "Token Consumption Breakdown",
     "an.m_prompt": "Prompt (Input):", "an.m_comp": "Completion (Output):",
     "an.history": "Recent Execution History",
+    "an.by_agent_t": "Tokens by Agent",
+    "an.by_time_t": "Tokens by Day",
+    "an.by_status_t": "Status Breakdown",
+    "an.th_calls": "Calls", "an.th_cost": "Est. Cost", "an.th_date": "Date", "an.th_share": "Share",
+    "an.empty_rows": "No data yet",
     "an.th_run": "Run ID", "an.th_time": "Time", "an.th_agent": "Agent", "an.th_model": "Model",
     "an.th_prompt": "Prompt", "an.th_comp": "Comp", "an.th_total": "Total", "an.th_status": "Status",
     "agents.back": "← Back to Agents",
@@ -2253,6 +2441,8 @@ const CHROME_I18N = {
     "models.f_context": "Context window",
     "models.f_inputs": "Supported input",
     "models.f_status": "Status",
+    "models.f_price": "Price",
+    "models.f_speed": "Speed",
     "models.f_caps": "Capabilities",
     "rp.src_dw": "Enterprise Data Warehouse", "rp.src_kb": "Finance KnowledgeBase", "rp.src_q3": "Q3 Reports & Docs",
     "logs.auto_on": "Auto-Refresh: ON", "logs.auto_off": "Auto-Refresh: OFF",
@@ -2324,6 +2514,11 @@ const CHROME_I18N = {
     "an.breakdown": "Phân bổ tiêu thụ token",
     "an.m_prompt": "Nhập (Input):", "an.m_comp": "Xuất (Output):",
     "an.history": "Lịch sử thực thi gần đây",
+    "an.by_agent_t": "Token theo Agent",
+    "an.by_time_t": "Token theo ngày",
+    "an.by_status_t": "Phân bổ trạng thái",
+    "an.th_calls": "Lượt gọi", "an.th_cost": "Chi phí ước tính", "an.th_date": "Ngày", "an.th_share": "Tỉ lệ",
+    "an.empty_rows": "Chưa có dữ liệu",
     "an.th_run": "Mã chạy", "an.th_time": "Giờ", "an.th_agent": "Agent", "an.th_model": "Model",
     "an.th_prompt": "Nhập", "an.th_comp": "Xuất", "an.th_total": "Tổng", "an.th_status": "Trạng thái",
     "agents.back": "← Về danh sách Agent",
@@ -2356,6 +2551,8 @@ const CHROME_I18N = {
     "models.f_context": "Ngữ cảnh",
     "models.f_inputs": "Đầu vào hỗ trợ",
     "models.f_status": "Trạng thái",
+    "models.f_price": "Giá",
+    "models.f_speed": "Tốc độ",
     "models.f_caps": "Khả năng",
     "rp.src_dw": "Kho dữ liệu doanh nghiệp", "rp.src_kb": "Cơ sở tri thức Tài chính", "rp.src_q3": "Báo cáo & Tài liệu Q3",
     "logs.auto_on": "Tự động: BẬT", "logs.auto_off": "Tự động: TẮT",
