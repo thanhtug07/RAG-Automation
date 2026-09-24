@@ -1,8 +1,0 @@
-[project]
-name = "q3crew"
-version = "0.1.0"
-requires-python = ">=3.10"
-dependencies = ["crewai", "crewai[tools]", "litellm", "python-dotenv", "pyyaml"]
-
-[tool.pytest.ini_options]
-testpaths = ["."]

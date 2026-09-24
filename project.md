@@ -8,8 +8,7 @@
 ## 1. What this repo is
 
 Vietnamese multi-channel e-commerce RAG assistant (Shopee / TikTok Shop / P2P).
-Local runtime is `flows/rag_flow/` (intent-routed CrewAI Flow). An older
-`crews/crewai/` single-crew scaffold exists but is superseded. There is NO local
+Local runtime is `flows/rag_flow/` (intent-routed CrewAI Flow). There is NO local
 `backend/crewai/` package anymore (directory itself deleted by owner 2026-09-24).
 
 ## 2. Repo layout (verified by directory listing 2026-09-24)
@@ -23,13 +22,11 @@ backend/
   tests/                    # test_planner_execution_runtime.py, test_shared_contracts.py
   auth|core|context|database|events|llm|memory|observability|policy|tools|workflows|evaluation
                             # scaffold/stub packages (auth has jwt/rbac + tests)
-  (NO crewai/ directory — deleted by owner; do NOT recreate without asking)
-crews/crewai/               # older single-crew scaffold, SUPERSEDED by flows/rag_flow/
-  pyproject.toml · README.md
-  src/q3crew/               # package q3crew (named to avoid shadowing installed crewai)
-    crew.py                 # build_crew() 6-task chain + build_ask_crew() single ask + default_model()
-    main.py                 # run(topic, context_text) entry
-    config/agents.yaml      # 6 roles · config/tasks.yaml (chain, {topic}/{context_text})
+  crewai/
+    __init__.py               # package marker only (validator lives here, no runtime code)
+    validation/               # validator.py (21 rules, pure stdlib, read-only) +
+                              # test_validator.py (12 tests: 10 rules + determinism/read-only)
+                              # REWRITTEN 2026-09-24 from specs/*.md after owner cleanup
 flows/rag_flow/             # PRODUCTION Flow: router + 4 crews + 2 tools
   pyproject.toml · README.md · .env.example
   knowledge/README.md       # pointer to data/ (no duplication)
@@ -83,7 +80,9 @@ User query
 Verified 2026-09-24: router 4/4 correct offline; all 4 crews construct
 (data 3/3, policy 2/2, full 5/5, fast 1/1 agents/tasks); live ground-truth
 "Tổng doanh thu Q3 2024?" → data path → answer contains 28.035.000, exit 0.
-Planner→Builder→Flow wiring does NOT exist yet (planner output shape ≠ flow input).
+Planner→Builder→Flow wiring EXISTS since 2026-09-24: `backend/builder/`
+(Plan → validated CrewSpec, BuilderError on FAIL) + `to_flow_inputs()` →
+`kickoff(**inputs)`; proven offline end-to-end (validated specs only).
 
 ## 4. CrewSpec contract (documented in docs/backend/crewai/specs/*.md, 7 files intact)
 
@@ -95,13 +94,12 @@ expected_output[,context,depends_on]}`, `tools*` (key required, may be `[]`),
 `[execution{timeout 30-3600, max_iter 1-50, failure halt|skip|retry_once,
 output last_task|collect_all}]`, `[constraints{task_limit 1-100, agent_limit 1-50,
 allowed_resources[]}]`. Normative names: `agent_ref`/`tool_refs`/`depends_on`.
-Secrets anywhere → reject (V-SEC-01). NOTE: the enforcing validator module
-(`backend/crewai/validation/`) was deleted with its package — the contract is
-documented but NOT enforced by code right now.
+Secrets anywhere → reject (V-SEC-01). Enforced by
+`backend/crewai/validation/validator.py` (rewritten 2026-09-24 from specs).
 
-## 5. Validation rules (21, documented — enforcement deleted)
+## 5. Validation rules (21, enforced — 12 tests green 2026-09-24)
 
-Per `specs/validation-spec.md` + `validator.py` (read in full before deletion):
+Per `specs/validation-spec.md` (re-read in full before rewrite):
 V-TOP-01/02 · V-AG-01/02/03 · V-TASK-01/02/03 · V-TOOL-01/02 · V-DEP-01..05
 (V-DEP-04 FAIL overrides the "collapse" sentence in dependency-spec.md) ·
 V-PROC-01/02/03 · V-EXE-01 · V-CON-01 · V-SEC-01 (8 secret patterns, label-only
@@ -175,20 +173,18 @@ litellm appends the path; verified by failed/successful calls) ·
 
 ## 11. Boundaries
 
-Execution: local Flow now, CrewAI Cloud later — no local `backend/crewai` package
-(owner-deleted, do not recreate without asking). Planner reasoning, API/auth/
-transport, DB/persistence, frontend: out of scope for flow code. `docs/.../agents/`
-is an empty dir (role data survives ONLY in §6 above — do not lose this file).
+Execution: local Flow now, CrewAI Cloud later. `backend/crewai/` holds ONLY the
+validator (rewritten per Prompt 3); no runtime/builder code there. Planner reasoning,
+API/auth/transport, DB/persistence, frontend: out of scope for flow code.
 
 ## 12. Next (not started)
 
-1. `scripts/chat_crew.py`: repoint `/ask` to `flows/rag_flow kickoff()` (inputs =
-   question + uploaded files) or delete the file.
+1. `scripts/chat_crew.py`: DONE repointed to `flows/rag_flow kickoff()` (offline
+   11/11 commands pass; live /ask pending quota).
 2. `backend/builder/` (Plan → CrewSpec → validate): needs validator restored
-   (Recycle Bin may still hold it) or rewritten from `specs/*.md`.
+   or rewritten from `specs/*.md`.
 3. CrewAI Cloud exporter (spec → Studio artifact): needs platform API format.
-4. Fix `.env.example` (add `OPENAI_API_BASE`), consider a venv, decide fate of
-   `crews/crewai/` (superseded scaffold) and legacy seeds/frontend/infra (UNVERIFIED).
+4. Consider a venv; legacy seeds/frontend/infra remain UNVERIFIED.
 
 ## 13. Deletion log (owner-executed 2026-09-24 unless noted; agent deleted only #4)
 
@@ -198,6 +194,8 @@ is an empty dir (role data survives ONLY in §6 above — do not lose this file)
 4. Broken execution CLIs + dead tests — agent-deleted after they lost their imports
    (9 scripts, 4 test files; listed in git history).
 5. `docs/.../agents/**`, model docs (`CREW/AI_SYSTEM/MODEL`, `*_MODEL.md`, plans).
-6. Cache dirs (`__pycache__` ×12, `.pytest_cache`).
+6. Cache dirs (`__pycache__`, `.pytest_cache`).
+7. `crews/crewai/` superseded scaffold + empty `docs/.../agents/` dir (agent-executed
+   this turn; zero external references verified by repo-wide grep).
 Surviving by owner intent: `specs/*.md`, `scripts/chat_crew.py`, `crews/`, `flows/`,
 `data/`, `project.md`, Planner/API/tests, `.env`, `pytest.ini`.
